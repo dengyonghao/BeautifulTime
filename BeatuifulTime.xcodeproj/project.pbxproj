@@ -13,8 +13,12 @@
 		65E2D33D1BCFC966001E29A9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D33C1BCFC966001E29A9 /* ViewController.m */; };
 		65E2D3401BCFC966001E29A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65E2D33E1BCFC966001E29A9 /* Main.storyboard */; };
 		65E2D3421BCFC966001E29A9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65E2D3411BCFC966001E29A9 /* Images.xcassets */; };
-		65E2D3451BCFC966001E29A9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65E2D3431BCFC966001E29A9 /* LaunchScreen.xib */; };
 		65E2D3511BCFC966001E29A9 /* BeatuifulTimeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D3501BCFC966001E29A9 /* BeatuifulTimeTests.m */; };
+		65E2D36D1BCFCD84001E29A9 /* blackTheme.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 65E2D36B1BCFCD84001E29A9 /* blackTheme.bundle */; };
+		65E2D36E1BCFCD84001E29A9 /* blueTheme.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 65E2D36C1BCFCD84001E29A9 /* blueTheme.bundle */; };
+		65E2D3721BCFCEE4001E29A9 /* BTStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D3711BCFCEE4001E29A9 /* BTStyle.m */; };
+		65E2D3781BCFCF5A001E29A9 /* BTObjectExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D3771BCFCF5A001E29A9 /* BTObjectExtension.m */; };
+		65E2D37B1BCFCF76001E29A9 /* BTThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D37A1BCFCF76001E29A9 /* BTThemeManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,10 +42,19 @@
 		65E2D33C1BCFC966001E29A9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		65E2D33F1BCFC966001E29A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		65E2D3411BCFC966001E29A9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		65E2D3441BCFC966001E29A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		65E2D34A1BCFC966001E29A9 /* BeatuifulTimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeatuifulTimeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65E2D34F1BCFC966001E29A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65E2D3501BCFC966001E29A9 /* BeatuifulTimeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeatuifulTimeTests.m; sourceTree = "<group>"; };
+		65E2D36B1BCFCD84001E29A9 /* blackTheme.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = blackTheme.bundle; sourceTree = "<group>"; };
+		65E2D36C1BCFCD84001E29A9 /* blueTheme.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = blueTheme.bundle; sourceTree = "<group>"; };
+		65E2D36F1BCFCDD4001E29A9 /* BeatuifulTime-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BeatuifulTime-Prefix.pch"; sourceTree = "<group>"; };
+		65E2D3701BCFCEE4001E29A9 /* BTStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTStyle.h; sourceTree = "<group>"; };
+		65E2D3711BCFCEE4001E29A9 /* BTStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTStyle.m; sourceTree = "<group>"; };
+		65E2D3731BCFCF2D001E29A9 /* BTCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCommon.h; sourceTree = "<group>"; };
+		65E2D3761BCFCF5A001E29A9 /* BTObjectExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTObjectExtension.h; sourceTree = "<group>"; };
+		65E2D3771BCFCF5A001E29A9 /* BTObjectExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTObjectExtension.m; sourceTree = "<group>"; };
+		65E2D3791BCFCF76001E29A9 /* BTThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTThemeManager.h; sourceTree = "<group>"; };
+		65E2D37A1BCFCF76001E29A9 /* BTThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTThemeManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,9 +100,11 @@
 				65E2D3361BCFC965001E29A9 /* AppDelegate.m */,
 				65E2D33B1BCFC966001E29A9 /* ViewController.h */,
 				65E2D33C1BCFC966001E29A9 /* ViewController.m */,
+				65E2D3681BCFCD02001E29A9 /* Resources */,
+				65E2D3691BCFCD02001E29A9 /* Src */,
+				65E2D3641BCFCCF2001E29A9 /* Common */,
 				65E2D33E1BCFC966001E29A9 /* Main.storyboard */,
 				65E2D3411BCFC966001E29A9 /* Images.xcassets */,
-				65E2D3431BCFC966001E29A9 /* LaunchScreen.xib */,
 				65E2D3381BCFC966001E29A9 /* BeatuifulTime.xcdatamodeld */,
 				65E2D3311BCFC965001E29A9 /* Supporting Files */,
 			);
@@ -101,6 +116,7 @@
 			children = (
 				65E2D3321BCFC965001E29A9 /* Info.plist */,
 				65E2D3331BCFC965001E29A9 /* main.m */,
+				65E2D36F1BCFCDD4001E29A9 /* BeatuifulTime-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -120,6 +136,68 @@
 				65E2D34F1BCFC966001E29A9 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		65E2D3641BCFCCF2001E29A9 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				65E2D3651BCFCCF2001E29A9 /* 3rdparty */,
+				65E2D3661BCFCCF2001E29A9 /* BTThemeManager */,
+				65E2D3671BCFCCF2001E29A9 /* BTTools */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		65E2D3651BCFCCF2001E29A9 /* 3rdparty */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = 3rdparty;
+			sourceTree = "<group>";
+		};
+		65E2D3661BCFCCF2001E29A9 /* BTThemeManager */ = {
+			isa = PBXGroup;
+			children = (
+				65E2D3791BCFCF76001E29A9 /* BTThemeManager.h */,
+				65E2D37A1BCFCF76001E29A9 /* BTThemeManager.m */,
+			);
+			path = BTThemeManager;
+			sourceTree = "<group>";
+		};
+		65E2D3671BCFCCF2001E29A9 /* BTTools */ = {
+			isa = PBXGroup;
+			children = (
+				65E2D3701BCFCEE4001E29A9 /* BTStyle.h */,
+				65E2D3711BCFCEE4001E29A9 /* BTStyle.m */,
+				65E2D3731BCFCF2D001E29A9 /* BTCommon.h */,
+				65E2D3761BCFCF5A001E29A9 /* BTObjectExtension.h */,
+				65E2D3771BCFCF5A001E29A9 /* BTObjectExtension.m */,
+			);
+			path = BTTools;
+			sourceTree = "<group>";
+		};
+		65E2D3681BCFCD02001E29A9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				65E2D36A1BCFCD84001E29A9 /* Themes */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		65E2D3691BCFCD02001E29A9 /* Src */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Src;
+			sourceTree = "<group>";
+		};
+		65E2D36A1BCFCD84001E29A9 /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				65E2D36B1BCFCD84001E29A9 /* blackTheme.bundle */,
+				65E2D36C1BCFCD84001E29A9 /* blueTheme.bundle */,
+			);
+			path = Themes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,8 +281,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				65E2D3401BCFC966001E29A9 /* Main.storyboard in Resources */,
-				65E2D3451BCFC966001E29A9 /* LaunchScreen.xib in Resources */,
 				65E2D3421BCFC966001E29A9 /* Images.xcassets in Resources */,
+				65E2D36D1BCFCD84001E29A9 /* blackTheme.bundle in Resources */,
+				65E2D36E1BCFCD84001E29A9 /* blueTheme.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,9 +302,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				65E2D3371BCFC965001E29A9 /* AppDelegate.m in Sources */,
+				65E2D3781BCFCF5A001E29A9 /* BTObjectExtension.m in Sources */,
 				65E2D3341BCFC965001E29A9 /* main.m in Sources */,
 				65E2D33D1BCFC966001E29A9 /* ViewController.m in Sources */,
 				65E2D33A1BCFC966001E29A9 /* BeatuifulTime.xcdatamodeld in Sources */,
+				65E2D3721BCFCEE4001E29A9 /* BTStyle.m in Sources */,
+				65E2D37B1BCFCF76001E29A9 /* BTThemeManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,14 +336,6 @@
 				65E2D33F1BCFC966001E29A9 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		65E2D3431BCFC966001E29A9 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				65E2D3441BCFC966001E29A9 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -351,7 +425,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/BeatuifulTime/BeatuifulTime-Prefix.pch";
 				INFOPLIST_FILE = BeatuifulTime/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -361,7 +438,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/BeatuifulTime/BeatuifulTime-Prefix.pch";
 				INFOPLIST_FILE = BeatuifulTime/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -420,6 +500,7 @@
 				65E2D3561BCFC966001E29A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		65E2D3571BCFC966001E29A9 /* Build configuration list for PBXNativeTarget "BeatuifulTimeTests" */ = {
 			isa = XCConfigurationList;
@@ -428,6 +509,7 @@
 				65E2D3591BCFC966001E29A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
