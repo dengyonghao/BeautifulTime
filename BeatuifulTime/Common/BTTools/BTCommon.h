@@ -38,6 +38,9 @@ static inline UIImage* naviimage_from_mainbundle(NSString* filename_and_type)
 
 #define firstLaunch              @"firstLaunch"
 
+// 弱引用
+#define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
+
 #define BT_UIIMAGE(_FILE_)          ([UIImage imageNamed:(_FILE_)])
 
 // 版本大于iOS7

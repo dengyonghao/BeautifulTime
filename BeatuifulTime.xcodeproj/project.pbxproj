@@ -227,6 +227,7 @@
 		B44506D01BCFEE48008BD5AC /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				B445071E1BD00EA9008BD5AC /* SettingModule */,
 				B44507191BD00405008BD5AC /* LaunchModule */,
 				B44506D51BCFFAAC008BD5AC /* HomePageModule */,
 				B44506D91BCFFAAC008BD5AC /* JournalModule */,
@@ -446,6 +447,37 @@
 			sourceTree = "<group>";
 		};
 		B445071A1BD00405008BD5AC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		B445071E1BD00EA9008BD5AC /* SettingModule */ = {
+			isa = PBXGroup;
+			children = (
+				B445071F1BD00EA9008BD5AC /* Model */,
+				B44507201BD00EA9008BD5AC /* View */,
+				B44507211BD00EA9008BD5AC /* ViewController */,
+			);
+			path = SettingModule;
+			sourceTree = "<group>";
+		};
+		B445071F1BD00EA9008BD5AC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B44507201BD00EA9008BD5AC /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B44507211BD00EA9008BD5AC /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 			);
