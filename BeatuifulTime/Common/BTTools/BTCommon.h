@@ -36,6 +36,22 @@ static inline UIImage* naviimage_from_mainbundle(NSString* filename_and_type)
     return image;
 }
 
+#define firstLaunch              @"firstLaunch"
+
+#define BT_UIIMAGE(_FILE_)          ([UIImage imageNamed:(_FILE_)])
+
+// 版本大于iOS7
+//#define     IOS7_OR_HIGHER       ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
+
+#define     IOS8_OR_HIGHER       ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8)
+#define     IOS8_3_OR_HIGHER       ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.3f)
+#define     IOS9_0_OR_HIGHER       ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0f)
+
+// 屏幕的高度
+#define     BT_SCREEN_HEIGHT     (IOS8_OR_HIGHER?[UIScreen mainScreen].bounds.size.height:[UIScreen mainScreen].bounds.size.height)
+// 屏幕的宽度
+#define     BT_SCREEN_WIDTH      (IOS8_OR_HIGHER?[UIScreen mainScreen].bounds.size.width:[UIScreen mainScreen].bounds.size.width)
+
 //判断设备是不是6Plus
 #define iPhone6Plus ([UIScreen instancesRespondToSelector:@selector(scale)]?[[UIScreen mainScreen] scale]:1) >= 2.8
 

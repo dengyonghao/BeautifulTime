@@ -17,9 +17,14 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+//AppDelegate 实例
++ (AppDelegate *) getInstance;
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
-
+//进入新手引导页
+- (void)enterGuidePage;
+//进入首页
+- (void)enterHomePage;
 @end
 

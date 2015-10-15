@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "BTGuideViewController.h"
+#import "HomePageViewController.h"
+
+static AppDelegate *singleton = nil;
 
 @interface AppDelegate ()
 
@@ -14,9 +18,20 @@
 
 @implementation AppDelegate
 
++ (AppDelegate*)getInstance {
+    return singleton;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    singleton = self;
+    [self enterHomePage];
     // Override point for customization after application launch.
+//    if (![[NSUserDefaults standardUserDefaults] boolForKey:firstLaunch]) {
+//        [self enterGuidePage];
+//    }
+//    else {
+//        [self enterHomePage];
+//    }
     return YES;
 }
 
@@ -122,6 +137,28 @@
             abort();
         }
     }
+}
+
+//进入新手引导页
+- (void)enterGuidePage {
+    
+    self.window.rootViewController = nil;
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    BTGuideViewController *guideVC = [[BTGuideViewController alloc] init];
+    guideVC.hidesBottomBarWhenPushed = YES;
+    self.window.rootViewController = guideVC;
+    [self.window makeKeyAndVisible];
+    
+}
+
+//进入首页
+- (void)enterHomePage {
+    self.window.rootViewController = nil;
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    HomePageViewController *homeVC = [[HomePageViewController alloc] init];
+    homeVC.hidesBottomBarWhenPushed = YES;
+    self.window.rootViewController = homeVC;
+    [self.window makeKeyAndVisible];
 }
 
 @end
