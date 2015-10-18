@@ -50,6 +50,8 @@ static inline UIImage* naviimage_from_mainbundle(NSString* filename_and_type)
 #define     IOS8_3_OR_HIGHER       ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.3f)
 #define     IOS9_0_OR_HIGHER       ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0f)
 
+// 状态栏高度
+#define     BT_STATUSBAR_HEIGHT  0
 // 屏幕的高度
 #define     BT_SCREEN_HEIGHT     (IOS8_OR_HIGHER?[UIScreen mainScreen].bounds.size.height:[UIScreen mainScreen].bounds.size.height)
 // 屏幕的宽度

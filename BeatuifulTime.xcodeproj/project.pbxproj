@@ -7,6 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		65DCFE4A1BD334F800DBD0DE /* BTUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DCFE401BD334F800DBD0DE /* BTUserInfoView.m */; };
+		65DCFE4B1BD334F800DBD0DE /* BTRegisterAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DCFE431BD334F800DBD0DE /* BTRegisterAccountViewController.m */; };
+		65DCFE4C1BD334F800DBD0DE /* BTRestPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DCFE451BD334F800DBD0DE /* BTRestPasswordViewController.m */; };
+		65DCFE4D1BD334F800DBD0DE /* BTUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DCFE471BD334F800DBD0DE /* BTUserCenterViewController.m */; };
+		65DCFE4E1BD334F800DBD0DE /* BTUserLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DCFE491BD334F800DBD0DE /* BTUserLoginViewController.m */; };
+		65DCFE521BD348F400DBD0DE /* BTBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DCFE511BD348F400DBD0DE /* BTBaseNavigationController.m */; };
+		65DE129A1BD0CA8500D01BCA /* KFObjectExtension.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65DE12991BD0CA8500D01BCA /* KFObjectExtension.mm */; };
+		65DE12A81BD0E1AB00D01BCA /* enterHome@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DE129C1BD0E1AB00D01BCA /* enterHome@2x.png */; };
+		65DE12A91BD0E1AB00D01BCA /* enterHome@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DE129D1BD0E1AB00D01BCA /* enterHome@3x.png */; };
+		65DE12AA1BD0E1AB00D01BCA /* guide_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DE129E1BD0E1AB00D01BCA /* guide_1@2x.png */; };
+		65DE12AB1BD0E1AB00D01BCA /* guide_1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DE129F1BD0E1AB00D01BCA /* guide_1@3x.png */; };
+		65DE12AC1BD0E1AB00D01BCA /* guide_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DE12A01BD0E1AB00D01BCA /* guide_2@2x.png */; };
+		65DE12AD1BD0E1AB00D01BCA /* guide_2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DE12A11BD0E1AB00D01BCA /* guide_2@3x.png */; };
+		65DE12AE1BD0E1AB00D01BCA /* guide_3@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 65DE12A21BD0E1AB00D01BCA /* guide_3@2x.jpg */; };
+		65DE12AF1BD0E1AB00D01BCA /* guide_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DE12A31BD0E1AB00D01BCA /* guide_3@2x.png */; };
+		65DE12B01BD0E1AB00D01BCA /* guide_3@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 65DE12A41BD0E1AB00D01BCA /* guide_3@3x.jpg */; };
+		65DE12B11BD0E1AB00D01BCA /* guide_3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DE12A51BD0E1AB00D01BCA /* guide_3@3x.png */; };
+		65DE12B21BD0E1AB00D01BCA /* guide_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DE12A61BD0E1AB00D01BCA /* guide_4@2x.png */; };
+		65DE12B31BD0E1AB00D01BCA /* guide_4@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DE12A71BD0E1AB00D01BCA /* guide_4@3x.png */; };
+		65E234191BD3BAB60041E719 /* BTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E234181BD3BAB60041E719 /* BTBaseViewController.m */; };
 		65E2D3341BCFC965001E29A9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D3331BCFC965001E29A9 /* main.m */; };
 		65E2D3371BCFC965001E29A9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D3361BCFC965001E29A9 /* AppDelegate.m */; };
 		65E2D33A1BCFC966001E29A9 /* BeatuifulTime.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D3381BCFC966001E29A9 /* BeatuifulTime.xcdatamodeld */; };
@@ -16,21 +36,20 @@
 		65E2D36D1BCFCD84001E29A9 /* blackTheme.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 65E2D36B1BCFCD84001E29A9 /* blackTheme.bundle */; };
 		65E2D36E1BCFCD84001E29A9 /* blueTheme.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 65E2D36C1BCFCD84001E29A9 /* blueTheme.bundle */; };
 		65E2D3721BCFCEE4001E29A9 /* BTStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D3711BCFCEE4001E29A9 /* BTStyle.m */; };
-		65E2D3781BCFCF5A001E29A9 /* BTObjectExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D3771BCFCF5A001E29A9 /* BTObjectExtension.m */; };
 		65E2D37B1BCFCF76001E29A9 /* BTThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D37A1BCFCF76001E29A9 /* BTThemeManager.m */; };
-		B44506E71BCFFAFD008BD5AC /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506E61BCFFAFD008BD5AC /* HomePageViewController.m */; settings = {ASSET_TAGS = (); }; };
-		B44507041BCFFB9F008BD5AC /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B44506EA1BCFFB9F008BD5AC /* Info.plist */; settings = {ASSET_TAGS = (); }; };
-		B44507051BCFFB9F008BD5AC /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506EC1BCFFB9F008BD5AC /* MASCompositeConstraint.m */; settings = {ASSET_TAGS = (); }; };
-		B44507061BCFFB9F008BD5AC /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506EF1BCFFB9F008BD5AC /* MASConstraint.m */; settings = {ASSET_TAGS = (); }; };
-		B44507071BCFFB9F008BD5AC /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506F11BCFFB9F008BD5AC /* MASConstraintMaker.m */; settings = {ASSET_TAGS = (); }; };
-		B44507081BCFFB9F008BD5AC /* MASLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506F31BCFFB9F008BD5AC /* MASLayoutConstraint.m */; settings = {ASSET_TAGS = (); }; };
-		B44507091BCFFB9F008BD5AC /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506F71BCFFB9F008BD5AC /* MASViewAttribute.m */; settings = {ASSET_TAGS = (); }; };
-		B445070A1BCFFB9F008BD5AC /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506F91BCFFB9F008BD5AC /* MASViewConstraint.m */; settings = {ASSET_TAGS = (); }; };
-		B445070B1BCFFB9F008BD5AC /* NSArray+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506FB1BCFFB9F008BD5AC /* NSArray+MASAdditions.m */; settings = {ASSET_TAGS = (); }; };
-		B445070C1BCFFB9F008BD5AC /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506FE1BCFFB9F008BD5AC /* NSLayoutConstraint+MASDebugAdditions.m */; settings = {ASSET_TAGS = (); }; };
-		B445070D1BCFFB9F008BD5AC /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B44507001BCFFB9F008BD5AC /* View+MASAdditions.m */; settings = {ASSET_TAGS = (); }; };
-		B445070E1BCFFB9F008BD5AC /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B44507031BCFFB9F008BD5AC /* ViewController+MASAdditions.m */; settings = {ASSET_TAGS = (); }; };
-		B445071D1BD0044B008BD5AC /* BTGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B445071C1BD0044B008BD5AC /* BTGuideViewController.m */; settings = {ASSET_TAGS = (); }; };
+		B44506E71BCFFAFD008BD5AC /* BTHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506E61BCFFAFD008BD5AC /* BTHomePageViewController.m */; };
+		B44507041BCFFB9F008BD5AC /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B44506EA1BCFFB9F008BD5AC /* Info.plist */; };
+		B44507051BCFFB9F008BD5AC /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506EC1BCFFB9F008BD5AC /* MASCompositeConstraint.m */; };
+		B44507061BCFFB9F008BD5AC /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506EF1BCFFB9F008BD5AC /* MASConstraint.m */; };
+		B44507071BCFFB9F008BD5AC /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506F11BCFFB9F008BD5AC /* MASConstraintMaker.m */; };
+		B44507081BCFFB9F008BD5AC /* MASLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506F31BCFFB9F008BD5AC /* MASLayoutConstraint.m */; };
+		B44507091BCFFB9F008BD5AC /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506F71BCFFB9F008BD5AC /* MASViewAttribute.m */; };
+		B445070A1BCFFB9F008BD5AC /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506F91BCFFB9F008BD5AC /* MASViewConstraint.m */; };
+		B445070B1BCFFB9F008BD5AC /* NSArray+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506FB1BCFFB9F008BD5AC /* NSArray+MASAdditions.m */; };
+		B445070C1BCFFB9F008BD5AC /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506FE1BCFFB9F008BD5AC /* NSLayoutConstraint+MASDebugAdditions.m */; };
+		B445070D1BCFFB9F008BD5AC /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B44507001BCFFB9F008BD5AC /* View+MASAdditions.m */; };
+		B445070E1BCFFB9F008BD5AC /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B44507031BCFFB9F008BD5AC /* ViewController+MASAdditions.m */; };
+		B445071D1BD0044B008BD5AC /* BTGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B445071C1BD0044B008BD5AC /* BTGuideViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +63,34 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		65DCFE3F1BD334F800DBD0DE /* BTUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTUserInfoView.h; sourceTree = "<group>"; };
+		65DCFE401BD334F800DBD0DE /* BTUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTUserInfoView.m; sourceTree = "<group>"; };
+		65DCFE421BD334F800DBD0DE /* BTRegisterAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRegisterAccountViewController.h; sourceTree = "<group>"; };
+		65DCFE431BD334F800DBD0DE /* BTRegisterAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTRegisterAccountViewController.m; sourceTree = "<group>"; };
+		65DCFE441BD334F800DBD0DE /* BTRestPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRestPasswordViewController.h; sourceTree = "<group>"; };
+		65DCFE451BD334F800DBD0DE /* BTRestPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTRestPasswordViewController.m; sourceTree = "<group>"; };
+		65DCFE461BD334F800DBD0DE /* BTUserCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTUserCenterViewController.h; sourceTree = "<group>"; };
+		65DCFE471BD334F800DBD0DE /* BTUserCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTUserCenterViewController.m; sourceTree = "<group>"; };
+		65DCFE481BD334F800DBD0DE /* BTUserLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTUserLoginViewController.h; sourceTree = "<group>"; };
+		65DCFE491BD334F800DBD0DE /* BTUserLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTUserLoginViewController.m; sourceTree = "<group>"; };
+		65DCFE501BD348F400DBD0DE /* BTBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBaseNavigationController.h; sourceTree = "<group>"; };
+		65DCFE511BD348F400DBD0DE /* BTBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBaseNavigationController.m; sourceTree = "<group>"; };
+		65DE12981BD0CA8500D01BCA /* KFObjectExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFObjectExtension.h; sourceTree = "<group>"; };
+		65DE12991BD0CA8500D01BCA /* KFObjectExtension.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KFObjectExtension.mm; sourceTree = "<group>"; };
+		65DE129C1BD0E1AB00D01BCA /* enterHome@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enterHome@2x.png"; sourceTree = "<group>"; };
+		65DE129D1BD0E1AB00D01BCA /* enterHome@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enterHome@3x.png"; sourceTree = "<group>"; };
+		65DE129E1BD0E1AB00D01BCA /* guide_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guide_1@2x.png"; sourceTree = "<group>"; };
+		65DE129F1BD0E1AB00D01BCA /* guide_1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guide_1@3x.png"; sourceTree = "<group>"; };
+		65DE12A01BD0E1AB00D01BCA /* guide_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guide_2@2x.png"; sourceTree = "<group>"; };
+		65DE12A11BD0E1AB00D01BCA /* guide_2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guide_2@3x.png"; sourceTree = "<group>"; };
+		65DE12A21BD0E1AB00D01BCA /* guide_3@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "guide_3@2x.jpg"; sourceTree = "<group>"; };
+		65DE12A31BD0E1AB00D01BCA /* guide_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guide_3@2x.png"; sourceTree = "<group>"; };
+		65DE12A41BD0E1AB00D01BCA /* guide_3@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "guide_3@3x.jpg"; sourceTree = "<group>"; };
+		65DE12A51BD0E1AB00D01BCA /* guide_3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guide_3@3x.png"; sourceTree = "<group>"; };
+		65DE12A61BD0E1AB00D01BCA /* guide_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guide_4@2x.png"; sourceTree = "<group>"; };
+		65DE12A71BD0E1AB00D01BCA /* guide_4@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guide_4@3x.png"; sourceTree = "<group>"; };
+		65E234171BD3BAB60041E719 /* BTBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBaseViewController.h; sourceTree = "<group>"; };
+		65E234181BD3BAB60041E719 /* BTBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBaseViewController.m; sourceTree = "<group>"; };
 		65E2D32E1BCFC965001E29A9 /* BeatuifulTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeatuifulTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65E2D3321BCFC965001E29A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65E2D3331BCFC965001E29A9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -61,12 +108,10 @@
 		65E2D3701BCFCEE4001E29A9 /* BTStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTStyle.h; sourceTree = "<group>"; };
 		65E2D3711BCFCEE4001E29A9 /* BTStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTStyle.m; sourceTree = "<group>"; };
 		65E2D3731BCFCF2D001E29A9 /* BTCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCommon.h; sourceTree = "<group>"; };
-		65E2D3761BCFCF5A001E29A9 /* BTObjectExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTObjectExtension.h; sourceTree = "<group>"; };
-		65E2D3771BCFCF5A001E29A9 /* BTObjectExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTObjectExtension.m; sourceTree = "<group>"; };
 		65E2D3791BCFCF76001E29A9 /* BTThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTThemeManager.h; sourceTree = "<group>"; };
 		65E2D37A1BCFCF76001E29A9 /* BTThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTThemeManager.m; sourceTree = "<group>"; };
-		B44506E51BCFFAFD008BD5AC /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
-		B44506E61BCFFAFD008BD5AC /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
+		B44506E51BCFFAFD008BD5AC /* BTHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTHomePageViewController.h; sourceTree = "<group>"; };
+		B44506E61BCFFAFD008BD5AC /* BTHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTHomePageViewController.m; sourceTree = "<group>"; };
 		B44506EA1BCFFB9F008BD5AC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B44506EB1BCFFB9F008BD5AC /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		B44506EC1BCFFB9F008BD5AC /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
@@ -115,6 +160,77 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		65DCFE3C1BD334F800DBD0DE /* UserCenterModel */ = {
+			isa = PBXGroup;
+			children = (
+				65DCFE3D1BD334F800DBD0DE /* Model */,
+				65DCFE3E1BD334F800DBD0DE /* View */,
+				65DCFE411BD334F800DBD0DE /* ViewControll */,
+			);
+			path = UserCenterModel;
+			sourceTree = "<group>";
+		};
+		65DCFE3D1BD334F800DBD0DE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		65DCFE3E1BD334F800DBD0DE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				65DCFE3F1BD334F800DBD0DE /* BTUserInfoView.h */,
+				65DCFE401BD334F800DBD0DE /* BTUserInfoView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		65DCFE411BD334F800DBD0DE /* ViewControll */ = {
+			isa = PBXGroup;
+			children = (
+				65DCFE421BD334F800DBD0DE /* BTRegisterAccountViewController.h */,
+				65DCFE431BD334F800DBD0DE /* BTRegisterAccountViewController.m */,
+				65DCFE441BD334F800DBD0DE /* BTRestPasswordViewController.h */,
+				65DCFE451BD334F800DBD0DE /* BTRestPasswordViewController.m */,
+				65DCFE461BD334F800DBD0DE /* BTUserCenterViewController.h */,
+				65DCFE471BD334F800DBD0DE /* BTUserCenterViewController.m */,
+				65DCFE481BD334F800DBD0DE /* BTUserLoginViewController.h */,
+				65DCFE491BD334F800DBD0DE /* BTUserLoginViewController.m */,
+			);
+			path = ViewControll;
+			sourceTree = "<group>";
+		};
+		65DCFE4F1BD348AF00DBD0DE /* BaseUI */ = {
+			isa = PBXGroup;
+			children = (
+				65DCFE501BD348F400DBD0DE /* BTBaseNavigationController.h */,
+				65DCFE511BD348F400DBD0DE /* BTBaseNavigationController.m */,
+				65E234171BD3BAB60041E719 /* BTBaseViewController.h */,
+				65E234181BD3BAB60041E719 /* BTBaseViewController.m */,
+			);
+			path = BaseUI;
+			sourceTree = "<group>";
+		};
+		65DE129B1BD0E1AB00D01BCA /* guide */ = {
+			isa = PBXGroup;
+			children = (
+				65DE129C1BD0E1AB00D01BCA /* enterHome@2x.png */,
+				65DE129D1BD0E1AB00D01BCA /* enterHome@3x.png */,
+				65DE129E1BD0E1AB00D01BCA /* guide_1@2x.png */,
+				65DE129F1BD0E1AB00D01BCA /* guide_1@3x.png */,
+				65DE12A01BD0E1AB00D01BCA /* guide_2@2x.png */,
+				65DE12A11BD0E1AB00D01BCA /* guide_2@3x.png */,
+				65DE12A21BD0E1AB00D01BCA /* guide_3@2x.jpg */,
+				65DE12A31BD0E1AB00D01BCA /* guide_3@2x.png */,
+				65DE12A41BD0E1AB00D01BCA /* guide_3@3x.jpg */,
+				65DE12A51BD0E1AB00D01BCA /* guide_3@3x.png */,
+				65DE12A61BD0E1AB00D01BCA /* guide_4@2x.png */,
+				65DE12A71BD0E1AB00D01BCA /* guide_4@3x.png */,
+			);
+			path = guide;
+			sourceTree = "<group>";
+		};
 		65E2D3251BCFC965001E29A9 = {
 			isa = PBXGroup;
 			children = (
@@ -138,9 +254,10 @@
 			children = (
 				65E2D3351BCFC965001E29A9 /* AppDelegate.h */,
 				65E2D3361BCFC965001E29A9 /* AppDelegate.m */,
+				65DCFE4F1BD348AF00DBD0DE /* BaseUI */,
+				65E2D3641BCFCCF2001E29A9 /* Common */,
 				B44506D01BCFEE48008BD5AC /* Src */,
 				65E2D3681BCFCD02001E29A9 /* Resources */,
-				65E2D3641BCFCCF2001E29A9 /* Common */,
 				65E2D33E1BCFC966001E29A9 /* Main.storyboard */,
 				65E2D3411BCFC966001E29A9 /* Images.xcassets */,
 				65E2D3381BCFC966001E29A9 /* BeatuifulTime.xcdatamodeld */,
@@ -198,11 +315,11 @@
 		65E2D3671BCFCCF2001E29A9 /* BTTools */ = {
 			isa = PBXGroup;
 			children = (
+				65DE12981BD0CA8500D01BCA /* KFObjectExtension.h */,
+				65DE12991BD0CA8500D01BCA /* KFObjectExtension.mm */,
 				65E2D3701BCFCEE4001E29A9 /* BTStyle.h */,
 				65E2D3711BCFCEE4001E29A9 /* BTStyle.m */,
 				65E2D3731BCFCF2D001E29A9 /* BTCommon.h */,
-				65E2D3761BCFCF5A001E29A9 /* BTObjectExtension.h */,
-				65E2D3771BCFCF5A001E29A9 /* BTObjectExtension.m */,
 			);
 			path = BTTools;
 			sourceTree = "<group>";
@@ -210,6 +327,7 @@
 		65E2D3681BCFCD02001E29A9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				65DE129B1BD0E1AB00D01BCA /* guide */,
 				65E2D36A1BCFCD84001E29A9 /* Themes */,
 			);
 			path = Resources;
@@ -227,46 +345,15 @@
 		B44506D01BCFEE48008BD5AC /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				65DCFE3C1BD334F800DBD0DE /* UserCenterModel */,
 				B445071E1BD00EA9008BD5AC /* SettingModule */,
 				B44507191BD00405008BD5AC /* LaunchModule */,
 				B44506D51BCFFAAC008BD5AC /* HomePageModule */,
 				B44506D91BCFFAAC008BD5AC /* JournalModule */,
 				B44506DD1BCFFAAC008BD5AC /* PhotoAlbumModule */,
 				B44506E11BCFFAAC008BD5AC /* TimelineModule */,
-				B44506D11BCFEE48008BD5AC /* UserCenterModule */,
 			);
 			path = Src;
-			sourceTree = "<group>";
-		};
-		B44506D11BCFEE48008BD5AC /* UserCenterModule */ = {
-			isa = PBXGroup;
-			children = (
-				B44506D21BCFEEC1008BD5AC /* Model */,
-				B44506D31BCFEEC1008BD5AC /* View */,
-				B44506D41BCFEEC1008BD5AC /* ViewController */,
-			);
-			path = UserCenterModule;
-			sourceTree = "<group>";
-		};
-		B44506D21BCFEEC1008BD5AC /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		B44506D31BCFEEC1008BD5AC /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		B44506D41BCFEEC1008BD5AC /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		B44506D51BCFFAAC008BD5AC /* HomePageModule */ = {
@@ -296,8 +383,8 @@
 		B44506D81BCFFAAC008BD5AC /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				B44506E51BCFFAFD008BD5AC /* HomePageViewController.h */,
-				B44506E61BCFFAFD008BD5AC /* HomePageViewController.m */,
+				B44506E51BCFFAFD008BD5AC /* BTHomePageViewController.h */,
+				B44506E61BCFFAFD008BD5AC /* BTHomePageViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -528,6 +615,7 @@
 		65E2D3261BCFC965001E29A9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = BT;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = dengyonghao;
 				TargetAttributes = {
@@ -564,11 +652,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65DE12A81BD0E1AB00D01BCA /* enterHome@2x.png in Resources */,
+				65DE12AA1BD0E1AB00D01BCA /* guide_1@2x.png in Resources */,
 				65E2D3401BCFC966001E29A9 /* Main.storyboard in Resources */,
+				65DE12AB1BD0E1AB00D01BCA /* guide_1@3x.png in Resources */,
+				65DE12AC1BD0E1AB00D01BCA /* guide_2@2x.png in Resources */,
 				65E2D3421BCFC966001E29A9 /* Images.xcassets in Resources */,
 				65E2D36D1BCFCD84001E29A9 /* blackTheme.bundle in Resources */,
+				65DE12AF1BD0E1AB00D01BCA /* guide_3@2x.png in Resources */,
+				65DE12B01BD0E1AB00D01BCA /* guide_3@3x.jpg in Resources */,
+				65DE12B31BD0E1AB00D01BCA /* guide_4@3x.png in Resources */,
+				65DE12A91BD0E1AB00D01BCA /* enterHome@3x.png in Resources */,
 				B44507041BCFFB9F008BD5AC /* Info.plist in Resources */,
 				65E2D36E1BCFCD84001E29A9 /* blueTheme.bundle in Resources */,
+				65DE12B21BD0E1AB00D01BCA /* guide_4@2x.png in Resources */,
+				65DE12AD1BD0E1AB00D01BCA /* guide_2@3x.png in Resources */,
+				65DE12B11BD0E1AB00D01BCA /* guide_3@3x.png in Resources */,
+				65DE12AE1BD0E1AB00D01BCA /* guide_3@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,18 +690,25 @@
 				B445070A1BCFFB9F008BD5AC /* MASViewConstraint.m in Sources */,
 				65E2D3371BCFC965001E29A9 /* AppDelegate.m in Sources */,
 				B44507071BCFFB9F008BD5AC /* MASConstraintMaker.m in Sources */,
+				65DCFE521BD348F400DBD0DE /* BTBaseNavigationController.m in Sources */,
 				B445070D1BCFFB9F008BD5AC /* View+MASAdditions.m in Sources */,
-				65E2D3781BCFCF5A001E29A9 /* BTObjectExtension.m in Sources */,
+				65DCFE4C1BD334F800DBD0DE /* BTRestPasswordViewController.m in Sources */,
 				B44507061BCFFB9F008BD5AC /* MASConstraint.m in Sources */,
-				B44506E71BCFFAFD008BD5AC /* HomePageViewController.m in Sources */,
+				B44506E71BCFFAFD008BD5AC /* BTHomePageViewController.m in Sources */,
 				B44507091BCFFB9F008BD5AC /* MASViewAttribute.m in Sources */,
 				B445070C1BCFFB9F008BD5AC /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				65E234191BD3BAB60041E719 /* BTBaseViewController.m in Sources */,
 				65E2D3341BCFC965001E29A9 /* main.m in Sources */,
 				B44507051BCFFB9F008BD5AC /* MASCompositeConstraint.m in Sources */,
+				65DCFE4A1BD334F800DBD0DE /* BTUserInfoView.m in Sources */,
 				B44507081BCFFB9F008BD5AC /* MASLayoutConstraint.m in Sources */,
 				65E2D33A1BCFC966001E29A9 /* BeatuifulTime.xcdatamodeld in Sources */,
+				65DCFE4E1BD334F800DBD0DE /* BTUserLoginViewController.m in Sources */,
 				65E2D3721BCFCEE4001E29A9 /* BTStyle.m in Sources */,
 				B445071D1BD0044B008BD5AC /* BTGuideViewController.m in Sources */,
+				65DE129A1BD0CA8500D01BCA /* KFObjectExtension.mm in Sources */,
+				65DCFE4D1BD334F800DBD0DE /* BTUserCenterViewController.m in Sources */,
+				65DCFE4B1BD334F800DBD0DE /* BTRegisterAccountViewController.m in Sources */,
 				B445070E1BCFFB9F008BD5AC /* ViewController+MASAdditions.m in Sources */,
 				65E2D37B1BCFCF76001E29A9 /* BTThemeManager.m in Sources */,
 			);

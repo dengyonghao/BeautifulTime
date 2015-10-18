@@ -8,7 +8,7 @@
 
 #import "BTThemeManager.h"
 #import "BTStyle.h"
-#import "BTObjectExtension.h"
+#import "KFObjectExtension.h"
 
 
 #define BTThemeChangeNotification @"BTThemeChangeNotification"
@@ -277,4 +277,12 @@ static BTThemeManager * _themeManager = nil;
     
     return image;
 }
+
+- (NSDictionary *)themeColors {
+    if (!_themeColors) {
+        _themeColors = [[NSDictionary alloc]init];
+    }
+    return _themeColors;
+}
+
 @end

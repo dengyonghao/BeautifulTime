@@ -8,14 +8,13 @@
 
 #import "BTGuideViewController.h"
 #import "AppDelegate.h"
-#import "AppDelegate.h"
 #import "BTThemeManager.h"
 
-@interface BTGuideViewController ()<UIScrollViewDelegate, BTThemeListenerProtocol>
+@interface BTGuideViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *guideScrollView;
 @property (nonatomic, strong) UIButton *enterHomeButton;
-
+@property (nonatomic, strong) UIImageView *imageView;
 @end
 
 @implementation BTGuideViewController
@@ -27,9 +26,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-//    self.view.backgroundColor = BT_HEXRGBCOLOR(BT_CONT_BG);
-    
     [[BTThemeManager getInstance] addThemeListener:self];
 }
 
@@ -143,14 +139,8 @@
     pageControl.numberOfPages = 4;
     pageControl.currentPage = 0;
     [pageControl addTarget:self action:@selector(pageTurn:) forControlEvents:UIControlEventValueChanged];
-    //    [self.view addSubview:pageControl];
-    
-    //    UIImage *backDefaultImage = CL_UIIMAGE(@"back_default@2x");
-    //    UIImage *backPressImage = CL_UIIMAGE(@"back_press@2x");
     backButton = [[UIButton alloc] initWithFrame:CGRectMake(16, 20, 32, 32)];
     backButton.exclusiveTouch = YES;
-    //    [backButton setImage:backDefaultImage forState:UIControlStateNormal];
-    //    [backButton setImage:backPressImage forState:UIControlStateHighlighted];
     [backButton addTarget:self action:@selector(backButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backButton];
     
@@ -199,15 +189,9 @@
 }
 
 
-
-- (BOOL)prefersStatusBarHidden
-{
-    return YES; //返回NO表示要显示，返回YES将hiden    默认隐藏
-}
-
 - (void)CLThemeDidNeedUpdateStyle {
     
-    self.view.backgroundColor = [[BTThemeManager getInstance] BTThemeColor:@"cl_bg_c_main"];
+    self.view.backgroundColor = [[BTThemeManager getInstance] BTThemeColor:@"com_ic_back"];
     
     [[BTThemeManager getInstance] BTThemeImage:@"com_ic_back" completionHandler:^(UIImage *image) {
         [backButton setImage:image forState:UIControlStateNormal];

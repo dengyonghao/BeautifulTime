@@ -14,7 +14,7 @@ typedef enum {
 } NSStringOperationType;
 
 // Extension of NSString
-@interface NSString (KFExtension)
+@interface NSString (BTExtension)
 
 // 去除尾部space
 - (NSString*)trim;
@@ -23,7 +23,7 @@ typedef enum {
 
 
 // Extension of NSDictionary
-@interface NSDictionary (KFExtension)
+@interface NSDictionary (BTExtension)
 
 - (NSString*)stringValueForKey:(NSString*)key defaultValue:(NSString*)defaultValue operation:(NSStringOperationType)type;
 

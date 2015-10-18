@@ -8,7 +8,7 @@
 
 #import "BTObjectExtension.h"
 
-@implementation NSString (KFExtension)
+@implementation NSString (BTExtension)
 
 - (NSString*)trim {
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation NSDictionary (KFExtension)
+@implementation NSDictionary (BTExtension)
 
 - (NSString*)stringValueForKey:(NSString*)key defaultValue:(NSString*)defaultValue operation:(NSStringOperationType)type {
     if (key != nil && [key length] > 0) {

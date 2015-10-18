@@ -8,7 +8,11 @@
 
 #import "AppDelegate.h"
 #import "BTGuideViewController.h"
-#import "HomePageViewController.h"
+#import "BTHomePageViewController.h"
+#import "BTThemeManager.h"
+#import "BTBaseNavigationController.h"
+#import "BTBaseNavigationController.h"
+#import "BTHomePageViewController.h"
 
 static AppDelegate *singleton = nil;
 
@@ -24,14 +28,12 @@ static AppDelegate *singleton = nil;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     singleton = self;
-    [self enterHomePage];
-    // Override point for customization after application launch.
-//    if (![[NSUserDefaults standardUserDefaults] boolForKey:firstLaunch]) {
-//        [self enterGuidePage];
-//    }
-//    else {
-//        [self enterHomePage];
-//    }
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:firstLaunch]) {
+        [self enterGuidePage];
+    }
+    else {
+        [self enterHomePage];
+    }
     return YES;
 }
 
@@ -139,6 +141,30 @@ static AppDelegate *singleton = nil;
     }
 }
 
+#pragma mark 初始化页面栈
+- (void)initPages
+{
+    BTHomePageViewController *homeViewController = [[BTHomePageViewController alloc] init];
+    BTBaseNavigationController *homeNavigationController = [[BTBaseNavigationController alloc] initWithRootViewController:homeViewController];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.rootViewController.view.backgroundColor = [UIColor whiteColor];
+    self.window.rootViewController = homeNavigationController;
+    [self.window makeKeyAndVisible];
+}
+
+- (void)initPushSetting
+{
+    UIUserNotificationType pushTypes = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+        UIUserNotificationSettings *settings =[UIUserNotificationSettings settingsForTypes:pushTypes categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    }else{
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:pushTypes];
+    }
+}
+
+
 //进入新手引导页
 - (void)enterGuidePage {
     
@@ -153,12 +179,17 @@ static AppDelegate *singleton = nil;
 
 //进入首页
 - (void)enterHomePage {
-    self.window.rootViewController = nil;
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    HomePageViewController *homeVC = [[HomePageViewController alloc] init];
-    homeVC.hidesBottomBarWhenPushed = YES;
-    self.window.rootViewController = homeVC;
-    [self.window makeKeyAndVisible];
+    
+    NSNumber *themeType = [[NSUserDefaults standardUserDefaults] objectForKey:@"BTThemeType"];
+    if (themeType == nil) {
+        themeType = [NSNumber numberWithInt:BTThemeType_BT_BLACK];
+        [[BTThemeManager getInstance] setThemeStyle:(BTThemeType)themeType.longValue];
+    }
+    else {
+        [[BTThemeManager getInstance] setThemeStyle:(BTThemeType)themeType.longValue];
+    }
+    [self initPages];
+    [self initPushSetting];
 }
 
 @end
