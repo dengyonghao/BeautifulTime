@@ -18,4 +18,6 @@
 #import "BTCommon.h"
 #import "Masonry.h"
 #import "KFObjectExtension.h"
+#import "XMPPFramework.h"
+#import "BTXMPPTool.h"
 #endif

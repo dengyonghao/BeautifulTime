@@ -9,6 +9,7 @@
 #import "BTHomePageViewController.h"
 #import "BTThemeManager.h"
 #import "BTRestPasswordViewController.h"
+#import "BTUserLoginViewController.h"
 
 @interface BTHomePageViewController ()
 
@@ -30,7 +31,7 @@
 }
 
 - (void)onclick {
-    BTRestPasswordViewController *vc = [[BTRestPasswordViewController alloc] init];
+    BTUserLoginViewController *vc = [[BTUserLoginViewController alloc] init];
     [self.navigationController pushViewController:vc animated:NO];
 
 }

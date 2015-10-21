@@ -50,6 +50,21 @@ static inline UIImage* naviimage_from_mainbundle(NSString* filename_and_type)
 #define     IOS8_3_OR_HIGHER       ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.3f)
 #define     IOS9_0_OR_HIGHER       ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0f)
 
+//发送消息的通知名
+#define SendMsgName @"sendMessage"
+
+//删除好友时发出的通知名
+#define DeleteFriend @"deleteFriend"
+
+//服务器的ip地址
+#define ServerAddress @"localhost"
+
+//服务器的端口号
+#define ServerPort 5222
+
+//服务器的域名
+#define ServerName @"carlife.local"
+
 // 状态栏高度
 #define     BT_STATUSBAR_HEIGHT  0
 // 屏幕的高度
