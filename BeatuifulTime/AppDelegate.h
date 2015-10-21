@@ -16,6 +16,8 @@
 
 @property (nonatomic, strong, readonly) BTCoreDataHelper *coreDataHelper;
 
++ (AppDelegate*)getInstance;
+
 //进入新手引导页
 - (void)enterGuidePage;
 //进入首页

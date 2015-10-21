@@ -20,4 +20,5 @@
 #import "KFObjectExtension.h"
 #import "XMPPFramework.h"
 #import "BTXMPPTool.h"
+#import "BTBaseViewController.h"
 #endif

@@ -10,7 +10,7 @@
 
 @interface BTTextField ()
 
-@property (nonatomic,weak) UIImageView *img;
+@property (nonatomic,strong) UIImageView *img;
 
 @end
 

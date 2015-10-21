@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BTUserLoginViewController : UIViewController
+@interface BTUserLoginViewController : BTBaseViewController
 
 @end
