@@ -142,6 +142,7 @@
 		65DBD1F51BD7A2A100784DAC /* NSXMLElement+XEP_0297.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBD19E1BD7A2A100784DAC /* NSXMLElement+XEP_0297.m */; };
 		65DBD1F61BD7A2A100784DAC /* XMPPMessage+XEP_0308.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBD1A11BD7A2A100784DAC /* XMPPMessage+XEP_0308.m */; };
 		65DBD1F91BD7ABC400784DAC /* BTTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBD1F81BD7ABC300784DAC /* BTTextField.m */; };
+		65DBD1FC1BD7B6D500784DAC /* BTCoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBD1FB1BD7B6D500784DAC /* BTCoreDataHelper.m */; };
 		65DCFE4A1BD334F800DBD0DE /* BTUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DCFE401BD334F800DBD0DE /* BTUserInfoView.m */; };
 		65DCFE4B1BD334F800DBD0DE /* BTRegisterAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DCFE431BD334F800DBD0DE /* BTRegisterAccountViewController.m */; };
 		65DCFE4C1BD334F800DBD0DE /* BTRestPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DCFE451BD334F800DBD0DE /* BTRestPasswordViewController.m */; };
@@ -473,6 +474,8 @@
 		65DBD1A11BD7A2A100784DAC /* XMPPMessage+XEP_0308.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XMPPMessage+XEP_0308.m"; sourceTree = "<group>"; };
 		65DBD1F71BD7ABC300784DAC /* BTTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTextField.h; sourceTree = "<group>"; };
 		65DBD1F81BD7ABC300784DAC /* BTTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTextField.m; sourceTree = "<group>"; };
+		65DBD1FA1BD7B6D500784DAC /* BTCoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCoreDataHelper.h; sourceTree = "<group>"; };
+		65DBD1FB1BD7B6D500784DAC /* BTCoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCoreDataHelper.m; sourceTree = "<group>"; };
 		65DCFE3F1BD334F800DBD0DE /* BTUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTUserInfoView.h; sourceTree = "<group>"; };
 		65DCFE401BD334F800DBD0DE /* BTUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTUserInfoView.m; sourceTree = "<group>"; };
 		65DCFE421BD334F800DBD0DE /* BTRegisterAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRegisterAccountViewController.h; sourceTree = "<group>"; };
@@ -1520,6 +1523,8 @@
 				65E2D3731BCFCF2D001E29A9 /* BTCommon.h */,
 				65DBD0C51BD7A15E00784DAC /* BTXMPPTool.h */,
 				65DBD0C61BD7A15E00784DAC /* BTXMPPTool.m */,
+				65DBD1FA1BD7B6D500784DAC /* BTCoreDataHelper.h */,
+				65DBD1FB1BD7B6D500784DAC /* BTCoreDataHelper.m */,
 			);
 			path = BTTools;
 			sourceTree = "<group>";
@@ -1912,6 +1917,7 @@
 				65DBD1D71BD7A2A100784DAC /* XMPPIQ+XEP_0066.m in Sources */,
 				65DBD0A21BD77CE700784DAC /* DDLog.m in Sources */,
 				B445070C1BCFFB9F008BD5AC /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				65DBD1FC1BD7B6D500784DAC /* BTCoreDataHelper.m in Sources */,
 				65DBD0B21BD77CE700784DAC /* DDXMLNode.m in Sources */,
 				65DBD1B81BD7A2A100784DAC /* XMPPRoomCoreDataStorage.m in Sources */,
 				65DBCF041BD7554700784DAC /* BTJournalListViewController.m in Sources */,
