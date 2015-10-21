@@ -62,7 +62,10 @@
 - (UITextField *)oldPassword {
     if (!_oldPassword) {
         _oldPassword = [[UITextField alloc] init];
-        _oldPassword.backgroundColor = [UIColor blueColor];
+        _confirmPassword.placeholder = @"旧密码";
+        _oldPassword.layer.borderColor = UIColor.grayColor.CGColor;
+        _oldPassword.layer.borderWidth = 1;
+        _oldPassword.layer.cornerRadius = 6;
     }
     return _oldPassword;
 }
@@ -70,7 +73,10 @@
 - (UITextField *)password {
     if (!_password) {
         _password = [[UITextField alloc] init];
-        _password.backgroundColor = [UIColor blueColor];
+        _confirmPassword.placeholder = @"新密码";
+        _password.layer.borderColor = UIColor.grayColor.CGColor;
+        _password.layer.borderWidth = 1;
+        _password.layer.cornerRadius = 6;
     }
     return _password;
 }
@@ -78,7 +84,10 @@
 - (UITextField *)confirmPassword {
     if (!_confirmPassword) {
         _confirmPassword = [[UITextField alloc] init];
-        _confirmPassword.backgroundColor = [UIColor blueColor];
+        _confirmPassword.placeholder = @"确认密码";
+        _confirmPassword.layer.borderColor = UIColor.grayColor.CGColor;
+        _confirmPassword.layer.borderWidth = 1;
+        _confirmPassword.layer.cornerRadius = 6;
     }
     return _confirmPassword;
 }
@@ -87,7 +96,9 @@
     if (!_confirm) {
         _confirm = [[UIButton alloc] init];
         [_confirm setTitle:@"确认修改" forState:UIControlStateNormal];
-        _confirm.backgroundColor = [UIColor greenColor];
+        _confirm.layer.borderColor = UIColor.grayColor.CGColor;
+        _confirm.layer.borderWidth = 1;
+        _confirm.layer.cornerRadius = 6;
     }
     return _confirm;
 }

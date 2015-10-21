@@ -127,7 +127,6 @@
         [self.backButton setImage:image forState:UIControlStateNormal];
     }];
     
-    
     [[BTThemeManager getInstance] BTThemeImage:@"com_ic_back_press" completionHandler:^(UIImage *image) {
         [self.backButton setImage:image forState:UIControlStateHighlighted];
     }];
@@ -142,7 +141,7 @@
         BOOL isHidden = [[change objectForKey:@"new"] boolValue];
         if (isHidden)
         {
-            self.bodyView.frame = CGRectMake(0, self.statusHeight, BT_SCREEN_HEIGHT, BT_SCREEN_HEIGHT - self.statusHeight); //
+            self.bodyView.frame = CGRectMake(0, self.statusHeight, BT_SCREEN_HEIGHT, BT_SCREEN_HEIGHT - self.statusHeight);
         }
         else
         {

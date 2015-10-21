@@ -182,7 +182,7 @@ static AppDelegate *singleton = nil;
     
     NSNumber *themeType = [[NSUserDefaults standardUserDefaults] objectForKey:@"BTThemeType"];
     if (themeType == nil) {
-        themeType = [NSNumber numberWithInt:BTThemeType_BT_BLACK];
+        themeType = [NSNumber numberWithInt:BTThemeType_BT_BLUE];
         [[BTThemeManager getInstance] setThemeStyle:(BTThemeType)themeType.longValue];
     }
     else {

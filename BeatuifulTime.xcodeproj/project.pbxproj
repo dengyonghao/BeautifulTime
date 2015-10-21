@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		65DBCEFE1BD754D900784DAC /* BTAddJournalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBCEFD1BD754D900784DAC /* BTAddJournalViewController.m */; };
+		65DBCF011BD7552800784DAC /* BTEditJournalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBCF001BD7552800784DAC /* BTEditJournalViewController.m */; };
+		65DBCF041BD7554700784DAC /* BTJournalListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBCF031BD7554700784DAC /* BTJournalListViewController.m */; };
+		65DBCF0C1BD755E500784DAC /* CLPopupViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBCF071BD755E500784DAC /* CLPopupViewAnimation.m */; };
+		65DBCF0D1BD755E500784DAC /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBCF091BD755E500784DAC /* PopupView.m */; };
+		65DBCF0E1BD755E500784DAC /* UIViewController+PopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBCF0B1BD755E500784DAC /* UIViewController+PopupViewController.m */; };
 		65DCFE4A1BD334F800DBD0DE /* BTUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DCFE401BD334F800DBD0DE /* BTUserInfoView.m */; };
 		65DCFE4B1BD334F800DBD0DE /* BTRegisterAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DCFE431BD334F800DBD0DE /* BTRegisterAccountViewController.m */; };
 		65DCFE4C1BD334F800DBD0DE /* BTRestPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DCFE451BD334F800DBD0DE /* BTRestPasswordViewController.m */; };
@@ -63,6 +69,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		65DBCEFC1BD754D900784DAC /* BTAddJournalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAddJournalViewController.h; sourceTree = "<group>"; };
+		65DBCEFD1BD754D900784DAC /* BTAddJournalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAddJournalViewController.m; sourceTree = "<group>"; };
+		65DBCEFF1BD7552800784DAC /* BTEditJournalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTEditJournalViewController.h; sourceTree = "<group>"; };
+		65DBCF001BD7552800784DAC /* BTEditJournalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTEditJournalViewController.m; sourceTree = "<group>"; };
+		65DBCF021BD7554700784DAC /* BTJournalListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTJournalListViewController.h; sourceTree = "<group>"; };
+		65DBCF031BD7554700784DAC /* BTJournalListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTJournalListViewController.m; sourceTree = "<group>"; };
+		65DBCF061BD755E500784DAC /* CLPopupViewAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLPopupViewAnimation.h; sourceTree = "<group>"; };
+		65DBCF071BD755E500784DAC /* CLPopupViewAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLPopupViewAnimation.m; sourceTree = "<group>"; };
+		65DBCF081BD755E500784DAC /* PopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupView.h; sourceTree = "<group>"; };
+		65DBCF091BD755E500784DAC /* PopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupView.m; sourceTree = "<group>"; };
+		65DBCF0A1BD755E500784DAC /* UIViewController+PopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+PopupViewController.h"; sourceTree = "<group>"; };
+		65DBCF0B1BD755E500784DAC /* UIViewController+PopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+PopupViewController.m"; sourceTree = "<group>"; };
 		65DCFE3F1BD334F800DBD0DE /* BTUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTUserInfoView.h; sourceTree = "<group>"; };
 		65DCFE401BD334F800DBD0DE /* BTUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTUserInfoView.m; sourceTree = "<group>"; };
 		65DCFE421BD334F800DBD0DE /* BTRegisterAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRegisterAccountViewController.h; sourceTree = "<group>"; };
@@ -160,6 +178,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		65DBCEF81BD754A700784DAC /* JournalModule */ = {
+			isa = PBXGroup;
+			children = (
+				65DBCEF91BD754A700784DAC /* Model */,
+				65DBCEFA1BD754A700784DAC /* View */,
+				65DBCEFB1BD754A700784DAC /* ViewController */,
+			);
+			path = JournalModule;
+			sourceTree = "<group>";
+		};
+		65DBCEF91BD754A700784DAC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		65DBCEFA1BD754A700784DAC /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		65DBCEFB1BD754A700784DAC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				65DBCEFC1BD754D900784DAC /* BTAddJournalViewController.h */,
+				65DBCEFD1BD754D900784DAC /* BTAddJournalViewController.m */,
+				65DBCEFF1BD7552800784DAC /* BTEditJournalViewController.h */,
+				65DBCF001BD7552800784DAC /* BTEditJournalViewController.m */,
+				65DBCF021BD7554700784DAC /* BTJournalListViewController.h */,
+				65DBCF031BD7554700784DAC /* BTJournalListViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		65DBCF051BD755E500784DAC /* BTPopupViewController */ = {
+			isa = PBXGroup;
+			children = (
+				65DBCF061BD755E500784DAC /* CLPopupViewAnimation.h */,
+				65DBCF071BD755E500784DAC /* CLPopupViewAnimation.m */,
+				65DBCF081BD755E500784DAC /* PopupView.h */,
+				65DBCF091BD755E500784DAC /* PopupView.m */,
+				65DBCF0A1BD755E500784DAC /* UIViewController+PopupViewController.h */,
+				65DBCF0B1BD755E500784DAC /* UIViewController+PopupViewController.m */,
+			);
+			path = BTPopupViewController;
+			sourceTree = "<group>";
+		};
 		65DCFE3C1BD334F800DBD0DE /* UserCenterModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,6 +364,7 @@
 		65E2D3641BCFCCF2001E29A9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				65DBCF051BD755E500784DAC /* BTPopupViewController */,
 				B44506E81BCFFB9F008BD5AC /* 3rdparty */,
 				65E2D3661BCFCCF2001E29A9 /* BTThemeManager */,
 				65E2D3671BCFCCF2001E29A9 /* BTTools */,
@@ -345,11 +414,11 @@
 		B44506D01BCFEE48008BD5AC /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				65DBCEF81BD754A700784DAC /* JournalModule */,
 				65DCFE3C1BD334F800DBD0DE /* UserCenterModel */,
 				B445071E1BD00EA9008BD5AC /* SettingModule */,
 				B44507191BD00405008BD5AC /* LaunchModule */,
 				B44506D51BCFFAAC008BD5AC /* HomePageModule */,
-				B44506D91BCFFAAC008BD5AC /* JournalModule */,
 				B44506DD1BCFFAAC008BD5AC /* PhotoAlbumModule */,
 				B44506E11BCFFAAC008BD5AC /* TimelineModule */,
 			);
@@ -385,37 +454,6 @@
 			children = (
 				B44506E51BCFFAFD008BD5AC /* BTHomePageViewController.h */,
 				B44506E61BCFFAFD008BD5AC /* BTHomePageViewController.m */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		B44506D91BCFFAAC008BD5AC /* JournalModule */ = {
-			isa = PBXGroup;
-			children = (
-				B44506DA1BCFFAAC008BD5AC /* Model */,
-				B44506DB1BCFFAAC008BD5AC /* View */,
-				B44506DC1BCFFAAC008BD5AC /* ViewController */,
-			);
-			path = JournalModule;
-			sourceTree = "<group>";
-		};
-		B44506DA1BCFFAAC008BD5AC /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		B44506DB1BCFFAAC008BD5AC /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		B44506DC1BCFFAAC008BD5AC /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -692,16 +730,20 @@
 				B44507071BCFFB9F008BD5AC /* MASConstraintMaker.m in Sources */,
 				65DCFE521BD348F400DBD0DE /* BTBaseNavigationController.m in Sources */,
 				B445070D1BCFFB9F008BD5AC /* View+MASAdditions.m in Sources */,
+				65DBCEFE1BD754D900784DAC /* BTAddJournalViewController.m in Sources */,
 				65DCFE4C1BD334F800DBD0DE /* BTRestPasswordViewController.m in Sources */,
 				B44507061BCFFB9F008BD5AC /* MASConstraint.m in Sources */,
+				65DBCF0D1BD755E500784DAC /* PopupView.m in Sources */,
 				B44506E71BCFFAFD008BD5AC /* BTHomePageViewController.m in Sources */,
 				B44507091BCFFB9F008BD5AC /* MASViewAttribute.m in Sources */,
 				B445070C1BCFFB9F008BD5AC /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				65DBCF041BD7554700784DAC /* BTJournalListViewController.m in Sources */,
 				65E234191BD3BAB60041E719 /* BTBaseViewController.m in Sources */,
 				65E2D3341BCFC965001E29A9 /* main.m in Sources */,
 				B44507051BCFFB9F008BD5AC /* MASCompositeConstraint.m in Sources */,
 				65DCFE4A1BD334F800DBD0DE /* BTUserInfoView.m in Sources */,
 				B44507081BCFFB9F008BD5AC /* MASLayoutConstraint.m in Sources */,
+				65DBCF0E1BD755E500784DAC /* UIViewController+PopupViewController.m in Sources */,
 				65E2D33A1BCFC966001E29A9 /* BeatuifulTime.xcdatamodeld in Sources */,
 				65DCFE4E1BD334F800DBD0DE /* BTUserLoginViewController.m in Sources */,
 				65E2D3721BCFCEE4001E29A9 /* BTStyle.m in Sources */,
@@ -710,6 +752,8 @@
 				65DCFE4D1BD334F800DBD0DE /* BTUserCenterViewController.m in Sources */,
 				65DCFE4B1BD334F800DBD0DE /* BTRegisterAccountViewController.m in Sources */,
 				B445070E1BCFFB9F008BD5AC /* ViewController+MASAdditions.m in Sources */,
+				65DBCF011BD7552800784DAC /* BTEditJournalViewController.m in Sources */,
+				65DBCF0C1BD755E500784DAC /* CLPopupViewAnimation.m in Sources */,
 				65E2D37B1BCFCF76001E29A9 /* BTThemeManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

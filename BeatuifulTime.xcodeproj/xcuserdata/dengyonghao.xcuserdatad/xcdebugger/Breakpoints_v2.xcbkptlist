@@ -89,13 +89,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BeatuifulTime/Src/UserCenterModel/ViewControll/BTRestPasswordViewController.m"
-            timestampString = "466866310.868856"
+            filePath = "BeatuifulTime/AppDelegate.m"
+            timestampString = "466867408.385875"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
+            landmarkName = "-enterHomePage"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
