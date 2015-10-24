@@ -21,4 +21,5 @@
 #import "XMPPFramework.h"
 #import "BTXMPPTool.h"
 #import "BTBaseViewController.h"
+#import "BTThemeManager.h"
 #endif

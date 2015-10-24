@@ -9,46 +9,47 @@
 #import "BTTextField.h"
 
 @interface BTTextField ()
-
-@property (nonatomic,strong) UIImageView *img;
+@property (nonatomic,weak) UIImageView *img;
 
 @end
 
 @implementation BTTextField
 
--(instancetype)init
-{
+-(instancetype)init {
     self=[super init];
-    if (self) {
-        self.font=[UIFont systemFontOfSize:13];
+    if(self){
+        self.font = [UIFont systemFontOfSize:13];
+        self.textColor = [[BTThemeManager getInstance] BTThemeColor:@"cl_text_a4_content"];
     }
     return self;
 }
 
--(void)setContentPlaceholder:(NSString *)constomPlaceholder
+-(void)setContentPlaceholder:(NSString *)contentPlaceholder
 {
     NSMutableDictionary *dict=[NSMutableDictionary dictionary];
     dict[NSForegroundColorAttributeName]=[UIColor grayColor];
-    self.attributedPlaceholder=[[NSAttributedString alloc]initWithString:constomPlaceholder attributes:dict];
+    self.attributedPlaceholder=[[NSAttributedString alloc]initWithString:contentPlaceholder attributes:dict];
     
 }
--(void)setImage:(NSString *)image
-{
-    UIImageView *img=[[UIImageView alloc]init];
-    img.frame=CGRectMake(0, 10, 30, 30);
-    img.image=[UIImage imageNamed:image];
-    self.leftViewMode=UITextFieldViewModeAlways; //总是显示
-    self.leftView=img;
-    self.img=img;
+-(void)setImage:(NSString *)image {
+    
+    [[BTThemeManager getInstance] BTThemeImage:image completionHandler:^(UIImage *image) {
+        
+        UIImageView *img=[[UIImageView alloc]init];
+        img.frame=CGRectMake(0, 10, 30, 30);
+        [img setImage:image];
+        self.leftViewMode=UITextFieldViewModeAlways; //总是显示
+        self.leftView=img;
+        self.img=img;
+    } ];
+    
 }
--(CGRect)leftViewRectForBounds:(CGRect)bounds
-{
-    return CGRectMake(10, 10, 30, 0);
+-(CGRect)leftViewRectForBounds:(CGRect)bounds {
+    return CGRectMake(10, 10, 30, 30);
+    
 }
 
-
--(void)layoutSubviews
-{
+-(void)layoutSubviews {
     [super layoutSubviews];
     self.img.frame=CGRectMake(0, 0, 30, 30);
 }

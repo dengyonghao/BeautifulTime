@@ -8,6 +8,8 @@
 
 #import "BTUserLoginViewController.h"
 #import "BTTextField.h"
+#import "UIImage+Addition.h"
+#import "BTContacterViewController.h"
 
 #define margin 20
 #define textFieldHeight 30
@@ -25,11 +27,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.titleLabel.text = @"登陆微信";
+    self.titleLabel.text = @"用户登陆";
     [self.bodyView addSubview:self.username];
-    [self.view addSubview:self.username];
+    [self addbottomLineWith:CGRectMake(margin, 50 + self.headerView.frame.size.height + 5, BT_SCREEN_WIDTH -2 * margin, 0.5)];
     [self.bodyView addSubview:self.password];
-    [self.view addSubview:self.password];
+    [self addbottomLineWith:CGRectMake(margin, 100 + self.headerView.frame.size.height + 5, BT_SCREEN_WIDTH -2 * margin, 0.5)];
     [self.bodyView addSubview:self.loginBtn];
     [self addGesture];
 }
@@ -38,9 +40,9 @@
     [super viewDidLayoutSubviews];
     WS(weakSelf);
     [self.username mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf).offset(margin);
-        make.left.equalTo(weakSelf).offset(margin);
-        make.right.equalTo(weakSelf).offset(margin);
+        make.top.equalTo(weakSelf.bodyView).offset(margin);
+        make.left.equalTo(weakSelf.bodyView).offset(margin);
+        make.right.equalTo(weakSelf.bodyView).offset(-margin);
         make.height.equalTo(@(textFieldHeight));
     }];
     [self.password mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -50,7 +52,7 @@
         make.height.equalTo(@(textFieldHeight));
     }];
     [self.loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.password).offset(margin + textFieldHeight);
+        make.top.equalTo(weakSelf.password).offset(30 + textFieldHeight);
         make.left.equalTo(weakSelf.password);
         make.right.equalTo(weakSelf.password);
         make.height.equalTo(@(40));
@@ -65,40 +67,25 @@
     [self.view addGestureRecognizer:tap];
 }
 #pragma mark 点击的方法
--(void)tapClick:(id)sender
-{
+-(void)tapClick:(id)sender {
     [self.view endEditing:YES];
 }
 
 #pragma mark 添加下划线的方法
--(void)addbottomLineWith:(CGRect)bounds
-{
+-(void)addbottomLineWith:(CGRect)bounds {
     UIImageView *line=[[UIImageView alloc]initWithFrame:bounds];
-    //line.width=0.5;
-    line.backgroundColor=[UIColor lightGrayColor];
+    line.backgroundColor=[[BTThemeManager getInstance] BTThemeColor:@"cl_line_a2_item"];
     [self.view addSubview:line];
 }
 
-#pragma mark 添加注册按钮
--(void)addRegisButton:(CGRect)bounds
-{
-    UIButton *reg=[[UIButton alloc]initWithFrame:bounds];
-//    reg.titleLabel.font=MyFont(14);
-    [reg setTitle:@"注册" forState:UIControlStateNormal];
-//    [reg setTitleColor:WColorAlpha(71, 61, 139, 0.8) forState:UIControlStateNormal];
-//    [reg setTitleColor:WColorAlpha(0, 255, 255, 1) forState:UIControlStateHighlighted];
-    [reg addTarget:self action:@selector(regisClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:reg];
-}
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    if(self.username.text.length!=0 && self.password.text.length!=0){
+    if(self.username.text.length != 0 && self.password.text.length != 0){
         self.loginBtn.enabled=YES;
     }
-    // NSLog(@"%@  %zd",textField.text,textField.text.length);
-    if(textField.text.length<=1){
-        self.loginBtn.enabled=NO;
+    if(textField.text.length <= 1) {
+        self.loginBtn.enabled = NO;
     }
     
     return YES;
@@ -106,23 +93,22 @@
 #pragma mark 点击登陆的方法
 -(void)loginClick
 {
-    NSString *uname=[self trim:self.username.text];
-    NSString *pass=[self trim:self.password.text];
+//    NSString *uname=[self trim:self.username.text];
+//    NSString *pass=[self trim:self.password.text];
     //登陆的方法
 //    UserOperation *user=[UserOperation shareduser];
 //    user.uname=uname;
 //    user.password=pass;
-    BTXMPPTool *app=[BTXMPPTool sharedInstance];
-    app.registerOperation=NO;  //注册的方法
-    //把block转成弱应用
-    __weak typeof(self) selfVc=self;
-    // __weak typeof(self) selfVc=self;
+    BTXMPPTool *xmppTool=[BTXMPPTool sharedInstance];
+    xmppTool.registerOperation=NO;  //注册的方法
+    
+    WS(weakSelf);
+    
     //显示旋转矿
     [self.view endEditing:YES];
     
-    [app login:^(XMPPResultType xmppType) {
-        [selfVc handle:xmppType];
-        //NSLog(@"登录");
+    [xmppTool login:^(XMPPResultType xmppType) {
+        [weakSelf handle:xmppType];
     }];
 }
 #pragma mark 用户登录验证的方法
@@ -164,6 +150,9 @@
     
 //    MyTabBarController *tab=[[MyTabBarController alloc]init];
 //    [self presentViewController:tab animated:NO completion:nil];
+    BTContacterViewController *vc = [[BTContacterViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:NO];
+
     
     
 }
@@ -186,14 +175,13 @@
     if (!_loginBtn) {
         _loginBtn = [[UIButton alloc] init];
         _loginBtn.enabled=NO;
-        
-        //PayCardLightGreenBG   fts_green_btn
-        //    [_loginBtn setBackgroundImage:[UIImage resizedImage:@"fts_green_btn"] forState:UIControlStateNormal];
-        //    [_loginBtn setBackgroundImage:[UIImage resizedImage:@"fts_green_btn_HL"] forState:UIControlStateHighlighted];
-        //    [_loginBtn setBackgroundImage:[UIImage resizedImage:@"GreenBigBtnDisable"] forState:UIControlStateDisabled];
-        [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        //    [btn setTitleColor:WColorAlpha(255, 255, 255, 0.5) forState:UIControlStateDisabled];
+        [_loginBtn setBackgroundImage:[UIImage createImageWithColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_btn_d"] andSize:CGSizeMake(BT_SCREEN_WIDTH - 2 * margin, textFieldHeight)] forState:UIControlStateNormal];
+        [_loginBtn setBackgroundImage:[UIImage createImageWithColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_press_d"] andSize:CGSizeMake(BT_SCREEN_WIDTH - 2 * margin, textFieldHeight)] forState:UIControlStateHighlighted];
+        [_loginBtn setBackgroundImage:[UIImage createImageWithColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_press_d"] andSize:CGSizeMake(BT_SCREEN_WIDTH - 2 * margin, textFieldHeight)] forState:UIControlStateDisabled];
+        [_loginBtn setTitleColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_text_a4_content"] forState:UIControlStateNormal];
         [_loginBtn setTitle:@"登陆" forState:UIControlStateNormal];
+        [_loginBtn.layer setMasksToBounds:YES];
+        [_loginBtn.layer setCornerRadius:5.0];
         [_loginBtn addTarget:self action:@selector(loginClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _loginBtn;
@@ -203,7 +191,7 @@
     if (!_username) {
         _username = [[BTTextField alloc] init];
         _username.delegate=self;
-        _username.image=@"biz_pc_main_info_profile_login_user_icon";
+        _username.image=@"bt_login_user_icon";
         _username.contentPlaceholder=@"请输入用户名";
     }
     return _username;
@@ -214,7 +202,7 @@
         _password = [[BTTextField alloc] init];
         _password.secureTextEntry=YES;
         _password.delegate=self;
-        _password.image=@"biz_pc_main_info_profile_login_pw_icon";
+        _password.image=@"bt_login_pw_icon";
         _password.contentPlaceholder=@"请输入密码";
     }
     return _password;

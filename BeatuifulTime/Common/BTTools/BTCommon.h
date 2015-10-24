@@ -42,6 +42,7 @@ static inline UIImage* naviimage_from_mainbundle(NSString* filename_and_type)
 #define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
 
 #define BT_UIIMAGE(_FILE_)          ([UIImage imageNamed:(_FILE_)])
+#define BT_LOADIMAGE(_FILE_)        ([[BTThemeManager getInstance]loadImageInDefaultThemeWithName:(_FILE_)])
 
 // 版本大于iOS7
 //#define     IOS7_OR_HIGHER       ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)

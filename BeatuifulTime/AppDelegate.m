@@ -13,6 +13,9 @@
 #import "BTBaseNavigationController.h"
 #import "BTBaseNavigationController.h"
 #import "BTHomePageViewController.h"
+#import "BTRegisterAccountViewController.h"
+#import "BTRestPasswordViewController.h"
+#import "BTUserLoginViewController.h"
 
 static AppDelegate *singleton = nil;
 
@@ -74,7 +77,7 @@ static AppDelegate *singleton = nil;
 #pragma mark 初始化页面栈
 - (void)initPages
 {
-    BTHomePageViewController *homeViewController = [[BTHomePageViewController alloc] init];
+    BTUserLoginViewController *homeViewController = [[BTUserLoginViewController alloc] init];
     BTBaseNavigationController *homeNavigationController = [[BTBaseNavigationController alloc] initWithRootViewController:homeViewController];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
