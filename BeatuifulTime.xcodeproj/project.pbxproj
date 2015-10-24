@@ -168,12 +168,12 @@
 		65E2D3371BCFC965001E29A9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D3361BCFC965001E29A9 /* AppDelegate.m */; };
 		65E2D33A1BCFC966001E29A9 /* BeatuifulTime.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D3381BCFC966001E29A9 /* BeatuifulTime.xcdatamodeld */; };
 		65E2D3401BCFC966001E29A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65E2D33E1BCFC966001E29A9 /* Main.storyboard */; };
-		65E2D3421BCFC966001E29A9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65E2D3411BCFC966001E29A9 /* Images.xcassets */; };
 		65E2D3511BCFC966001E29A9 /* BeatuifulTimeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D3501BCFC966001E29A9 /* BeatuifulTimeTests.m */; };
 		65E2D36D1BCFCD84001E29A9 /* blackTheme.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 65E2D36B1BCFCD84001E29A9 /* blackTheme.bundle */; };
 		65E2D36E1BCFCD84001E29A9 /* blueTheme.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 65E2D36C1BCFCD84001E29A9 /* blueTheme.bundle */; };
 		65E2D3721BCFCEE4001E29A9 /* BTStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D3711BCFCEE4001E29A9 /* BTStyle.m */; };
 		65E2D37B1BCFCF76001E29A9 /* BTThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D37A1BCFCF76001E29A9 /* BTThemeManager.m */; };
+		65E468231BDB8D6B0065D10B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65E468221BDB8D6B0065D10B /* Images.xcassets */; };
 		65F4262C1BD9F5F600295796 /* UIImage+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F4262B1BD9F5F600295796 /* UIImage+Addition.m */; };
 		65F426441BDA281400295796 /* BTContacterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F426431BDA281400295796 /* BTContacterModel.m */; };
 		B44506E71BCFFAFD008BD5AC /* BTHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506E61BCFFAFD008BD5AC /* BTHomePageViewController.m */; };
@@ -509,14 +509,13 @@
 		65DE12A71BD0E1AB00D01BCA /* guide_4@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guide_4@3x.png"; sourceTree = "<group>"; };
 		65E234171BD3BAB60041E719 /* BTBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBaseViewController.h; sourceTree = "<group>"; };
 		65E234181BD3BAB60041E719 /* BTBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBaseViewController.m; sourceTree = "<group>"; };
-		65E2D32E1BCFC965001E29A9 /* BeatuifulTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeatuifulTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		65E2D32E1BCFC965001E29A9 /* 最美时光.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "最美时光.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65E2D3321BCFC965001E29A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65E2D3331BCFC965001E29A9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		65E2D3351BCFC965001E29A9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		65E2D3361BCFC965001E29A9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		65E2D3391BCFC966001E29A9 /* BeatuifulTime.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BeatuifulTime.xcdatamodel; sourceTree = "<group>"; };
 		65E2D33F1BCFC966001E29A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		65E2D3411BCFC966001E29A9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		65E2D34A1BCFC966001E29A9 /* BeatuifulTimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeatuifulTimeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65E2D34F1BCFC966001E29A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65E2D3501BCFC966001E29A9 /* BeatuifulTimeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeatuifulTimeTests.m; sourceTree = "<group>"; };
@@ -528,6 +527,7 @@
 		65E2D3731BCFCF2D001E29A9 /* BTCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCommon.h; sourceTree = "<group>"; };
 		65E2D3791BCFCF76001E29A9 /* BTThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTThemeManager.h; sourceTree = "<group>"; };
 		65E2D37A1BCFCF76001E29A9 /* BTThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTThemeManager.m; sourceTree = "<group>"; };
+		65E468221BDB8D6B0065D10B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		65F4262A1BD9F5F600295796 /* UIImage+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Addition.h"; sourceTree = "<group>"; };
 		65F4262B1BD9F5F600295796 /* UIImage+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Addition.m"; sourceTree = "<group>"; };
 		65F426421BDA281400295796 /* BTContacterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTContacterModel.h; sourceTree = "<group>"; };
@@ -1461,7 +1461,7 @@
 		65E2D32F1BCFC965001E29A9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				65E2D32E1BCFC965001E29A9 /* BeatuifulTime.app */,
+				65E2D32E1BCFC965001E29A9 /* 最美时光.app */,
 				65E2D34A1BCFC966001E29A9 /* BeatuifulTimeTests.xctest */,
 			);
 			name = Products;
@@ -1477,7 +1477,7 @@
 				B44506D01BCFEE48008BD5AC /* Src */,
 				65E2D3681BCFCD02001E29A9 /* Resources */,
 				65E2D33E1BCFC966001E29A9 /* Main.storyboard */,
-				65E2D3411BCFC966001E29A9 /* Images.xcassets */,
+				65E468221BDB8D6B0065D10B /* Images.xcassets */,
 				65E2D3381BCFC966001E29A9 /* BeatuifulTime.xcdatamodeld */,
 				65E2D3311BCFC965001E29A9 /* Supporting Files */,
 			);
@@ -1826,7 +1826,7 @@
 			);
 			name = BeatuifulTime;
 			productName = BeatuifulTime;
-			productReference = 65E2D32E1BCFC965001E29A9 /* BeatuifulTime.app */;
+			productReference = 65E2D32E1BCFC965001E29A9 /* 最美时光.app */;
 			productType = "com.apple.product-type.application";
 		};
 		65E2D3491BCFC966001E29A9 /* BeatuifulTimeTests */ = {
@@ -1895,7 +1895,6 @@
 				65E2D3401BCFC966001E29A9 /* Main.storyboard in Resources */,
 				65DE12AB1BD0E1AB00D01BCA /* guide_1@3x.png in Resources */,
 				65DE12AC1BD0E1AB00D01BCA /* guide_2@2x.png in Resources */,
-				65E2D3421BCFC966001E29A9 /* Images.xcassets in Resources */,
 				65E2D36D1BCFCD84001E29A9 /* blackTheme.bundle in Resources */,
 				65DBD0B31BD77CE700784DAC /* build-libidn.sh in Resources */,
 				65DE12AF1BD0E1AB00D01BCA /* guide_3@2x.png in Resources */,
@@ -1906,6 +1905,7 @@
 				B44507041BCFFB9F008BD5AC /* Info.plist in Resources */,
 				65E2D36E1BCFCD84001E29A9 /* blueTheme.bundle in Resources */,
 				65DE12B21BD0E1AB00D01BCA /* guide_4@2x.png in Resources */,
+				65E468231BDB8D6B0065D10B /* Images.xcassets in Resources */,
 				65DE12AD1BD0E1AB00D01BCA /* guide_2@3x.png in Resources */,
 				65DE12B11BD0E1AB00D01BCA /* guide_3@3x.png in Resources */,
 				65DE12AE1BD0E1AB00D01BCA /* guide_3@2x.jpg in Resources */,
@@ -2200,6 +2200,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BeatuifulTime/BeatuifulTime-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -2215,7 +2216,7 @@
 					"$(PROJECT_DIR)/BeatuifulTime/Common/3rdparty/XMPPFramework/libidn",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "最美时光";
 			};
 			name = Debug;
 		};
@@ -2223,6 +2224,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BeatuifulTime/BeatuifulTime-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -2238,7 +2240,7 @@
 					"$(PROJECT_DIR)/BeatuifulTime/Common/3rdparty/XMPPFramework/libidn",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "最美时光";
 			};
 			name = Release;
 		};
