@@ -10,6 +10,7 @@
 #import "BTTextField.h"
 #import "UIImage+Addition.h"
 #import "BTContacterViewController.h"
+#import "BTRegisterAccountViewController.h"
 
 #define margin 20
 #define textFieldHeight 30
@@ -17,6 +18,7 @@
 @interface BTUserLoginViewController ()<UITextFieldDelegate>
 
 @property (nonatomic,strong) UIButton *loginBtn;
+@property (nonatomic,strong) UIButton *registerBtn;
 @property (nonatomic,strong) BTTextField *username;
 @property (nonatomic,strong) BTTextField *password;
 
@@ -90,6 +92,12 @@
     
     return YES;
 }
+
+#pragma mark 点击登陆的方法
+-(void)registerClick {
+
+}
+
 #pragma mark 点击登陆的方法
 -(void)loginClick
 {
@@ -186,6 +194,21 @@
     }
     return _loginBtn;
 }
+
+- (UIButton *)registerBtn {
+    if (!_registerBtn) {
+        _registerBtn = [[UIButton alloc] init];
+        [_registerBtn setBackgroundImage:[UIImage createImageWithColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_btn_b"] andSize:CGSizeMake(BT_SCREEN_WIDTH - 2 * margin, textFieldHeight)] forState:UIControlStateNormal];
+        [_registerBtn setBackgroundImage:[UIImage createImageWithColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_press_b"] andSize:CGSizeMake(BT_SCREEN_WIDTH - 2 * margin, textFieldHeight)] forState:UIControlStateHighlighted];
+        [_registerBtn setTitleColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_text_a4_content"] forState:UIControlStateNormal];
+        [_registerBtn setTitle:@"注册账号" forState:UIControlStateNormal];
+        [_registerBtn.layer setMasksToBounds:YES];
+        [_registerBtn.layer setCornerRadius:5.0];
+        [_registerBtn addTarget:self action:@selector(registerClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _loginBtn;
+}
+
 
 - (BTTextField *)username {
     if (!_username) {

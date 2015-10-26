@@ -102,7 +102,8 @@ static const CGFloat BUTTONWIDTH = 50.0f;
 - (UIButton *)timeline {
     if (!_timeline) {
         _timeline = [[UIButton alloc] init];
-        _timeline.backgroundColor = [UIColor redColor];
+//        _timeline.backgroundColor = [UIColor redColor];
+        [_timeline setTitle:@"时间轴" forState:UIControlStateNormal];
     }
     return _timeline;
 }
@@ -110,7 +111,8 @@ static const CGFloat BUTTONWIDTH = 50.0f;
 - (UIButton *)photos {
     if (!_photos) {
         _photos = [[UIButton alloc] init];
-        _photos.backgroundColor = [UIColor yellowColor];
+//        _photos.backgroundColor = [UIColor yellowColor];
+        [_photos setTitle:@"相册" forState:UIControlStateNormal];
     }
     return _photos;
 }
@@ -118,7 +120,8 @@ static const CGFloat BUTTONWIDTH = 50.0f;
 - (UIButton *)journals {
     if (!_journals) {
         _journals = [[UIButton alloc] init];
-        _journals.backgroundColor = [UIColor greenColor];
+//        _journals.backgroundColor = [UIColor greenColor];
+        [_journals setTitle:@"日记集" forState:UIControlStateNormal];
     }
     return _journals;
 }
@@ -127,6 +130,8 @@ static const CGFloat BUTTONWIDTH = 50.0f;
     if (!_chat) {
         _chat = [[UIButton alloc] init];
         _chat.backgroundColor = [UIColor blueColor];
+        [_chat setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_chat setTitle:@"私语" forState:UIControlStateNormal];
     }
     return _chat;
 }

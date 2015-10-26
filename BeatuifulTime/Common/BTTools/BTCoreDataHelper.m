@@ -28,7 +28,7 @@ NSString *storeFilename = @"BeatuifulTime.sqlite";
     
     NSURL *storesDirectory =
     [[NSURL fileURLWithPath:[self applicationDocumentsDirectory]]
-     URLByAppendingPathComponent:@"Stores"];
+     URLByAppendingPathComponent:@"BeatuifulTime"];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:[storesDirectory path]]) {
