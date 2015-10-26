@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "65E2D32D1BCFC965001E29A9"
-               BuildableName = "BeatuifulTime.app"
+               BuildableName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;.app"
                BlueprintName = "BeatuifulTime"
                ReferencedContainer = "container:BeatuifulTime.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "65E2D32D1BCFC965001E29A9"
-            BuildableName = "BeatuifulTime.app"
+            BuildableName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;.app"
             BlueprintName = "BeatuifulTime"
             ReferencedContainer = "container:BeatuifulTime.xcodeproj">
          </BuildableReference>
@@ -77,7 +77,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "65E2D32D1BCFC965001E29A9"
-            BuildableName = "BeatuifulTime.app"
+            BuildableName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;.app"
             BlueprintName = "BeatuifulTime"
             ReferencedContainer = "container:BeatuifulTime.xcodeproj">
          </BuildableReference>
@@ -96,7 +96,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "65E2D32D1BCFC965001E29A9"
-            BuildableName = "BeatuifulTime.app"
+            BuildableName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;.app"
             BlueprintName = "BeatuifulTime"
             ReferencedContainer = "container:BeatuifulTime.xcodeproj">
          </BuildableReference>
