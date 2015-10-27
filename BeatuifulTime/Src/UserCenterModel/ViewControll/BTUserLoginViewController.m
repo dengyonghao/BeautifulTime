@@ -35,6 +35,7 @@
     [self.bodyView addSubview:self.password];
     [self addbottomLineWith:CGRectMake(margin, 100 + self.headerView.frame.size.height + 5, BT_SCREEN_WIDTH -2 * margin, 0.5)];
     [self.bodyView addSubview:self.loginBtn];
+    [self.bodyView addSubview:self.registerBtn];
     [self addGesture];
 }
 
@@ -59,6 +60,13 @@
         make.right.equalTo(weakSelf.password);
         make.height.equalTo(@(40));
     }];
+    [self.registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakSelf.loginBtn).offset(margin + 40);
+        make.left.equalTo(weakSelf.loginBtn);
+        make.right.equalTo(weakSelf.loginBtn);
+        make.height.equalTo(weakSelf.loginBtn);
+    }];
+
 }
 
 #pragma mark 添加手势识别器
@@ -95,7 +103,8 @@
 
 #pragma mark 点击登陆的方法
 -(void)registerClick {
-
+    BTRegisterAccountViewController *vc = [[BTRegisterAccountViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark 点击登陆的方法
@@ -164,17 +173,9 @@
     
     
 }
-#pragma mark 注册按钮点击的方法
--(void)regisClick
-{
-//    RegisterController *reg=[[RegisterController alloc]init];
-//    [self.navigationController pushViewController:reg animated:YES];
-//    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
-}
 
 #pragma mark 截取字符串空格的方法
--(NSString*)trim:(NSString*)str
-{
+-(NSString*)trim:(NSString*)str {
     str=[str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     return [str lowercaseString]; //转成小写
 }
@@ -206,7 +207,7 @@
         [_registerBtn.layer setCornerRadius:5.0];
         [_registerBtn addTarget:self action:@selector(registerClick) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _loginBtn;
+    return _registerBtn;
 }
 
 
