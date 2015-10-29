@@ -11,9 +11,11 @@
 #import "BTRestPasswordViewController.h"
 #import "BTUserLoginViewController.h"
 
-static const CGFloat BUTTONWIDTH = 50.0f;
+static const CGFloat BUTTONWIDTH = 48;
 
 @interface BTHomePageViewController ()<BTThemeListenerProtocol>
+
+@property (nonatomic, assign) BOOL themeInit;
 
 @property (nonatomic, strong) UIButton *timeline;
 @property (nonatomic, strong) UIButton *journals;
@@ -30,7 +32,8 @@ static const CGFloat BUTTONWIDTH = 50.0f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.themeInit = YES;
+//    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.backgroundImageView];
     [self.view addSubview:self.timeline];
     [self.view addSubview:self.photos];
@@ -58,8 +61,8 @@ static const CGFloat BUTTONWIDTH = 50.0f;
         make.left.mas_equalTo(weakSelf.view).offset(OFFSET);
         make.right.mas_equalTo(weakSelf.photos.mas_left).offset(-OFFSET);
         make.width.mas_equalTo(weakSelf.photos);
-        make.height.equalTo(@(44));
-        make.bottom.equalTo(weakSelf.view).offset(-20);
+        make.height.equalTo(@(48));
+        make.bottom.equalTo(weakSelf.view).offset(-15);
     }];
     [self.photos mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(weakSelf.timeline.mas_right).offset(OFFSET);
@@ -97,6 +100,15 @@ static const CGFloat BUTTONWIDTH = 50.0f;
 
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if (self.themeInit) {
+        [self BTThemeDidNeedUpdateStyle];
+        self.themeInit = NO;
+    }
+}
+
 - (void)onclick {
     BTUserLoginViewController *vc = [[BTUserLoginViewController alloc] init];
     [self.navigationController pushViewController:vc animated:NO];
@@ -105,24 +117,52 @@ static const CGFloat BUTTONWIDTH = 50.0f;
 
 - (void)BTThemeDidNeedUpdateStyle {
 
+    WS(weakSelf);
     //启动图片
     if (BT_47INCH_SCREEN) {
-        [[BTThemeManager getInstance] BTThemeImage:@"ic_ba_main_1242x2208" completionHandler:^(UIImage *image) {
-            [self.backgroundImageView setImage:image];
+        [[BTThemeManager getInstance] BTThemeImage:@"ic_bg_main_1242x2208" completionHandler:^(UIImage *image) {
+            [weakSelf.backgroundImageView setImage:image];
         }];
 
     }
     else if (BT_55INCH_SCREEN) {
-        [[BTThemeManager getInstance] BTThemeImage:@"ic_ba_main_750x1334" completionHandler:^(UIImage *image) {
-            [self.backgroundImageView setImage:image];
+        [[BTThemeManager getInstance] BTThemeImage:@"ic_bg_main_750x1334" completionHandler:^(UIImage *image) {
+            [weakSelf.backgroundImageView setImage:image];
         }];
 
     }
     else {
-        [[BTThemeManager getInstance] BTThemeImage:@"ic_ba_main_640x960" completionHandler:^(UIImage *image) {
-            [self.backgroundImageView setImage:image];
+        [[BTThemeManager getInstance] BTThemeImage:@"ic_bg_main_640x960" completionHandler:^(UIImage *image) {
+            [weakSelf.backgroundImageView setImage:image];
         }];
     }
+//    [[BTThemeManager getInstance] BTThemeImage:@"ic_bg_main_640x960" completionHandler:^(UIImage *image) {
+//        [weakSelf.timeline setImage:image forState:UIControlStateNormal];
+//    }];
+//    [[BTThemeManager getInstance] BTThemeImage:@"ic_bg_main_640x960" completionHandler:^(UIImage *image) {
+//        [weakSelf.timeline setImage:image forState:UIControlStateHighlighted];
+//    }];
+//    [[BTThemeManager getInstance] BTThemeImage:@"ic_bg_main_640x960" completionHandler:^(UIImage *image) {
+//        [weakSelf.photos setImage:image forState:UIControlStateNormal];
+//    }];
+//    [[BTThemeManager getInstance] BTThemeImage:@"ic_bg_main_640x960" completionHandler:^(UIImage *image) {
+//        [weakSelf.photos setImage:image forState:UIControlStateHighlighted];
+//    }];
+//    [[BTThemeManager getInstance] BTThemeImage:@"ic_bg_main_640x960" completionHandler:^(UIImage *image) {
+//        [weakSelf.journals setImage:image forState:UIControlStateNormal];
+//    }];
+//    [[BTThemeManager getInstance] BTThemeImage:@"ic_bg_main_640x960" completionHandler:^(UIImage *image) {
+//        [weakSelf.journals setImage:image forState:UIControlStateHighlighted];
+//    }];
+    [[BTThemeManager getInstance] BTThemeImage:@"ic_chat" completionHandler:^(UIImage *image) {
+        [weakSelf.chat setImage:image forState:UIControlStateNormal];
+    }];
+    [[BTThemeManager getInstance] BTThemeImage:@"ic_chat_press" completionHandler:^(UIImage *image) {
+        [weakSelf.chat setImage:image forState:UIControlStateHighlighted];
+    }];
+
+
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -133,8 +173,6 @@ static const CGFloat BUTTONWIDTH = 50.0f;
 - (UIButton *)timeline {
     if (!_timeline) {
         _timeline = [[UIButton alloc] init];
-//        _timeline.backgroundColor = [UIColor redColor];
-        [_timeline setTitle:@"时间轴" forState:UIControlStateNormal];
     }
     return _timeline;
 }
@@ -142,8 +180,6 @@ static const CGFloat BUTTONWIDTH = 50.0f;
 - (UIButton *)photos {
     if (!_photos) {
         _photos = [[UIButton alloc] init];
-//        _photos.backgroundColor = [UIColor yellowColor];
-        [_photos setTitle:@"相册" forState:UIControlStateNormal];
     }
     return _photos;
 }
@@ -151,8 +187,6 @@ static const CGFloat BUTTONWIDTH = 50.0f;
 - (UIButton *)journals {
     if (!_journals) {
         _journals = [[UIButton alloc] init];
-//        _journals.backgroundColor = [UIColor greenColor];
-        [_journals setTitle:@"日记集" forState:UIControlStateNormal];
     }
     return _journals;
 }
@@ -160,9 +194,6 @@ static const CGFloat BUTTONWIDTH = 50.0f;
 - (UIButton *)chat {
     if (!_chat) {
         _chat = [[UIButton alloc] init];
-        _chat.backgroundColor = [UIColor blueColor];
-        [_chat setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_chat setTitle:@"私语" forState:UIControlStateNormal];
     }
     return _chat;
 }
