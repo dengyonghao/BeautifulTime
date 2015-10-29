@@ -13,7 +13,7 @@
 
 static const CGFloat BUTTONWIDTH = 50.0f;
 
-@interface BTHomePageViewController ()
+@interface BTHomePageViewController ()<BTThemeListenerProtocol>
 
 @property (nonatomic, strong) UIButton *timeline;
 @property (nonatomic, strong) UIButton *journals;
@@ -22,6 +22,7 @@ static const CGFloat BUTTONWIDTH = 50.0f;
 @property (nonatomic, strong) UIButton *addJournal;
 @property (nonatomic, strong) UIButton *addTimeline;
 @property (nonatomic, strong) UIButton *reminiscence;
+@property (nonatomic, strong) UIImageView *backgroundImageView;
 
 @end
 
@@ -30,6 +31,7 @@ static const CGFloat BUTTONWIDTH = 50.0f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.backgroundImageView];
     [self.view addSubview:self.timeline];
     [self.view addSubview:self.photos];
     [self.view addSubview:self.journals];
@@ -42,6 +44,13 @@ static const CGFloat BUTTONWIDTH = 50.0f;
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     WS(weakSelf);
+    
+    [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakSelf.view);
+        make.left.equalTo(weakSelf.view);
+        make.right.equalTo(weakSelf.view);
+        make.height.equalTo(weakSelf.view);
+    }];
     
     CGFloat OFFSET = (BT_SCREEN_WIDTH - BUTTONWIDTH * 4) / 5;
 
@@ -92,6 +101,28 @@ static const CGFloat BUTTONWIDTH = 50.0f;
     BTUserLoginViewController *vc = [[BTUserLoginViewController alloc] init];
     [self.navigationController pushViewController:vc animated:NO];
 
+}
+
+- (void)BTThemeDidNeedUpdateStyle {
+
+    //启动图片
+    if (BT_47INCH_SCREEN) {
+        [[BTThemeManager getInstance] BTThemeImage:@"ic_ba_main_1242x2208" completionHandler:^(UIImage *image) {
+            [self.backgroundImageView setImage:image];
+        }];
+
+    }
+    else if (BT_55INCH_SCREEN) {
+        [[BTThemeManager getInstance] BTThemeImage:@"ic_ba_main_750x1334" completionHandler:^(UIImage *image) {
+            [self.backgroundImageView setImage:image];
+        }];
+
+    }
+    else {
+        [[BTThemeManager getInstance] BTThemeImage:@"ic_ba_main_640x960" completionHandler:^(UIImage *image) {
+            [self.backgroundImageView setImage:image];
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -157,6 +188,12 @@ static const CGFloat BUTTONWIDTH = 50.0f;
     return _reminiscence;
 }
 
+- (UIImageView *)backgroundImageView {
+    if (!_backgroundImageView) {
+        _backgroundImageView = [[UIImageView alloc] init];
+    }
+    return _backgroundImageView;
+}
 
 
 @end

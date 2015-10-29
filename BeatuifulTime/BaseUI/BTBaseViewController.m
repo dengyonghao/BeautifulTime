@@ -108,7 +108,7 @@
 #pragma mark 点击事件
 - (void)backButtonClick
 {
-    [self.navigationController popViewControllerAnimated:NO];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

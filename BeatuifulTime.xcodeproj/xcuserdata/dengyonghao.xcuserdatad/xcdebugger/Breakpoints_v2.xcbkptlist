@@ -120,12 +120,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeatuifulTime/Src/UserCenterModel/ViewControll/BTUserLoginViewController.m"
-            timestampString = "467543404.227338"
+            timestampString = "467632770.738862"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
-            landmarkName = "-registerBtn"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "-loginBtn"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

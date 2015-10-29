@@ -76,6 +76,15 @@ static inline UIImage* naviimage_from_mainbundle(NSString* filename_and_type)
 //判断设备是不是6Plus
 #define iPhone6Plus ([UIScreen instancesRespondToSelector:@selector(scale)]?[[UIScreen mainScreen] scale]:1) >= 2.8
 
+//是否为4寸屏
+#define BT_4INCH_SCREEN          (CGSizeEqualToSize(CGSizeMake(320*[UIScreen mainScreen].scale, 568*[UIScreen mainScreen].scale),[[UIScreen mainScreen] currentMode].size))
+
+//是否为4.7寸屏
+#define BT_47INCH_SCREEN          (CGSizeEqualToSize(CGSizeMake(375*[UIScreen mainScreen].scale, 667*[UIScreen mainScreen].scale),[[UIScreen mainScreen] currentMode].size))
+
+//是否为5.5寸屏
+#define BT_55INCH_SCREEN          (CGSizeEqualToSize(CGSizeMake(414*[UIScreen mainScreen].scale, 736*[UIScreen mainScreen].scale),[[UIScreen mainScreen] currentMode].size))
+
 #define BT_IOS7_OR_HIGHER        ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
 #define BT_IOS8_OR_HIGHER        ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8)
 
