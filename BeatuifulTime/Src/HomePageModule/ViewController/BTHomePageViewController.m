@@ -148,12 +148,12 @@ static const CGFloat BUTTONWIDTH = 48;
 //    [[BTThemeManager getInstance] BTThemeImage:@"ic_bg_main_640x960" completionHandler:^(UIImage *image) {
 //        [weakSelf.photos setImage:image forState:UIControlStateHighlighted];
 //    }];
-//    [[BTThemeManager getInstance] BTThemeImage:@"ic_bg_main_640x960" completionHandler:^(UIImage *image) {
-//        [weakSelf.journals setImage:image forState:UIControlStateNormal];
-//    }];
-//    [[BTThemeManager getInstance] BTThemeImage:@"ic_bg_main_640x960" completionHandler:^(UIImage *image) {
-//        [weakSelf.journals setImage:image forState:UIControlStateHighlighted];
-//    }];
+    [[BTThemeManager getInstance] BTThemeImage:@"ic_journal" completionHandler:^(UIImage *image) {
+        [weakSelf.journals setImage:image forState:UIControlStateNormal];
+    }];
+    [[BTThemeManager getInstance] BTThemeImage:@"ic_journal_press" completionHandler:^(UIImage *image) {
+        [weakSelf.journals setImage:image forState:UIControlStateHighlighted];
+    }];
     [[BTThemeManager getInstance] BTThemeImage:@"ic_chat" completionHandler:^(UIImage *image) {
         [weakSelf.chat setImage:image forState:UIControlStateNormal];
     }];
