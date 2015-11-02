@@ -16,6 +16,7 @@
 #import "BTRegisterAccountViewController.h"
 #import "BTRestPasswordViewController.h"
 #import "BTUserLoginViewController.h"
+#import "Journal.h"
 
 static AppDelegate *singleton = nil;
 
@@ -63,9 +64,24 @@ static AppDelegate *singleton = nil;
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
+- (void)demo {
+    Journal *newJournal = [NSEntityDescription insertNewObjectForEntityForName:@"Journal" inManagedObjectContext:_coreDataHelper.context];
+    newJournal.journalContent = @"这是我第一次写core data";
+}
+
+- (void)demo2 {
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Journal"];
+    NSArray * arry = [_coreDataHelper.context executeFetchRequest:request error:nil];
+    for (Journal *journal in arry) {
+        NSLog(@"---------%@",journal.journalContent);
+    }
+}
+
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [self cdh];
+    [self demo2 ];
+    [[self cdh] saveContext];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

@@ -176,6 +176,8 @@
 		65E468231BDB8D6B0065D10B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65E468221BDB8D6B0065D10B /* Images.xcassets */; };
 		65F4262C1BD9F5F600295796 /* UIImage+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F4262B1BD9F5F600295796 /* UIImage+Addition.m */; };
 		65F426441BDA281400295796 /* BTContacterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F426431BDA281400295796 /* BTContacterModel.m */; };
+		B4404F8C1BE7B32000226334 /* Journal+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = B4404F891BE7B32000226334 /* Journal+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		B4404F8D1BE7B32000226334 /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = B4404F8B1BE7B32000226334 /* Journal.m */; settings = {ASSET_TAGS = (); }; };
 		B44506E71BCFFAFD008BD5AC /* BTHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506E61BCFFAFD008BD5AC /* BTHomePageViewController.m */; };
 		B44507041BCFFB9F008BD5AC /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B44506EA1BCFFB9F008BD5AC /* Info.plist */; };
 		B44507051BCFFB9F008BD5AC /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506EC1BCFFB9F008BD5AC /* MASCompositeConstraint.m */; };
@@ -532,6 +534,10 @@
 		65F4262B1BD9F5F600295796 /* UIImage+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Addition.m"; sourceTree = "<group>"; };
 		65F426421BDA281400295796 /* BTContacterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTContacterModel.h; sourceTree = "<group>"; };
 		65F426431BDA281400295796 /* BTContacterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTContacterModel.m; sourceTree = "<group>"; };
+		B4404F881BE7B32000226334 /* Journal+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Journal+CoreDataProperties.h"; sourceTree = "<group>"; };
+		B4404F891BE7B32000226334 /* Journal+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Journal+CoreDataProperties.m"; sourceTree = "<group>"; };
+		B4404F8A1BE7B32000226334 /* Journal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Journal.h; sourceTree = "<group>"; };
+		B4404F8B1BE7B32000226334 /* Journal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Journal.m; sourceTree = "<group>"; };
 		B44506E51BCFFAFD008BD5AC /* BTHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTHomePageViewController.h; sourceTree = "<group>"; };
 		B44506E61BCFFAFD008BD5AC /* BTHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTHomePageViewController.m; sourceTree = "<group>"; };
 		B44506EA1BCFFB9F008BD5AC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -609,6 +615,10 @@
 		65DBCEF91BD754A700784DAC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B4404F881BE7B32000226334 /* Journal+CoreDataProperties.h */,
+				B4404F891BE7B32000226334 /* Journal+CoreDataProperties.m */,
+				B4404F8A1BE7B32000226334 /* Journal.h */,
+				B4404F8B1BE7B32000226334 /* Journal.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1996,6 +2006,7 @@
 				B44507051BCFFB9F008BD5AC /* MASCompositeConstraint.m in Sources */,
 				65DBD1E21BD7A2A100784DAC /* XMPPCapabilities.m in Sources */,
 				65DBD1E41BD7A2A100784DAC /* XMPPMessageArchiving_Contact_CoreDataObject.m in Sources */,
+				B4404F8D1BE7B32000226334 /* Journal.m in Sources */,
 				65DBD0B91BD77CE700784DAC /* XMPPSRVResolver.m in Sources */,
 				65DBD1D91BD7A2A100784DAC /* NSDate+XMPPDateTimeProfiles.m in Sources */,
 				65DBD1C91BD7A2A100784DAC /* XMPPvCardTempCoreDataStorageObject.m in Sources */,
@@ -2057,6 +2068,7 @@
 				65DBD1F91BD7ABC400784DAC /* BTTextField.m in Sources */,
 				65DBCF011BD7552800784DAC /* BTEditJournalViewController.m in Sources */,
 				65DBD1F01BD7A2A100784DAC /* XMPPTime.m in Sources */,
+				B4404F8C1BE7B32000226334 /* Journal+CoreDataProperties.m in Sources */,
 				65DBD1A51BD7A2A100784DAC /* XMPPProcessOne.m in Sources */,
 				65DBD0AD1BD77CE700784DAC /* XMPPPresence.m in Sources */,
 				65DBD1DB1BD7A2A100784DAC /* XMPPMessage+XEP_0085.m in Sources */,
