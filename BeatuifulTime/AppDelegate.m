@@ -17,6 +17,7 @@
 #import "BTRestPasswordViewController.h"
 #import "BTUserLoginViewController.h"
 #import "Journal.h"
+#import "BTAddJournalViewController.h"
 
 static AppDelegate *singleton = nil;
 
@@ -80,8 +81,8 @@ static AppDelegate *singleton = nil;
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [self cdh];
-    [self demo2 ];
-    [[self cdh] saveContext];
+//    [self demo2 ];
+//    [[self cdh] saveContext];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -93,7 +94,7 @@ static AppDelegate *singleton = nil;
 #pragma mark 初始化页面栈
 - (void)initPages
 {
-    BTUserLoginViewController *homeViewController = [[BTUserLoginViewController alloc] init];
+    BTAddJournalViewController *homeViewController = [[BTAddJournalViewController alloc] init];
     BTBaseNavigationController *homeNavigationController = [[BTBaseNavigationController alloc] initWithRootViewController:homeViewController];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeatuifulTime/AppDelegate.m"
-            timestampString = "468170477.166106"
+            timestampString = "468258695.135521"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "-demo"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "-applicationWillTerminate:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BeatuifulTime/AppDelegate.m"
-            timestampString = "468172620.245129"
+            filePath = "BeatuifulTime/BaseUI/BTBaseViewController.m"
+            timestampString = "468260956.358352"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "-applicationWillTerminate:"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "-finishButtonClick"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeatuifulTime/Src/JournalModule/ViewController/BTAddJournalViewController.m"
+            timestampString = "468261507.602622"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "-finishButtonClick"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
