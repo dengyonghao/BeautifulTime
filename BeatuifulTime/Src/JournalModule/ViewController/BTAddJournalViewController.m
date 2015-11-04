@@ -8,10 +8,12 @@
 
 #import "BTAddJournalViewController.h"
 #import "AppDelegate.h"
+#import <CoreLocation/CoreLocation.h>
 #import "Journal.h"
 
-@interface BTAddJournalViewController ()<UITextViewDelegate>
+@interface BTAddJournalViewController ()<UITextViewDelegate,CLLocationManagerDelegate>
 
+@property (strong, nonatomic) CLLocationManager* locationManager;
 @property (nonatomic, strong) UIScrollView *bodyScrollView;
 @property (nonatomic, strong) UIButton *photos;
 @property (nonatomic, strong) UIButton *site;
@@ -35,6 +37,8 @@
     [self.bodyView addSubview:self.records];
     [self.bodyView addSubview:self.bodyScrollView];
     [self.bodyScrollView addSubview:self.content];
+    NSLog(@"----------%@",[@"深圳" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
+    [self startLocation];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -79,13 +83,64 @@
     }];
 }
 
+//开始定位
+-(void)startLocation{
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager requestAlwaysAuthorization];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    [self.locationManager startUpdatingLocation];
+    
+}
+
+//检测是否支持定位
+- (void)locationManager: (CLLocationManager *)manager
+       didFailWithError: (NSError *)error {
+    
+    NSString *errorString;
+    [manager stopUpdatingLocation];
+    switch([error code]) {
+        case kCLErrorDenied:
+            errorString = @"用户拒绝访问位置服务";
+            break;
+        case kCLErrorLocationUnknown:
+            errorString = @"位置数据不可用";
+            break;
+        default:
+            errorString = @"发生未知错误";
+            break;
+    }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
+//定位代理经纬度回调
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    
+    NSLog(@"%@",[NSString stringWithFormat:@"经度:%3.5f\n纬度:%3.5f",newLocation.coordinate.latitude,newLocation.coordinate.longitude]);
+    CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
+    [geoCoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+        
+        for (CLPlacemark * placemark in placemarks) {
+            NSDictionary *info = [placemark addressDictionary];
+            NSString * city = [info objectForKey:@"City"];
+            
+        }
+    }];
+    [self.locationManager stopUpdatingLocation];
+    
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
 - (void)finishButtonClick {
     Journal *newJournal = [NSEntityDescription insertNewObjectForEntityForName:@"Journal" inManagedObjectContext:[AppDelegate getInstance].coreDataHelper.context];
-    newJournal.journalContent = self.content.text;
+    NSData* data = [self.content.text dataUsingEncoding:NSUTF8StringEncoding];
+    newJournal.journalContent = data;
     [[AppDelegate getInstance].coreDataHelper saveContext];
 }
 

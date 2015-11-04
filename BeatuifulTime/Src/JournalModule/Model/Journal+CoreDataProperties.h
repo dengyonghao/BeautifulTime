@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Journal (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSNumber *journalId;
-@property (nullable, nonatomic, retain) NSString *journalContent;
+@property (nullable, nonatomic, retain) NSData *journalContent;
 @property (nullable, nonatomic, retain) NSDate *journalDate;
 @property (nullable, nonatomic, retain) NSString *journalTime;
 @property (nullable, nonatomic, retain) NSString *weather;

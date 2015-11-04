@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F27" minimumToolsVersion="Automatic">
     <entity name="Journal" representedClassName="Journal" syncable="YES">
-        <attribute name="journalContent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="journalContent" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="journalDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="journalId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="journalTime" optional="YES" attributeType="String" syncable="YES"/>
