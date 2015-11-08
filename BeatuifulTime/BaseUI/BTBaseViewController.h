@@ -30,6 +30,8 @@
  */
 @property (nonatomic, strong) UIButton *backButton;
 
+@property (nonatomic, strong) UIButton *finishButton;
+
 
 @property (nonatomic, assign) CGFloat     statusHeight;
 
@@ -37,6 +39,8 @@
  *  返回按钮点击事件
  */
 - (void)backButtonClick;
+
+- (void)finishButtonClick;
 
 - (void) BTThemeDidNeedUpdateStyle;
 
