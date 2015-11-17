@@ -74,7 +74,7 @@ static BTXMPPTool *xmppTool;
     if(!_xmppStream){
         [self setupXmppStream];
     }
-    XMPPJID *myJid=[XMPPJID jidWithUser:@"dengyonghao" domain:ServerName resource:nil];
+    XMPPJID *myJid=[XMPPJID jidWithUser:@"wanglin" domain:ServerName resource:nil];
     self.jid=myJid;  //参数赋值
     _xmppStream.myJID=myJid;
     //设置服务器域名或ip地址

@@ -12,13 +12,17 @@
 #import "Journal.h"
 #import "BTNetManager.h"
 
-#define WEATHERINFO_HOST @"http://api.map.baidu.com"
+//#define WEATHERINFO_HOST @"http://api.map.baidu.com"
+//
+//#define API_PATH_WEATHER @"/telematics/v3/weather"
+//
+//#define API_AK @"xfkg5isLkdyXDGAPYezFjtpb"
+//
+//#define DATA_TYPE @"json"
 
-#define API_PATH_WEATHER @"/telematics/v3/weather"
+#define WEATHERINFO_HOST @"http://app.navi.baidu.com"
 
-#define API_AK @"xfkg5isLkdyXDGAPYezFjtpb"
-
-#define DATA_TYPE @"json"
+#define API_PATH_WEATHER @"/weather/get"
 
 
 @interface BTAddJournalViewController ()<UITextViewDelegate,CLLocationManagerDelegate>
@@ -56,10 +60,29 @@
     [self.bodyScrollView addSubview:self.content];
     NSLog(@"----------%@",[@"深圳" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
     [self startLocation];
-    [self netManagerReqeustWeatherInfo:@"北京" successCallback:^(NSDictionary *retDict) {
-        NSLog(@"%@",retDict);
-    } failCallback:^(NSError *error) {
-       NSLog(@"%@",error);
+//    [self netManagerReqeustWeatherInfo:@"北京" successCallback:^(NSDictionary *retDict) {
+//        NSLog(@"%@",retDict);
+//    } failCallback:^(NSError *error) {
+//       NSLog(@"%@",error);
+//    }];
+    
+    NSMutableDictionary *infoDic = [[NSMutableDictionary alloc] init];
+    
+    //    [infoDic setObject:API_AK forKey:@"ak"];
+    //    [infoDic setObject:DATA_TYPE forKey:@"output"];
+    //    [infoDic setObject:cityName forKey:@"location"];
+    //
+    //    [0]	(null)	@"cityID" : (int)340
+    //    [1]	(null)	@"bduss" : @"-1"
+    //    [2]	(null)	@"sign" : @"f7fcbb889119780976e36c350b359d64"
+    //    [3]	(null)	@"cuid" : @"68e1c869b8f55d806dc2112d7c352ca2"
+    
+    [infoDic setObject:@"340" forKey:@"cityID"];
+    [infoDic setObject:@"-1" forKey:@"bduss"];
+    [infoDic setObject:@"" forKey:@"sign"];
+    [infoDic setObject:@"" forKey:@"cuid"];
+    [self requestWithHost:@"http://app.navi.baidu.com/weather/get" Path:@"http://app.navi.baidu.com/weather/get" params:infoDic fileParams:nil method:@"POST" ssl:NO forceReload:NO completion:^(NSDictionary *result, NSError *error) {
+        NSLog(@"%@",result);
     }];
 }
 
@@ -224,9 +247,19 @@
 {
     NSMutableDictionary *infoDic = [[NSMutableDictionary alloc] init];
     
-    [infoDic setObject:API_AK forKey:@"ak"];
-    [infoDic setObject:DATA_TYPE forKey:@"output"];
-    [infoDic setObject:cityName forKey:@"location"];
+//    [infoDic setObject:API_AK forKey:@"ak"];
+//    [infoDic setObject:DATA_TYPE forKey:@"output"];
+//    [infoDic setObject:cityName forKey:@"location"];
+//    
+//    [0]	(null)	@"cityID" : (int)340
+//    [1]	(null)	@"bduss" : @"-1"
+//    [2]	(null)	@"sign" : @"f7fcbb889119780976e36c350b359d64"
+//    [3]	(null)	@"cuid" : @"68e1c869b8f55d806dc2112d7c352ca2"
+    
+    [infoDic setObject:@"340" forKey:@"cityID"];
+    [infoDic setObject:@"-1" forKey:@"bduss"];
+    [infoDic setObject:@"f7fcbb889119780976e36c350b359d64" forKey:@"sign"];
+    [infoDic setObject:@"68e1c869b8f55d806dc2112d7c352ca2" forKey:@"cuid"];
     
     AFHTTPRequestOperationManager *manager= [self configureAFHTTPRequestManagerWithURL:WEATHERINFO_HOST];
     AFHTTPRequestOperation *operation = [manager GET:API_PATH_WEATHER parameters:infoDic success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -253,6 +286,77 @@
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/plain"];
     return manager;
+}
+
+- (void)requestWithHost:(NSString *)host
+                   Path:(NSString *)path
+                 params:(NSDictionary *)params
+             fileParams:(NSDictionary *)fileParams
+                 method:(NSString *)method
+                    ssl:(BOOL)useSSL
+            forceReload:(BOOL)forceReload
+             completion:(void (^)(NSDictionary *result, NSError *error))completion
+{
+    if (!host) {
+        completion(nil, [NSError errorWithDomain:@"" code:101 userInfo:@{@"description":@"参数错误"}]);
+        return;
+    }
+    NSString* adHost = nil;
+    if ([host rangeOfString:@"http://"].location == NSNotFound)
+        adHost = [NSString stringWithFormat:@"http://%@",host];
+    else
+        adHost = host;
+    
+    AFHTTPRequestOperationManager* manager= [[AFHTTPRequestOperationManager alloc]initWithBaseURL:[NSURL URLWithString:adHost]];
+    
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/plain"];
+    
+    if ([method isEqualToString:@"POST"]){
+        
+        [manager POST:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSDictionary *result =  (NSDictionary*)responseObject;
+            if (result != nil) {
+                completion(result, nil);
+            }
+            else if (operation.response.statusCode >= 200 && operation.response.statusCode < 300) {
+                
+                NSDictionary *nojsonSuccess = [NSDictionary dictionaryWithObject:@(operation.response.statusCode) forKey:@"httpStatusCode"];
+                completion(nojsonSuccess, nil);
+            }
+            else
+            {
+                NSError *error = [NSError errorWithDomain:@"" code:100 userInfo:@{@"description":@"json解析错误"}];
+                completion(nil, error);
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            completion(nil, error);
+        }];
+    }
+    
+    if ([method isEqualToString:@"GET"])
+    {
+        [manager GET:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            NSDictionary *result =  (NSDictionary*)responseObject;
+            if (result != nil) {
+                completion(result, nil);
+            }
+            else if (operation.response.statusCode >= 200 && operation.response.statusCode < 300) {
+                
+                NSDictionary *nojsonSuccess = [NSDictionary dictionaryWithObject:@(operation.response.statusCode) forKey:@"httpStatusCode"];
+                completion(nojsonSuccess, nil);
+            }
+            else
+            {
+                NSError *error = [NSError errorWithDomain:@"" code:100 userInfo:@{@"description":@"json解析错误"}];
+                completion(nil, error);
+            }
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            completion(nil, error);
+        }];
+    }
 }
 
 @end

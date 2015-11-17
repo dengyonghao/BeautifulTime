@@ -25,6 +25,9 @@ typedef enum {
 // 压缩生成 NSData
 - (NSData*)compressGZip;
 
+//汉字转拼音
+-(NSString *)stringToPinyin;
+
 // 转换字符串为NSString
 + (NSString*)convertToNSString:(unsigned short*)org;
 

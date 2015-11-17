@@ -27,6 +27,18 @@
     return [str5 stringByReplacingOccurrencesOfString:@"\\r\\n" withString:@"\n"];
 }
 
+#pragma mark 把汉字转成把拼音
+-(NSString *)stringToPinyin {
+    NSMutableString *ms = [[NSMutableString alloc] initWithString:self];
+    if (CFStringTransform((__bridge CFMutableStringRef)ms, 0, kCFStringTransformMandarinLatin, NO)) {
+        
+    }
+    if (CFStringTransform((__bridge CFMutableStringRef)ms, 0, kCFStringTransformStripDiacritics, NO)) {
+        
+    }
+    return ms;
+}
+
 
 @end
 

@@ -25,9 +25,12 @@
 		6500E7551BEF395C007158BF /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6500E7421BEF395C007158BF /* UIProgressView+AFNetworking.m */; };
 		6500E7561BEF395C007158BF /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6500E7441BEF395C007158BF /* UIRefreshControl+AFNetworking.m */; };
 		6500E7571BEF395C007158BF /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6500E7461BEF395C007158BF /* UIWebView+AFNetworking.m */; };
+		650498941BFAD3F70072AE47 /* BTMyAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 650498931BFAD3F70072AE47 /* BTMyAlbumViewController.m */; };
+		650498971BFAD50B0072AE47 /* BTAlbumCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 650498961BFAD50B0072AE47 /* BTAlbumCollectionViewCell.m */; };
 		6548630C1BDB279500CF3FF1 /* BTContacterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6548630B1BDB279500CF3FF1 /* BTContacterViewController.m */; };
 		654A502C1BEF2CE20038CD47 /* BTShowWeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 654A502B1BEF2CE20038CD47 /* BTShowWeatherViewController.m */; };
 		654A502F1BEF2D6A0038CD47 /* BTSelectSiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 654A502E1BEF2D6A0038CD47 /* BTSelectSiteViewController.m */; };
+		65AD650B1BF57FB800785AC1 /* BTContacterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AD650A1BF57FB700785AC1 /* BTContacterCell.m */; };
 		65DBCEFE1BD754D900784DAC /* BTAddJournalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBCEFD1BD754D900784DAC /* BTAddJournalViewController.m */; };
 		65DBCF011BD7552800784DAC /* BTEditJournalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBCF001BD7552800784DAC /* BTEditJournalViewController.m */; };
 		65DBCF041BD7554700784DAC /* BTJournalListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBCF031BD7554700784DAC /* BTJournalListViewController.m */; };
@@ -264,12 +267,18 @@
 		6500E7441BEF395C007158BF /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
 		6500E7451BEF395C007158BF /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		6500E7461BEF395C007158BF /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
+		650498921BFAD3F70072AE47 /* BTMyAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTMyAlbumViewController.h; sourceTree = "<group>"; };
+		650498931BFAD3F70072AE47 /* BTMyAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTMyAlbumViewController.m; sourceTree = "<group>"; };
+		650498951BFAD50B0072AE47 /* BTAlbumCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAlbumCollectionViewCell.h; sourceTree = "<group>"; };
+		650498961BFAD50B0072AE47 /* BTAlbumCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAlbumCollectionViewCell.m; sourceTree = "<group>"; };
 		6548630A1BDB279500CF3FF1 /* BTContacterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTContacterViewController.h; sourceTree = "<group>"; };
 		6548630B1BDB279500CF3FF1 /* BTContacterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTContacterViewController.m; sourceTree = "<group>"; };
 		654A502A1BEF2CE20038CD47 /* BTShowWeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTShowWeatherViewController.h; sourceTree = "<group>"; };
 		654A502B1BEF2CE20038CD47 /* BTShowWeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTShowWeatherViewController.m; sourceTree = "<group>"; };
 		654A502D1BEF2D6A0038CD47 /* BTSelectSiteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTSelectSiteViewController.h; sourceTree = "<group>"; };
 		654A502E1BEF2D6A0038CD47 /* BTSelectSiteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTSelectSiteViewController.m; sourceTree = "<group>"; };
+		65AD65091BF57FB700785AC1 /* BTContacterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTContacterCell.h; sourceTree = "<group>"; };
+		65AD650A1BF57FB700785AC1 /* BTContacterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTContacterCell.m; sourceTree = "<group>"; };
 		65DBCEFC1BD754D900784DAC /* BTAddJournalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAddJournalViewController.h; sourceTree = "<group>"; };
 		65DBCEFD1BD754D900784DAC /* BTAddJournalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAddJournalViewController.m; sourceTree = "<group>"; };
 		65DBCEFF1BD7552800784DAC /* BTEditJournalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTEditJournalViewController.h; sourceTree = "<group>"; };
@@ -724,6 +733,41 @@
 				6500E7461BEF395C007158BF /* UIWebView+AFNetworking.m */,
 			);
 			path = "UIKit+AFNetworking";
+			sourceTree = "<group>";
+		};
+		650498881BFAD3190072AE47 /* AlbumModule */ = {
+			isa = PBXGroup;
+			children = (
+				650498891BFAD3190072AE47 /* Model */,
+				6504988A1BFAD3190072AE47 /* View */,
+				6504988B1BFAD3190072AE47 /* ViewControll */,
+			);
+			path = AlbumModule;
+			sourceTree = "<group>";
+		};
+		650498891BFAD3190072AE47 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6504988A1BFAD3190072AE47 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				650498951BFAD50B0072AE47 /* BTAlbumCollectionViewCell.h */,
+				650498961BFAD50B0072AE47 /* BTAlbumCollectionViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6504988B1BFAD3190072AE47 /* ViewControll */ = {
+			isa = PBXGroup;
+			children = (
+				650498921BFAD3F70072AE47 /* BTMyAlbumViewController.h */,
+				650498931BFAD3F70072AE47 /* BTMyAlbumViewController.m */,
+			);
+			path = ViewControll;
 			sourceTree = "<group>";
 		};
 		654863091BDB279500CF3FF1 /* ViewController */ = {
@@ -1785,6 +1829,8 @@
 		65F426301BDA0F1400295796 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				65AD65091BF57FB700785AC1 /* BTContacterCell.h */,
+				65AD650A1BF57FB700785AC1 /* BTContacterCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1792,6 +1838,7 @@
 		B44506D01BCFEE48008BD5AC /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				650498881BFAD3190072AE47 /* AlbumModule */,
 				654A50261BEF2C5C0038CD47 /* WeatherModel */,
 				65F4262D1BDA0F1400295796 /* IMModule */,
 				65DBCEF81BD754A700784DAC /* JournalModule */,
@@ -1799,7 +1846,6 @@
 				B445071E1BD00EA9008BD5AC /* SettingModule */,
 				B44507191BD00405008BD5AC /* LaunchModule */,
 				B44506D51BCFFAAC008BD5AC /* HomePageModule */,
-				B44506DD1BCFFAAC008BD5AC /* PhotoAlbumModule */,
 				B44506E11BCFFAAC008BD5AC /* TimelineModule */,
 			);
 			path = Src;
@@ -1834,37 +1880,6 @@
 			children = (
 				B44506E51BCFFAFD008BD5AC /* BTHomePageViewController.h */,
 				B44506E61BCFFAFD008BD5AC /* BTHomePageViewController.m */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		B44506DD1BCFFAAC008BD5AC /* PhotoAlbumModule */ = {
-			isa = PBXGroup;
-			children = (
-				B44506DE1BCFFAAC008BD5AC /* Model */,
-				B44506DF1BCFFAAC008BD5AC /* View */,
-				B44506E01BCFFAAC008BD5AC /* ViewController */,
-			);
-			path = PhotoAlbumModule;
-			sourceTree = "<group>";
-		};
-		B44506DE1BCFFAAC008BD5AC /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		B44506DF1BCFFAAC008BD5AC /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		B44506E01BCFFAAC008BD5AC /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2142,6 +2157,7 @@
 				65DBD1E81BD7A2A100784DAC /* XMPPvCardAvatarModule.m in Sources */,
 				65DBD0951BD77CE700784DAC /* XMPPAnonymousAuthentication.m in Sources */,
 				65DBD1C31BD7A2A100784DAC /* XMPPMUC.m in Sources */,
+				650498971BFAD50B0072AE47 /* BTAlbumCollectionViewCell.m in Sources */,
 				65DBD1D31BD7A2A100784DAC /* XMPPResultSet.m in Sources */,
 				65DBD1D51BD7A2A100784DAC /* XMPPPubSub.m in Sources */,
 				6500E74A1BEF395C007158BF /* AFNetworkReachabilityManager.m in Sources */,
@@ -2188,6 +2204,7 @@
 				B44507051BCFFB9F008BD5AC /* MASCompositeConstraint.m in Sources */,
 				65DBD1E21BD7A2A100784DAC /* XMPPCapabilities.m in Sources */,
 				65DBD1E41BD7A2A100784DAC /* XMPPMessageArchiving_Contact_CoreDataObject.m in Sources */,
+				650498941BFAD3F70072AE47 /* BTMyAlbumViewController.m in Sources */,
 				B4404F8D1BE7B32000226334 /* Journal.m in Sources */,
 				65DBD0B91BD77CE700784DAC /* XMPPSRVResolver.m in Sources */,
 				65DBD1D91BD7A2A100784DAC /* NSDate+XMPPDateTimeProfiles.m in Sources */,
@@ -2273,6 +2290,7 @@
 				65DBD1CA1BD7A2A100784DAC /* XMPPvCardTemp.m in Sources */,
 				65DBD1CD1BD7A2A100784DAC /* XMPPvCardTempBase.m in Sources */,
 				65DBD0991BD77CE700784DAC /* XMPPPlainAuthentication.m in Sources */,
+				65AD650B1BF57FB800785AC1 /* BTContacterCell.m in Sources */,
 				65DBD1AA1BD7A2A100784DAC /* XMPPRosterCoreDataStorage.m in Sources */,
 				65DBD09B1BD77CE700784DAC /* NSData+XMPP.m in Sources */,
 				65DBD0B61BD77CE700784DAC /* GCDMulticastDelegate.m in Sources */,
