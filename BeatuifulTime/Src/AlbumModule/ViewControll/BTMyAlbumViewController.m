@@ -9,11 +9,14 @@
 #import "BTMyAlbumViewController.h"
 #import "BTAlbumCollectionViewCell.h"
 #import <Photos/Photos.h>
+#import "BTPhotoListViewController.h"
 
-static  NSString const *kcellIdentifier = @"kcollectionCellID";
+static  NSString *kcellIdentifier = @"kAlbumCollectionCellID";
 static int const showNumber = 2;
-
 static CGFloat const cellHeight = 164.0f;
+static CGSize AssetGridThumbnailSize;
+static CGFloat const iconWidth = 120.0f;
+static CGFloat const iconHeight = 120.0f;
 
 
 @interface BTMyAlbumViewController () <UICollectionViewDataSource, UICollectionViewDelegate, PHPhotoLibraryChangeObserver>
@@ -46,6 +49,8 @@ static CGFloat const cellHeight = 164.0f;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.collectionView registerClass:[BTAlbumCollectionViewCell class] forCellWithReuseIdentifier:kcellIdentifier];
+    CGFloat scale = [UIScreen mainScreen].scale;
+    AssetGridThumbnailSize = CGSizeMake(iconWidth * scale, iconHeight * scale);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,10 +67,10 @@ static CGFloat const cellHeight = 164.0f;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         // Loop through the section fetch results, replacing any fetch results that have been updated.
-        NSMutableArray *updatedSectionFetchResults = [self.dataSource mutableCopy];
+        NSMutableArray *updatedSectionFetchResults = [self.sectionFetchResults mutableCopy];
         __block BOOL reloadRequired = NO;
         
-        [self.dataSource enumerateObjectsUsingBlock:^(PHFetchResult *collectionsFetchResult, NSUInteger index, BOOL *stop) {
+        [self.sectionFetchResults enumerateObjectsUsingBlock:^(PHFetchResult *collectionsFetchResult, NSUInteger index, BOOL *stop) {
             PHFetchResultChangeDetails *changeDetails = [changeInstance changeDetailsForFetchResult:collectionsFetchResult];
             
             if (changeDetails != nil) {
@@ -75,7 +80,8 @@ static CGFloat const cellHeight = 164.0f;
         }];
         
         if (reloadRequired) {
-            self.dataSource = updatedSectionFetchResults;
+            self.sectionFetchResults = updatedSectionFetchResults;
+            [self initDataSource];
             [self.collectionView reloadData];
         }
         
@@ -129,7 +135,7 @@ static CGFloat const cellHeight = 164.0f;
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat width = BT_SCREEN_WIDTH / 2;
+    CGFloat width = BT_SCREEN_WIDTH / showNumber;
     CGFloat height = cellHeight;
     
     return CGSizeMake(width, height);
@@ -139,30 +145,71 @@ static CGFloat const cellHeight = 164.0f;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     BTAlbumCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kcellIdentifier forIndexPath:indexPath];
-    PHCollection *collection = self.dataSource[indexPath.section * 2 + indexPath.row];
+    PHCollection *collection = self.dataSource[indexPath.section * showNumber + indexPath.row];
+    
+    PHCachingImageManager *imageManager = [[PHCachingImageManager alloc] init];
+    
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    options.resizeMode = PHImageRequestOptionsResizeModeExact;
     if (indexPath.section == 0 && indexPath.row == 0) {
-        PHCachingImageManager *imageManager = [[PHCachingImageManager alloc] init];
-        PHAsset *asset = self.dataSource[indexPath.section * 2 + indexPath.row][0];
-        [imageManager requestImageForAsset:asset
-                                targetSize:CGSizeMake(100, 100)
-                               contentMode:PHImageContentModeDefault
-                                   options:nil
-                             resultHandler:^(UIImage *result, NSDictionary *info) {
-                                 
-                                 [cell bindData:@"所有照片" icon:result];
-                                 
-                             }];
+        
+         PHFetchResult *result = self.dataSource[indexPath.section * showNumber + indexPath.row];
+        if (result.count > 0) {
+            PHAsset *asset = self.dataSource[indexPath.section * showNumber + indexPath.row][0];
+            
+            [imageManager requestImageForAsset:asset
+                                    targetSize:AssetGridThumbnailSize
+                                   contentMode:PHImageContentModeAspectFill
+                                       options:options
+                                 resultHandler:^(UIImage *result, NSDictionary *info) {
+                                     
+                                     [cell bindData:@"所有照片" icon:result];
+                                     
+                                 }];
+        }
+        
+        
     }
     else {
         
-        [cell bindData:collection.localizedTitle icon:nil];
+        PHAssetCollection *assetCollection = (PHAssetCollection *)collection;
+        
+        if ([assetCollection isKindOfClass:[PHAssetCollection class]]) {
+            
+            PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
+            if (assetsFetchResult.count) {
+                PHAsset *asset = assetsFetchResult[0];
+                
+                [imageManager requestImageForAsset:asset
+                                        targetSize:AssetGridThumbnailSize
+                                       contentMode:PHImageContentModeAspectFill
+                                           options:options
+                                     resultHandler:^(UIImage *result, NSDictionary *info) {
+                                         
+                                         [cell bindData:collection.localizedTitle icon:result];
+                                         
+                                     }];
+            }
+            else {
+                [cell bindData:collection.localizedTitle icon:nil];
+            }
+
+        }
     }
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    BTPhotoListViewController *vc = [[BTPhotoListViewController alloc] init];
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        vc.fetchResult = self.dataSource[indexPath.section * showNumber + indexPath.row];
+        vc.assetCollection = nil;
+    } else {
+        vc.assetCollection = self.dataSource[indexPath.section * showNumber + indexPath.row];
+        vc.fetchResult = nil;
+    }
+    [self.navigationController pushViewController:vc animated:NO];
 }
 
 //定义UICollectionView 的 margin
@@ -176,7 +223,6 @@ static CGFloat const cellHeight = 164.0f;
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
-        layout.headerReferenceSize = CGSizeMake(1, 1);
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         _collectionView.backgroundColor = [UIColor clearColor];
         _collectionView.dataSource = self;

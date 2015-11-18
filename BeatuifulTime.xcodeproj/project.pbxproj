@@ -30,6 +30,10 @@
 		6548630C1BDB279500CF3FF1 /* BTContacterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6548630B1BDB279500CF3FF1 /* BTContacterViewController.m */; };
 		654A502C1BEF2CE20038CD47 /* BTShowWeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 654A502B1BEF2CE20038CD47 /* BTShowWeatherViewController.m */; };
 		654A502F1BEF2D6A0038CD47 /* BTSelectSiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 654A502E1BEF2D6A0038CD47 /* BTSelectSiteViewController.m */; };
+		655124301BFC298D001F1041 /* BTPhotoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6551242F1BFC298D001F1041 /* BTPhotoListViewController.m */; };
+		655124331BFC2DA7001F1041 /* BTPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 655124321BFC2DA7001F1041 /* BTPhotoCollectionViewCell.m */; };
+		655124361BFC7F43001F1041 /* BTRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655124351BFC7F43001F1041 /* BTRecordViewController.m */; };
+		655124391BFC804C001F1041 /* BTCircularProgressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 655124381BFC804C001F1041 /* BTCircularProgressButton.m */; };
 		65AD650B1BF57FB800785AC1 /* BTContacterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AD650A1BF57FB700785AC1 /* BTContacterCell.m */; };
 		65DBCEFE1BD754D900784DAC /* BTAddJournalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBCEFD1BD754D900784DAC /* BTAddJournalViewController.m */; };
 		65DBCF011BD7552800784DAC /* BTEditJournalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBCF001BD7552800784DAC /* BTEditJournalViewController.m */; };
@@ -277,6 +281,14 @@
 		654A502B1BEF2CE20038CD47 /* BTShowWeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTShowWeatherViewController.m; sourceTree = "<group>"; };
 		654A502D1BEF2D6A0038CD47 /* BTSelectSiteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTSelectSiteViewController.h; sourceTree = "<group>"; };
 		654A502E1BEF2D6A0038CD47 /* BTSelectSiteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTSelectSiteViewController.m; sourceTree = "<group>"; };
+		6551242E1BFC298D001F1041 /* BTPhotoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTPhotoListViewController.h; sourceTree = "<group>"; };
+		6551242F1BFC298D001F1041 /* BTPhotoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTPhotoListViewController.m; sourceTree = "<group>"; };
+		655124311BFC2DA7001F1041 /* BTPhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTPhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		655124321BFC2DA7001F1041 /* BTPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTPhotoCollectionViewCell.m; sourceTree = "<group>"; };
+		655124341BFC7F43001F1041 /* BTRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTRecordViewController.h; sourceTree = "<group>"; };
+		655124351BFC7F43001F1041 /* BTRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTRecordViewController.m; sourceTree = "<group>"; };
+		655124371BFC804C001F1041 /* BTCircularProgressButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCircularProgressButton.h; sourceTree = "<group>"; };
+		655124381BFC804C001F1041 /* BTCircularProgressButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCircularProgressButton.m; sourceTree = "<group>"; };
 		65AD65091BF57FB700785AC1 /* BTContacterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTContacterCell.h; sourceTree = "<group>"; };
 		65AD650A1BF57FB700785AC1 /* BTContacterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTContacterCell.m; sourceTree = "<group>"; };
 		65DBCEFC1BD754D900784DAC /* BTAddJournalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAddJournalViewController.h; sourceTree = "<group>"; };
@@ -757,6 +769,8 @@
 			children = (
 				650498951BFAD50B0072AE47 /* BTAlbumCollectionViewCell.h */,
 				650498961BFAD50B0072AE47 /* BTAlbumCollectionViewCell.m */,
+				655124311BFC2DA7001F1041 /* BTPhotoCollectionViewCell.h */,
+				655124321BFC2DA7001F1041 /* BTPhotoCollectionViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -766,6 +780,8 @@
 			children = (
 				650498921BFAD3F70072AE47 /* BTMyAlbumViewController.h */,
 				650498931BFAD3F70072AE47 /* BTMyAlbumViewController.m */,
+				6551242E1BFC298D001F1041 /* BTPhotoListViewController.h */,
+				6551242F1BFC298D001F1041 /* BTPhotoListViewController.m */,
 			);
 			path = ViewControll;
 			sourceTree = "<group>";
@@ -838,6 +854,8 @@
 		65DBCEFA1BD754A700784DAC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				655124371BFC804C001F1041 /* BTCircularProgressButton.h */,
+				655124381BFC804C001F1041 /* BTCircularProgressButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -851,6 +869,8 @@
 				65DBCF001BD7552800784DAC /* BTEditJournalViewController.m */,
 				65DBCF021BD7554700784DAC /* BTJournalListViewController.h */,
 				65DBCF031BD7554700784DAC /* BTJournalListViewController.m */,
+				655124341BFC7F43001F1041 /* BTRecordViewController.h */,
+				655124351BFC7F43001F1041 /* BTRecordViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2170,6 +2190,7 @@
 				B44507061BCFFB9F008BD5AC /* MASConstraint.m in Sources */,
 				65DBD0AB1BD77CE700784DAC /* XMPPModule.m in Sources */,
 				65DBD1E71BD7A2A100784DAC /* XMPPMessageArchiving.m in Sources */,
+				655124391BFC804C001F1041 /* BTCircularProgressButton.m in Sources */,
 				65DBD1DD1BD7A2A100784DAC /* NSString+XEP_0106.m in Sources */,
 				65DBD1C71BD7A2A100784DAC /* XMPPvCardCoreDataStorage.m in Sources */,
 				65DBD0C71BD7A15E00784DAC /* BTXMPPTool.m in Sources */,
@@ -2205,6 +2226,7 @@
 				65DBD1E21BD7A2A100784DAC /* XMPPCapabilities.m in Sources */,
 				65DBD1E41BD7A2A100784DAC /* XMPPMessageArchiving_Contact_CoreDataObject.m in Sources */,
 				650498941BFAD3F70072AE47 /* BTMyAlbumViewController.m in Sources */,
+				655124361BFC7F43001F1041 /* BTRecordViewController.m in Sources */,
 				B4404F8D1BE7B32000226334 /* Journal.m in Sources */,
 				65DBD0B91BD77CE700784DAC /* XMPPSRVResolver.m in Sources */,
 				65DBD1D91BD7A2A100784DAC /* NSDate+XMPPDateTimeProfiles.m in Sources */,
@@ -2272,6 +2294,7 @@
 				6548630C1BDB279500CF3FF1 /* BTContacterViewController.m in Sources */,
 				B445070E1BCFFB9F008BD5AC /* ViewController+MASAdditions.m in Sources */,
 				65DBD0AE1BD77CE700784DAC /* XMPPStream.m in Sources */,
+				655124301BFC298D001F1041 /* BTPhotoListViewController.m in Sources */,
 				65DBD1F91BD7ABC400784DAC /* BTTextField.m in Sources */,
 				65DBCF011BD7552800784DAC /* BTEditJournalViewController.m in Sources */,
 				65DBD1F01BD7A2A100784DAC /* XMPPTime.m in Sources */,
@@ -2295,6 +2318,7 @@
 				65DBD09B1BD77CE700784DAC /* NSData+XMPP.m in Sources */,
 				65DBD0B61BD77CE700784DAC /* GCDMulticastDelegate.m in Sources */,
 				65E2D37B1BCFCF76001E29A9 /* BTThemeManager.m in Sources */,
+				655124331BFC2DA7001F1041 /* BTPhotoCollectionViewCell.m in Sources */,
 				65DBD0B01BD77CE700784DAC /* DDXMLDocument.m in Sources */,
 				6500E74F1BEF395C007158BF /* AFURLSessionManager.m in Sources */,
 				65DBD1C01BD7A2A100784DAC /* XMPPRoomMessageMemoryStorageObject.m in Sources */,
