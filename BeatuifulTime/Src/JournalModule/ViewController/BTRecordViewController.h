@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BTRecordViewController : UIViewController
+@interface BTRecordViewController : BTBaseViewController
 
 @end
