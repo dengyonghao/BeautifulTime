@@ -60,8 +60,8 @@ static CGFloat const recorderDuration = 600;
     [self.recordIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(weakSelf.progressButton);
         make.centerY.equalTo(weakSelf.progressButton);
-        make.width.equalTo(@(100));
-        make.height.equalTo(@(44));
+        make.width.equalTo(@(56));
+        make.height.equalTo(@(56));
     }];
     
     [self.circlesImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -81,20 +81,20 @@ static CGFloat const recorderDuration = 600;
     [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(weakSelf.bodyView);
         make.bottom.equalTo(weakSelf.bodyView).offset(-60);
-        make.width.equalTo(@(100));
+        make.width.equalTo(@(140));
         make.height.equalTo(@(40));
     }];
     
     [self.resetButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(weakSelf.playButton);
-        make.bottom.equalTo(weakSelf.bodyView).offset(-60);
+        make.left.equalTo(weakSelf.playButton).offset(- (40 + 15));
         make.width.equalTo(@(40));
         make.height.equalTo(@(40));
     }];
     
     [self.saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(weakSelf.playButton);
-        make.bottom.equalTo(weakSelf.bodyView).offset(-60);
+        make.right.equalTo(weakSelf.playButton).offset(40 + 15);
         make.width.equalTo(@(40));
         make.height.equalTo(@(40));
     }];
@@ -124,7 +124,7 @@ static CGFloat const recorderDuration = 600;
 }
 
 - (void)playRecord {
-    [self.recorder stop];
+    [self stopRecord];
     [self initAudioSession];
     self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:[[NSURL alloc] initWithString:self.audioRecordFilePath] error:nil];
     [self.player play];
@@ -268,7 +268,7 @@ static CGFloat const recorderDuration = 600;
 - (UIButton *)recordButton {
     if (!_recordButton) {
         _recordButton = [[UIButton alloc] init];
-        [_recordButton setImage:BT_LOADIMAGE(@"btn_voice") forState:UIControlStateNormal];
+        _recordButton.backgroundColor = [UIColor blueColor];
         [_recordButton addTarget:self action:@selector(startWorking) forControlEvents:UIControlEventTouchUpInside];
     }
     return _recordButton;
@@ -277,7 +277,7 @@ static CGFloat const recorderDuration = 600;
 - (UIButton *)playButton {
     if (!_playButton) {
         _playButton = [[UIButton alloc] init];
-        [_playButton setImage:BT_LOADIMAGE(@"btn_voice") forState:UIControlStateNormal];
+        _playButton.backgroundColor = [UIColor blueColor];
         [_playButton addTarget:self action:@selector(startWorking) forControlEvents:UIControlEventTouchUpInside];
     }
     return _playButton;
@@ -286,7 +286,8 @@ static CGFloat const recorderDuration = 600;
 - (UIButton *)saveButton {
     if (!_saveButton) {
         _saveButton = [[UIButton alloc] init];
-        [_saveButton setImage:BT_LOADIMAGE(@"btn_voice") forState:UIControlStateNormal];
+//        [_saveButton setImage:BT_LOADIMAGE(@"btn_voice") forState:UIControlStateNormal];
+        _saveButton.backgroundColor = [UIColor yellowColor];
         [_saveButton addTarget:self action:@selector(startWorking) forControlEvents:UIControlEventTouchUpInside];
     }
     return _saveButton;
@@ -296,8 +297,8 @@ static CGFloat const recorderDuration = 600;
 - (UIButton *)resetButton {
     if (!_resetButton) {
         _resetButton = [[UIButton alloc] init];
-        [_resetButton setImage:BT_LOADIMAGE(@"btn_voice") forState:UIControlStateNormal];
-        [_resetButton addTarget:self action:@selector(startWorking) forControlEvents:UIControlEventTouchUpInside];
+        _resetButton.backgroundColor = [UIColor redColor];
+        [_resetButton addTarget:self action:@selector(playRecord) forControlEvents:UIControlEventTouchUpInside];
     }
     return _resetButton;
 }
