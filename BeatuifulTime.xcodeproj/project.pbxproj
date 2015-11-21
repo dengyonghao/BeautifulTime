@@ -220,6 +220,7 @@
 		B445070D1BCFFB9F008BD5AC /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B44507001BCFFB9F008BD5AC /* View+MASAdditions.m */; };
 		B445070E1BCFFB9F008BD5AC /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B44507031BCFFB9F008BD5AC /* ViewController+MASAdditions.m */; };
 		B445071D1BD0044B008BD5AC /* BTGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B445071C1BD0044B008BD5AC /* BTGuideViewController.m */; };
+		B46AF5C71C00DCCF00916DEE /* BTJournalController.m in Sources */ = {isa = PBXBuildFile; fileRef = B46AF5C61C00DCCF00916DEE /* BTJournalController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -659,6 +660,8 @@
 		B44507031BCFFB9F008BD5AC /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
 		B445071B1BD0044B008BD5AC /* BTGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTGuideViewController.h; path = ViewController/BTGuideViewController.h; sourceTree = "<group>"; };
 		B445071C1BD0044B008BD5AC /* BTGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTGuideViewController.m; path = ViewController/BTGuideViewController.m; sourceTree = "<group>"; };
+		B46AF5C51C00DCCF00916DEE /* BTJournalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTJournalController.h; sourceTree = "<group>"; };
+		B46AF5C61C00DCCF00916DEE /* BTJournalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTJournalController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -840,6 +843,7 @@
 		65DBCEF81BD754A700784DAC /* JournalModule */ = {
 			isa = PBXGroup;
 			children = (
+				B46AF5C41C00DC9000916DEE /* JournalEdit */,
 				65DBCEF91BD754A700784DAC /* Model */,
 				65DBCEFA1BD754A700784DAC /* View */,
 				65DBCEFB1BD754A700784DAC /* ViewController */,
@@ -2035,6 +2039,15 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		B46AF5C41C00DC9000916DEE /* JournalEdit */ = {
+			isa = PBXGroup;
+			children = (
+				B46AF5C51C00DCCF00916DEE /* BTJournalController.h */,
+				B46AF5C61C00DCCF00916DEE /* BTJournalController.m */,
+			);
+			path = JournalEdit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2328,6 +2341,7 @@
 				65DBD09B1BD77CE700784DAC /* NSData+XMPP.m in Sources */,
 				65DBD0B61BD77CE700784DAC /* GCDMulticastDelegate.m in Sources */,
 				65E2D37B1BCFCF76001E29A9 /* BTThemeManager.m in Sources */,
+				B46AF5C71C00DCCF00916DEE /* BTJournalController.m in Sources */,
 				655124331BFC2DA7001F1041 /* BTPhotoCollectionViewCell.m in Sources */,
 				65DBD0B01BD77CE700784DAC /* DDXMLDocument.m in Sources */,
 				6500E74F1BEF395C007158BF /* AFURLSessionManager.m in Sources */,

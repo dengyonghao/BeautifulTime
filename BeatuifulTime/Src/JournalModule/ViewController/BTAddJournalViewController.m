@@ -25,7 +25,7 @@
 #define API_PATH_WEATHER @"/weather/get"
 
 
-@interface BTAddJournalViewController ()<UITextViewDelegate,CLLocationManagerDelegate>
+@interface BTAddJournalViewController ()<UITextViewDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) CLLocationManager* locationManager;
 @property (nonatomic, strong) UIScrollView *bodyScrollView;
@@ -42,6 +42,10 @@
 @property (nonatomic, strong) UIButton *weath;
 @property (nonatomic, strong) UIButton *phonos;
 @property (nonatomic, strong) UIButton *record;
+
+@property (nonatomic, strong) UIImagePickerController *picker;
+@property(nonatomic,copy) NSString *chosenMediaType;
+
 
 @end
 
@@ -60,22 +64,12 @@
     [self.bodyScrollView addSubview:self.content];
     NSLog(@"----------%@",[@"深圳" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
     [self startLocation];
-//    [self netManagerReqeustWeatherInfo:@"北京" successCallback:^(NSDictionary *retDict) {
-//        NSLog(@"%@",retDict);
-//    } failCallback:^(NSError *error) {
-//       NSLog(@"%@",error);
-//    }];
     
     NSMutableDictionary *infoDic = [[NSMutableDictionary alloc] init];
     
     //    [infoDic setObject:API_AK forKey:@"ak"];
     //    [infoDic setObject:DATA_TYPE forKey:@"output"];
     //    [infoDic setObject:cityName forKey:@"location"];
-    //
-    //    [0]	(null)	@"cityID" : (int)340
-    //    [1]	(null)	@"bduss" : @"-1"
-    //    [2]	(null)	@"sign" : @"f7fcbb889119780976e36c350b359d64"
-    //    [3]	(null)	@"cuid" : @"68e1c869b8f55d806dc2112d7c352ca2"
     
     [infoDic setObject:@"340" forKey:@"cityID"];
     [infoDic setObject:@"-1" forKey:@"bduss"];
@@ -189,11 +183,74 @@
     [[AppDelegate getInstance].coreDataHelper saveContext];
 }
 
+- (void)selectPhotoSource{
+    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"请选择图片来源" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拍照",@"从手机相册选择", nil];
+    [alert show];
+}
+
+#pragma 拍照选择模块
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex==1)
+        [self shootPiicturePrVideo];
+    else if(buttonIndex==2)
+        [self selectExistingPictureOrVideo];
+}
+
+#pragma  mark- 拍照模块
+//从相机上选择
+-(void)shootPiicturePrVideo{
+    [self getMediaFromSource:UIImagePickerControllerSourceTypeCamera];
+}
+//从相册中选择
+-(void)selectExistingPictureOrVideo{
+    [self getMediaFromSource:UIImagePickerControllerSourceTypePhotoLibrary];
+}
+
+#pragma 拍照模块
+-(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    self.chosenMediaType=[info objectForKey:UIImagePickerControllerMediaType];
+    if([self.chosenMediaType isEqual:(NSString *) kUTTypeImage]){
+        UIImage *chosenImage=[info objectForKey:UIImagePickerControllerOriginalImage];
+        
+        
+    }
+    if([self.chosenMediaType isEqual:(NSString *) kUTTypeMovie]){
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示信息!" message:@"系统只支持图片格式" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
+        [alert show];
+        
+    }
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+-(void) imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+-(void)getMediaFromSource:(UIImagePickerControllerSourceType)sourceType{
+    NSArray *mediatypes = [UIImagePickerController availableMediaTypesForSourceType:sourceType];
+    if([UIImagePickerController isSourceTypeAvailable:sourceType] &&[mediatypes count]>0){
+        NSArray *mediatypes = [UIImagePickerController availableMediaTypesForSourceType:sourceType];
+        self.picker.mediaTypes = mediatypes;
+        self.picker.sourceType = sourceType;
+        NSString *requiredmediatype = (NSString *)kUTTypeImage;
+        NSArray *arrmediatypes = [NSArray arrayWithObject:requiredmediatype];
+        [self.picker setMediaTypes:arrmediatypes];
+        [self presentViewController:self.picker animated:YES completion:^{
+            
+        }];
+    }
+    else{
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"错误信息!" message:@"当前设备不支持拍摄功能" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
+        [alert show];
+    }
+}
+
 - (UIScrollView *)bodyScrollView {
     if (!_bodyScrollView) {
         _bodyScrollView = [[UIScrollView alloc] init];
         _bodyScrollView.contentSize = CGSizeMake(BT_SCREEN_WIDTH - 20, BT_SCREEN_HEIGHT);
-//        _bodyScrollView.backgroundColor = [UIColor redColor];
     }
     return _bodyScrollView;
 }
@@ -241,6 +298,14 @@
     return _date;
 }
 
+- (UIImagePickerController *)picker {
+    if (!_picker) {
+        _picker = [[UIImagePickerController alloc] init];
+        _picker.delegate = self;
+    }
+    return _picker;
+}
+
 - (AFHTTPRequestOperation *) netManagerReqeustWeatherInfo:(NSString *)cityName
                                           successCallback:(DictionaryResponseBlock)successCallback
                                              failCallback:(errorBlock)failCallback
@@ -250,11 +315,6 @@
 //    [infoDic setObject:API_AK forKey:@"ak"];
 //    [infoDic setObject:DATA_TYPE forKey:@"output"];
 //    [infoDic setObject:cityName forKey:@"location"];
-//    
-//    [0]	(null)	@"cityID" : (int)340
-//    [1]	(null)	@"bduss" : @"-1"
-//    [2]	(null)	@"sign" : @"f7fcbb889119780976e36c350b359d64"
-//    [3]	(null)	@"cuid" : @"68e1c869b8f55d806dc2112d7c352ca2"
     
     [infoDic setObject:@"340" forKey:@"cityID"];
     [infoDic setObject:@"-1" forKey:@"bduss"];
