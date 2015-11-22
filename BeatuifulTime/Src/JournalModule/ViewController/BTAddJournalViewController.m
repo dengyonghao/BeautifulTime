@@ -28,6 +28,7 @@
 @interface BTAddJournalViewController ()<UITextViewDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) CLLocationManager* locationManager;
+@property (nonatomic, strong) UIView *toolsView;
 @property (nonatomic, strong) UIScrollView *bodyScrollView;
 @property (nonatomic, strong) UIButton *photos;
 @property (nonatomic, strong) UIButton *site;
@@ -38,10 +39,7 @@
 
 @property (nonatomic, strong) UIButton *finshBnt;
 @property (nonatomic, strong) UIScrollView *mainScrollView;
-@property (nonatomic, strong) UIButton *city;
-@property (nonatomic, strong) UIButton *weath;
-@property (nonatomic, strong) UIButton *phonos;
-@property (nonatomic, strong) UIButton *record;
+
 
 @property (nonatomic, strong) UIImagePickerController *picker;
 @property(nonatomic,copy) NSString *chosenMediaType;
@@ -55,6 +53,7 @@
     [super viewDidLoad];
     self.titleLabel.text = @"记笔记";
     [self.finishButton setTitle:@"保存" forState:UIControlStateNormal];
+    [self.view addSubview:self.toolsView];
     [self.view addSubview:self.date];
     [self.bodyView addSubview:self.site];
     [self.bodyView addSubview:self.weather];
@@ -87,6 +86,13 @@
     CGFloat BUTTONWIDTH = (BT_SCREEN_WIDTH - 2 * OFFSET) / 4;
     
     WS(weakSelf);
+    
+    [self.toolsView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakSelf.bodyView).offset(5);
+        make.left.equalTo(weakSelf.bodyView).offset(10);
+        make.right.equalTo(weakSelf.bodyView).offset(-10);
+        make.height.equalTo(@((BT_SCREEN_WIDTH - 20) / 4));
+    }];
     [self.date mas_makeConstraints:^(MASConstraintMaker *make) {
         
     }];
@@ -108,7 +114,7 @@
     }];
     
     [self.bodyScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.bodyView).offset(BUTTONWIDTH + OFFSET);
+        make.top.equalTo(weakSelf.toolsView).offset(BUTTONWIDTH + OFFSET);
         make.left.equalTo(weakSelf.bodyView).offset(OFFSET);
         make.right.equalTo(weakSelf.bodyView).offset(-OFFSET);
         make.bottom.equalTo(weakSelf.bodyView).offset(-OFFSET);
@@ -245,6 +251,14 @@
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"错误信息!" message:@"当前设备不支持拍摄功能" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
         [alert show];
     }
+}
+
+- (UIView *)toolsView {
+    if (!_toolsView) {
+        _toolsView = [[UIView alloc] init];
+        _toolsView.backgroundColor = [UIColor yellowColor];
+    }
+    return _toolsView;
 }
 
 - (UIScrollView *)bodyScrollView {
