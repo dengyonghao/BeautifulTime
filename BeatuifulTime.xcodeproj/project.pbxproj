@@ -34,6 +34,7 @@
 		655124331BFC2DA7001F1041 /* BTPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 655124321BFC2DA7001F1041 /* BTPhotoCollectionViewCell.m */; };
 		655124361BFC7F43001F1041 /* BTRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655124351BFC7F43001F1041 /* BTRecordViewController.m */; };
 		655124391BFC804C001F1041 /* BTCircularProgressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 655124381BFC804C001F1041 /* BTCircularProgressButton.m */; };
+		65A934621C02BBC300FA0185 /* BTLanguageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A934611C02BBC300FA0185 /* BTLanguageManager.m */; };
 		65AD650B1BF57FB800785AC1 /* BTContacterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AD650A1BF57FB700785AC1 /* BTContacterCell.m */; };
 		65DBCEFE1BD754D900784DAC /* BTAddJournalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBCEFD1BD754D900784DAC /* BTAddJournalViewController.m */; };
 		65DBCF011BD7552800784DAC /* BTEditJournalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBCF001BD7552800784DAC /* BTEditJournalViewController.m */; };
@@ -218,25 +219,25 @@
 		B445070D1BCFFB9F008BD5AC /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B44507001BCFFB9F008BD5AC /* View+MASAdditions.m */; };
 		B445070E1BCFFB9F008BD5AC /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B44507031BCFFB9F008BD5AC /* ViewController+MASAdditions.m */; };
 		B445071D1BD0044B008BD5AC /* BTGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B445071C1BD0044B008BD5AC /* BTGuideViewController.m */; };
-		B46AF5C71C00DCCF00916DEE /* BTJournalController.m in Sources */ = {isa = PBXBuildFile; fileRef = B46AF5C61C00DCCF00916DEE /* BTJournalController.m */; settings = {ASSET_TAGS = (); }; };
-		B4FABBCC1C018D4B00213AB7 /* BTLanguageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBCB1C018D4B00213AB7 /* BTLanguageUtil.m */; settings = {ASSET_TAGS = (); }; };
-		B4FABBD91C020E1500213AB7 /* BTSelectPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBD81C020E1500213AB7 /* BTSelectPhotosViewController.m */; settings = {ASSET_TAGS = (); }; };
-		B4FABBFC1C020FE600213AB7 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBDC1C020FE600213AB7 /* MKAnnotationView+WebCache.m */; settings = {ASSET_TAGS = (); }; };
-		B4FABBFD1C020FE600213AB7 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBDE1C020FE600213AB7 /* NSData+ImageContentType.m */; settings = {ASSET_TAGS = (); }; };
-		B4FABBFE1C020FE600213AB7 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBE01C020FE600213AB7 /* SDImageCache.m */; settings = {ASSET_TAGS = (); }; };
-		B4FABBFF1C020FE600213AB7 /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBE21C020FE600213AB7 /* SDWebImageCompat.m */; settings = {ASSET_TAGS = (); }; };
-		B4FABC001C020FE600213AB7 /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBE41C020FE600213AB7 /* SDWebImageDecoder.m */; settings = {ASSET_TAGS = (); }; };
-		B4FABC011C020FE600213AB7 /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBE61C020FE600213AB7 /* SDWebImageDownloader.m */; settings = {ASSET_TAGS = (); }; };
-		B4FABC021C020FE600213AB7 /* SDWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBE81C020FE600213AB7 /* SDWebImageDownloaderOperation.m */; settings = {ASSET_TAGS = (); }; };
-		B4FABC031C020FE600213AB7 /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBEA1C020FE600213AB7 /* SDWebImageManager.m */; settings = {ASSET_TAGS = (); }; };
-		B4FABC041C020FE600213AB7 /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBED1C020FE600213AB7 /* SDWebImagePrefetcher.m */; settings = {ASSET_TAGS = (); }; };
-		B4FABC051C020FE600213AB7 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBEF1C020FE600213AB7 /* UIButton+WebCache.m */; settings = {ASSET_TAGS = (); }; };
-		B4FABC061C020FE600213AB7 /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBF11C020FE600213AB7 /* UIImage+GIF.m */; settings = {ASSET_TAGS = (); }; };
-		B4FABC071C020FE600213AB7 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBF31C020FE600213AB7 /* UIImage+MultiFormat.m */; settings = {ASSET_TAGS = (); }; };
-		B4FABC081C020FE600213AB7 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBF51C020FE600213AB7 /* UIImage+WebP.m */; settings = {ASSET_TAGS = (); }; };
-		B4FABC091C020FE600213AB7 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBF71C020FE600213AB7 /* UIImageView+HighlightedWebCache.m */; settings = {ASSET_TAGS = (); }; };
-		B4FABC0A1C020FE600213AB7 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBF91C020FE600213AB7 /* UIImageView+WebCache.m */; settings = {ASSET_TAGS = (); }; };
-		B4FABC0B1C020FE600213AB7 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBFB1C020FE600213AB7 /* UIView+WebCacheOperation.m */; settings = {ASSET_TAGS = (); }; };
+		B46AF5C71C00DCCF00916DEE /* BTJournalController.m in Sources */ = {isa = PBXBuildFile; fileRef = B46AF5C61C00DCCF00916DEE /* BTJournalController.m */; };
+		B4FABBCC1C018D4B00213AB7 /* BTLanguageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBCB1C018D4B00213AB7 /* BTLanguageUtil.m */; };
+		B4FABBD91C020E1500213AB7 /* BTSelectPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBD81C020E1500213AB7 /* BTSelectPhotosViewController.m */; };
+		B4FABBFC1C020FE600213AB7 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBDC1C020FE600213AB7 /* MKAnnotationView+WebCache.m */; };
+		B4FABBFD1C020FE600213AB7 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBDE1C020FE600213AB7 /* NSData+ImageContentType.m */; };
+		B4FABBFE1C020FE600213AB7 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBE01C020FE600213AB7 /* SDImageCache.m */; };
+		B4FABBFF1C020FE600213AB7 /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBE21C020FE600213AB7 /* SDWebImageCompat.m */; };
+		B4FABC001C020FE600213AB7 /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBE41C020FE600213AB7 /* SDWebImageDecoder.m */; };
+		B4FABC011C020FE600213AB7 /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBE61C020FE600213AB7 /* SDWebImageDownloader.m */; };
+		B4FABC021C020FE600213AB7 /* SDWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBE81C020FE600213AB7 /* SDWebImageDownloaderOperation.m */; };
+		B4FABC031C020FE600213AB7 /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBEA1C020FE600213AB7 /* SDWebImageManager.m */; };
+		B4FABC041C020FE600213AB7 /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBED1C020FE600213AB7 /* SDWebImagePrefetcher.m */; };
+		B4FABC051C020FE600213AB7 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBEF1C020FE600213AB7 /* UIButton+WebCache.m */; };
+		B4FABC061C020FE600213AB7 /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBF11C020FE600213AB7 /* UIImage+GIF.m */; };
+		B4FABC071C020FE600213AB7 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBF31C020FE600213AB7 /* UIImage+MultiFormat.m */; };
+		B4FABC081C020FE600213AB7 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBF51C020FE600213AB7 /* UIImage+WebP.m */; };
+		B4FABC091C020FE600213AB7 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBF71C020FE600213AB7 /* UIImageView+HighlightedWebCache.m */; };
+		B4FABC0A1C020FE600213AB7 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBF91C020FE600213AB7 /* UIImageView+WebCache.m */; };
+		B4FABC0B1C020FE600213AB7 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBFB1C020FE600213AB7 /* UIView+WebCacheOperation.m */; };
 		B4FABC0D1C02115500213AB7 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FABC0C1C02115500213AB7 /* libresolv.tbd */; };
 /* End PBXBuildFile section */
 
@@ -309,6 +310,8 @@
 		655124351BFC7F43001F1041 /* BTRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTRecordViewController.m; sourceTree = "<group>"; };
 		655124371BFC804C001F1041 /* BTCircularProgressButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCircularProgressButton.h; sourceTree = "<group>"; };
 		655124381BFC804C001F1041 /* BTCircularProgressButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCircularProgressButton.m; sourceTree = "<group>"; };
+		65A934601C02BBC300FA0185 /* BTLanguageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLanguageManager.h; sourceTree = "<group>"; };
+		65A934611C02BBC300FA0185 /* BTLanguageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLanguageManager.m; sourceTree = "<group>"; };
 		65AD65091BF57FB700785AC1 /* BTContacterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTContacterCell.h; sourceTree = "<group>"; };
 		65AD650A1BF57FB700785AC1 /* BTContacterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTContacterCell.m; sourceTree = "<group>"; };
 		65DBCEFC1BD754D900784DAC /* BTAddJournalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAddJournalViewController.h; sourceTree = "<group>"; };
@@ -890,6 +893,15 @@
 				654A502E1BEF2D6A0038CD47 /* BTSelectSiteViewController.m */,
 			);
 			path = ViewControll;
+			sourceTree = "<group>";
+		};
+		65A9345F1C02BB8600FA0185 /* BTLanguageManager */ = {
+			isa = PBXGroup;
+			children = (
+				65A934601C02BBC300FA0185 /* BTLanguageManager.h */,
+				65A934611C02BBC300FA0185 /* BTLanguageManager.m */,
+			);
+			path = BTLanguageManager;
 			sourceTree = "<group>";
 		};
 		65DBCEF81BD754A700784DAC /* JournalModule */ = {
@@ -1822,6 +1834,7 @@
 		65E2D3641BCFCCF2001E29A9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				65A9345F1C02BB8600FA0185 /* BTLanguageManager */,
 				6500E71B1BEF38C3007158BF /* BTNetworking */,
 				65F426291BD9F5C100295796 /* Gategory */,
 				65DBCF051BD755E500784DAC /* BTPopupViewController */,
@@ -2397,6 +2410,7 @@
 				6500E74C1BEF395C007158BF /* AFURLConnectionOperation.m in Sources */,
 				6500E74E1BEF395C007158BF /* AFURLResponseSerialization.m in Sources */,
 				65DE129A1BD0CA8500D01BCA /* KFObjectExtension.mm in Sources */,
+				65A934621C02BBC300FA0185 /* BTLanguageManager.m in Sources */,
 				65DBD0AF1BD77CE700784DAC /* NSString+DDXML.m in Sources */,
 				65DBD0B51BD77CE700784DAC /* DDList.m in Sources */,
 				65DCFE4D1BD334F800DBD0DE /* BTUserCenterViewController.m in Sources */,

@@ -1,32 +1,35 @@
 //
-//  BTLanguageUtil.m
+//  BTLanguageManager.m
 //  BeatuifulTime
 //
-//  Created by deng on 15/11/22.
+//  Created by dengyonghao on 15/11/23.
 //  Copyright © 2015年 dengyonghao. All rights reserved.
 //
 
-#import "BTLanguageUtil.h"
+#import "BTLanguageManager.h"
+
+#define BTLanguageChangeNotification @"kBTLanguageChangeNotification"
 
 static NSString * const kDefaultLanguage   = @"zh-Hans";
 static NSString * const kSupportLanguages  = @"en, zh-Hans";
 static NSString * const keyLanguageIdentifier = @"kLanguageIdentifier";
-static BTLanguageUtil *sharedInstance = nil;
+static BTLanguageManager *languageManager = nil;
 
-@interface BTLanguageUtil ()
+@interface BTLanguageManager ()
 
-@property (nonatomic, retain) NSString *currentLanguage;
+@property (nonatomic, strong) NSString *currentLanguage;
 
 @end
 
-@implementation BTLanguageUtil
 
-+ (BTLanguageUtil *)sharedInstance {
+@implementation BTLanguageManager
+
++ (BTLanguageManager *)sharedInstance {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[BTLanguageUtil alloc] init];
+        languageManager = [[BTLanguageManager alloc] init];
     });
-    return sharedInstance;
+    return languageManager;
 }
 
 - (instancetype)init {
@@ -70,7 +73,7 @@ static BTLanguageUtil *sharedInstance = nil;
     NSBundle *newBundle = bundle;
     
     NSString *currentLanguageString = [[NSUserDefaults standardUserDefaults] objectForKey:keyLanguageIdentifier];
-   
+    
     NSString *path = [bundle pathForResource:currentLanguageString ofType:@"lproj" ];
     
     if (path) {
@@ -85,10 +88,26 @@ static BTLanguageUtil *sharedInstance = nil;
     for (NSString *language in supportLanguagesArray) {
         NSString *cleanLanguage = [language stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         if ([newLanguage isEqualToString:cleanLanguage]) {
-            return YES;NSLocalizedString(@"play",@"");
+            return YES;
         }
     }
     return NO;
 }
+
+- (void)addLanguageListener:(id )obj
+{
+    if([obj respondsToSelector:@selector(BTThemeDidNeedUpdateStyle)]){
+        [[NSNotificationCenter defaultCenter] addObserver:obj selector:@selector(BTLanguageDidNeedUpdateType) name:BTLanguageChangeNotification object:nil];
+    }
+    
+}
+
+- (void) removeLanguageListener:(id)obj
+{
+    if (obj) {
+        [[NSNotificationCenter defaultCenter] removeObserver:obj];
+    }
+}
+
 
 @end

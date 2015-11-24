@@ -10,4 +10,10 @@
 
 @interface BTLanguageUtil : NSObject
 
++ (BTLanguageUtil*)sharedInstance;
+
+- (void)setLanguage:(NSString *)language;
+
+- (NSString *)localizedStringForKey:(NSString *)key;
+
 @end
