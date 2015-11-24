@@ -11,6 +11,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "Journal.h"
 #import "BTNetManager.h"
+#import "BTAttributedLabel.h"
 
 //#define WEATHERINFO_HOST @"http://api.map.baidu.com"
 //
@@ -257,6 +258,16 @@
     if (!_toolsView) {
         _toolsView = [[UIView alloc] init];
         _toolsView.backgroundColor = [UIColor yellowColor];
+        BTAttributedLabel *label = [[BTAttributedLabel alloc]initWithFrame:CGRectMake(10, 20, 100, 40)];
+//        label.backgroundColor = [UIColor redColor];
+        [label setText:@"123456789098765432"];
+        label.textColor = [UIColor blackColor];
+        label.font = BT_FONTSIZE(30);
+        UIButton *bnt = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 100, 50)];
+        bnt.backgroundColor = [UIColor blueColor];
+        [label appendView:bnt];
+        [_toolsView addSubview:label];
+        
     }
     return _toolsView;
 }

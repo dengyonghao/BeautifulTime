@@ -27,6 +27,8 @@
 		6500E7571BEF395C007158BF /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6500E7461BEF395C007158BF /* UIWebView+AFNetworking.m */; };
 		650498941BFAD3F70072AE47 /* BTMyAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 650498931BFAD3F70072AE47 /* BTMyAlbumViewController.m */; };
 		650498971BFAD50B0072AE47 /* BTAlbumCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 650498961BFAD50B0072AE47 /* BTAlbumCollectionViewCell.m */; };
+		652608531C04604D00370630 /* BTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 652608521C04604D00370630 /* BTAttributedLabel.m */; };
+		652608591C0464CC00370630 /* NSMutableAttributedString+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 652608581C0464CC00370630 /* NSMutableAttributedString+Addition.m */; };
 		6548630C1BDB279500CF3FF1 /* BTContacterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6548630B1BDB279500CF3FF1 /* BTContacterViewController.m */; };
 		654A502C1BEF2CE20038CD47 /* BTShowWeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 654A502B1BEF2CE20038CD47 /* BTShowWeatherViewController.m */; };
 		654A502F1BEF2D6A0038CD47 /* BTSelectSiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 654A502E1BEF2D6A0038CD47 /* BTSelectSiteViewController.m */; };
@@ -296,6 +298,10 @@
 		650498931BFAD3F70072AE47 /* BTMyAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTMyAlbumViewController.m; sourceTree = "<group>"; };
 		650498951BFAD50B0072AE47 /* BTAlbumCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAlbumCollectionViewCell.h; sourceTree = "<group>"; };
 		650498961BFAD50B0072AE47 /* BTAlbumCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAlbumCollectionViewCell.m; sourceTree = "<group>"; };
+		652608511C04604D00370630 /* BTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAttributedLabel.h; sourceTree = "<group>"; };
+		652608521C04604D00370630 /* BTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAttributedLabel.m; sourceTree = "<group>"; };
+		652608571C0464CC00370630 /* NSMutableAttributedString+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+Addition.h"; sourceTree = "<group>"; };
+		652608581C0464CC00370630 /* NSMutableAttributedString+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+Addition.m"; sourceTree = "<group>"; };
 		6548630A1BDB279500CF3FF1 /* BTContacterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTContacterViewController.h; sourceTree = "<group>"; };
 		6548630B1BDB279500CF3FF1 /* BTContacterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTContacterViewController.m; sourceTree = "<group>"; };
 		654A502A1BEF2CE20038CD47 /* BTShowWeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTShowWeatherViewController.h; sourceTree = "<group>"; };
@@ -849,6 +855,15 @@
 				6551242F1BFC298D001F1041 /* BTPhotoListViewController.m */,
 			);
 			path = ViewControll;
+			sourceTree = "<group>";
+		};
+		652608501C045FA500370630 /* BTAttributedLabel */ = {
+			isa = PBXGroup;
+			children = (
+				652608511C04604D00370630 /* BTAttributedLabel.h */,
+				652608521C04604D00370630 /* BTAttributedLabel.m */,
+			);
+			path = BTAttributedLabel;
 			sourceTree = "<group>";
 		};
 		654863091BDB279500CF3FF1 /* ViewController */ = {
@@ -1834,6 +1849,7 @@
 		65E2D3641BCFCCF2001E29A9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				652608501C045FA500370630 /* BTAttributedLabel */,
 				65A9345F1C02BB8600FA0185 /* BTLanguageManager */,
 				6500E71B1BEF38C3007158BF /* BTNetworking */,
 				65F426291BD9F5C100295796 /* Gategory */,
@@ -1896,6 +1912,8 @@
 			children = (
 				65F4262A1BD9F5F600295796 /* UIImage+Addition.h */,
 				65F4262B1BD9F5F600295796 /* UIImage+Addition.m */,
+				652608571C0464CC00370630 /* NSMutableAttributedString+Addition.h */,
+				652608581C0464CC00370630 /* NSMutableAttributedString+Addition.m */,
 			);
 			path = Gategory;
 			sourceTree = "<group>";
@@ -2331,6 +2349,7 @@
 				65DBD1C71BD7A2A100784DAC /* XMPPvCardCoreDataStorage.m in Sources */,
 				65DBD0C71BD7A15E00784DAC /* BTXMPPTool.m in Sources */,
 				B4FABBFD1C020FE600213AB7 /* NSData+ImageContentType.m in Sources */,
+				652608591C0464CC00370630 /* NSMutableAttributedString+Addition.m in Sources */,
 				65DBD1C11BD7A2A100784DAC /* XMPPRoomOccupantMemoryStorageObject.m in Sources */,
 				B4FABBFC1C020FE600213AB7 /* MKAnnotationView+WebCache.m in Sources */,
 				B4FABBFE1C020FE600213AB7 /* SDImageCache.m in Sources */,
@@ -2451,6 +2470,7 @@
 				65DBD0AD1BD77CE700784DAC /* XMPPPresence.m in Sources */,
 				65DBD1DB1BD7A2A100784DAC /* XMPPMessage+XEP_0085.m in Sources */,
 				65DBD1AF1BD7A2A100784DAC /* XMPPRoster.m in Sources */,
+				652608531C04604D00370630 /* BTAttributedLabel.m in Sources */,
 				65DBD1D41BD7A2A100784DAC /* XMPPIQ+XEP_0060.m in Sources */,
 				65DBD1C61BD7A2A100784DAC /* XMPPvCardAvatarCoreDataStorageObject.m in Sources */,
 				65DBD1CC1BD7A2A100784DAC /* XMPPvCardTempAdrTypes.m in Sources */,
