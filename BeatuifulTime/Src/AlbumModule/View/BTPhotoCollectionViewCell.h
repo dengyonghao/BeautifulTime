@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Photos/Photos.h>
 
 @interface BTPhotoCollectionViewCell : UICollectionViewCell
 
-- (void)bindData:(UIImage *)icon;
+- (void)bindData:(PHAsset *)asset;
 
 @end

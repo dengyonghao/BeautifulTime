@@ -27,6 +27,7 @@ static CGFloat const iconHeight = 90.0f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.titleLabel.text = @"相册详情";
+    [self initDataSource];
     [self.bodyView addSubview:self.collectionView];
 }
 
@@ -51,6 +52,31 @@ static CGFloat const iconHeight = 90.0f;
     
 }
 
+- (void)initDataSource {
+    
+    [self.dataSource removeAllObjects];
+    
+        
+    if (!self.assetCollection) {
+        
+        for (int i = 0; i < self.fetchResult.count; i++) {
+            PHAsset *asset = self.fetchResult[i];
+            
+            [self.dataSource addObject:asset];
+        }
+        
+    } else {
+        
+        PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:self.assetCollection options:nil];
+        
+        for (int i = 0; i < assetsFetchResult.count; i++) {
+            PHAsset *asset = assetsFetchResult[i];
+            
+            [self.dataSource addObject:asset];
+        }
+    }
+}
+
 #pragma mark - UICollectionView delegate
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -64,7 +90,7 @@ static CGFloat const iconHeight = 90.0f;
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (self.dataSource.count % showNumber != 0) {
-        if (section == self.dataSource.count / showNumber + 1) {
+        if (section == self.dataSource.count / showNumber) {
             return self.dataSource.count % showNumber;
         }
     }
@@ -84,55 +110,7 @@ static CGFloat const iconHeight = 90.0f;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     BTPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kcellIdentifier forIndexPath:indexPath];
-    PHCollection *collection = self.dataSource[indexPath.section * showNumber + indexPath.row];
-    
-    PHCachingImageManager *imageManager = [[PHCachingImageManager alloc] init];
-    
-    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-    options.resizeMode = PHImageRequestOptionsResizeModeExact;
-    if (indexPath.section == 0 && indexPath.row == 0) {
-        
-        PHFetchResult *result = self.dataSource[indexPath.section * showNumber + indexPath.row];
-        if (result.count > 0) {
-            PHAsset *asset = self.dataSource[indexPath.section * showNumber + indexPath.row][0];
-            
-            [imageManager requestImageForAsset:asset
-                                    targetSize:AssetGridThumbnailSize
-                                   contentMode:PHImageContentModeAspectFill
-                                       options:options
-                                 resultHandler:^(UIImage *result, NSDictionary *info) {
-                                     
-                                     [cell bindData:result];
-                                     
-                                 }];
-        }
-        
-        
-    }
-    else {
-        
-        PHAssetCollection *assetCollection = (PHAssetCollection *)collection;
-        PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
-        
-        if (assetsFetchResult.count) {
-            PHAsset *asset = assetsFetchResult[0];
-            
-            [imageManager requestImageForAsset:asset
-                                    targetSize:AssetGridThumbnailSize
-                                   contentMode:PHImageContentModeAspectFill
-                                       options:options
-                                 resultHandler:^(UIImage *result, NSDictionary *info) {
-                                     
-                                     [cell bindData:result];
-                                     
-                                 }];
-        }
-        else {
-            [cell bindData:nil];
-        }
-        
-        
-    }
+    [cell bindData:self.dataSource[indexPath.section * showNumber + indexPath.row]];
     return cell;
 }
 
