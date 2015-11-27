@@ -27,6 +27,7 @@
 		6500E7571BEF395C007158BF /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6500E7461BEF395C007158BF /* UIWebView+AFNetworking.m */; };
 		650498941BFAD3F70072AE47 /* BTMyAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 650498931BFAD3F70072AE47 /* BTMyAlbumViewController.m */; };
 		650498971BFAD50B0072AE47 /* BTAlbumCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 650498961BFAD50B0072AE47 /* BTAlbumCollectionViewCell.m */; };
+		6508D5061C08504700E77DAB /* BTPhotoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508D5051C08504600E77DAB /* BTPhotoDetailsViewController.m */; };
 		652608531C04604D00370630 /* BTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 652608521C04604D00370630 /* BTAttributedLabel.m */; };
 		652608591C0464CC00370630 /* NSMutableAttributedString+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 652608581C0464CC00370630 /* NSMutableAttributedString+Addition.m */; };
 		6548630C1BDB279500CF3FF1 /* BTContacterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6548630B1BDB279500CF3FF1 /* BTContacterViewController.m */; };
@@ -298,6 +299,8 @@
 		650498931BFAD3F70072AE47 /* BTMyAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTMyAlbumViewController.m; sourceTree = "<group>"; };
 		650498951BFAD50B0072AE47 /* BTAlbumCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAlbumCollectionViewCell.h; sourceTree = "<group>"; };
 		650498961BFAD50B0072AE47 /* BTAlbumCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAlbumCollectionViewCell.m; sourceTree = "<group>"; };
+		6508D5041C08504600E77DAB /* BTPhotoDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTPhotoDetailsViewController.h; sourceTree = "<group>"; };
+		6508D5051C08504600E77DAB /* BTPhotoDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTPhotoDetailsViewController.m; sourceTree = "<group>"; };
 		652608511C04604D00370630 /* BTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAttributedLabel.h; sourceTree = "<group>"; };
 		652608521C04604D00370630 /* BTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAttributedLabel.m; sourceTree = "<group>"; };
 		652608571C0464CC00370630 /* NSMutableAttributedString+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+Addition.h"; sourceTree = "<group>"; };
@@ -853,6 +856,8 @@
 				650498931BFAD3F70072AE47 /* BTMyAlbumViewController.m */,
 				6551242E1BFC298D001F1041 /* BTPhotoListViewController.h */,
 				6551242F1BFC298D001F1041 /* BTPhotoListViewController.m */,
+				6508D5041C08504600E77DAB /* BTPhotoDetailsViewController.h */,
+				6508D5051C08504600E77DAB /* BTPhotoDetailsViewController.m */,
 			);
 			path = ViewControll;
 			sourceTree = "<group>";
@@ -2419,6 +2424,7 @@
 				65DBD1EE1BD7A2A100784DAC /* XMPPPing.m in Sources */,
 				65E2D3721BCFCEE4001E29A9 /* BTStyle.m in Sources */,
 				65DBD0A71BD77CE700784DAC /* XMPPElement.m in Sources */,
+				6508D5061C08504700E77DAB /* BTPhotoDetailsViewController.m in Sources */,
 				65DBD1F11BD7A2A100784DAC /* NSXMLElement+XEP_0203.m in Sources */,
 				65DBD0A31BD77CE700784DAC /* DDTTYLogger.m in Sources */,
 				B445071D1BD0044B008BD5AC /* BTGuideViewController.m in Sources */,
