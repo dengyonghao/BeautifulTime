@@ -11,6 +11,7 @@
 #import "BTRestPasswordViewController.h"
 #import "BTUserLoginViewController.h"
 #import "BTAddJournalViewController.h"
+#import "BTMyAlbumViewController.h"
 
 static const CGFloat BUTTONWIDTH = 48;
 
@@ -20,7 +21,7 @@ static const CGFloat BUTTONWIDTH = 48;
 
 @property (nonatomic, strong) UIButton *timeline;
 @property (nonatomic, strong) UIButton *journals;
-@property (nonatomic, strong) UIButton *photos;
+@property (nonatomic, strong) UIButton *album;
 @property (nonatomic, strong) UIButton *chat;
 @property (nonatomic, strong) UIButton *addJournal;
 @property (nonatomic, strong) UIButton *addTimeline;
@@ -37,7 +38,7 @@ static const CGFloat BUTTONWIDTH = 48;
 //    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.backgroundImageView];
     [self.view addSubview:self.timeline];
-    [self.view addSubview:self.photos];
+    [self.view addSubview:self.album];
     [self.view addSubview:self.journals];
     [self.view addSubview:self.chat];
     [self.view addSubview:self.addJournal];
@@ -60,12 +61,12 @@ static const CGFloat BUTTONWIDTH = 48;
 
     [self.timeline mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(weakSelf.view).offset(OFFSET);
-        make.right.mas_equalTo(weakSelf.photos.mas_left).offset(-OFFSET);
-        make.width.mas_equalTo(weakSelf.photos);
+        make.right.mas_equalTo(weakSelf.album.mas_left).offset(-OFFSET);
+        make.width.mas_equalTo(weakSelf.album);
         make.height.equalTo(@(48));
         make.bottom.equalTo(weakSelf.view).offset(-15);
     }];
-    [self.photos mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.album mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(weakSelf.timeline.mas_right).offset(OFFSET);
         make.right.mas_equalTo(weakSelf.journals.mas_left).offset(-OFFSET);
         make.width.mas_equalTo(weakSelf.journals);
@@ -74,11 +75,11 @@ static const CGFloat BUTTONWIDTH = 48;
 
     }];
     [self.journals mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(weakSelf.photos.mas_right).offset(OFFSET);
+        make.left.mas_equalTo(weakSelf.album.mas_right).offset(OFFSET);
         make.right.mas_equalTo(weakSelf.chat.mas_left).offset(-OFFSET);
          make.width.mas_equalTo(weakSelf.chat);
-        make.height.equalTo(weakSelf.photos);
-        make.bottom.equalTo(weakSelf.photos);
+        make.height.equalTo(weakSelf.album);
+        make.bottom.equalTo(weakSelf.album);
 
     }];
     [self.chat mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -147,10 +148,10 @@ static const CGFloat BUTTONWIDTH = 48;
 //        [weakSelf.timeline setImage:image forState:UIControlStateHighlighted];
 //    }];
 //    [[BTThemeManager getInstance] BTThemeImage:@"ic_bg_main_640x960" completionHandler:^(UIImage *image) {
-//        [weakSelf.photos setImage:image forState:UIControlStateNormal];
+//        [weakSelf.album setImage:image forState:UIControlStateNormal];
 //    }];
 //    [[BTThemeManager getInstance] BTThemeImage:@"ic_bg_main_640x960" completionHandler:^(UIImage *image) {
-//        [weakSelf.photos setImage:image forState:UIControlStateHighlighted];
+//        [weakSelf.album setImage:image forState:UIControlStateHighlighted];
 //    }];
     [[BTThemeManager getInstance] BTThemeImage:@"ic_journal" completionHandler:^(UIImage *image) {
         [weakSelf.journals setImage:image forState:UIControlStateNormal];
@@ -179,6 +180,11 @@ static const CGFloat BUTTONWIDTH = 48;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)albumClick {
+    BTMyAlbumViewController *vc = [[BTMyAlbumViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (UIButton *)timeline {
     if (!_timeline) {
         _timeline = [[UIButton alloc] init];
@@ -186,11 +192,14 @@ static const CGFloat BUTTONWIDTH = 48;
     return _timeline;
 }
 
-- (UIButton *)photos {
-    if (!_photos) {
-        _photos = [[UIButton alloc] init];
+- (UIButton *)album {
+    if (!_album) {
+        _album = [[UIButton alloc] init];
+        _album.backgroundColor = [UIColor blueColor];
+        [_album setTitle:@"相册" forState:UIControlStateNormal];
+        [_album addTarget:self action:@selector(albumClick) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _photos;
+    return _album;
 }
 
 - (UIButton *)journals {

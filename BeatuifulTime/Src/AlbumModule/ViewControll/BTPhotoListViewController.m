@@ -16,7 +16,7 @@ static CGSize AssetGridThumbnailSize;
 static CGFloat const iconWidth = 90.0f;
 static CGFloat const iconHeight = 90.0f;
 
-@interface BTPhotoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface BTPhotoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, PHPhotoLibraryChangeObserver>
 
 @property (nonatomic, strong)UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
@@ -76,6 +76,57 @@ static CGFloat const iconHeight = 90.0f;
             [self.dataSource addObject:asset];
         }
     }
+}
+
+#pragma mark - PHPhotoLibraryChangeObserver
+
+- (void)photoLibraryDidChange:(PHChange *)changeInstance {
+    // Check if there are changes to the assets we are showing.
+    PHFetchResultChangeDetails *collectionChanges = [changeInstance changeDetailsForFetchResult:self.fetchResult];
+    if (collectionChanges == nil) {
+        return;
+    }
+    
+    /*
+     Change notifications may be made on a background queue. Re-dispatch to the
+     main queue before acting on the change as we'll be updating the UI.
+     */
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // Get the new fetch result.
+        self.fetchResult = [collectionChanges fetchResultAfterChanges];
+        
+        UICollectionView *collectionView = self.collectionView;
+        
+        if (![collectionChanges hasIncrementalChanges] || [collectionChanges hasMoves]) {
+            // Reload the collection view if the incremental diffs are not available
+            [self initDataSource];
+            [collectionView reloadData];
+            
+        } else {
+            /*
+             Tell the collection view to animate insertions and deletions if we
+             have incremental diffs.
+             */
+            [collectionView performBatchUpdates:^{
+                NSIndexSet *removedIndexes = [collectionChanges removedIndexes];
+                if ([removedIndexes count] > 0) {
+//                    [collectionView deleteItemsAtIndexPaths:[removedIndexes aapl_indexPathsFromIndexesWithSection:0]];
+                }
+                
+                NSIndexSet *insertedIndexes = [collectionChanges insertedIndexes];
+                if ([insertedIndexes count] > 0) {
+//                    [collectionView insertItemsAtIndexPaths:[insertedIndexes aapl_indexPathsFromIndexesWithSection:0]];
+                }
+                
+                NSIndexSet *changedIndexes = [collectionChanges changedIndexes];
+                if ([changedIndexes count] > 0) {
+//                    [collectionView reloadItemsAtIndexPaths:[changedIndexes aapl_indexPathsFromIndexesWithSection:0]];
+                }
+            } completion:NULL];
+        }
+        
+//        [self resetCachedAssets];
+    });
 }
 
 #pragma mark - UICollectionView delegate

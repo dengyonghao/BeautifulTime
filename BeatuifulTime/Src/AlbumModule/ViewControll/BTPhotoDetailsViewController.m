@@ -25,20 +25,24 @@ static CGSize AssetGridThumbnailSize;
     self.finishButton.hidden = NO;
     [self.finishButton setTitle:@"编辑" forState:UIControlStateNormal];
     [self.view addSubview:self.scrollView];
-    [self loadPhotos];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self loadAllPhotos];
+    });
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     CGFloat scale = [UIScreen mainScreen].scale;
-    AssetGridThumbnailSize = CGSizeMake(BT_SCREEN_WIDTH * scale, BT_SCREEN_HEIGHT * scale);
+    AssetGridThumbnailSize = CGSizeMake(BT_SCREEN_WIDTH * scale, (BT_SCREEN_HEIGHT - 48 * 2) * scale);
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     WS(weakSelf);
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(weakSelf.bodyView).insets(UIEdgeInsetsMake(0, 0, 0, 0));
+        make.edges.equalTo(weakSelf.view).insets(UIEdgeInsetsMake(48, 0, -48, 0));
     }];
 }
 
@@ -46,16 +50,15 @@ static CGSize AssetGridThumbnailSize;
     [super didReceiveMemoryWarning];
 }
 
-- (void)loadPhotos {
-    for (int i = 0; i < self.assets.count; i++ ) {
-        
-        WS(weakSelf);
+- (void)loadAllPhotos {
+    WS(weakSelf);
+    for (int i = 0; i < self.assets.count;  i++) {
         PHCachingImageManager *imageManager = [[PHCachingImageManager alloc] init];
         PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
         options.resizeMode = PHImageRequestOptionsResizeModeExact;
         [imageManager requestImageForAsset:self.assets[i]
                                 targetSize:AssetGridThumbnailSize
-                               contentMode:PHImageContentModeAspectFill
+                               contentMode:PHImageContentModeAspectFit
                                    options:options
                              resultHandler:^(UIImage *result, NSDictionary *info) {
                                  
@@ -65,8 +68,53 @@ static CGSize AssetGridThumbnailSize;
     }
 }
 
+- (void)loadPhotos {
+    for (int i = 0; i < self.assets.count; i++ ) {
+        if (i == 0) {
+            [self photoParseWithIndex:i];
+        } else {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [self photoParseWithIndex:i];
+            });
+        }
+    }
+}
+
+- (void)photoParseWithIndex:(NSInteger)index {
+    WS(weakSelf);
+    UIImageView *imageView = [[UIImageView alloc] init];
+    NSInteger x = index * BT_SCREEN_WIDTH;
+    [imageView setFrame:CGRectMake(x, 0, BT_SCREEN_WIDTH, BT_SCREEN_HEIGHT)];
+    PHCachingImageManager *imageManager = [[PHCachingImageManager alloc] init];
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    options.resizeMode = PHImageRequestOptionsResizeModeExact;
+    [imageManager requestImageForAsset:self.assets[index]
+                            targetSize:AssetGridThumbnailSize
+                           contentMode:PHImageContentModeAspectFit
+                               options:options
+                         resultHandler:^(UIImage *result, NSDictionary *info) {
+                             
+                             imageView.image = result;
+                             [weakSelf.scrollView addSubview:imageView];
+                             [weakSelf.dataSource addObject:result];
+                             
+                         }];
+}
+
 - (void)finishButtonClick {
 
+}
+
+
+#pragma mark - 滚动视图代理方法
+// 完成减速意味着页面切换完成
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    // 设置PageControl页数
+    NSInteger pageNo = scrollView.contentOffset.x / scrollView.bounds.size.width;
+    if (self.dataSource.count ) {
+        
+    }
 }
 
 - (UIScrollView *)scrollView {
@@ -76,7 +124,7 @@ static CGSize AssetGridThumbnailSize;
         _scrollView.userInteractionEnabled = YES;
         _scrollView.showsHorizontalScrollIndicator = NO;
         
-        _scrollView.contentSize = CGSizeMake(self.assets.count * BT_SCREEN_WIDTH, BT_SCREEN_HEIGHT);
+        _scrollView.contentSize = CGSizeMake(self.assets.count * BT_SCREEN_WIDTH, BT_SCREEN_HEIGHT - 48 * 2);
         _scrollView.delegate = self;
         _scrollView.contentOffset = CGPointMake(0, 0);
         //设置放大缩小的最大，最小倍数
