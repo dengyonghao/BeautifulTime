@@ -11,7 +11,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "Journal.h"
 #import "BTNetManager.h"
-#import "BTAttributedLabel.h"
+#import "BTRecordViewController.h"
 
 //#define WEATHERINFO_HOST @"http://api.map.baidu.com"
 //
@@ -41,11 +41,6 @@
 @property (nonatomic, strong) UIButton *finshBnt;
 @property (nonatomic, strong) UIScrollView *mainScrollView;
 
-
-@property (nonatomic, strong) UIImagePickerController *picker;
-@property(nonatomic,copy) NSString *chosenMediaType;
-
-
 @end
 
 @implementation BTAddJournalViewController
@@ -55,11 +50,11 @@
     self.titleLabel.text = @"记笔记";
     [self.finishButton setTitle:@"保存" forState:UIControlStateNormal];
     [self.view addSubview:self.toolsView];
-    [self.view addSubview:self.date];
-    [self.bodyView addSubview:self.site];
-    [self.bodyView addSubview:self.weather];
-    [self.bodyView addSubview:self.photos];
-    [self.bodyView addSubview:self.records];
+    [self.toolsView addSubview:self.date];
+    [self.toolsView addSubview:self.site];
+    [self.toolsView addSubview:self.weather];
+    [self.toolsView addSubview:self.photos];
+    [self.toolsView addSubview:self.records];
     [self.bodyView addSubview:self.bodyScrollView];
     [self.bodyScrollView addSubview:self.content];
     NSLog(@"----------%@",[@"深圳" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
@@ -111,7 +106,10 @@
     }];
     
     [self.records mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+        make.centerY.equalTo(weakSelf.toolsView);
+        make.centerX.equalTo(weakSelf.toolsView);
+        make.width.equalTo(@(80));
+        make.height.equalTo(@(40));
     }];
     
     [self.bodyScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -190,84 +188,15 @@
     [[AppDelegate getInstance].coreDataHelper saveContext];
 }
 
-- (void)selectPhotoSource{
-    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"请选择图片来源" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拍照",@"从手机相册选择", nil];
-    [alert show];
-}
-
-#pragma 拍照选择模块
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(buttonIndex==1)
-        [self shootPiicturePrVideo];
-    else if(buttonIndex==2)
-        [self selectExistingPictureOrVideo];
-}
-
-#pragma  mark- 拍照模块
-//从相机上选择
--(void)shootPiicturePrVideo{
-    [self getMediaFromSource:UIImagePickerControllerSourceTypeCamera];
-}
-//从相册中选择
--(void)selectExistingPictureOrVideo{
-    [self getMediaFromSource:UIImagePickerControllerSourceTypePhotoLibrary];
-}
-
-#pragma 拍照模块
--(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    self.chosenMediaType=[info objectForKey:UIImagePickerControllerMediaType];
-    if([self.chosenMediaType isEqual:(NSString *) kUTTypeImage]){
-        UIImage *chosenImage=[info objectForKey:UIImagePickerControllerOriginalImage];
-        
-        
-    }
-    if([self.chosenMediaType isEqual:(NSString *) kUTTypeMovie]){
-        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示信息!" message:@"系统只支持图片格式" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
-        [alert show];
-        
-    }
-    [picker dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-}
--(void) imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    [picker dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-}
--(void)getMediaFromSource:(UIImagePickerControllerSourceType)sourceType{
-    NSArray *mediatypes = [UIImagePickerController availableMediaTypesForSourceType:sourceType];
-    if([UIImagePickerController isSourceTypeAvailable:sourceType] &&[mediatypes count]>0){
-        NSArray *mediatypes = [UIImagePickerController availableMediaTypesForSourceType:sourceType];
-        self.picker.mediaTypes = mediatypes;
-        self.picker.sourceType = sourceType;
-        NSString *requiredmediatype = (NSString *)kUTTypeImage;
-        NSArray *arrmediatypes = [NSArray arrayWithObject:requiredmediatype];
-        [self.picker setMediaTypes:arrmediatypes];
-        [self presentViewController:self.picker animated:YES completion:^{
-            
-        }];
-    }
-    else{
-        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"错误信息!" message:@"当前设备不支持拍摄功能" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
-        [alert show];
-    }
+- (void)recordsClick {
+    BTRecordViewController *vc = [[BTRecordViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (UIView *)toolsView {
     if (!_toolsView) {
         _toolsView = [[UIView alloc] init];
         _toolsView.backgroundColor = [UIColor yellowColor];
-        BTAttributedLabel *label = [[BTAttributedLabel alloc]initWithFrame:CGRectMake(10, 20, 100, 40)];
-//        label.backgroundColor = [UIColor redColor];
-        [label setText:@"123456789098765432"];
-        label.textColor = [UIColor blackColor];
-        label.font = BT_FONTSIZE(30);
-        UIButton *bnt = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 100, 50)];
-        bnt.backgroundColor = [UIColor blueColor];
-        [label appendView:bnt];
-        [_toolsView addSubview:label];
-        
     }
     return _toolsView;
 }
@@ -312,6 +241,8 @@
 - (UIButton *)records {
     if (!_records) {
         _records = [[UIButton alloc] init];
+        [_records setTitle:@"录音" forState:UIControlStateNormal];
+        [_records addTarget:self action:@selector(recordsClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _records;
 }
@@ -321,14 +252,6 @@
         _date = [[UIButton alloc] init];
     }
     return _date;
-}
-
-- (UIImagePickerController *)picker {
-    if (!_picker) {
-        _picker = [[UIImagePickerController alloc] init];
-        _picker.delegate = self;
-    }
-    return _picker;
 }
 
 - (AFHTTPRequestOperation *) netManagerReqeustWeatherInfo:(NSString *)cityName

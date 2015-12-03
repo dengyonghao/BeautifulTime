@@ -8,6 +8,7 @@
 
 #import "BTPhotoListViewController.h"
 #import "BTPhotoCollectionViewCell.h"
+#import "BTPhotoDetailsViewController.h"
 
 static  NSString *kcellIdentifier = @"kPhotoCollectionCellID";
 static int const showNumber = 3;
@@ -116,7 +117,9 @@ static CGFloat const iconHeight = 90.0f;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    BTPhotoDetailsViewController *vc = [[BTPhotoDetailsViewController alloc] init];
+    vc.assets = self.dataSource;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //定义UICollectionView 的 margin

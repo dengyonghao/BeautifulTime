@@ -10,6 +10,7 @@
 #import "BTThemeManager.h"
 #import "BTRestPasswordViewController.h"
 #import "BTUserLoginViewController.h"
+#import "BTAddJournalViewController.h"
 
 static const CGFloat BUTTONWIDTH = 48;
 
@@ -92,7 +93,10 @@ static const CGFloat BUTTONWIDTH = 48;
         
     }];
     [self.addJournal mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+        make.centerX.equalTo(weakSelf.view);
+        make.centerY.equalTo(weakSelf.view);
+        make.height.equalTo(@(40));
+        make.width.equalTo(@(80));
     }];
     [self.reminiscence mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -170,6 +174,11 @@ static const CGFloat BUTTONWIDTH = 48;
     // Dispose of any resources that can be recreated.
 }
 
+- (void)addJournalClick {
+    BTAddJournalViewController *vc = [[BTAddJournalViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (UIButton *)timeline {
     if (!_timeline) {
         _timeline = [[UIButton alloc] init];
@@ -201,6 +210,9 @@ static const CGFloat BUTTONWIDTH = 48;
 - (UIButton *)addJournal {
     if (!_addJournal) {
         _addJournal = [[UIButton alloc] init];
+        [_addJournal setTitle:@"记日记" forState:UIControlStateNormal];
+        _addJournal.backgroundColor = [UIColor blueColor];
+        [_addJournal addTarget:self action:@selector(addJournalClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _addJournal;
 }
