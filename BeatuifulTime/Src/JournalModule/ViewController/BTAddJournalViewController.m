@@ -258,15 +258,25 @@
     if (!_toolsView) {
         _toolsView = [[UIView alloc] init];
         _toolsView.backgroundColor = [UIColor yellowColor];
-        BTAttributedLabel *label = [[BTAttributedLabel alloc]initWithFrame:CGRectMake(10, 20, 100, 40)];
+        BTAttributedLabel *label = [[BTAttributedLabel alloc]initWithFrame:CGRectZero];
 //        label.backgroundColor = [UIColor redColor];
-        [label setText:@"123456789098765432"];
-        label.textColor = [UIColor blackColor];
-        label.font = BT_FONTSIZE(30);
-        UIButton *bnt = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 100, 50)];
-        bnt.backgroundColor = [UIColor blueColor];
-        [label appendView:bnt];
-        [_toolsView addSubview:label];
+        for (NSInteger i = 0; i < 3; i++)
+        {
+            [label appendText:@"Click the icon to fire event"];
+            
+            UIButton *bnt = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 100, 50)];
+            bnt.backgroundColor = [UIColor blueColor];
+            [bnt setBounds:CGRectMake(0, 0, 30, 30)];
+            [bnt setTag:i];
+            [label appendView:bnt];
+            
+            [label appendText:@"\n\n\n"];
+        }
+        
+        
+        
+        label.frame     = CGRectInset(self.toolsView.bounds,20,20);
+        [self.toolsView addSubview:label];
         
     }
     return _toolsView;
