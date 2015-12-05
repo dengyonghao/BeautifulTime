@@ -170,6 +170,7 @@ static CGFloat const iconHeight = 90.0f;
 {
     BTPhotoDetailsViewController *vc = [[BTPhotoDetailsViewController alloc] init];
     vc.assets = self.dataSource;
+    vc.index = indexPath.section * showNumber + indexPath.row;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

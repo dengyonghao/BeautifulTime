@@ -12,5 +12,6 @@
 @interface BTPhotoDetailsViewController : BTBaseViewController
 
 @property (nonatomic, strong) NSArray *assets;
+@property (nonatomic, assign) NSInteger index;
 
 @end
