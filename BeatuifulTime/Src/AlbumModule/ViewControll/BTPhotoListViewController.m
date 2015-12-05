@@ -8,6 +8,7 @@
 
 #import "BTPhotoListViewController.h"
 #import "BTPhotoCollectionViewCell.h"
+#import "BTPhotoDetailsViewController.h"
 
 static  NSString *kcellIdentifier = @"kPhotoCollectionCellID";
 static int const showNumber = 3;
@@ -15,7 +16,7 @@ static CGSize AssetGridThumbnailSize;
 static CGFloat const iconWidth = 90.0f;
 static CGFloat const iconHeight = 90.0f;
 
-@interface BTPhotoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface BTPhotoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, PHPhotoLibraryChangeObserver>
 
 @property (nonatomic, strong)UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
@@ -27,6 +28,7 @@ static CGFloat const iconHeight = 90.0f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.titleLabel.text = @"相册详情";
+    [self initDataSource];
     [self.bodyView addSubview:self.collectionView];
 }
 
@@ -51,6 +53,82 @@ static CGFloat const iconHeight = 90.0f;
     
 }
 
+- (void)initDataSource {
+    
+    [self.dataSource removeAllObjects];
+    
+        
+    if (!self.assetCollection) {
+        
+        for (int i = 0; i < self.fetchResult.count; i++) {
+            PHAsset *asset = self.fetchResult[i];
+            
+            [self.dataSource addObject:asset];
+        }
+        
+    } else {
+        
+        PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:self.assetCollection options:nil];
+        
+        for (int i = 0; i < assetsFetchResult.count; i++) {
+            PHAsset *asset = assetsFetchResult[i];
+            
+            [self.dataSource addObject:asset];
+        }
+    }
+}
+
+#pragma mark - PHPhotoLibraryChangeObserver
+
+- (void)photoLibraryDidChange:(PHChange *)changeInstance {
+    // Check if there are changes to the assets we are showing.
+    PHFetchResultChangeDetails *collectionChanges = [changeInstance changeDetailsForFetchResult:self.fetchResult];
+    if (collectionChanges == nil) {
+        return;
+    }
+    
+    /*
+     Change notifications may be made on a background queue. Re-dispatch to the
+     main queue before acting on the change as we'll be updating the UI.
+     */
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // Get the new fetch result.
+        self.fetchResult = [collectionChanges fetchResultAfterChanges];
+        
+        UICollectionView *collectionView = self.collectionView;
+        
+        if (![collectionChanges hasIncrementalChanges] || [collectionChanges hasMoves]) {
+            // Reload the collection view if the incremental diffs are not available
+            [self initDataSource];
+            [collectionView reloadData];
+            
+        } else {
+            /*
+             Tell the collection view to animate insertions and deletions if we
+             have incremental diffs.
+             */
+            [collectionView performBatchUpdates:^{
+                NSIndexSet *removedIndexes = [collectionChanges removedIndexes];
+                if ([removedIndexes count] > 0) {
+//                    [collectionView deleteItemsAtIndexPaths:[removedIndexes aapl_indexPathsFromIndexesWithSection:0]];
+                }
+                
+                NSIndexSet *insertedIndexes = [collectionChanges insertedIndexes];
+                if ([insertedIndexes count] > 0) {
+//                    [collectionView insertItemsAtIndexPaths:[insertedIndexes aapl_indexPathsFromIndexesWithSection:0]];
+                }
+                
+                NSIndexSet *changedIndexes = [collectionChanges changedIndexes];
+                if ([changedIndexes count] > 0) {
+//                    [collectionView reloadItemsAtIndexPaths:[changedIndexes aapl_indexPathsFromIndexesWithSection:0]];
+                }
+            } completion:NULL];
+        }
+        
+//        [self resetCachedAssets];
+    });
+}
+
 #pragma mark - UICollectionView delegate
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -64,7 +142,7 @@ static CGFloat const iconHeight = 90.0f;
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (self.dataSource.count % showNumber != 0) {
-        if (section == self.dataSource.count / showNumber + 1) {
+        if (section == self.dataSource.count / showNumber) {
             return self.dataSource.count % showNumber;
         }
     }
@@ -84,61 +162,15 @@ static CGFloat const iconHeight = 90.0f;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     BTPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kcellIdentifier forIndexPath:indexPath];
-    PHCollection *collection = self.dataSource[indexPath.section * showNumber + indexPath.row];
-    
-    PHCachingImageManager *imageManager = [[PHCachingImageManager alloc] init];
-    
-    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-    options.resizeMode = PHImageRequestOptionsResizeModeExact;
-    if (indexPath.section == 0 && indexPath.row == 0) {
-        
-        PHFetchResult *result = self.dataSource[indexPath.section * showNumber + indexPath.row];
-        if (result.count > 0) {
-            PHAsset *asset = self.dataSource[indexPath.section * showNumber + indexPath.row][0];
-            
-            [imageManager requestImageForAsset:asset
-                                    targetSize:AssetGridThumbnailSize
-                                   contentMode:PHImageContentModeAspectFill
-                                       options:options
-                                 resultHandler:^(UIImage *result, NSDictionary *info) {
-                                     
-                                     [cell bindData:result];
-                                     
-                                 }];
-        }
-        
-        
-    }
-    else {
-        
-        PHAssetCollection *assetCollection = (PHAssetCollection *)collection;
-        PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
-        
-        if (assetsFetchResult.count) {
-            PHAsset *asset = assetsFetchResult[0];
-            
-            [imageManager requestImageForAsset:asset
-                                    targetSize:AssetGridThumbnailSize
-                                   contentMode:PHImageContentModeAspectFill
-                                       options:options
-                                 resultHandler:^(UIImage *result, NSDictionary *info) {
-                                     
-                                     [cell bindData:result];
-                                     
-                                 }];
-        }
-        else {
-            [cell bindData:nil];
-        }
-        
-        
-    }
+    [cell bindData:self.dataSource[indexPath.section * showNumber + indexPath.row]];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    BTPhotoDetailsViewController *vc = [[BTPhotoDetailsViewController alloc] init];
+    vc.assets = self.dataSource;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //定义UICollectionView 的 margin

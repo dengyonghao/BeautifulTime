@@ -99,7 +99,7 @@ static AppDelegate *singleton = nil;
 #pragma mark 初始化页面栈
 - (void)initPages
 {
-    BTAddJournalViewController *homeViewController = [[BTAddJournalViewController alloc] init];
+    BTHomePageViewController *homeViewController = [[BTHomePageViewController alloc] init];
     BTBaseNavigationController *homeNavigationController = [[BTBaseNavigationController alloc] initWithRootViewController:homeViewController];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

@@ -106,7 +106,16 @@ static CGFloat const iconHeight = 120.0f;
         }
         else {
             for  (PHFetchResult *result in self.sectionFetchResults[i]) {
-                [self.dataSource addObject:result];
+                PHAssetCollection *assetCollection = (PHAssetCollection *)result;
+                
+                if ([assetCollection isKindOfClass:[PHAssetCollection class]]) {
+                    
+                    PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
+                    if (assetsFetchResult.count > 0) {
+                        [self.dataSource addObject:result];
+                    }
+                }
+    
             }
         }
     }
@@ -125,7 +134,7 @@ static CGFloat const iconHeight = 120.0f;
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (self.dataSource.count % showNumber != 0) {
-        if (section == self.dataSource.count / showNumber + 1) {
+        if (section == self.dataSource.count / showNumber) {
             return self.dataSource.count % showNumber;
         }
     }
@@ -177,7 +186,7 @@ static CGFloat const iconHeight = 120.0f;
         if ([assetCollection isKindOfClass:[PHAssetCollection class]]) {
             
             PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
-            if (assetsFetchResult.count) {
+            if (assetsFetchResult.count > 0) {
                 PHAsset *asset = assetsFetchResult[0];
                 
                 [imageManager requestImageForAsset:asset
@@ -209,7 +218,7 @@ static CGFloat const iconHeight = 120.0f;
         vc.assetCollection = self.dataSource[indexPath.section * showNumber + indexPath.row];
         vc.fetchResult = nil;
     }
-    [self.navigationController pushViewController:vc animated:NO];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //定义UICollectionView 的 margin
