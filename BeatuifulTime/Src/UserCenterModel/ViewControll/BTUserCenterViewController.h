@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BTUserCenterViewController : UIViewController
+@interface BTUserCenterViewController : BTBaseViewController
 
 @end

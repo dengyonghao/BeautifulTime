@@ -12,6 +12,10 @@
 #import "BTUserLoginViewController.h"
 #import "BTAddJournalViewController.h"
 #import "BTMyAlbumViewController.h"
+#import "BTTimelineViewController.h"
+#import "BTAddTimelineViewController.h"
+#import "BTUserCenterViewController.h"
+#import "BTSettingViewController.h"
 
 static const CGFloat BUTTONWIDTH = 48;
 
@@ -28,6 +32,9 @@ static const CGFloat BUTTONWIDTH = 48;
 @property (nonatomic, strong) UIButton *reminiscence;
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 
+@property (nonatomic, strong) UIButton *userCenter;
+@property (nonatomic, strong) UIButton *setting;
+
 @end
 
 @implementation BTHomePageViewController
@@ -35,7 +42,6 @@ static const CGFloat BUTTONWIDTH = 48;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.themeInit = YES;
-//    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.backgroundImageView];
     [self.view addSubview:self.timeline];
     [self.view addSubview:self.album];
@@ -44,6 +50,8 @@ static const CGFloat BUTTONWIDTH = 48;
     [self.view addSubview:self.addJournal];
     [self.view addSubview:self.addTimeline];
     [self.view addSubview:self.reminiscence];
+    [self.view addSubview:self.userCenter];
+    [self.view addSubview:self.setting];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -59,6 +67,19 @@ static const CGFloat BUTTONWIDTH = 48;
     
     CGFloat OFFSET = (BT_SCREEN_WIDTH - BUTTONWIDTH * 4) / 5;
 
+    [self.userCenter mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(weakSelf.view).offset(10);
+        make.width.mas_equalTo(@(48));
+        make.height.equalTo(@(48));
+        make.top.equalTo(weakSelf.view).offset(10);
+    }];
+    [self.setting mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(weakSelf.view).offset(-10);
+        make.width.mas_equalTo(@(48));
+        make.height.equalTo(@(48));
+        make.top.equalTo(weakSelf.view).offset(10);
+    }];
+    
     [self.timeline mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(weakSelf.view).offset(OFFSET);
         make.right.mas_equalTo(weakSelf.album.mas_left).offset(-OFFSET);
@@ -90,15 +111,21 @@ static const CGFloat BUTTONWIDTH = 48;
         make.bottom.equalTo(weakSelf.journals);
 
     }];
-    [self.addTimeline mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-    }];
+    
     [self.addJournal mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(weakSelf.view);
         make.centerY.equalTo(weakSelf.view);
         make.height.equalTo(@(40));
         make.width.equalTo(@(80));
     }];
+    
+    [self.addTimeline mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.addJournal);
+        make.centerY.equalTo(self.addJournal).offset(50);
+        make.height.equalTo(@(40));
+        make.width.equalTo(@(80));
+    }];
+    
     [self.reminiscence mas_makeConstraints:^(MASConstraintMaker *make) {
         
     }];
@@ -112,12 +139,6 @@ static const CGFloat BUTTONWIDTH = 48;
         [self BTThemeDidNeedUpdateStyle];
         self.themeInit = NO;
     }
-}
-
-- (void)onclick {
-    BTUserLoginViewController *vc = [[BTUserLoginViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:NO];
-
 }
 
 - (void)BTThemeDidNeedUpdateStyle {
@@ -185,9 +206,52 @@ static const CGFloat BUTTONWIDTH = 48;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)timelineClick {
+    BTTimelineViewController *vc = [[BTTimelineViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)addTimelineClick {
+    BTAddTimelineViewController *vc = [[BTAddTimelineViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)userCenterClick {
+    BTUserCenterViewController *vc = [[BTUserCenterViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)settingClick {
+    BTSettingViewController *vc = [[BTSettingViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (UIButton *)userCenter {
+    if (!_userCenter) {
+        _userCenter = [[UIButton alloc] init];
+        _userCenter.backgroundColor = [UIColor blueColor];
+        [_userCenter setTitle:@"我的" forState:UIControlStateNormal];
+        [_userCenter addTarget:self action:@selector(userCenterClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _userCenter;
+}
+
+- (UIButton *)setting {
+    if (!_setting) {
+        _setting = [[UIButton alloc] init];
+        _setting.backgroundColor = [UIColor blueColor];
+        [_setting setTitle:@"设置" forState:UIControlStateNormal];
+        [_setting addTarget:self action:@selector(settingClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _setting;
+}
+
 - (UIButton *)timeline {
     if (!_timeline) {
         _timeline = [[UIButton alloc] init];
+        _timeline.backgroundColor = [UIColor blueColor];
+        [_timeline setTitle:@"时光轴" forState:UIControlStateNormal];
+        [_timeline addTarget:self action:@selector(timelineClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _timeline;
 }
@@ -229,6 +293,9 @@ static const CGFloat BUTTONWIDTH = 48;
 - (UIButton *)addTimeline {
     if (!_addTimeline) {
         _addTimeline = [[UIButton alloc] init];
+        [_addTimeline setTitle:@"记点滴" forState:UIControlStateNormal];
+        _addTimeline.backgroundColor = [UIColor blueColor];
+        [_addTimeline addTarget:self action:@selector(addTimelineClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _addTimeline;
 }

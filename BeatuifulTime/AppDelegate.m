@@ -13,15 +13,7 @@
 #import "BTBaseNavigationController.h"
 #import "BTBaseNavigationController.h"
 #import "BTHomePageViewController.h"
-#import "BTRegisterAccountViewController.h"
-#import "BTRestPasswordViewController.h"
-#import "BTUserLoginViewController.h"
 #import "Journal.h"
-#import "BTAddJournalViewController.h"
-#import "BTContacterViewController.h"
-#import "BTMyAlbumViewController.h"
-#import "BTRecordViewController.h"
-#import <AVFoundation/AVFoundation.h>
 
 static AppDelegate *singleton = nil;
 
@@ -44,7 +36,6 @@ static AppDelegate *singleton = nil;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     singleton = self;
     if (![[NSUserDefaults standardUserDefaults] boolForKey:firstLaunch]) {
         [self enterGuidePage];

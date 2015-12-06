@@ -223,6 +223,9 @@
 		B445070D1BCFFB9F008BD5AC /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B44507001BCFFB9F008BD5AC /* View+MASAdditions.m */; };
 		B445070E1BCFFB9F008BD5AC /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B44507031BCFFB9F008BD5AC /* ViewController+MASAdditions.m */; };
 		B445071D1BD0044B008BD5AC /* BTGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B445071C1BD0044B008BD5AC /* BTGuideViewController.m */; };
+		B44579F21C140A0900CB10DC /* BTTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44579F11C140A0900CB10DC /* BTTimelineViewController.m */; settings = {ASSET_TAGS = (); }; };
+		B44579F51C140B1900CB10DC /* BTAddTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44579F41C140B1900CB10DC /* BTAddTimelineViewController.m */; settings = {ASSET_TAGS = (); }; };
+		B44579FC1C140FC300CB10DC /* BTSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44579FB1C140FC300CB10DC /* BTSettingViewController.m */; settings = {ASSET_TAGS = (); }; };
 		B46AF5C71C00DCCF00916DEE /* BTJournalController.m in Sources */ = {isa = PBXBuildFile; fileRef = B46AF5C61C00DCCF00916DEE /* BTJournalController.m */; };
 		B4FABBCC1C018D4B00213AB7 /* BTLanguageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBCB1C018D4B00213AB7 /* BTLanguageUtil.m */; };
 		B4FABBD91C020E1500213AB7 /* BTSelectPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBD81C020E1500213AB7 /* BTSelectPhotosViewController.m */; };
@@ -690,6 +693,12 @@
 		B44507031BCFFB9F008BD5AC /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
 		B445071B1BD0044B008BD5AC /* BTGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTGuideViewController.h; path = ViewController/BTGuideViewController.h; sourceTree = "<group>"; };
 		B445071C1BD0044B008BD5AC /* BTGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTGuideViewController.m; path = ViewController/BTGuideViewController.m; sourceTree = "<group>"; };
+		B44579F01C140A0900CB10DC /* BTTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTimelineViewController.h; sourceTree = "<group>"; };
+		B44579F11C140A0900CB10DC /* BTTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTimelineViewController.m; sourceTree = "<group>"; };
+		B44579F31C140B1900CB10DC /* BTAddTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAddTimelineViewController.h; sourceTree = "<group>"; };
+		B44579F41C140B1900CB10DC /* BTAddTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAddTimelineViewController.m; sourceTree = "<group>"; };
+		B44579FA1C140FC300CB10DC /* BTSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTSettingViewController.h; sourceTree = "<group>"; };
+		B44579FB1C140FC300CB10DC /* BTSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTSettingViewController.m; sourceTree = "<group>"; };
 		B46AF5C51C00DCCF00916DEE /* BTJournalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTJournalController.h; sourceTree = "<group>"; };
 		B46AF5C61C00DCCF00916DEE /* BTJournalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTJournalController.m; sourceTree = "<group>"; };
 		B4FABBCA1C018D4B00213AB7 /* BTLanguageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLanguageUtil.h; sourceTree = "<group>"; };
@@ -1967,15 +1976,15 @@
 		B44506D01BCFEE48008BD5AC /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				B44579F61C140FA700CB10DC /* SettingModule */,
+				B44579EC1C1409EF00CB10DC /* TimelineModule */,
 				650498881BFAD3190072AE47 /* AlbumModule */,
 				654A50261BEF2C5C0038CD47 /* WeatherModel */,
 				65F4262D1BDA0F1400295796 /* IMModule */,
 				65DBCEF81BD754A700784DAC /* JournalModule */,
 				65DCFE3C1BD334F800DBD0DE /* UserCenterModel */,
-				B445071E1BD00EA9008BD5AC /* SettingModule */,
 				B44507191BD00405008BD5AC /* LaunchModule */,
 				B44506D51BCFFAAC008BD5AC /* HomePageModule */,
-				B44506E11BCFFAAC008BD5AC /* TimelineModule */,
 			);
 			path = Src;
 			sourceTree = "<group>";
@@ -2009,37 +2018,6 @@
 			children = (
 				B44506E51BCFFAFD008BD5AC /* BTHomePageViewController.h */,
 				B44506E61BCFFAFD008BD5AC /* BTHomePageViewController.m */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		B44506E11BCFFAAC008BD5AC /* TimelineModule */ = {
-			isa = PBXGroup;
-			children = (
-				B44506E21BCFFAAC008BD5AC /* Model */,
-				B44506E31BCFFAAC008BD5AC /* View */,
-				B44506E41BCFFAAC008BD5AC /* ViewController */,
-			);
-			path = TimelineModule;
-			sourceTree = "<group>";
-		};
-		B44506E21BCFFAAC008BD5AC /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		B44506E31BCFFAAC008BD5AC /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		B44506E41BCFFAAC008BD5AC /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2105,33 +2083,70 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		B445071E1BD00EA9008BD5AC /* SettingModule */ = {
+		B44579EC1C1409EF00CB10DC /* TimelineModule */ = {
 			isa = PBXGroup;
 			children = (
-				B445071F1BD00EA9008BD5AC /* Model */,
-				B44507201BD00EA9008BD5AC /* View */,
-				B44507211BD00EA9008BD5AC /* ViewController */,
+				B44579ED1C1409EF00CB10DC /* Model */,
+				B44579EE1C1409EF00CB10DC /* View */,
+				B44579EF1C1409EF00CB10DC /* ViewController */,
 			);
-			path = SettingModule;
+			path = TimelineModule;
 			sourceTree = "<group>";
 		};
-		B445071F1BD00EA9008BD5AC /* Model */ = {
+		B44579ED1C1409EF00CB10DC /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		B44507201BD00EA9008BD5AC /* View */ = {
+		B44579EE1C1409EF00CB10DC /* View */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		B44507211BD00EA9008BD5AC /* ViewController */ = {
+		B44579EF1C1409EF00CB10DC /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B44579F01C140A0900CB10DC /* BTTimelineViewController.h */,
+				B44579F11C140A0900CB10DC /* BTTimelineViewController.m */,
+				B44579F31C140B1900CB10DC /* BTAddTimelineViewController.h */,
+				B44579F41C140B1900CB10DC /* BTAddTimelineViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		B44579F61C140FA700CB10DC /* SettingModule */ = {
+			isa = PBXGroup;
+			children = (
+				B44579F71C140FA700CB10DC /* Model */,
+				B44579F81C140FA700CB10DC /* View */,
+				B44579F91C140FA700CB10DC /* ViewController */,
+			);
+			path = SettingModule;
+			sourceTree = "<group>";
+		};
+		B44579F71C140FA700CB10DC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B44579F81C140FA700CB10DC /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B44579F91C140FA700CB10DC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B44579FA1C140FC300CB10DC /* BTSettingViewController.h */,
+				B44579FB1C140FC300CB10DC /* BTSettingViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2366,6 +2381,7 @@
 				65DBD1A71BD7A2A100784DAC /* XMPPGroupCoreDataStorageObject.m in Sources */,
 				6500E7531BEF395C007158BF /* UIButton+AFNetworking.m in Sources */,
 				65DBCF0D1BD755E500784DAC /* PopupView.m in Sources */,
+				B44579F21C140A0900CB10DC /* BTTimelineViewController.m in Sources */,
 				B44506E71BCFFAFD008BD5AC /* BTHomePageViewController.m in Sources */,
 				65F426441BDA281400295796 /* BTContacterModel.m in Sources */,
 				6500E7481BEF395C007158BF /* AFHTTPRequestOperationManager.m in Sources */,
@@ -2483,6 +2499,7 @@
 				65DBD1AF1BD7A2A100784DAC /* XMPPRoster.m in Sources */,
 				652608531C04604D00370630 /* BTAttributedLabel.m in Sources */,
 				65DBD1D41BD7A2A100784DAC /* XMPPIQ+XEP_0060.m in Sources */,
+				B44579FC1C140FC300CB10DC /* BTSettingViewController.m in Sources */,
 				65DBD1C61BD7A2A100784DAC /* XMPPvCardAvatarCoreDataStorageObject.m in Sources */,
 				65DBD1CC1BD7A2A100784DAC /* XMPPvCardTempAdrTypes.m in Sources */,
 				B4FABBCC1C018D4B00213AB7 /* BTLanguageUtil.m in Sources */,
@@ -2511,6 +2528,7 @@
 				65DBD1B41BD7A2A100784DAC /* XMPPIQ+LastActivity.m in Sources */,
 				65DBD1EA1BD7A2A100784DAC /* XMPPPresence+XEP_0172.m in Sources */,
 				65DBD1C21BD7A2A100784DAC /* XMPPMessage+XEP0045.m in Sources */,
+				B44579F51C140B1900CB10DC /* BTAddTimelineViewController.m in Sources */,
 				65DBD1E91BD7A2A100784DAC /* XMPPMessage+XEP_0172.m in Sources */,
 				65DBD1F51BD7A2A100784DAC /* NSXMLElement+XEP_0297.m in Sources */,
 			);
