@@ -8,6 +8,8 @@
 
 #import "BTRecordViewController.h"
 #import "BTCircularProgressButton.h"
+#import "BTJournalController.h"
+#import "BTAddJournalViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
 static CGFloat const durationCircleSize = 112.0f;
@@ -48,15 +50,14 @@ static CGFloat const recorderDuration = 600;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    [self initAudioSession];
     [self.playButton setHidden:YES];
     [self.resetButton setHidden:YES];
     [self.saveButton setHidden:YES];
+    [self.circlesImageView setHidden:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-//    [self deallocAudioSession];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -131,16 +132,36 @@ static CGFloat const recorderDuration = 600;
         [self stopAnimate];
         self.recordButton.hidden = YES;
         self.playButton.hidden = NO;
+        self.resetButton.hidden = NO;
+        self.saveButton.hidden = NO;
     }
     
 }
 
 - (void)saveButtonClick:(UIButton *)sender {
-
+    
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[BTAddJournalViewController class]]) {
+            [self.navigationController popToViewController:controller animated:YES];
+        }
+    }
 }
 
 - (void)resetButtonClick:(UIButton *)sender {
-
+    if (player.isPlaying) {
+        [self stopPlay];
+        [self.timer invalidate];
+        self.timer = nil;
+        [self stopAnimate];
+        self.playButton.selected = NO;
+        [self nowPlayingRecordCurrentTime:0 duration:recorderDuration];
+    }
+    self.recordButton.hidden = NO;
+    self.playButton.hidden = YES;
+    self.resetButton.hidden = YES;
+    self.saveButton.hidden = YES;
+    [self deleteRecordFile];
+    
 }
 
 - (void)playButtonClick:(UIButton *)sender {
@@ -167,12 +188,22 @@ static CGFloat const recorderDuration = 600;
         [player prepareToPlay];
         player.volume = 1;
         [player play];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(playProgressTime:) userInfo:nil repeats:YES];
     }
 }
 
 - (void)stopPlay {
     [player stop];
+    
     [audioSession setActive:NO error:nil];
+}
+
+- (void)deleteRecordFile {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *filePath = [self.recordUrl absoluteString];
+    if ([fileManager fileExistsAtPath:filePath]) {
+        [fileManager removeItemAtPath:filePath error:nil];
+    }
 }
 
 #pragma mark AVAudioRecorder设置
@@ -186,8 +217,7 @@ static CGFloat const recorderDuration = 600;
     //录音通道数  1 或 2 ，要转换成mp3格式必须为双通道
     [recordSetting setValue:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];
     //线性采样位数  8、16、24、32
-    [recordSetting setValue:[NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];
-    //录音的质量
+    [recordSetting setValue:[NSNumber numberWithInt:24] forKey:AVLinearPCMBitDepthKey];
     [recordSetting setValue:[NSNumber numberWithInt:AVAudioQualityHigh] forKey:AVEncoderAudioQualityKey];
     
     NSDate *now = [NSDate date];
@@ -201,7 +231,6 @@ static CGFloat const recorderDuration = 600;
     //存储录音文件
     self.recordUrl = [NSURL URLWithString:[NSTemporaryDirectory() stringByAppendingString:@"selfRecord.caf"]];
     
-    //初始化
     NSError *error = nil;
     recorder = [[AVAudioRecorder alloc] initWithURL:self.recordUrl settings:recordSetting error:nil];
 
@@ -217,8 +246,8 @@ static CGFloat const recorderDuration = 600;
         }
         
         if (![recorder isRecording]) {
-            [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];//设置类别,表示该应用同时支持播放和录音
-            [audioSession setActive:YES error:nil];//启动音频会话管理,此时会阻断后台音乐的播放.
+            [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+            [audioSession setActive:YES error:nil];
             
             [recorder prepareToRecord];
             [recorder peakPowerForChannel:0.0];
@@ -229,6 +258,10 @@ static CGFloat const recorderDuration = 600;
 
 - (void)progressTime:(NSTimer *)timer {
     [self nowPlayingRecordCurrentTime:recorder.currentTime duration:recorderDuration];
+}
+
+- (void)playProgressTime:(NSTimer *)timer {
+    [self nowPlayingRecordCurrentTime:player.currentTime duration:player.duration];
 }
 
 - (void)stopRecord {
@@ -261,24 +294,29 @@ static CGFloat const recorderDuration = 600;
         [self nowPlayingRecordCurrentTime:0 duration:recorderDuration];
     }
 }
-- (void)audioRecorderEncodeErrorDidOccur:(AVAudioRecorder *)recorder error:(NSError *)error
-{
+- (void)audioRecorderEncodeErrorDidOccur:(AVAudioRecorder *)recorder error:(NSError *)error {
     //录音编码错误
 }
 
-- (void)nowPlayingRecordCurrentTime:(NSTimeInterval)currentTime duration:(NSTimeInterval)duration
-{
+- (void)nowPlayingRecordCurrentTime:(NSTimeInterval)currentTime duration:(NSTimeInterval)duration {
     [self.progressButton setProgress:currentTime duration:duration];
 }
 
+#pragma mark - AVAudioPlayer delegate
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
+    [self.timer invalidate];
+    self.timer = nil;
+    [self stopAnimate];
+    self.playButton.selected = NO;
+    [self nowPlayingRecordCurrentTime:0 duration:recorderDuration];
+}
+
 #pragma mark - BTThemeListenerProtocol
-- (void)BTThemeDidNeedUpdateStyle
-{
+- (void)BTThemeDidNeedUpdateStyle {
     [super BTThemeDidNeedUpdateStyle];
 }
 
-- (BTCircularProgressButton *)progressButton
-{
+- (BTCircularProgressButton *)progressButton {
     if (!_progressButton) {
         _progressButton = [[BTCircularProgressButton alloc] initWithFrame:CGRectMake(0, 0, durationCircleSize, durationCircleSize)
                                                             progressColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_other_c"]
@@ -310,7 +348,6 @@ static CGFloat const recorderDuration = 600;
 - (UIButton *)recordButton {
     if (!_recordButton) {
         _recordButton = [[UIButton alloc] init];
-//        _recordButton.backgroundColor = [UIColor blueColor];
         [_recordButton addTarget:self action:@selector(recordButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [_recordButton setTitle:@"开始录音" forState:UIControlStateNormal];
         [_recordButton setTitle:@"停止录音" forState:UIControlStateSelected];
@@ -321,7 +358,6 @@ static CGFloat const recorderDuration = 600;
 - (UIButton *)playButton {
     if (!_playButton) {
         _playButton = [[UIButton alloc] init];
-//        _playButton.backgroundColor = [UIColor blueColor];
         [_playButton setTitle:@"开始播放" forState:UIControlStateNormal];
         [_playButton setTitle:@"停止播放" forState:UIControlStateSelected];
         [_playButton addTarget:self action:@selector(playButtonClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -333,17 +369,16 @@ static CGFloat const recorderDuration = 600;
 - (UIButton *)saveButton {
     if (!_saveButton) {
         _saveButton = [[UIButton alloc] init];
-        _saveButton.backgroundColor = [UIColor yellowColor];
+        [_saveButton setTitle:@"保存" forState:UIControlStateNormal];
         [_saveButton addTarget:self action:@selector(saveButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _saveButton;
 }
 
-
 - (UIButton *)resetButton {
     if (!_resetButton) {
         _resetButton = [[UIButton alloc] init];
-        _resetButton.backgroundColor = [UIColor redColor];
+        [_resetButton setTitle:@"重置" forState:UIControlStateNormal];
         [_resetButton addTarget:self action:@selector(resetButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _resetButton;
