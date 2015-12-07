@@ -46,6 +46,7 @@ static CGFloat const recorderDuration = 600;
     [self.bodyView addSubview:self.resetButton];
     [self.bodyView addSubview:self.saveButton];
     audioSession = [AVAudioSession sharedInstance];
+    [self initRecorder];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -127,13 +128,13 @@ static CGFloat const recorderDuration = 600;
         [self startAnimate];
     }
     else {
-        self.recordButton.selected = NO;
-        [self stopRecord];
-        [self stopAnimate];
-        self.recordButton.hidden = YES;
         self.playButton.hidden = NO;
+        self.recordButton.hidden = YES;
         self.resetButton.hidden = NO;
         self.saveButton.hidden = NO;
+        [self stopRecord];
+        [self stopAnimate];
+        self.recordButton.selected = NO;
     }
     
 }
@@ -148,20 +149,17 @@ static CGFloat const recorderDuration = 600;
 }
 
 - (void)resetButtonClick:(UIButton *)sender {
-    if (player.isPlaying) {
-        [self stopPlay];
-        [self.timer invalidate];
-        self.timer = nil;
-        [self stopAnimate];
-        self.playButton.selected = NO;
-        [self nowPlayingRecordCurrentTime:0 duration:recorderDuration];
-    }
     self.recordButton.hidden = NO;
     self.playButton.hidden = YES;
     self.resetButton.hidden = YES;
     self.saveButton.hidden = YES;
+    if (player.isPlaying) {
+        self.playButton.selected = NO;
+        [self stopPlay];
+        [self stopAnimate];
+    }
     [self deleteRecordFile];
-    
+    player = nil;
 }
 
 - (void)playButtonClick:(UIButton *)sender {
@@ -174,8 +172,6 @@ static CGFloat const recorderDuration = 600;
         self.playButton.selected = NO;
         [self stopPlay];
         [self stopAnimate];
-        self.recordButton.hidden = NO;
-        self.playButton.hidden = YES;
     }
 }
 
@@ -183,18 +179,22 @@ static CGFloat const recorderDuration = 600;
     [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
     [audioSession setActive:YES error:nil];
     if (self.recordUrl != nil){
-        player = [[AVAudioPlayer alloc] initWithContentsOfURL:self.recordUrl error:nil];
-        player.delegate = self;
+        if (!player) {
+            player = [[AVAudioPlayer alloc] initWithContentsOfURL:self.recordUrl error:nil];
+            player.delegate = self;
+            player.volume = 1;
+        }
         [player prepareToPlay];
-        player.volume = 1;
         [player play];
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(playProgressTime:) userInfo:nil repeats:YES];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(playProgressTime:) userInfo:nil repeats:YES];
     }
 }
 
 - (void)stopPlay {
     [player stop];
-    
+    [self.timer invalidate];
+    self.timer = nil;
+    [self nowPlayingRecordCurrentTime:0 duration:player.duration];
     [audioSession setActive:NO error:nil];
 }
 
@@ -208,13 +208,20 @@ static CGFloat const recorderDuration = 600;
 
 #pragma mark AVAudioRecorder设置
 - (void)startRecord {
+    if ([recorder prepareToRecord]) {
+        [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+        [audioSession setActive:YES error:nil];
+        [recorder record];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(progressTime:) userInfo:nil repeats:YES];
+    }
+}
+
+- (void)initRecorder {
     NSMutableDictionary *recordSetting = [[NSMutableDictionary alloc]init];
-    
-    //设置录音格式  AVFormatIDKey==kAudioFormatLinearPCM
     [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatLinearPCM] forKey:AVFormatIDKey];
-    //设置录音采样率(Hz) 如：AVSampleRateKey==8000/44100/96000（影响音频的质量）, 采样率必须要设为11025才能使转化成mp3格式后不会失真
-    [recordSetting setValue:[NSNumber numberWithFloat:11025.0] forKey:AVSampleRateKey];
-    //录音通道数  1 或 2 ，要转换成mp3格式必须为双通道
+    //设置录音采样率(Hz) 如：AVSampleRateKey==8000/44100/96000（影响音频的质量）
+    [recordSetting setValue:[NSNumber numberWithFloat:44100] forKey:AVSampleRateKey];
+    //录音通道数  1 或 2
     [recordSetting setValue:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];
     //线性采样位数  8、16、24、32
     [recordSetting setValue:[NSNumber numberWithInt:24] forKey:AVLinearPCMBitDepthKey];
@@ -227,33 +234,10 @@ static CGFloat const recorderDuration = 600;
         NSString *str = [NSString stringWithFormat:@"%d",num];
         messageId = [messageId stringByAppendingString:str];
     }
-
-    //存储录音文件
     self.recordUrl = [NSURL URLWithString:[NSTemporaryDirectory() stringByAppendingString:@"selfRecord.caf"]];
-    
-    NSError *error = nil;
     recorder = [[AVAudioRecorder alloc] initWithURL:self.recordUrl settings:recordSetting error:nil];
-
-    if (error != nil) {
-        
-    }
-    else {
-        if ([recorder prepareToRecord]) {
-            [recorder recordForDuration:recorderDuration];
-            recorder.delegate = self;
-            [recorder record];
-            self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(progressTime:) userInfo:nil repeats:YES];
-        }
-        
-        if (![recorder isRecording]) {
-            [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-            [audioSession setActive:YES error:nil];
-            
-            [recorder prepareToRecord];
-            [recorder peakPowerForChannel:0.0];
-            [recorder record];
-        }
-    }
+    [recorder recordForDuration:recorderDuration];
+    recorder.delegate = self;
 }
 
 - (void)progressTime:(NSTimer *)timer {
@@ -265,10 +249,10 @@ static CGFloat const recorderDuration = 600;
 }
 
 - (void)stopRecord {
-    [recorder stop];                          //录音停止
-    [audioSession setActive:NO error:nil];         //一定要在录音停止以后再
-    [_timer invalidate];
-    _timer = nil;
+    [recorder stop];
+    [audioSession setActive:NO error:nil];
+    [self.timer invalidate];
+    self.timer = nil;
 }
 
 - (void)startAnimate {
@@ -304,11 +288,13 @@ static CGFloat const recorderDuration = 600;
 
 #pragma mark - AVAudioPlayer delegate
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
-    [self.timer invalidate];
-    self.timer = nil;
-    [self stopAnimate];
-    self.playButton.selected = NO;
-    [self nowPlayingRecordCurrentTime:0 duration:recorderDuration];
+    if (flag) {
+        [self.timer invalidate];
+        self.timer = nil;
+        [self stopAnimate];
+        self.playButton.selected = NO;
+        [self nowPlayingRecordCurrentTime:0 duration:recorderDuration];
+    }
 }
 
 #pragma mark - BTThemeListenerProtocol
@@ -340,7 +326,6 @@ static CGFloat const recorderDuration = 600;
         _circlesImageView = [[UIImageView alloc] init];
         _circlesImageView.hidden = NO;
         _circlesImageView.image = BT_LOADIMAGE(@"ic_circle1");
-
     }
     return _circlesImageView;
 }
@@ -361,7 +346,6 @@ static CGFloat const recorderDuration = 600;
         [_playButton setTitle:@"开始播放" forState:UIControlStateNormal];
         [_playButton setTitle:@"停止播放" forState:UIControlStateSelected];
         [_playButton addTarget:self action:@selector(playButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-        
     }
     return _playButton;
 }
