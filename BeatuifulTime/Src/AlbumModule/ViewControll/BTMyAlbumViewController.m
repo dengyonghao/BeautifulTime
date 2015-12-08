@@ -10,6 +10,7 @@
 #import "BTAlbumCollectionViewCell.h"
 #import <Photos/Photos.h>
 #import "BTPhotoListViewController.h"
+#import "BTAddAlbumViewController.h"
 
 static  NSString *kcellIdentifier = @"kAlbumCollectionCellID";
 static int const showNumber = 2;
@@ -31,6 +32,8 @@ static CGFloat const iconHeight = 120.0f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.finishButton setHidden:NO];
+    [self.finishButton setTitle:@"添加" forState:UIControlStateNormal];
     self.titleLabel.text = @"我的相册";
     [self initDataSource];
     [self.bodyView addSubview:self.collectionView];
@@ -59,6 +62,11 @@ static CGFloat const iconHeight = 120.0f;
 
 - (void)dealloc {
     [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
+}
+
+- (void)finishButtonClick {
+    BTAddAlbumViewController *vc = [[BTAddAlbumViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - PHPhotoLibraryChangeObserver

@@ -10,7 +10,7 @@
 #import "BTThemeManager.h"
 
 #define baseHeaderViewHeight        48
-#define BACKBUTTONWIDTH             32
+#define BACKBUTTONWIDTH             48
 
 @interface BTBaseViewController ()<BTThemeListenerProtocol>
 

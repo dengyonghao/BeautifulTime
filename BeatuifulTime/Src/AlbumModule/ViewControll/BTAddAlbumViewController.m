@@ -8,6 +8,7 @@
 
 #import "BTAddAlbumViewController.h"
 #import <Photos/Photos.h>
+#import "BTMyAlbumViewController.h"
 
 @interface BTAddAlbumViewController () <UITextViewDelegate, UITextFieldDelegate>
 
@@ -21,6 +22,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.titleLabel.text = @"添加相册";
+    [self.finishButton setHidden:NO];
+    [self.finishButton setTitle:@"完成" forState:UIControlStateNormal];
     [self.bodyView addSubview:self.albumTitle];
     [self.bodyView addSubview:self.briefIntroduction];
     [self.bodyView addSubview:self.albumCover];
@@ -31,7 +35,10 @@
     [super viewDidLayoutSubviews];
     WS(weakSelf);
     [self.albumTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+        make.top.equalTo(weakSelf.bodyView).offset(10);
+        make.left.equalTo(weakSelf.bodyView).offset(10);
+        make.right.equalTo(weakSelf.bodyView).offset(-10);
+        make.height.equalTo(@(44));
     }];
     
     [self.briefIntroduction mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -45,6 +52,15 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)finishButtonClick {
+    [self AddAlbum];
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[BTMyAlbumViewController class]]) {
+            [self.navigationController popToViewController:controller animated:YES];
+        }
+    }
 }
 
 #pragma mark 添加手势识别器
@@ -90,6 +106,10 @@
 - (UITextField *)albumTitle {
     if (!_albumTitle) {
         _albumTitle = [[UITextField alloc] init];
+        _albumTitle.placeholder = @"相册名称";
+        CALayer *layer = [_albumTitle layer];
+        layer.borderColor = [UIColor grayColor].CGColor;
+        layer.borderWidth = 0.5;
         _albumTitle.delegate = self;
     }
     return _albumTitle;
