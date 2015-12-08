@@ -81,18 +81,14 @@ static CGFloat const iconHeight = 90.0f;
 #pragma mark - PHPhotoLibraryChangeObserver
 
 - (void)photoLibraryDidChange:(PHChange *)changeInstance {
-    // Check if there are changes to the assets we are showing.
+    
     PHFetchResultChangeDetails *collectionChanges = [changeInstance changeDetailsForFetchResult:self.fetchResult];
+    
     if (collectionChanges == nil) {
         return;
     }
     
-    /*
-     Change notifications may be made on a background queue. Re-dispatch to the
-     main queue before acting on the change as we'll be updating the UI.
-     */
     dispatch_async(dispatch_get_main_queue(), ^{
-        // Get the new fetch result.
         self.fetchResult = [collectionChanges fetchResultAfterChanges];
         
         UICollectionView *collectionView = self.collectionView;
