@@ -16,6 +16,10 @@ static BTJournalController *journalController;
 
 @implementation BTJournalController
 
+@synthesize photos = _photos;
+@synthesize currentDate = _currentDate;
+@synthesize record = _record;
+
 + (instancetype)sharedInstance
 {
     static dispatch_once_t onceToken;
@@ -30,7 +34,7 @@ static BTJournalController *journalController;
 {
     self = [super init];
     if (self) {
-        [BTJournalController sharedInstance].delegate = self;
+        
     }
     return self;
 }

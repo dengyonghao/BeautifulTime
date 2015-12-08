@@ -11,17 +11,16 @@
 
 static CGSize AssetGridThumbnailSize;
 static NSInteger currentIndex;
+static NSInteger headIndex;
+static NSInteger tailIndex;
+static NSInteger cacheNumber = 15;
 
 @interface BTPhotoDetailsViewController () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableDictionary *dataSource;
 @property (nonatomic, strong) PHCachingImageManager *imageManager;
-@property (nonatomic, strong) UIImageView *currentImageView;
-@property (nonatomic, strong) UIImageView *nextImageView;
-@property (nonatomic, strong) UIImageView *nextCacheImageView;
-@property (nonatomic, strong) UIImageView *previousImageView;
-@property (nonatomic, strong) UIImageView *previousCacheImageView;
+@property (nonatomic, strong) PHImageRequestOptions *options;
 
 @end
 
@@ -32,17 +31,7 @@ static NSInteger currentIndex;
     self.finishButton.hidden = NO;
     [self.finishButton setTitle:@"编辑" forState:UIControlStateNormal];
     [self.view addSubview:self.scrollView];
-    [self.scrollView addSubview:self.currentImageView];
-    [self.scrollView addSubview:self.nextImageView];
-    [self.scrollView addSubview:self.previousImageView];
-    [self.scrollView addSubview:self.nextCacheImageView];
-    [self.scrollView addSubview:self.previousCacheImageView];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self parseAllPhoto];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-        });
-    });
+    headIndex = tailIndex = self.index;
     
 }
 
@@ -51,13 +40,7 @@ static NSInteger currentIndex;
     CGFloat scale = [UIScreen mainScreen].scale;
     AssetGridThumbnailSize = CGSizeMake(BT_SCREEN_WIDTH * scale, (BT_SCREEN_HEIGHT - 48 * 2) * scale);
     currentIndex = self.index;
-
-    [self photoParseWithIndex:currentIndex imageView:self.currentImageView];
-    [self photoParseWithIndex:currentIndex - 1 imageView:self.previousImageView];
-    [self photoParseWithIndex:currentIndex + 1 imageView:self.nextImageView];
-    [self photoParseWithIndex:currentIndex - 2 imageView:self.previousCacheImageView];
-    [self photoParseWithIndex:currentIndex + 2 imageView:self.nextCacheImageView];
-    
+    [self parsePhoto];
     [self.scrollView scrollRectToVisible:CGRectMake(BT_SCREEN_WIDTH * (currentIndex - 1), 0, BT_SCREEN_WIDTH , BT_SCREEN_HEIGHT) animated:NO];
     
 }
@@ -78,22 +61,22 @@ static NSInteger currentIndex;
     if (index < 0 || index > self.assets.count - 1) {
         return;
     }
-    NSInteger x = index * BT_SCREEN_WIDTH;
-    [imageView setFrame:CGRectMake(x, 0, BT_SCREEN_WIDTH, BT_SCREEN_HEIGHT)];
+    
     if ([self.dataSource objectForKey:[[NSString alloc] initWithFormat:@"%ld",(long)index]]) {
-        UIImage *img = [self.dataSource objectForKey:[[NSString alloc] initWithFormat:@"%ld",(long)index]];
-        imageView.image = img;
         return;
     }
-    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-    options.resizeMode = PHImageRequestOptionsResizeModeExact;
-    options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+    UIImageView *imgView = [[UIImageView alloc] init];
+    imgView.contentMode = UIViewContentModeScaleAspectFit;
+    NSInteger x = index * BT_SCREEN_WIDTH;
+    [imgView setFrame:CGRectMake(x, 0, BT_SCREEN_WIDTH, BT_SCREEN_HEIGHT)];
+    [self.scrollView addSubview:imgView];
+    
     [self.imageManager requestImageForAsset:self.assets[index]
                             targetSize:AssetGridThumbnailSize
                            contentMode:PHImageContentModeAspectFit
-                               options:options
+                               options:self.options
                          resultHandler:^(UIImage *result, NSDictionary *info) {
-                             imageView.image = result;
+                             imgView.image = result;
                          }];
 }
 
@@ -103,13 +86,11 @@ static NSInteger currentIndex;
         if ([self.dataSource objectForKey:[[NSString alloc] initWithFormat:@"%ld",index]]) {
             continue;
         }
-        PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-        options.resizeMode = PHImageRequestOptionsResizeModeExact;
-        options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+        
         [self.imageManager requestImageForAsset:self.assets[i]
                                      targetSize:AssetGridThumbnailSize
                                     contentMode:PHImageContentModeAspectFit
-                                        options:options
+                                        options:self.options
                                   resultHandler:^(UIImage *result, NSDictionary *info) {
                                       [self.dataSource setObject:result forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
                                   }];
@@ -117,26 +98,81 @@ static NSInteger currentIndex;
     }
 }
 
+- (void)parsePhoto {
+    for (int i = 0; i <= cacheNumber; i++) {
+        if (headIndex == tailIndex) {
+            [self parsePhotoWithIndex:headIndex];
+            headIndex++;
+            tailIndex--;
+            continue;
+        }
+        if (tailIndex >= 0) {
+            [self parsePhotoWithIndex:tailIndex--];
+        }
+        if (headIndex < self.assets.count) {
+            [self parsePhotoWithIndex:headIndex++];
+        }
+    }
+}
+
+- (void)parseRightPhoto {
+    for (int i = 0; i <= cacheNumber; i++) {
+        if (headIndex < self.assets.count) {
+            [self parsePhotoWithIndex:headIndex++];
+        }
+    }
+}
+
+- (void)parseLifePhoto {
+    for (int i = 0; i <= cacheNumber; i++) {
+        if (tailIndex >= 0) {
+            [self parsePhotoWithIndex:tailIndex--];
+        }
+    }
+}
+
+- (void)parsePhotoWithIndex:(NSInteger)index {
+    if ([self.dataSource objectForKey:[[NSString alloc] initWithFormat:@"%ld",index]]) {
+        return;
+    }
+    
+    UIImageView *imgView = [[UIImageView alloc] init];
+    imgView.contentMode = UIViewContentModeScaleAspectFit;
+    NSInteger x = index * BT_SCREEN_WIDTH;
+    [imgView setFrame:CGRectMake(x, 0, BT_SCREEN_WIDTH, BT_SCREEN_HEIGHT)];
+    [self.scrollView addSubview:imgView];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self.imageManager requestImageForAsset:self.assets[index]
+                                     targetSize:AssetGridThumbnailSize
+                                    contentMode:PHImageContentModeAspectFit
+                                        options:self.options
+                                  resultHandler:^(UIImage *result, NSDictionary *info) {
+                                      [self.dataSource setObject:result forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
+                                      imgView.image = result;
+                                  }];
+    });
+    
+}
+
 - (void)finishButtonClick {
 
 }
 
 
-#pragma mark - 滚动视图代理方法
-// 完成减速意味着页面切换完成
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    NSInteger pageNo = scrollView.contentOffset.x / scrollView.bounds.size.width;
+#pragma mark - scrollview delegate
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    NSInteger pageNo = scrollView.contentOffset.x / scrollView.bounds.size.width;
     if (pageNo == currentIndex) {
         return;
     }
+    if (pageNo > currentIndex && headIndex - pageNo < cacheNumber + cacheNumber / 2) {
+        [self parseRightPhoto];
+    }
+    else if (pageNo - tailIndex < cacheNumber + cacheNumber / 2) {
+        [self parseLifePhoto];
+    }
     currentIndex = pageNo;
-    [self photoParseWithIndex:currentIndex imageView:self.currentImageView];
-    [self photoParseWithIndex:currentIndex - 1 imageView:self.previousImageView];
-    [self photoParseWithIndex:currentIndex + 1 imageView:self.nextImageView];
-    [self photoParseWithIndex:currentIndex - 2 imageView:self.previousCacheImageView];
-    [self photoParseWithIndex:currentIndex + 2 imageView:self.nextCacheImageView];
 }
 
 - (UIScrollView *)scrollView {
@@ -192,45 +228,13 @@ static NSInteger currentIndex;
     return _imageManager;
 }
 
-- (UIImageView *)currentImageView {
-    if (!_currentImageView) {
-        _currentImageView = [[UIImageView alloc] init];
-        _currentImageView.contentMode = UIViewContentModeScaleAspectFit;
+-(PHImageRequestOptions *)options {
+    if (!_options) {
+        _options = [[PHImageRequestOptions alloc] init];
+        _options.resizeMode = PHImageRequestOptionsResizeModeExact;
+        _options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
     }
-    return _currentImageView;
+    return _options;
 }
-
-- (UIImageView *)previousImageView {
-    if (!_previousImageView) {
-        _previousImageView = [[UIImageView alloc] init];
-        _previousImageView.contentMode = UIViewContentModeScaleAspectFit;
-    }
-    return _previousImageView;
-}
-
-- (UIImageView *)nextImageView {
-    if (!_nextImageView) {
-        _nextImageView = [[UIImageView alloc] init];
-        _nextImageView.contentMode = UIViewContentModeScaleAspectFit;
-    }
-    return _nextImageView;
-}
-
-- (UIImageView *)previousCacheImageView {
-    if (!_previousCacheImageView) {
-        _previousCacheImageView = [[UIImageView alloc] init];
-        _previousCacheImageView.contentMode = UIViewContentModeScaleAspectFit;
-    }
-    return _previousCacheImageView;
-}
-
-- (UIImageView *)nextCacheImageView {
-    if (!_nextCacheImageView) {
-        _nextCacheImageView = [[UIImageView alloc] init];
-        _nextCacheImageView.contentMode = UIViewContentModeScaleAspectFit;
-    }
-    return _nextCacheImageView;
-}
-
 
 @end

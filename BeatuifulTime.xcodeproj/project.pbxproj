@@ -223,9 +223,9 @@
 		B445070D1BCFFB9F008BD5AC /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B44507001BCFFB9F008BD5AC /* View+MASAdditions.m */; };
 		B445070E1BCFFB9F008BD5AC /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B44507031BCFFB9F008BD5AC /* ViewController+MASAdditions.m */; };
 		B445071D1BD0044B008BD5AC /* BTGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B445071C1BD0044B008BD5AC /* BTGuideViewController.m */; };
-		B44579F21C140A0900CB10DC /* BTTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44579F11C140A0900CB10DC /* BTTimelineViewController.m */; settings = {ASSET_TAGS = (); }; };
-		B44579F51C140B1900CB10DC /* BTAddTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44579F41C140B1900CB10DC /* BTAddTimelineViewController.m */; settings = {ASSET_TAGS = (); }; };
-		B44579FC1C140FC300CB10DC /* BTSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44579FB1C140FC300CB10DC /* BTSettingViewController.m */; settings = {ASSET_TAGS = (); }; };
+		B44579F21C140A0900CB10DC /* BTTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44579F11C140A0900CB10DC /* BTTimelineViewController.m */; };
+		B44579F51C140B1900CB10DC /* BTAddTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44579F41C140B1900CB10DC /* BTAddTimelineViewController.m */; };
+		B44579FC1C140FC300CB10DC /* BTSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44579FB1C140FC300CB10DC /* BTSettingViewController.m */; };
 		B46AF5C71C00DCCF00916DEE /* BTJournalController.m in Sources */ = {isa = PBXBuildFile; fileRef = B46AF5C61C00DCCF00916DEE /* BTJournalController.m */; };
 		B4FABBCC1C018D4B00213AB7 /* BTLanguageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBCB1C018D4B00213AB7 /* BTLanguageUtil.m */; };
 		B4FABBD91C020E1500213AB7 /* BTSelectPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBD81C020E1500213AB7 /* BTSelectPhotosViewController.m */; };
@@ -1801,10 +1801,7 @@
 		65E2D3251BCFC965001E29A9 = {
 			isa = PBXGroup;
 			children = (
-				B4FABC0C1C02115500213AB7 /* libresolv.tbd */,
-				65F52A5A1BFDB4AA00351941 /* AVFoundation.framework */,
-				65DBD0BF1BD77D1F00784DAC /* Security.framework */,
-				65DBD0BD1BD77D1300784DAC /* CFNetwork.framework */,
+				65F312E11C15A69F00EA926C /* Frameworks */,
 				65E2D3301BCFC965001E29A9 /* BeatuifulTime */,
 				65E2D34D1BCFC966001E29A9 /* BeatuifulTimeTests */,
 				65E2D32F1BCFC965001E29A9 /* Products */,
@@ -1924,6 +1921,17 @@
 				65E2D36C1BCFCD84001E29A9 /* blueTheme.bundle */,
 			);
 			path = Themes;
+			sourceTree = "<group>";
+		};
+		65F312E11C15A69F00EA926C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				65F52A5A1BFDB4AA00351941 /* AVFoundation.framework */,
+				65DBD0BF1BD77D1F00784DAC /* Security.framework */,
+				65DBD0BD1BD77D1300784DAC /* CFNetwork.framework */,
+				B4FABC0C1C02115500213AB7 /* libresolv.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		65F426291BD9F5C100295796 /* Gategory */ = {

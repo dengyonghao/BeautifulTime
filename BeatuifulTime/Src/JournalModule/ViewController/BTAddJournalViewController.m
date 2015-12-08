@@ -12,6 +12,7 @@
 #import "Journal.h"
 #import "BTNetManager.h"
 #import "BTRecordViewController.h"
+#import "BTJournalController.h"
 
 //#define WEATHERINFO_HOST @"http://api.map.baidu.com"
 //
@@ -94,7 +95,10 @@
     }];
     
     [self.site mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+        make.left.equalTo(weakSelf.toolsView).offset(10);
+        make.top.equalTo(weakSelf.toolsView).offset(10);
+        make.width.equalTo(@(60));
+        make.height.equalTo(@(40));
     }];
     
     [self.weather mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -108,7 +112,7 @@
     [self.records mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(weakSelf.toolsView);
         make.centerX.equalTo(weakSelf.toolsView);
-        make.width.equalTo(@(80));
+        make.width.equalTo(@(60));
         make.height.equalTo(@(40));
     }];
     
@@ -169,11 +173,10 @@
         for (CLPlacemark * placemark in placemarks) {
             NSDictionary *info = [placemark addressDictionary];
             NSString * city = [info objectForKey:@"City"];
-            
+            [self.site setTitle:city forState:UIControlStateNormal];
         }
     }];
     [self.locationManager stopUpdatingLocation];
-    
 }
 
 
@@ -181,10 +184,21 @@
     [super didReceiveMemoryWarning];
 }
 
+- (NSString *)getCurrentDate {
+    NSDate *currentDate = [NSDate date];
+    NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];
+    [dateformatter setDateFormat:@"YYYY-MM-dd"];
+    NSString *currentDateString = [dateformatter stringFromDate:currentDate];
+    return currentDateString;
+}
+
 - (void)finishButtonClick {
     Journal *newJournal = [NSEntityDescription insertNewObjectForEntityForName:@"Journal" inManagedObjectContext:[AppDelegate getInstance].coreDataHelper.context];
     NSData* data = [self.content.text dataUsingEncoding:NSUTF8StringEncoding];
     newJournal.journalContent = data;
+    newJournal.journalDate = [NSDate date];
+    newJournal.site = self.site.titleLabel.text;
+    newJournal.records = [BTJournalController sharedInstance].record;
     [[AppDelegate getInstance].coreDataHelper saveContext];
 }
 
@@ -196,7 +210,7 @@
 - (UIView *)toolsView {
     if (!_toolsView) {
         _toolsView = [[UIView alloc] init];
-        _toolsView.backgroundColor = [UIColor yellowColor];
+        _toolsView.backgroundColor = [UIColor greenColor];
     }
     return _toolsView;
 }

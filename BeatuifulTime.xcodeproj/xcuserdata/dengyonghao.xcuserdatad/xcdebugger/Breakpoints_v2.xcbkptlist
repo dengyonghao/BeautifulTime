@@ -392,11 +392,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeatuifulTime/Src/AlbumModule/ViewControll/BTPhotoDetailsViewController.m"
-            timestampString = "470914624.464763"
+            timestampString = "471267715.238424"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
             landmarkName = "-scrollView"
             landmarkType = "5">
          </BreakpointContent>
@@ -408,11 +408,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeatuifulTime/Src/AlbumModule/ViewControll/BTPhotoDetailsViewController.m"
-            timestampString = "470914624.464763"
+            timestampString = "471257797.762581"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "-parseAllPhoto"
             landmarkType = "5">
          </BreakpointContent>
@@ -424,12 +424,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeatuifulTime/Src/AlbumModule/ViewControll/BTPhotoDetailsViewController.m"
-            timestampString = "470914639.197262"
+            timestampString = "471257797.762581"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "-photoParseWithIndex:imageView:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeatuifulTime/Src/AlbumModule/ViewControll/BTPhotoDetailsViewController.m"
+            timestampString = "471257797.762581"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "-parsePhotoWithIndex:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

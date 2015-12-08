@@ -11,6 +11,7 @@
 #import "BTJournalController.h"
 #import "BTAddJournalViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import "BTJournalController.h"
 
 static CGFloat const durationCircleSize = 112.0f;
 static CGFloat const recorderDuration = 600;
@@ -140,7 +141,11 @@ static CGFloat const recorderDuration = 600;
 }
 
 - (void)saveButtonClick:(UIButton *)sender {
-    
+    if (self.recordUrl) {
+        NSString *filePath = [self.recordUrl absoluteString];
+        NSData *data = [[NSData alloc] initWithContentsOfFile:filePath];
+        [[BTJournalController sharedInstance] setRecord:data];
+    }
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if ([controller isKindOfClass:[BTAddJournalViewController class]]) {
             [self.navigationController popToViewController:controller animated:YES];
