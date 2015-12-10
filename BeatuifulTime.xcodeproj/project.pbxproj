@@ -208,6 +208,7 @@
 		65F426441BDA281400295796 /* BTContacterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F426431BDA281400295796 /* BTContacterModel.m */; };
 		65F52A5B1BFDB4AA00351941 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F52A5A1BFDB4AA00351941 /* AVFoundation.framework */; };
 		65F52A5F1BFDC88700351941 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65F52A611BFDC88700351941 /* Localizable.strings */; };
+		65F9E2561C17CA8F0038774D /* BTJournalListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F9E2551C17CA8F0038774D /* BTJournalListItem.m */; };
 		B4404F8C1BE7B32000226334 /* Journal+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = B4404F891BE7B32000226334 /* Journal+CoreDataProperties.m */; };
 		B4404F8D1BE7B32000226334 /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = B4404F8B1BE7B32000226334 /* Journal.m */; };
 		B44506E71BCFFAFD008BD5AC /* BTHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506E61BCFFAFD008BD5AC /* BTHomePageViewController.m */; };
@@ -659,6 +660,8 @@
 		65F52A5C1BFDC76E00351941 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		65F52A601BFDC88700351941 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		65F52A621BFDC8AB00351941 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		65F9E2541C17CA8F0038774D /* BTJournalListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTJournalListItem.h; sourceTree = "<group>"; };
+		65F9E2551C17CA8F0038774D /* BTJournalListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTJournalListItem.m; sourceTree = "<group>"; };
 		B4404F881BE7B32000226334 /* Journal+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Journal+CoreDataProperties.h"; sourceTree = "<group>"; };
 		B4404F891BE7B32000226334 /* Journal+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Journal+CoreDataProperties.m"; sourceTree = "<group>"; };
 		B4404F8A1BE7B32000226334 /* Journal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Journal.h; sourceTree = "<group>"; };
@@ -965,6 +968,8 @@
 			children = (
 				655124371BFC804C001F1041 /* BTCircularProgressButton.h */,
 				655124381BFC804C001F1041 /* BTCircularProgressButton.m */,
+				65F9E2541C17CA8F0038774D /* BTJournalListItem.h */,
+				65F9E2551C17CA8F0038774D /* BTJournalListItem.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2356,6 +2361,7 @@
 				65DBD1BC1BD7A2A100784DAC /* XMPPRoomHybridStorage.m in Sources */,
 				65DBD1C51BD7A2A100784DAC /* XMPPvCard.xcdatamodeld in Sources */,
 				6500E7491BEF395C007158BF /* AFHTTPSessionManager.m in Sources */,
+				65F9E2561C17CA8F0038774D /* BTJournalListItem.m in Sources */,
 				B4FABBD91C020E1500213AB7 /* BTSelectPhotosViewController.m in Sources */,
 				6500E74B1BEF395C007158BF /* AFSecurityPolicy.m in Sources */,
 				65DBD1B71BD7A2A100784DAC /* XMPPRoom.xcdatamodeld in Sources */,

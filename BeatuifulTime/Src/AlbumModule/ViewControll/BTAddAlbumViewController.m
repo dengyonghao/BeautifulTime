@@ -29,6 +29,7 @@
     [self.bodyView addSubview:self.briefIntroduction];
     [self.bodyView addSubview:self.albumCover];
     [self addGesture];
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(keyboardWasHidden:) name:UIKeyboardDidHideNotification object:nil];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -80,6 +81,14 @@
     [textFieldView resignFirstResponder];
     return NO;
 }
+
+- (void) keyboardWasHidden:(NSNotification *) notif {
+    
+    if (![self.albumTitle isFirstResponder]) {
+        [self.albumTitle becomeFirstResponder];
+    }
+}
+
 
 #pragma mark textview delegate
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{

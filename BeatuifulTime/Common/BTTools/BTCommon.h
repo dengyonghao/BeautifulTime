@@ -73,6 +73,19 @@ static inline UIImage* naviimage_from_mainbundle(NSString* filename_and_type)
 // 屏幕的宽度
 #define     BT_SCREEN_WIDTH      (IOS8_OR_HIGHER?[UIScreen mainScreen].bounds.size.width:[UIScreen mainScreen].bounds.size.width)
 
+// View的right
+#define BT_ViewRight(View)              (View.frame.origin.x + View.frame.size.width)
+// View的left
+#define BT_ViewLeft(View)               (View.frame.origin.x)
+// View的bottom
+#define BT_ViewBottom(View)             (View.frame.origin.y + View.frame.size.height)
+// View的top
+#define BT_ViewTop(View)                (View.frame.origin.y)
+// View的width
+#define BT_ViewWidth(View)              (View.frame.size.width)
+// View的height
+#define BT_ViewHeight(View)             (View.frame.size.height)
+
 //判断设备是不是6Plus
 #define iPhone6Plus ([UIScreen instancesRespondToSelector:@selector(scale)]?[[UIScreen mainScreen] scale]:1) >= 2.8
 

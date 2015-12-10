@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BTJournalListViewController : UIViewController
+@interface BTJournalListViewController : BTBaseViewController
 
 @end
