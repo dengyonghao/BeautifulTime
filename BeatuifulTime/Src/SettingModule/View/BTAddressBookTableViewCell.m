@@ -52,18 +52,18 @@
 
 - (void)layoutSubviews {
     
-    self.nameLabel.frame = CGRectMake(16, (CL_ViewHeight(self) - 44) / 2.0, 300, 22);
-    self.nameLabel.textColor = CL_HEXRGBCOLOR(CL_CONT_E);
+    self.nameLabel.frame = CGRectMake(16, (BT_ViewHeight(self) - 44) / 2.0, 300, 22);
+//    self.nameLabel.textColor = BT_HEXRGBCOLOR(CL_CONT_E);
     
     CGFloat pullbuttonWidth = 16;
-    self.pullButton.frame = CGRectMake(CL_ViewWidth(self) - 8 - pullbuttonWidth - 64, (CL_ViewHeight(self) - 44) / 2.0 + 20, pullbuttonWidth, pullbuttonWidth);
+    self.pullButton.frame = CGRectMake(BT_ViewWidth(self) - 8 - pullbuttonWidth - 64, (BT_ViewHeight(self) - 44) / 2.0 + 20, pullbuttonWidth, pullbuttonWidth);
 //    [self.pullButton setEnlargeEdgeWithTop:30 right:10 bottom:30 left:20];
     
-    self.telLabel.frame = CGRectMake(CL_ViewLeft(self.nameLabel), CL_ViewBottom(self.nameLabel), 300, 22);
+    self.telLabel.frame = CGRectMake(BT_ViewLeft(self.nameLabel), BT_ViewBottom(self.nameLabel), 300, 22);
     
-    self.line.frame = CGRectMake(CL_ViewLeft(self.nameLabel), CL_ViewHeight(self) - 0.5, CL_ViewWidth(self.pullButton) + CL_ViewLeft(self.pullButton) - CL_ViewLeft(self.nameLabel), 0.5);
+    self.line.frame = CGRectMake(BT_ViewLeft(self.nameLabel), BT_ViewHeight(self) - 0.5, BT_ViewWidth(self.pullButton) + BT_ViewLeft(self.pullButton) - BT_ViewLeft(self.nameLabel), 0.5);
     
-    self.selectedBackgroundView.frame = CGRectMake(CL_ViewLeft(self.nameLabel), 0, CL_ViewWidth(self.line), CL_ViewHeight(self));
+    self.selectedBackgroundView.frame = CGRectMake(BT_ViewLeft(self.nameLabel), 0, BT_ViewWidth(self.line), BT_ViewHeight(self));
     
     show = NO;
 }

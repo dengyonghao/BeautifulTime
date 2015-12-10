@@ -12,7 +12,5 @@
 
 @interface BTNetManager : NSObject
 
-+ (AFHTTPRequestOperation *) netManagerReqeustWeatherInfo:(NSString *)cityName
-                                                    successCallback:(DictionaryResponseBlock)successCallback
-                                                       failCallback:(errorBlock)failCallback;
+
 @end
