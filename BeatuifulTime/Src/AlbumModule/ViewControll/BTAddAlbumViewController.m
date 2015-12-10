@@ -42,13 +42,20 @@
         make.height.equalTo(@(44));
     }];
     
-    [self.briefIntroduction mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+    [self.albumCover mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakSelf.albumTitle).offset(10 + 44);
+        make.left.equalTo(weakSelf.albumTitle).offset(10);
+        make.width.equalTo(@(96));
+        make.height.equalTo(@(96));
     }];
     
-    [self.albumCover mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+    [self.briefIntroduction mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakSelf.albumCover);
+        make.left.equalTo(weakSelf.albumCover).offset(96 + 10);
+        make.right.equalTo(weakSelf.bodyView).offset(-10);
+        make.height.equalTo(@(96));
     }];
+    
 }
 
 - (void)didReceiveMemoryWarning {
