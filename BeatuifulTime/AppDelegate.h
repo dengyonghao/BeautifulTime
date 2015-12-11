@@ -22,5 +22,7 @@
 - (void)enterGuidePage;
 //进入首页
 - (void)enterHomePage;
+
+-(UIViewController*)currentTopVc;
 @end
 

@@ -9,10 +9,13 @@
 #import "BTNetManager+BTAddJournal.h"
 
 #define WEATHERINFO_HOST @"https://api.heweather.com"
-
 #define API_PATH_WEATHER @"/x3/weather"
-
 #define API_AK @"2ceb7210fc614a1a8211b304dbd86ab0"
+
+//http://www.heweather.com/my/service
+//cbyniypeu    :  832b67b1d8d44bbfab99c55b7a76e26b
+//1179132021   :  2ceb7210fc614a1a8211b304dbd86ab0
+//1084854344   :  ddc5ef38379f4d89840cb0eb12800bde
 
 @implementation BTNetManager (BTAddJournal)
 

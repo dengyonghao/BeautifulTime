@@ -132,7 +132,7 @@
             break;
     }
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-    [alert show];
+//    [alert show];
 }
 
 //定位代理经纬度回调

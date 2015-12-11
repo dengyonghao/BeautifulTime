@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		650022BE1C1A6E4F0037D32E /* BTAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 650022BD1C1A6E4F0037D32E /* BTAddressBook.m */; };
+		650022C31C1A6E9D0037D32E /* BTAddressBookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 650022C11C1A6E9D0037D32E /* BTAddressBookTableViewCell.m */; };
+		650022CF1C1A72430037D32E /* BTAddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 650022CE1C1A72430037D32E /* BTAddressBookViewController.m */; };
+		650022D21C1A731A0037D32E /* BTAddressBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 650022D11C1A731A0037D32E /* BTAddressBookManager.m */; };
 		6500E71E1BEF3935007158BF /* BTNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6500E71D1BEF3935007158BF /* BTNetManager.m */; };
 		6500E7471BEF395C007158BF /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6500E7221BEF395C007158BF /* AFHTTPRequestOperation.m */; };
 		6500E7481BEF395C007158BF /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6500E7241BEF395C007158BF /* AFHTTPRequestOperationManager.m */; };
@@ -212,8 +216,6 @@
 		65F52A5F1BFDC88700351941 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65F52A611BFDC88700351941 /* Localizable.strings */; };
 		65F9E2561C17CA8F0038774D /* BTJournalListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F9E2551C17CA8F0038774D /* BTJournalListItem.m */; };
 		B43EF74A1C187A78004FB2B5 /* BTJournalDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B43EF7491C187A78004FB2B5 /* BTJournalDetailsViewController.m */; };
-		B43EF76B1C188140004FB2B5 /* BTAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = B43EF76A1C188140004FB2B5 /* BTAddressBook.m */; };
-		B43EF76E1C188238004FB2B5 /* BTAddressBookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B43EF76D1C188238004FB2B5 /* BTAddressBookTableViewCell.m */; };
 		B4404F8C1BE7B32000226334 /* Journal+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = B4404F891BE7B32000226334 /* Journal+CoreDataProperties.m */; };
 		B4404F8D1BE7B32000226334 /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = B4404F8B1BE7B32000226334 /* Journal.m */; };
 		B44506E71BCFFAFD008BD5AC /* BTHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44506E61BCFFAFD008BD5AC /* BTHomePageViewController.m */; };
@@ -265,6 +267,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		650022BC1C1A6E4F0037D32E /* BTAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAddressBook.h; sourceTree = "<group>"; };
+		650022BD1C1A6E4F0037D32E /* BTAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAddressBook.m; sourceTree = "<group>"; };
+		650022C01C1A6E9D0037D32E /* BTAddressBookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAddressBookTableViewCell.h; sourceTree = "<group>"; };
+		650022C11C1A6E9D0037D32E /* BTAddressBookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAddressBookTableViewCell.m; sourceTree = "<group>"; };
+		650022CD1C1A72430037D32E /* BTAddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAddressBookViewController.h; sourceTree = "<group>"; };
+		650022CE1C1A72430037D32E /* BTAddressBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAddressBookViewController.m; sourceTree = "<group>"; };
+		650022D01C1A731A0037D32E /* BTAddressBookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAddressBookManager.h; sourceTree = "<group>"; };
+		650022D11C1A731A0037D32E /* BTAddressBookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAddressBookManager.m; sourceTree = "<group>"; };
 		6500E7181BEF374E007158BF /* BTBlockType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBlockType.h; sourceTree = "<group>"; };
 		6500E71C1BEF3935007158BF /* BTNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTNetManager.h; sourceTree = "<group>"; };
 		6500E71D1BEF3935007158BF /* BTNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTNetManager.m; sourceTree = "<group>"; };
@@ -673,10 +683,6 @@
 		65F9E2551C17CA8F0038774D /* BTJournalListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTJournalListItem.m; sourceTree = "<group>"; };
 		B43EF7481C187A78004FB2B5 /* BTJournalDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTJournalDetailsViewController.h; sourceTree = "<group>"; };
 		B43EF7491C187A78004FB2B5 /* BTJournalDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTJournalDetailsViewController.m; sourceTree = "<group>"; };
-		B43EF7691C188140004FB2B5 /* BTAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAddressBook.h; sourceTree = "<group>"; };
-		B43EF76A1C188140004FB2B5 /* BTAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAddressBook.m; sourceTree = "<group>"; };
-		B43EF76C1C188238004FB2B5 /* BTAddressBookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAddressBookTableViewCell.h; sourceTree = "<group>"; };
-		B43EF76D1C188238004FB2B5 /* BTAddressBookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAddressBookTableViewCell.m; sourceTree = "<group>"; };
 		B4404F881BE7B32000226334 /* Journal+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Journal+CoreDataProperties.h"; sourceTree = "<group>"; };
 		B4404F891BE7B32000226334 /* Journal+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Journal+CoreDataProperties.m"; sourceTree = "<group>"; };
 		B4404F8A1BE7B32000226334 /* Journal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Journal.h; sourceTree = "<group>"; };
@@ -782,6 +788,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		650022BF1C1A6E9D0037D32E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				650022C01C1A6E9D0037D32E /* BTAddressBookTableViewCell.h */,
+				650022C11C1A6E9D0037D32E /* BTAddressBookTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		650022C21C1A6E9D0037D32E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				650022CD1C1A72430037D32E /* BTAddressBookViewController.h */,
+				650022CE1C1A72430037D32E /* BTAddressBookViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		6500E71B1BEF38C3007158BF /* BTNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -2017,9 +2041,9 @@
 		B43EF7551C188078004FB2B5 /* contactModule */ = {
 			isa = PBXGroup;
 			children = (
+				650022BF1C1A6E9D0037D32E /* View */,
+				650022C21C1A6E9D0037D32E /* ViewController */,
 				B43EF7561C188078004FB2B5 /* Model */,
-				B43EF7571C188078004FB2B5 /* View */,
-				B43EF7581C188078004FB2B5 /* ViewController */,
 			);
 			path = contactModule;
 			sourceTree = "<group>";
@@ -2027,23 +2051,13 @@
 		B43EF7561C188078004FB2B5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				650022BC1C1A6E4F0037D32E /* BTAddressBook.h */,
+				650022BD1C1A6E4F0037D32E /* BTAddressBook.m */,
 				654B264A1C192F0E002E965C /* Data */,
+				650022D01C1A731A0037D32E /* BTAddressBookManager.h */,
+				650022D11C1A731A0037D32E /* BTAddressBookManager.m */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		B43EF7571C188078004FB2B5 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		B43EF7581C188078004FB2B5 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		B44506D01BCFEE48008BD5AC /* Src */ = {
@@ -2205,8 +2219,6 @@
 		B44579F71C140FA700CB10DC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B43EF7691C188140004FB2B5 /* BTAddressBook.h */,
-				B43EF76A1C188140004FB2B5 /* BTAddressBook.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2214,8 +2226,6 @@
 		B44579F81C140FA700CB10DC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B43EF76C1C188238004FB2B5 /* BTAddressBookTableViewCell.h */,
-				B43EF76D1C188238004FB2B5 /* BTAddressBookTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2398,6 +2408,7 @@
 			files = (
 				B445070B1BCFFB9F008BD5AC /* NSArray+MASAdditions.m in Sources */,
 				65DBD0A51BD77CE700784DAC /* DispatchQueueLogFormatter.m in Sources */,
+				650022C31C1A6E9D0037D32E /* BTAddressBookTableViewCell.m in Sources */,
 				65DBD1F31BD7A2A100784DAC /* XMPPAttentionModule.m in Sources */,
 				65DBD1CE1BD7A2A100784DAC /* XMPPvCardTempEmail.m in Sources */,
 				65DBD1E01BD7A2A100784DAC /* XMPPCapsCoreDataStorageObject.m in Sources */,
@@ -2431,7 +2442,6 @@
 				6500E74B1BEF395C007158BF /* AFSecurityPolicy.m in Sources */,
 				654B269E1C19A75E002E965C /* BTNetManager+BTAddJournal.m in Sources */,
 				65DBD1B71BD7A2A100784DAC /* XMPPRoom.xcdatamodeld in Sources */,
-				B43EF76E1C188238004FB2B5 /* BTAddressBookTableViewCell.m in Sources */,
 				65DBD1E81BD7A2A100784DAC /* XMPPvCardAvatarModule.m in Sources */,
 				65DBD0951BD77CE700784DAC /* XMPPAnonymousAuthentication.m in Sources */,
 				65DBD1C31BD7A2A100784DAC /* XMPPMUC.m in Sources */,
@@ -2466,6 +2476,7 @@
 				B44579F21C140A0900CB10DC /* BTTimelineViewController.m in Sources */,
 				B44506E71BCFFAFD008BD5AC /* BTHomePageViewController.m in Sources */,
 				65F426441BDA281400295796 /* BTContacterModel.m in Sources */,
+				650022CF1C1A72430037D32E /* BTAddressBookViewController.m in Sources */,
 				6500E7481BEF395C007158BF /* AFHTTPRequestOperationManager.m in Sources */,
 				B4FABC041C020FE600213AB7 /* SDWebImagePrefetcher.m in Sources */,
 				6500E7511BEF395C007158BF /* UIActivityIndicatorView+AFNetworking.m in Sources */,
@@ -2493,7 +2504,6 @@
 				65DBD1E21BD7A2A100784DAC /* XMPPCapabilities.m in Sources */,
 				B4FABC051C020FE600213AB7 /* UIButton+WebCache.m in Sources */,
 				65DBD1E41BD7A2A100784DAC /* XMPPMessageArchiving_Contact_CoreDataObject.m in Sources */,
-				B43EF76B1C188140004FB2B5 /* BTAddressBook.m in Sources */,
 				650498941BFAD3F70072AE47 /* BTMyAlbumViewController.m in Sources */,
 				655124361BFC7F43001F1041 /* BTRecordViewController.m in Sources */,
 				B4404F8D1BE7B32000226334 /* Journal.m in Sources */,
@@ -2531,6 +2541,7 @@
 				65DBD0A71BD77CE700784DAC /* XMPPElement.m in Sources */,
 				6508D5061C08504700E77DAB /* BTPhotoDetailsViewController.m in Sources */,
 				65DBD1F11BD7A2A100784DAC /* NSXMLElement+XEP_0203.m in Sources */,
+				650022D21C1A731A0037D32E /* BTAddressBookManager.m in Sources */,
 				65DBD0A31BD77CE700784DAC /* DDTTYLogger.m in Sources */,
 				B445071D1BD0044B008BD5AC /* BTGuideViewController.m in Sources */,
 				B4FABC011C020FE600213AB7 /* SDWebImageDownloader.m in Sources */,
@@ -2541,6 +2552,7 @@
 				6500E74E1BEF395C007158BF /* AFURLResponseSerialization.m in Sources */,
 				65DE129A1BD0CA8500D01BCA /* KFObjectExtension.mm in Sources */,
 				65A934621C02BBC300FA0185 /* BTLanguageManager.m in Sources */,
+				650022BE1C1A6E4F0037D32E /* BTAddressBook.m in Sources */,
 				65DBD0AF1BD77CE700784DAC /* NSString+DDXML.m in Sources */,
 				65DBD0B51BD77CE700784DAC /* DDList.m in Sources */,
 				65DCFE4D1BD334F800DBD0DE /* BTUserCenterViewController.m in Sources */,

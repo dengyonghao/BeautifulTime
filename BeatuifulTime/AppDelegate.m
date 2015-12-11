@@ -138,4 +138,11 @@ static AppDelegate *singleton = nil;
     [self initPushSetting];
 }
 
+-(UIViewController*)currentTopVc
+{
+    UINavigationController* VC = self.window.rootViewController.navigationController;
+    UIViewController* topVC = VC.topViewController;
+    return topVC;
+}
+
 @end
