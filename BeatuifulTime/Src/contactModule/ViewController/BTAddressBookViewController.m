@@ -7,6 +7,7 @@
 //
 
 #import "BTAddressBookViewController.h"
+#import "BTAddressBookManager.h"
 
 @interface BTAddressBookViewController ()
 
@@ -16,6 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSMutableArray *array = [BTAddressBookManager getAddressBookData];
+    NSLog(@"-----------------------%@", array);
 }
 
 - (void)didReceiveMemoryWarning {

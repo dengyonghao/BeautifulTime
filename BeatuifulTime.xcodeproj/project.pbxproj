@@ -210,6 +210,7 @@
 		65E2D3721BCFCEE4001E29A9 /* BTStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D3711BCFCEE4001E29A9 /* BTStyle.m */; };
 		65E2D37B1BCFCF76001E29A9 /* BTThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D37A1BCFCF76001E29A9 /* BTThemeManager.m */; };
 		65E468231BDB8D6B0065D10B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65E468221BDB8D6B0065D10B /* Images.xcassets */; };
+		65F253A91C1EB2D100E0F0CE /* BTCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F253A81C1EB2D000E0F0CE /* BTCalendarView.m */; };
 		65F4262C1BD9F5F600295796 /* UIImage+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F4262B1BD9F5F600295796 /* UIImage+Addition.m */; };
 		65F426441BDA281400295796 /* BTContacterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F426431BDA281400295796 /* BTContacterModel.m */; };
 		65F52A5B1BFDB4AA00351941 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F52A5A1BFDB4AA00351941 /* AVFoundation.framework */; };
@@ -671,6 +672,8 @@
 		65E2D3791BCFCF76001E29A9 /* BTThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTThemeManager.h; sourceTree = "<group>"; };
 		65E2D37A1BCFCF76001E29A9 /* BTThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTThemeManager.m; sourceTree = "<group>"; };
 		65E468221BDB8D6B0065D10B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		65F253A71C1EB2D000E0F0CE /* BTCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCalendarView.h; sourceTree = "<group>"; };
+		65F253A81C1EB2D000E0F0CE /* BTCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCalendarView.m; sourceTree = "<group>"; };
 		65F4262A1BD9F5F600295796 /* UIImage+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Addition.h"; sourceTree = "<group>"; };
 		65F4262B1BD9F5F600295796 /* UIImage+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Addition.m"; sourceTree = "<group>"; };
 		65F426421BDA281400295796 /* BTContacterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTContacterModel.h; sourceTree = "<group>"; };
@@ -1020,6 +1023,8 @@
 				655124381BFC804C001F1041 /* BTCircularProgressButton.m */,
 				65F9E2541C17CA8F0038774D /* BTJournalListItem.h */,
 				65F9E2551C17CA8F0038774D /* BTJournalListItem.m */,
+				65F253A71C1EB2D000E0F0CE /* BTCalendarView.h */,
+				65F253A81C1EB2D000E0F0CE /* BTCalendarView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2568,6 +2573,7 @@
 				65DBD1D01BD7A2A100784DAC /* XMPPvCardTempModule.m in Sources */,
 				65DBD1E51BD7A2A100784DAC /* XMPPMessageArchiving_Message_CoreDataObject.m in Sources */,
 				65DBD1DE1BD7A2A100784DAC /* XMPPCapabilities.xcdatamodel in Sources */,
+				65F253A91C1EB2D100E0F0CE /* BTCalendarView.m in Sources */,
 				B4FABBFF1C020FE600213AB7 /* SDWebImageCompat.m in Sources */,
 				65DBD1A61BD7A2A100784DAC /* XMPPReconnect.m in Sources */,
 				65DBD1BF1BD7A2A100784DAC /* XMPPRoomMemoryStorage.m in Sources */,

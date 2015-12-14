@@ -7,8 +7,12 @@
 //
 
 #import "BTAddTimelineViewController.h"
+#import "BTAddressBookViewController.h"
+#import "BTCalendarView.h"
 
 @interface BTAddTimelineViewController ()
+
+@property (nonatomic, strong) UIButton *addressBook;
 
 @end
 
@@ -17,10 +21,39 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.titleLabel.text = @"记点滴";
+    [self.bodyView addSubview:self.addressBook];
+    BTCalendarView *view = [[BTCalendarView alloc] initWithFrame:CGRectMake(10, 100, 100, 100)];
+    NSDate *date = [NSDate date];
+    [view bindData:date];
+    [self.bodyView addSubview:view];
+}
+
+- (void)viewDidLayoutSubviews {
+    WS(weakSelf);
+    [self.addressBook mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(weakSelf.bodyView);
+        make.centerY.equalTo(weakSelf.bodyView);
+        make.height.equalTo(@(40));
+        make.width.equalTo(@(100));
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)addressBookClick {
+    BTAddressBookViewController *vc = [[BTAddressBookViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (UIButton *)addressBook {
+    if (!_addressBook) {
+        _addressBook = [[UIButton alloc] init];
+        [_addressBook setTitle:@"联系人" forState:UIControlStateNormal];
+        [_addressBook addTarget:self action:@selector(addressBookClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _addressBook;
 }
 
 @end
