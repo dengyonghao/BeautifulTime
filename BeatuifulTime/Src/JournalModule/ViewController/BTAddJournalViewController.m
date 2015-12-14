@@ -13,6 +13,7 @@
 #import "BTNetManager+BTAddJournal.h"
 #import "BTRecordViewController.h"
 #import "BTJournalController.h"
+#import "BTWeatherModel.h"
 
 @interface BTAddJournalViewController ()<UITextViewDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -147,7 +148,24 @@
             NSString * city = [info objectForKey:@"City"];
             [self.site setTitle:city forState:UIControlStateNormal];
             [BTNetManager netManagerReqeustWeatherInfo:[self cutStr:city] successCallback:^(NSDictionary *retDict) {
-                NSLog(@"%@",retDict);
+                BTWeatherModel *model = [[BTWeatherModel alloc] init];
+                model.city = retDict[@"HeWeather data service 3.0"][0][@"basic"][@"city"];
+                model.pm25 = retDict[@"HeWeather data service 3.0"][0][@"aqi"][@"city"][@"pm25"];
+                model.updateTime = retDict[@"HeWeather data service 3.0"][0][@"basic"][@"update"][@"loc"];
+                model.maxTemperature = retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"tmp"][@"max"];
+                model.minTemperature = retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"tmp"][@"min"];
+                model.dayWeatherIcon = retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"cond"][@"txt_d"];
+                model.nightWeatherIcon = retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"cond"][@"txt_n"];
+                
+//                NSLog(@"-----------%@",retDict);
+//                NSLog(@"-----1pm25------%@",retDict[@"HeWeather data service 3.0"][0][@"aqi"][@"city"][@"pm25"]);
+//                NSLog(@"-----2ciyt------%@",retDict[@"HeWeather data service 3.0"][0][@"basic"][@"city"]);
+//                NSLog(@"-----3updateTime------%@",retDict[@"HeWeather data service 3.0"][0][@"basic"][@"update"][@"loc"]);
+//                NSLog(@"-----4day------%@",retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"cond"][@"txt_d"]);
+//                NSLog(@"-----5night------%@",retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"cond"][@"txt_n"]);
+//                NSLog(@"-----6maxTmp------%@",retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"tmp"][@"max"]);
+//                NSLog(@"-----7minTmp------%@",retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"tmp"][@"min"]);
+                
             } failCallback:^(NSError *error) {
                 
             }];

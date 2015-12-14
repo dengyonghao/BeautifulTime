@@ -8,7 +8,7 @@
 
 #import "BTCalendarView.h"
 
-@interface BTCalendarView () <BTCalendarViewViewDelegate>
+@interface BTCalendarView ()
 
 @property (nonatomic, strong) UIView *titleView;
 @property (nonatomic, strong) UILabel *monthLabel;
@@ -69,14 +69,15 @@
 #pragma mark 添加手势识别器
 -(void)addTapGesture
 {
-    UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCurrentView)];
+    UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapViewEvent)];
     tap.numberOfTapsRequired=1;
     [self addGestureRecognizer:tap];
 }
 
-#pragma mark BTCalendarViewViewDelegate
-- (void)tapCurrentView {
-    
+- (void)tapViewEvent {
+    if (_delegate && [_delegate respondsToSelector:@selector(tapCurrentView)]) {
+        [_delegate tapCurrentView];
+    }
 }
 
 - (void)bindData:(NSDate *)date {

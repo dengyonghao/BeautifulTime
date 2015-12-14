@@ -10,7 +10,7 @@
 #import "BTAddressBookViewController.h"
 #import "BTCalendarView.h"
 
-@interface BTAddTimelineViewController ()
+@interface BTAddTimelineViewController () <BTStatusViewDelegate>
 
 @property (nonatomic, strong) UIButton *addressBook;
 
@@ -23,6 +23,7 @@
     self.titleLabel.text = @"记点滴";
     [self.bodyView addSubview:self.addressBook];
     BTCalendarView *view = [[BTCalendarView alloc] initWithFrame:CGRectMake(10, 100, 100, 100)];
+    view.delegate = self;
     NSDate *date = [NSDate date];
     [view bindData:date];
     [self.bodyView addSubview:view];
@@ -40,6 +41,12 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark BTCalendarViewViewDelegate
+
+- (void)tapCurrentView {
+    NSLog(@"1234567890-=234567890");
 }
 
 - (void)addressBookClick {

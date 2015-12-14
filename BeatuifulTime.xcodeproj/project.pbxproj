@@ -211,6 +211,18 @@
 		65E2D37B1BCFCF76001E29A9 /* BTThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D37A1BCFCF76001E29A9 /* BTThemeManager.m */; };
 		65E468231BDB8D6B0065D10B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65E468221BDB8D6B0065D10B /* Images.xcassets */; };
 		65F253A91C1EB2D100E0F0CE /* BTCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F253A81C1EB2D000E0F0CE /* BTCalendarView.m */; };
+		65F253AC1C1ECC5A00E0F0CE /* BTWeatherStatusVeiw.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F253AB1C1ECC5A00E0F0CE /* BTWeatherStatusVeiw.m */; };
+		65F253C71C1ECF0300E0F0CE /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F253B01C1ECF0300E0F0CE /* JSONModel.m */; };
+		65F253C81C1ECF0300E0F0CE /* JSONModelArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F253B21C1ECF0300E0F0CE /* JSONModelArray.m */; };
+		65F253C91C1ECF0300E0F0CE /* JSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F253B41C1ECF0300E0F0CE /* JSONModelClassProperty.m */; };
+		65F253CA1C1ECF0300E0F0CE /* JSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F253B61C1ECF0300E0F0CE /* JSONModelError.m */; };
+		65F253CB1C1ECF0300E0F0CE /* NSArray+JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F253B91C1ECF0300E0F0CE /* NSArray+JSONModel.m */; };
+		65F253CC1C1ECF0300E0F0CE /* JSONAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F253BD1C1ECF0300E0F0CE /* JSONAPI.m */; };
+		65F253CD1C1ECF0300E0F0CE /* JSONHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F253BF1C1ECF0300E0F0CE /* JSONHTTPClient.m */; };
+		65F253CE1C1ECF0300E0F0CE /* JSONModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F253C11C1ECF0300E0F0CE /* JSONModel+networking.m */; };
+		65F253CF1C1ECF0300E0F0CE /* JSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F253C41C1ECF0300E0F0CE /* JSONKeyMapper.m */; };
+		65F253D01C1ECF0300E0F0CE /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F253C61C1ECF0300E0F0CE /* JSONValueTransformer.m */; };
+		65F253D31C1ECF8300E0F0CE /* BTWeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F253D21C1ECF8300E0F0CE /* BTWeatherModel.m */; };
 		65F4262C1BD9F5F600295796 /* UIImage+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F4262B1BD9F5F600295796 /* UIImage+Addition.m */; };
 		65F426441BDA281400295796 /* BTContacterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F426431BDA281400295796 /* BTContacterModel.m */; };
 		65F52A5B1BFDB4AA00351941 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F52A5A1BFDB4AA00351941 /* AVFoundation.framework */; };
@@ -674,6 +686,31 @@
 		65E468221BDB8D6B0065D10B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		65F253A71C1EB2D000E0F0CE /* BTCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCalendarView.h; sourceTree = "<group>"; };
 		65F253A81C1EB2D000E0F0CE /* BTCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCalendarView.m; sourceTree = "<group>"; };
+		65F253AA1C1ECC5A00E0F0CE /* BTWeatherStatusVeiw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWeatherStatusVeiw.h; sourceTree = "<group>"; };
+		65F253AB1C1ECC5A00E0F0CE /* BTWeatherStatusVeiw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWeatherStatusVeiw.m; sourceTree = "<group>"; };
+		65F253AF1C1ECF0300E0F0CE /* JSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModel.h; sourceTree = "<group>"; };
+		65F253B01C1ECF0300E0F0CE /* JSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModel.m; sourceTree = "<group>"; };
+		65F253B11C1ECF0300E0F0CE /* JSONModelArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModelArray.h; sourceTree = "<group>"; };
+		65F253B21C1ECF0300E0F0CE /* JSONModelArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModelArray.m; sourceTree = "<group>"; };
+		65F253B31C1ECF0300E0F0CE /* JSONModelClassProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModelClassProperty.h; sourceTree = "<group>"; };
+		65F253B41C1ECF0300E0F0CE /* JSONModelClassProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModelClassProperty.m; sourceTree = "<group>"; };
+		65F253B51C1ECF0300E0F0CE /* JSONModelError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModelError.h; sourceTree = "<group>"; };
+		65F253B61C1ECF0300E0F0CE /* JSONModelError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModelError.m; sourceTree = "<group>"; };
+		65F253B81C1ECF0300E0F0CE /* NSArray+JSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+JSONModel.h"; sourceTree = "<group>"; };
+		65F253B91C1ECF0300E0F0CE /* NSArray+JSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+JSONModel.m"; sourceTree = "<group>"; };
+		65F253BA1C1ECF0300E0F0CE /* JSONModelLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModelLib.h; sourceTree = "<group>"; };
+		65F253BC1C1ECF0300E0F0CE /* JSONAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONAPI.h; sourceTree = "<group>"; };
+		65F253BD1C1ECF0300E0F0CE /* JSONAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONAPI.m; sourceTree = "<group>"; };
+		65F253BE1C1ECF0300E0F0CE /* JSONHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONHTTPClient.h; sourceTree = "<group>"; };
+		65F253BF1C1ECF0300E0F0CE /* JSONHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONHTTPClient.m; sourceTree = "<group>"; };
+		65F253C01C1ECF0300E0F0CE /* JSONModel+networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSONModel+networking.h"; sourceTree = "<group>"; };
+		65F253C11C1ECF0300E0F0CE /* JSONModel+networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSONModel+networking.m"; sourceTree = "<group>"; };
+		65F253C31C1ECF0300E0F0CE /* JSONKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKeyMapper.h; sourceTree = "<group>"; };
+		65F253C41C1ECF0300E0F0CE /* JSONKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKeyMapper.m; sourceTree = "<group>"; };
+		65F253C51C1ECF0300E0F0CE /* JSONValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONValueTransformer.h; sourceTree = "<group>"; };
+		65F253C61C1ECF0300E0F0CE /* JSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONValueTransformer.m; sourceTree = "<group>"; };
+		65F253D11C1ECF8300E0F0CE /* BTWeatherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTWeatherModel.h; sourceTree = "<group>"; };
+		65F253D21C1ECF8300E0F0CE /* BTWeatherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTWeatherModel.m; sourceTree = "<group>"; };
 		65F4262A1BD9F5F600295796 /* UIImage+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Addition.h"; sourceTree = "<group>"; };
 		65F4262B1BD9F5F600295796 /* UIImage+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Addition.m"; sourceTree = "<group>"; };
 		65F426421BDA281400295796 /* BTContacterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTContacterModel.h; sourceTree = "<group>"; };
@@ -1012,6 +1049,8 @@
 				B4404F891BE7B32000226334 /* Journal+CoreDataProperties.m */,
 				B4404F8A1BE7B32000226334 /* Journal.h */,
 				B4404F8B1BE7B32000226334 /* Journal.m */,
+				65F253D11C1ECF8300E0F0CE /* BTWeatherModel.h */,
+				65F253D21C1ECF8300E0F0CE /* BTWeatherModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1025,6 +1064,8 @@
 				65F9E2551C17CA8F0038774D /* BTJournalListItem.m */,
 				65F253A71C1EB2D000E0F0CE /* BTCalendarView.h */,
 				65F253A81C1EB2D000E0F0CE /* BTCalendarView.m */,
+				65F253AA1C1ECC5A00E0F0CE /* BTWeatherStatusVeiw.h */,
+				65F253AB1C1ECC5A00E0F0CE /* BTWeatherStatusVeiw.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1985,6 +2026,66 @@
 			path = Themes;
 			sourceTree = "<group>";
 		};
+		65F253AD1C1ECF0300E0F0CE /* JSONModel */ = {
+			isa = PBXGroup;
+			children = (
+				65F253AE1C1ECF0300E0F0CE /* JSONModel */,
+				65F253B71C1ECF0300E0F0CE /* JSONModelCategories */,
+				65F253BA1C1ECF0300E0F0CE /* JSONModelLib.h */,
+				65F253BB1C1ECF0300E0F0CE /* JSONModelNetworking */,
+				65F253C21C1ECF0300E0F0CE /* JSONModelTransformations */,
+			);
+			path = JSONModel;
+			sourceTree = "<group>";
+		};
+		65F253AE1C1ECF0300E0F0CE /* JSONModel */ = {
+			isa = PBXGroup;
+			children = (
+				65F253AF1C1ECF0300E0F0CE /* JSONModel.h */,
+				65F253B01C1ECF0300E0F0CE /* JSONModel.m */,
+				65F253B11C1ECF0300E0F0CE /* JSONModelArray.h */,
+				65F253B21C1ECF0300E0F0CE /* JSONModelArray.m */,
+				65F253B31C1ECF0300E0F0CE /* JSONModelClassProperty.h */,
+				65F253B41C1ECF0300E0F0CE /* JSONModelClassProperty.m */,
+				65F253B51C1ECF0300E0F0CE /* JSONModelError.h */,
+				65F253B61C1ECF0300E0F0CE /* JSONModelError.m */,
+			);
+			path = JSONModel;
+			sourceTree = "<group>";
+		};
+		65F253B71C1ECF0300E0F0CE /* JSONModelCategories */ = {
+			isa = PBXGroup;
+			children = (
+				65F253B81C1ECF0300E0F0CE /* NSArray+JSONModel.h */,
+				65F253B91C1ECF0300E0F0CE /* NSArray+JSONModel.m */,
+			);
+			path = JSONModelCategories;
+			sourceTree = "<group>";
+		};
+		65F253BB1C1ECF0300E0F0CE /* JSONModelNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				65F253BC1C1ECF0300E0F0CE /* JSONAPI.h */,
+				65F253BD1C1ECF0300E0F0CE /* JSONAPI.m */,
+				65F253BE1C1ECF0300E0F0CE /* JSONHTTPClient.h */,
+				65F253BF1C1ECF0300E0F0CE /* JSONHTTPClient.m */,
+				65F253C01C1ECF0300E0F0CE /* JSONModel+networking.h */,
+				65F253C11C1ECF0300E0F0CE /* JSONModel+networking.m */,
+			);
+			path = JSONModelNetworking;
+			sourceTree = "<group>";
+		};
+		65F253C21C1ECF0300E0F0CE /* JSONModelTransformations */ = {
+			isa = PBXGroup;
+			children = (
+				65F253C31C1ECF0300E0F0CE /* JSONKeyMapper.h */,
+				65F253C41C1ECF0300E0F0CE /* JSONKeyMapper.m */,
+				65F253C51C1ECF0300E0F0CE /* JSONValueTransformer.h */,
+				65F253C61C1ECF0300E0F0CE /* JSONValueTransformer.m */,
+			);
+			path = JSONModelTransformations;
+			sourceTree = "<group>";
+		};
 		65F312E11C15A69F00EA926C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2118,6 +2219,7 @@
 		B44506E81BCFFB9F008BD5AC /* 3rdparty */ = {
 			isa = PBXGroup;
 			children = (
+				65F253AD1C1ECF0300E0F0CE /* JSONModel */,
 				B4FABBDA1C020FE600213AB7 /* SDWebImage */,
 				6500E71F1BEF395C007158BF /* AFNetworking */,
 				65DBD0311BD77CE600784DAC /* XMPPFramework */,
@@ -2451,6 +2553,7 @@
 				65DBD0951BD77CE700784DAC /* XMPPAnonymousAuthentication.m in Sources */,
 				65DBD1C31BD7A2A100784DAC /* XMPPMUC.m in Sources */,
 				650498971BFAD50B0072AE47 /* BTAlbumCollectionViewCell.m in Sources */,
+				65F253CB1C1ECF0300E0F0CE /* NSArray+JSONModel.m in Sources */,
 				65DBD1D31BD7A2A100784DAC /* XMPPResultSet.m in Sources */,
 				B4FABC0A1C020FE600213AB7 /* UIImageView+WebCache.m in Sources */,
 				65DBD1D51BD7A2A100784DAC /* XMPPPubSub.m in Sources */,
@@ -2460,6 +2563,7 @@
 				65DBCEFE1BD754D900784DAC /* BTAddJournalViewController.m in Sources */,
 				65DBD1BB1BD7A2A100784DAC /* XMPPRoomHybrid.xcdatamodeld in Sources */,
 				654B26551C192F0E002E965C /* pinyin.c in Sources */,
+				65F253C71C1ECF0300E0F0CE /* JSONModel.m in Sources */,
 				65DBD1EF1BD7A2A100784DAC /* XMPPAutoTime.m in Sources */,
 				65DBD1B11BD7A2A100784DAC /* XMPPIQ+JabberRPC.m in Sources */,
 				65DCFE4C1BD334F800DBD0DE /* BTRestPasswordViewController.m in Sources */,
@@ -2468,7 +2572,9 @@
 				65DBD1E71BD7A2A100784DAC /* XMPPMessageArchiving.m in Sources */,
 				655124391BFC804C001F1041 /* BTCircularProgressButton.m in Sources */,
 				65DBD1DD1BD7A2A100784DAC /* NSString+XEP_0106.m in Sources */,
+				65F253CC1C1ECF0300E0F0CE /* JSONAPI.m in Sources */,
 				65DBD1C71BD7A2A100784DAC /* XMPPvCardCoreDataStorage.m in Sources */,
+				65F253CE1C1ECF0300E0F0CE /* JSONModel+networking.m in Sources */,
 				65DBD0C71BD7A15E00784DAC /* BTXMPPTool.m in Sources */,
 				B4FABBFD1C020FE600213AB7 /* NSData+ImageContentType.m in Sources */,
 				652608591C0464CC00370630 /* NSMutableAttributedString+Addition.m in Sources */,
@@ -2495,6 +2601,7 @@
 				65DBD0B21BD77CE700784DAC /* DDXMLNode.m in Sources */,
 				65DBD1B81BD7A2A100784DAC /* XMPPRoomCoreDataStorage.m in Sources */,
 				65DBCF041BD7554700784DAC /* BTJournalListViewController.m in Sources */,
+				65F253C91C1ECF0300E0F0CE /* JSONModelClassProperty.m in Sources */,
 				65DBD09C1BD77CE700784DAC /* NSNumber+XMPP.m in Sources */,
 				65DBD1B61BD7A2A100784DAC /* XMPPPrivacy.m in Sources */,
 				65E234191BD3BAB60041E719 /* BTBaseViewController.m in Sources */,
@@ -2528,14 +2635,17 @@
 				65DBD1B31BD7A2A100784DAC /* XMPPJabberRPCModule.m in Sources */,
 				65DBD0AA1BD77CE700784DAC /* XMPPMessage.m in Sources */,
 				65DBD1E31BD7A2A100784DAC /* XMPPMessageArchiving.xcdatamodeld in Sources */,
+				65F253CF1C1ECF0300E0F0CE /* JSONKeyMapper.m in Sources */,
 				B43EF74A1C187A78004FB2B5 /* BTJournalDetailsViewController.m in Sources */,
 				65DBD1A31BD7A2A100784DAC /* XMPPCoreDataStorage.m in Sources */,
+				65F253C81C1ECF0300E0F0CE /* JSONModelArray.m in Sources */,
 				65DBD1F41BD7A2A100784DAC /* XMPPMessage+XEP_0224.m in Sources */,
 				B44507081BCFFB9F008BD5AC /* MASLayoutConstraint.m in Sources */,
 				65DBCF0E1BD755E500784DAC /* UIViewController+PopupViewController.m in Sources */,
 				65E2D33A1BCFC966001E29A9 /* BeatuifulTime.xcdatamodeld in Sources */,
 				65DBD1ED1BD7A2A100784DAC /* XMPPAutoPing.m in Sources */,
 				65DBD1AE1BD7A2A100784DAC /* XMPPUserMemoryStorageObject.m in Sources */,
+				65F253CD1C1ECF0300E0F0CE /* JSONHTTPClient.m in Sources */,
 				65DBD1D81BD7A2A100784DAC /* XMPPMessage+XEP_0066.m in Sources */,
 				65DCFE4E1BD334F800DBD0DE /* BTUserLoginViewController.m in Sources */,
 				6500E7551BEF395C007158BF /* UIProgressView+AFNetworking.m in Sources */,
@@ -2554,6 +2664,7 @@
 				65DBD1F21BD7A2A100784DAC /* XEP_0223.m in Sources */,
 				65DBD0A01BD77CE700784DAC /* DDASLLogger.m in Sources */,
 				6500E74C1BEF395C007158BF /* AFURLConnectionOperation.m in Sources */,
+				65F253AC1C1ECC5A00E0F0CE /* BTWeatherStatusVeiw.m in Sources */,
 				6500E74E1BEF395C007158BF /* AFURLResponseSerialization.m in Sources */,
 				65DE129A1BD0CA8500D01BCA /* KFObjectExtension.mm in Sources */,
 				65A934621C02BBC300FA0185 /* BTLanguageManager.m in Sources */,
@@ -2575,9 +2686,12 @@
 				65DBD1DE1BD7A2A100784DAC /* XMPPCapabilities.xcdatamodel in Sources */,
 				65F253A91C1EB2D100E0F0CE /* BTCalendarView.m in Sources */,
 				B4FABBFF1C020FE600213AB7 /* SDWebImageCompat.m in Sources */,
+				65F253CA1C1ECF0300E0F0CE /* JSONModelError.m in Sources */,
+				65F253D31C1ECF8300E0F0CE /* BTWeatherModel.m in Sources */,
 				65DBD1A61BD7A2A100784DAC /* XMPPReconnect.m in Sources */,
 				65DBD1BF1BD7A2A100784DAC /* XMPPRoomMemoryStorage.m in Sources */,
 				6500E7561BEF395C007158BF /* UIRefreshControl+AFNetworking.m in Sources */,
+				65F253D01C1ECF0300E0F0CE /* JSONValueTransformer.m in Sources */,
 				65DBD0AC1BD77CE700784DAC /* XMPPParser.m in Sources */,
 				65DBD1E11BD7A2A100784DAC /* XMPPCapsResourceCoreDataStorageObject.m in Sources */,
 				65DBD1BE1BD7A2A100784DAC /* XMPPRoomOccupantHybridMemoryStorageObject.m in Sources */,

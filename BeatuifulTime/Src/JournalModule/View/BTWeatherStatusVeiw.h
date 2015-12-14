@@ -1,5 +1,5 @@
 //
-//  BTCalendarView.h
+//  BTWeatherStatusVeiw.h
 //  BeatuifulTime
 //
 //  Created by dengyonghao on 15/12/14.
@@ -7,21 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BTWeatherModel.h"
+#import "BTCalendarView.h"
 
-@protocol BTStatusViewDelegate;
-
-@interface BTCalendarView : UIView
+@interface BTWeatherStatusVeiw : UIView
 
 @property (nonatomic, weak) id <BTStatusViewDelegate> delegate;
 
-- (void)bindData:(NSDate *)date;
-
-@end
-
-@protocol BTStatusViewDelegate <NSObject>
-
-@optional
-
-- (void)tapCurrentView;
+- (void)bindData:(BTWeatherModel *)model;
 
 @end
