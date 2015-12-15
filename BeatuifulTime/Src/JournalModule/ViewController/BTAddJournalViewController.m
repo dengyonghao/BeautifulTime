@@ -14,6 +14,7 @@
 #import "BTRecordViewController.h"
 #import "BTJournalController.h"
 #import "BTWeatherModel.h"
+#import "BTHomePageViewController.h"
 
 @interface BTAddJournalViewController ()<UITextViewDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -156,15 +157,7 @@
                 model.minTemperature = retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"tmp"][@"min"];
                 model.dayWeatherIcon = retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"cond"][@"txt_d"];
                 model.nightWeatherIcon = retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"cond"][@"txt_n"];
-                
-//                NSLog(@"-----------%@",retDict);
-//                NSLog(@"-----1pm25------%@",retDict[@"HeWeather data service 3.0"][0][@"aqi"][@"city"][@"pm25"]);
-//                NSLog(@"-----2ciyt------%@",retDict[@"HeWeather data service 3.0"][0][@"basic"][@"city"]);
-//                NSLog(@"-----3updateTime------%@",retDict[@"HeWeather data service 3.0"][0][@"basic"][@"update"][@"loc"]);
-//                NSLog(@"-----4day------%@",retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"cond"][@"txt_d"]);
-//                NSLog(@"-----5night------%@",retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"cond"][@"txt_n"]);
-//                NSLog(@"-----6maxTmp------%@",retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"tmp"][@"max"]);
-//                NSLog(@"-----7minTmp------%@",retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"tmp"][@"min"]);
+
                 
             } failCallback:^(NSError *error) {
                 
@@ -195,6 +188,12 @@
     newJournal.site = self.site.titleLabel.text;
     newJournal.records = [BTJournalController sharedInstance].record;
     [[AppDelegate getInstance].coreDataHelper saveContext];
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[BTHomePageViewController class]]) {
+            [self.navigationController popToViewController:controller animated:YES];
+        }
+    }
+
 }
 
 - (void)recordsClick {

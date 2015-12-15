@@ -7,6 +7,10 @@
 //
 
 #import "BTWeatherStatusVeiw.h"
+#import "UIView+BTAddition.h"
+
+static const CGFloat iconWidth = 20;
+static const CGFloat iconHeight = 20;
 
 @interface BTWeatherStatusVeiw ()
 
@@ -32,44 +36,40 @@
         [self addSubview:self.pm25Label];
         
         WS(weakSelf);
+        CGFloat height = frame.size.height;
         [self.titleView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(weakSelf).insets(UIEdgeInsetsMake(0, 0, frame.size.height / 4 * 3, 0));
+            make.edges.equalTo(weakSelf).insets(UIEdgeInsetsMake(0, 0, height / 4 * 3, 0));
         }];
         [self.cityName mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(weakSelf.titleView).insets(UIEdgeInsetsMake(0, 0, 0, 0));
         }];
         [self.weatherIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf.titleView).offset(frame.size.height / 4 + (frame.size.height / 4 * 3 / 2 - 32) / 2);
-            make.left.equalTo(weakSelf).offset(10);
-            make.width.equalTo(@(32));
-            make.height.equalTo(@(32));
+            make.top.equalTo(weakSelf.titleView).offset(height / 4 + (height / 4 * 3 / 2 - iconHeight) / 2);
+            make.left.equalTo(weakSelf).offset(3);
+            make.width.equalTo(@(iconWidth));
+            make.height.equalTo(@(iconHeight));
         }];
         [self.weatherInfo mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(weakSelf.weatherIcon);
-            make.left.equalTo(weakSelf.weatherIcon).offset(10 + 32 + 5);
-            make.right.equalTo(weakSelf).offset(-10);
+            make.left.equalTo(weakSelf.weatherIcon).offset(iconWidth);
+            make.right.equalTo(weakSelf);
             make.height.equalTo(weakSelf.weatherIcon);
         }];
         [self.pm25ImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf.weatherIcon).offset(frame.size.height / 4 * 3 / 2 + (frame.size.height / 4 * 3 / 2 - 32) / 2);
-            make.left.equalTo(weakSelf).offset(10);
-            make.width.equalTo(@(32));
-            make.height.equalTo(@(32));
+            make.top.equalTo(weakSelf.weatherIcon).offset(iconHeight + (height / 4 * 3 / 2 - 20) / 2);
+            make.left.equalTo(weakSelf).offset(3);
+            make.width.equalTo(@(20));
+            make.height.equalTo(@(20));
         }];
         
         [self.pm25Label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(weakSelf.pm25ImageView);
-            make.left.equalTo(weakSelf.pm25ImageView).offset(10 + 32 + 5);
-            make.right.equalTo(weakSelf).offset(-10);
+            make.left.equalTo(weakSelf.pm25ImageView).offset(20);
+            make.right.equalTo(weakSelf);
             make.height.equalTo(weakSelf.pm25ImageView);
         }];
-
-        CALayer *layer = [self layer];
-        layer.borderColor = [[[BTThemeManager getInstance] BTThemeColor:@"cl_line_b_leftbar"] CGColor];
-        layer.borderWidth = 1.0f;
-        [layer setMasksToBounds:YES];
-        [layer setCornerRadius:4.0];
-        self.backgroundColor = [UIColor whiteColor];
+        [self setBorderWithWidth:1 color:[[BTThemeManager getInstance] BTThemeColor:@"cl_line_b_leftbar"] cornerRadius:5];
+//        self.backgroundColor = [UIColor whiteColor];
        
         [self addTapGesture];
     }
@@ -85,15 +85,16 @@
 }
 
 - (void)tapViewEvent {
-    if (_delegate && [_delegate respondsToSelector:@selector(tapCurrentView)]) {
-        [_delegate tapCurrentView];
+    if (_delegate && [_delegate respondsToSelector:@selector(tapWeatherStatusView)]) {
+        [_delegate tapWeatherStatusView];
     }
 }
 
 
 - (void)bindData:(BTWeatherModel *)model {
     self.cityName.text = model.city;
-    self.weatherInfo.text = [[NSString alloc] initWithFormat:@"%@℃ ~ %@℃", model.maxTemperature, model.minTemperature];
+    self.weatherInfo.text = [[NSString alloc] initWithFormat:@"%@~%@℃", model.maxTemperature, model.minTemperature];
+    self.pm25Label.text = [[NSString alloc] initWithFormat:@"%@", [self getpm25Rate:model.pm25]];
     
     if (!model.dayWeatherIcon) {
         [self.weatherIcon setImage:BT_LOADIMAGE(@"weather_qing")];
@@ -117,6 +118,37 @@
     }
 }
 
+/*
+ *计算空气质量等级
+ */
+- (NSString *) getpm25Rate:(NSString *) pm25String {
+    if (pm25String) {
+        int pm25 = [pm25String intValue];
+        if (pm25 > 250) {
+            return @"严重污染";
+        }
+        else if (pm25 > 150) {
+            return @"重度污染";
+        }
+        else if (pm25 > 115) {
+            return @"中度污染";
+        }
+        else if (pm25 > 75) {
+            return @"轻度污染";
+        }
+        else if (pm25 > 35) {
+            return @"良";
+        }
+        else if (pm25 > 0){
+            return @"优";
+        }
+        else {
+            return @"";
+        }
+    }
+    return nil;
+}
+
 - (UIView *)titleView {
     if (!_titleView) {
         _titleView = [[UIView alloc] init];
@@ -128,6 +160,7 @@
 - (UILabel *)cityName {
     if (!_cityName) {
         _cityName = [[UILabel alloc] init];
+        _cityName.textAlignment = NSTextAlignmentCenter;
     }
     return _cityName;
 }
@@ -135,6 +168,8 @@
 - (UILabel *)weatherInfo {
     if (!_weatherInfo) {
         _weatherInfo = [[UILabel alloc] init];
+        _weatherInfo.textAlignment = NSTextAlignmentLeft;
+        _weatherInfo.font = BT_FONTSIZE(11);
     }
     return _weatherInfo;
 }
@@ -149,6 +184,8 @@
 - (UILabel *)pm25Label {
     if (!_pm25Label) {
         _pm25Label = [[UILabel alloc] init];
+        _pm25Label.textAlignment = NSTextAlignmentLeft;
+        _pm25Label.font = BT_FONTSIZE(11);
     }
     return _pm25Label;
 }
@@ -156,6 +193,7 @@
 - (UIImageView *)pm25ImageView {
     if (!_pm25ImageView) {
         _pm25ImageView = [[UIImageView alloc] init];
+        [_pm25ImageView setImage:BT_LOADIMAGE(@"com_ic_status_pm")];
     }
     return _pm25ImageView;
 }

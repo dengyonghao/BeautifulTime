@@ -16,6 +16,7 @@
 #import "BTAddTimelineViewController.h"
 #import "BTUserCenterViewController.h"
 #import "BTSettingViewController.h"
+#import "BTJournalListViewController.h"
 
 static const CGFloat BUTTONWIDTH = 48;
 
@@ -221,6 +222,11 @@ static const CGFloat BUTTONWIDTH = 48;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)journalsClick {
+    BTJournalListViewController *vc = [[BTJournalListViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void)settingClick {
     BTSettingViewController *vc = [[BTSettingViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
@@ -269,6 +275,7 @@ static const CGFloat BUTTONWIDTH = 48;
 - (UIButton *)journals {
     if (!_journals) {
         _journals = [[UIButton alloc] init];
+        [_journals addTarget:self action:@selector(journalsClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _journals;
 }

@@ -8,20 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol BTStatusViewDelegate;
+@protocol BTCalendarViewDelegate;
 
 @interface BTCalendarView : UIView
 
-@property (nonatomic, weak) id <BTStatusViewDelegate> delegate;
+@property (nonatomic, weak) id <BTCalendarViewDelegate> delegate;
 
 - (void)bindData:(NSDate *)date;
 
 @end
 
-@protocol BTStatusViewDelegate <NSObject>
+@protocol BTCalendarViewDelegate <NSObject>
 
 @optional
 
-- (void)tapCurrentView;
+- (void)tapCalendarView;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "BTCalendarView.h"
+#import "UIView+BTAddition.h"
 
 @interface BTCalendarView ()
 
@@ -54,11 +55,7 @@
             make.right.equalTo(weakSelf);
             make.bottom.equalTo(weakSelf);
         }];
-        CALayer *layer = [self layer];
-        layer.borderColor = [[[BTThemeManager getInstance] BTThemeColor:@"cl_line_b_leftbar"] CGColor];
-        layer.borderWidth = 1.0f;
-        [layer setMasksToBounds:YES];
-        [layer setCornerRadius:4.0];
+        [self setBorderWithWidth:1 color:[[BTThemeManager getInstance] BTThemeColor:@"cl_line_b_leftbar"] cornerRadius:5];
         self.backgroundColor = [UIColor whiteColor];
         
         [self addTapGesture];
@@ -75,8 +72,8 @@
 }
 
 - (void)tapViewEvent {
-    if (_delegate && [_delegate respondsToSelector:@selector(tapCurrentView)]) {
-        [_delegate tapCurrentView];
+    if (_delegate && [_delegate respondsToSelector:@selector(tapCalendarView)]) {
+        [_delegate tapCalendarView];
     }
 }
 

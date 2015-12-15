@@ -8,12 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import "BTWeatherModel.h"
-#import "BTCalendarView.h"
+
+@protocol BTWeatherStatusViewDelegate;
 
 @interface BTWeatherStatusVeiw : UIView
 
-@property (nonatomic, weak) id <BTStatusViewDelegate> delegate;
+@property (nonatomic, weak) id <BTWeatherStatusViewDelegate> delegate;
 
 - (void)bindData:(BTWeatherModel *)model;
 
 @end
+
+@protocol BTWeatherStatusViewDelegate <NSObject>
+
+@optional
+
+- (void)tapWeatherStatusView;
+
+@end
+
