@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Journal.h"
 
 @interface BTJournalListItem : UITableViewCell
+
+- (void)bindDate:(Journal *)model;
 
 @end

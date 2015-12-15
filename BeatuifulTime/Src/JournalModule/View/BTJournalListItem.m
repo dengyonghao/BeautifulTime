@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UILabel     *pm25Label;
 @property (nonatomic, strong) UIImageView *pm25ImageView;
 @property (nonatomic, strong) UIImageView *photoImageView;
+@property (nonatomic, strong) UIImageView *recordImageView;
 
 @end
 
@@ -29,12 +30,16 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self addSubview:self.calendarView];
+        [self addSubview:self.contentLaber];
         [self addSubview:self.cityName];
         [self addSubview:self.weatherIcon];
         [self addSubview:self.weatherInfo];
         [self addSubview:self.pm25Label];
         [self addSubview:self.pm25ImageView];
         [self addSubview:self.photoImageView];
+        [self addSubview:self.recordImageView];
+        
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         WS(weakSelf);
         [self.calendarView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -43,11 +48,29 @@
             make.width.equalTo(@(70));
             make.height.equalTo(@(70));
         }];
+        [self.photoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(weakSelf).offset(5);
+            make.right.equalTo(weakSelf).offset(-5);
+            make.width.equalTo(@(50));
+            make.height.equalTo(@(70));
+        }];
+        [self.contentLaber mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(weakSelf).offset(5);
+            make.left.equalTo(weakSelf.calendarView).offset(70 + 5);
+            make.right.equalTo(weakSelf.photoImageView).offset(- (70 + 5));
+            make.height.equalTo(@(40));
+        }];
         [self.cityName mas_makeConstraints:^(MASConstraintMaker *make) {
-            
+            make.top.equalTo(weakSelf.contentLaber).offset(40 + 10);
+            make.left.equalTo(weakSelf.contentLaber);
+            make.height.equalTo(@(20));
+            make.width.equalTo(@(30));
         }];
         [self.weatherIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-            
+            make.top.equalTo(weakSelf.cityName);
+            make.left.equalTo(weakSelf.cityName).offset(30 + 5);
+            make.height.equalTo(@(20));
+            make.width.equalTo(@(20));
         }];
         [self.weatherInfo mas_makeConstraints:^(MASConstraintMaker *make) {
             
@@ -58,11 +81,11 @@
         [self.pm25ImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             
         }];
-        [self.photoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf).offset(5);
-            make.right.equalTo(weakSelf).offset(-5);
-            make.width.equalTo(@(50));
-            make.height.equalTo(@(70));
+        [self.recordImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(weakSelf.cityName);
+            make.left.equalTo(weakSelf.weatherIcon).offset(20 + 5);
+            make.height.equalTo(@(20));
+            make.width.equalTo(@(20));
         }];
     }
     return self;
@@ -77,11 +100,15 @@
 
 }
 
+- (void)bindDate:(Journal *)model {
+    self.cityName.text = model.site;
+    [self.calendarView bindData:model.journalDate];
+    self.contentLaber.text = [[NSString alloc] initWithData:model.journalContent encoding:NSUTF8StringEncoding];
+}
+
 - (BTCalendarView *)calendarView {
     if (!_calendarView) {
         _calendarView = [[BTCalendarView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
-        NSDate *date = [NSDate date];
-        [_calendarView bindData:date];
     }
     return _calendarView;
 }
@@ -89,6 +116,9 @@
 - (UILabel *)contentLaber {
     if (!_contentLaber) {
         _contentLaber = [[UILabel alloc] init];
+        _contentLaber.font = BT_FONTSIZE(16);
+        _contentLaber.lineBreakMode = NSLineBreakByWordWrapping;
+        _contentLaber.numberOfLines = 2;
     }
     return _contentLaber;
 }
@@ -96,6 +126,8 @@
 - (UILabel *)cityName {
     if (!_cityName) {
         _cityName = [[UILabel alloc] init];
+        _cityName.textAlignment = NSTextAlignmentCenter;
+        _cityName.font = BT_FONTSIZE(10);
     }
     return _cityName;
 }
@@ -134,5 +166,13 @@
     }
     return _photoImageView;
 }
+
+- (UIImageView *)recordImageView {
+    if (!_recordImageView) {
+        _recordImageView = [[UIImageView alloc] init];
+    }
+    return _recordImageView;
+}
+
 
 @end

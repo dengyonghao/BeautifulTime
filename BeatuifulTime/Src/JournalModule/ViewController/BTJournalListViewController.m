@@ -57,6 +57,7 @@ static NSString *kJournalCellIdentifier = @"kJournalCellIdentifier";
     if (!cell) {
         cell = [[BTJournalListItem alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kJournalCellIdentifier];
     }
+    [cell bindDate:self.dataSource[indexPath.row]];
     return cell;
 }
 
