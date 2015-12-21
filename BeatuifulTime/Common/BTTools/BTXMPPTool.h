@@ -15,17 +15,13 @@ typedef enum{
     XMPPResultRegisterSuccess,  //注册成功
     XMPPResultRegisterFailture,  //注册失败
 } XMPPResultType;
-//定义一个block
+
 typedef  void (^XMPPResultBlock)(XMPPResultType xmppType);
 
-
-
 @interface BTXMPPTool : NSObject
-//xmppstream  流
 @property (nonatomic,strong) XMPPStream *xmppStream;
-//定义一个xmppJid
 @property (nonatomic,strong) XMPPJID *jid;
-@property (nonatomic,assign,getter=isRegisterOperation) BOOL registerOperation;  //如果是YES就是注册的方法
+@property (nonatomic,assign,getter=isRegisterOperation) BOOL registerOperation;
 //添加花名册模块
 @property (nonatomic,strong,readonly) XMPPRoster *roster;
 @property (nonatomic,strong,readonly) XMPPRosterCoreDataStorage *rosterStorage;
@@ -37,12 +33,13 @@ typedef  void (^XMPPResultBlock)(XMPPResultType xmppType);
 @property (nonatomic,strong,readonly) XMPPvCardAvatarModule  *avatar;
 
 + (instancetype)sharedInstance;
-//登陆的方法
--(void)login:(XMPPResultBlock)xmppBlock;
-//退出的方法
--(void)xmppLoginOut;  //退出登录的操作
-//注册的方法
--(void)regist:(XMPPResultBlock)xmppType;
 
+- (void)login:(XMPPResultBlock)xmppBlock;
+
+- (void)xmppLoginOut;
+
+- (void)regist:(XMPPResultBlock)xmppType;
+
+- (void)addFried:(XMPPJID *)friedJid;
 
 @end

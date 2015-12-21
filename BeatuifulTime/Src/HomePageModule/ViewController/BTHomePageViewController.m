@@ -17,6 +17,9 @@
 #import "BTUserCenterViewController.h"
 #import "BTSettingViewController.h"
 #import "BTJournalListViewController.h"
+#import "BTUserLoginViewController.h"
+#import "BTIMHomePageViewController.h"
+#import "BTXMPPTool.h"
 
 static const CGFloat BUTTONWIDTH = 48;
 
@@ -227,6 +230,17 @@ static const CGFloat BUTTONWIDTH = 48;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)chatClick {
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:userID] && [[NSUserDefaults standardUserDefaults] valueForKey:userPassword]) {
+        [[BTXMPPTool sharedInstance] login:nil];
+        BTIMHomePageViewController *vc = [[BTIMHomePageViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        BTUserLoginViewController *vc = [[BTUserLoginViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
 - (void)settingClick {
     BTSettingViewController *vc = [[BTSettingViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
@@ -283,6 +297,7 @@ static const CGFloat BUTTONWIDTH = 48;
 - (UIButton *)chat {
     if (!_chat) {
         _chat = [[UIButton alloc] init];
+        [_chat addTarget:self action:@selector(chatClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _chat;
 }

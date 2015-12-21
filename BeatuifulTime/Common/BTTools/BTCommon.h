@@ -37,6 +37,8 @@ static inline UIImage* naviimage_from_mainbundle(NSString* filename_and_type)
 }
 
 #define firstLaunch              @"firstLaunch"
+#define userID                   @"btUserID"
+#define userPassword             @"btPassword"
 
 // 弱引用
 #define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
@@ -58,13 +60,13 @@ static inline UIImage* naviimage_from_mainbundle(NSString* filename_and_type)
 #define DeleteFriend @"deleteFriend"
 
 //服务器的ip地址
-#define ServerAddress @"localhost"
+#define ServerAddress @"119.29.115.132"
 
 //服务器的端口号
 #define ServerPort 5222
 
 //服务器的域名
-#define ServerName @"carlife.local"
+#define ServerName @"vm-40-145-ubuntu"
 
 // 状态栏高度
 #define     BT_STATUSBAR_HEIGHT  0

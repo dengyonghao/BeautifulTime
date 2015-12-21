@@ -11,6 +11,7 @@
 #import "UIImage+Addition.h"
 #import "BTContacterViewController.h"
 #import "BTRegisterAccountViewController.h"
+#import "MBProgressHUD+MJ.h"
 
 #define margin 20
 #define textFieldHeight 30
@@ -110,56 +111,53 @@
 #pragma mark 点击登陆的方法
 -(void)loginClick
 {
-//    NSString *uname=[self trim:self.username.text];
-//    NSString *pass=[self trim:self.password.text];
-    //登陆的方法
-//    UserOperation *user=[UserOperation shareduser];
-//    user.uname=uname;
-//    user.password=pass;
+    NSString *userName = [self trim:self.username.text];
+    NSString *password = [self trim:self.password.text];
+
+    [[NSUserDefaults standardUserDefaults] setValue:userName forKey:userID];
+    [[NSUserDefaults standardUserDefaults] setValue:password forKey:userPassword];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     BTXMPPTool *xmppTool=[BTXMPPTool sharedInstance];
-    xmppTool.registerOperation=NO;  //注册的方法
+    xmppTool.registerOperation=NO;
     
     WS(weakSelf);
-    
-    //显示旋转矿
     [self.view endEditing:YES];
-    
     [xmppTool login:^(XMPPResultType xmppType) {
         [weakSelf handle:xmppType];
     }];
 }
 #pragma mark 用户登录验证的方法
 -(void)handle:(XMPPResultType)xmppType {
-    //回到主线程
-    
     dispatch_async(dispatch_get_main_queue(), ^{
         switch (xmppType) {
             case XMPPResultSuccess:
             {
-//                [BaseMethod showSuccess:@"登录成功" toView:self.view];;
+                [MBProgressHUD showSuccess:@"登录成功" toView:self.view];
                 [self enterHome];
             }
                 break;
             case XMPPResultFaiture:
             {
-//                [BaseMethod showError:@"用户名或密码错误" toView:self.view];
+                [MBProgressHUD showError:@"用户名或密码错误" toView:self.view];
             }
                 break;
             case XMPPResultNetworkErr:
             {
-//                [BaseMethod showError:@"网络不给力" toView:self.view];
+                [MBProgressHUD showError:@"网络不给力" toView:self.view];
             }
+                break;
+            case XMPPResultRegisterSuccess:
+                [MBProgressHUD showError:@"注册成功" toView:self.view];
+                break;
+            case XMPPResultRegisterFailture:
+                [MBProgressHUD showError:@"注册失败" toView:self.view];
                 break;
         }
     });
     
 }
 #pragma mark 登录成功后进入主界面
--(void)enterHome
-{
-//    UserOperation *user=[UserOperation shareduser];
-//    user.loginStatus=YES; //登录成功保存登录状态
-    //清空输入框里面的文字
+-(void)enterHome {
     self.username.text=nil;
     self.password.text=nil;
     
@@ -169,9 +167,6 @@
 //    [self presentViewController:tab animated:NO completion:nil];
     BTContacterViewController *vc = [[BTContacterViewController alloc] init];
     [self.navigationController pushViewController:vc animated:NO];
-
-    
-    
 }
 
 #pragma mark 截取字符串空格的方法
@@ -217,6 +212,9 @@
         _username.delegate=self;
         _username.image=@"bt_login_user_icon";
         _username.contentPlaceholder=@"请输入用户名";
+        if ([[NSUserDefaults standardUserDefaults] valueForKey:userID]) {
+            _username.text = [[NSUserDefaults standardUserDefaults] valueForKey:userID];
+        }
     }
     return _username;
 }
@@ -228,6 +226,9 @@
         _password.delegate=self;
         _password.image=@"bt_login_pw_icon";
         _password.contentPlaceholder=@"请输入密码";
+        if ([[NSUserDefaults standardUserDefaults] valueForKey:userPassword]) {
+//            _password.text = [[NSUserDefaults standardUserDefaults] valueForKey:userPassword];
+        }
     }
     return _password;
 }

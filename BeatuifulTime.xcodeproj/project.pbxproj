@@ -33,8 +33,13 @@
 		650498971BFAD50B0072AE47 /* BTAlbumCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 650498961BFAD50B0072AE47 /* BTAlbumCollectionViewCell.m */; };
 		6508D5061C08504700E77DAB /* BTPhotoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508D5051C08504600E77DAB /* BTPhotoDetailsViewController.m */; };
 		65104E901C0D438800241323 /* BTAddAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65104E8F1C0D438800241323 /* BTAddAlbumViewController.m */; };
+		6523EF571C27AE370016D63C /* BTIMHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6523EF561C27AE370016D63C /* BTIMHomePageViewController.m */; };
+		6523EF5E1C27CC300016D63C /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 6523EF5A1C27CC300016D63C /* MBProgressHUD+MJ.m */; };
+		6523EF5F1C27CC300016D63C /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6523EF5B1C27CC300016D63C /* MBProgressHUD.bundle */; };
+		6523EF601C27CC300016D63C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6523EF5D1C27CC300016D63C /* MBProgressHUD.m */; };
 		652608531C04604D00370630 /* BTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 652608521C04604D00370630 /* BTAttributedLabel.m */; };
 		652608591C0464CC00370630 /* NSMutableAttributedString+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 652608581C0464CC00370630 /* NSMutableAttributedString+Addition.m */; };
+		6543651F1C280A08003F8D89 /* BTIMTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6543651E1C280A08003F8D89 /* BTIMTabBarController.m */; };
 		6548630C1BDB279500CF3FF1 /* BTContacterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6548630B1BDB279500CF3FF1 /* BTContacterViewController.m */; };
 		654A502C1BEF2CE20038CD47 /* BTShowWeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 654A502B1BEF2CE20038CD47 /* BTShowWeatherViewController.m */; };
 		654A502F1BEF2D6A0038CD47 /* BTSelectSiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 654A502E1BEF2D6A0038CD47 /* BTSelectSiteViewController.m */; };
@@ -338,10 +343,19 @@
 		6508D5051C08504600E77DAB /* BTPhotoDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTPhotoDetailsViewController.m; sourceTree = "<group>"; };
 		65104E8E1C0D438800241323 /* BTAddAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAddAlbumViewController.h; sourceTree = "<group>"; };
 		65104E8F1C0D438800241323 /* BTAddAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAddAlbumViewController.m; sourceTree = "<group>"; };
+		6523EF551C27AE370016D63C /* BTIMHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTIMHomePageViewController.h; sourceTree = "<group>"; };
+		6523EF561C27AE370016D63C /* BTIMHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTIMHomePageViewController.m; sourceTree = "<group>"; };
+		6523EF591C27CC300016D63C /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
+		6523EF5A1C27CC300016D63C /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
+		6523EF5B1C27CC300016D63C /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		6523EF5C1C27CC300016D63C /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		6523EF5D1C27CC300016D63C /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		652608511C04604D00370630 /* BTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAttributedLabel.h; sourceTree = "<group>"; };
 		652608521C04604D00370630 /* BTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAttributedLabel.m; sourceTree = "<group>"; };
 		652608571C0464CC00370630 /* NSMutableAttributedString+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+Addition.h"; sourceTree = "<group>"; };
 		652608581C0464CC00370630 /* NSMutableAttributedString+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+Addition.m"; sourceTree = "<group>"; };
+		6543651D1C280A08003F8D89 /* BTIMTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTIMTabBarController.h; sourceTree = "<group>"; };
+		6543651E1C280A08003F8D89 /* BTIMTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTIMTabBarController.m; sourceTree = "<group>"; };
 		6548630A1BDB279500CF3FF1 /* BTContacterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTContacterViewController.h; sourceTree = "<group>"; };
 		6548630B1BDB279500CF3FF1 /* BTContacterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTContacterViewController.m; sourceTree = "<group>"; };
 		654A502A1BEF2CE20038CD47 /* BTShowWeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTShowWeatherViewController.h; sourceTree = "<group>"; };
@@ -966,6 +980,36 @@
 			path = ViewControll;
 			sourceTree = "<group>";
 		};
+		6523EF531C27AE1B0016D63C /* HomePageModule */ = {
+			isa = PBXGroup;
+			children = (
+				6523EF541C27AE1B0016D63C /* ViewController */,
+				6523EF551C27AE370016D63C /* BTIMHomePageViewController.h */,
+				6523EF561C27AE370016D63C /* BTIMHomePageViewController.m */,
+			);
+			path = HomePageModule;
+			sourceTree = "<group>";
+		};
+		6523EF541C27AE1B0016D63C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		6523EF581C27CC300016D63C /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				6523EF591C27CC300016D63C /* MBProgressHUD+MJ.h */,
+				6523EF5A1C27CC300016D63C /* MBProgressHUD+MJ.m */,
+				6523EF5B1C27CC300016D63C /* MBProgressHUD.bundle */,
+				6523EF5C1C27CC300016D63C /* MBProgressHUD.h */,
+				6523EF5D1C27CC300016D63C /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			path = JSONModel/MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		652608501C045FA500370630 /* BTAttributedLabel */ = {
 			isa = PBXGroup;
 			children = (
@@ -973,6 +1017,39 @@
 				652608521C04604D00370630 /* BTAttributedLabel.m */,
 			);
 			path = BTAttributedLabel;
+			sourceTree = "<group>";
+		};
+		654365191C280975003F8D89 /* MainModule */ = {
+			isa = PBXGroup;
+			children = (
+				6543651A1C280975003F8D89 /* Model */,
+				6543651B1C280975003F8D89 /* View */,
+				6543651C1C280975003F8D89 /* ViewController */,
+			);
+			path = MainModule;
+			sourceTree = "<group>";
+		};
+		6543651A1C280975003F8D89 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6543651B1C280975003F8D89 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6543651C1C280975003F8D89 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6543651D1C280A08003F8D89 /* BTIMTabBarController.h */,
+				6543651E1C280A08003F8D89 /* BTIMTabBarController.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		654863091BDB279500CF3FF1 /* ViewController */ = {
@@ -2121,6 +2198,8 @@
 		65F4262D1BDA0F1400295796 /* IMModule */ = {
 			isa = PBXGroup;
 			children = (
+				654365191C280975003F8D89 /* MainModule */,
+				6523EF531C27AE1B0016D63C /* HomePageModule */,
 				65F4262E1BDA0F1400295796 /* ContacterModule */,
 			);
 			path = IMModule;
@@ -2229,6 +2308,7 @@
 		B44506E81BCFFB9F008BD5AC /* 3rdparty */ = {
 			isa = PBXGroup;
 			children = (
+				6523EF581C27CC300016D63C /* MBProgressHUD */,
 				65F253AD1C1ECF0300E0F0CE /* JSONModel */,
 				B4FABBDA1C020FE600213AB7 /* SDWebImage */,
 				6500E71F1BEF395C007158BF /* AFNetworking */,
@@ -2506,6 +2586,7 @@
 				65DE12AD1BD0E1AB00D01BCA /* guide_2@3x.png in Resources */,
 				65DE12B11BD0E1AB00D01BCA /* guide_3@3x.png in Resources */,
 				65DE12AE1BD0E1AB00D01BCA /* guide_3@2x.jpg in Resources */,
+				6523EF5F1C27CC300016D63C /* MBProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2667,6 +2748,7 @@
 				65DBD0A71BD77CE700784DAC /* XMPPElement.m in Sources */,
 				6508D5061C08504700E77DAB /* BTPhotoDetailsViewController.m in Sources */,
 				65DBD1F11BD7A2A100784DAC /* NSXMLElement+XEP_0203.m in Sources */,
+				6523EF5E1C27CC300016D63C /* MBProgressHUD+MJ.m in Sources */,
 				650022D21C1A731A0037D32E /* BTAddressBookManager.m in Sources */,
 				65DBD0A31BD77CE700784DAC /* DDTTYLogger.m in Sources */,
 				B445071D1BD0044B008BD5AC /* BTGuideViewController.m in Sources */,
@@ -2692,6 +2774,7 @@
 				65DBD09A1BD77CE700784DAC /* XMPPXFacebookPlatformAuthentication.m in Sources */,
 				65DBD1B91BD7A2A100784DAC /* XMPPRoomMessageCoreDataStorageObject.m in Sources */,
 				65DBD1BD1BD7A2A100784DAC /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
+				6523EF601C27CC300016D63C /* MBProgressHUD.m in Sources */,
 				65DBD1D01BD7A2A100784DAC /* XMPPvCardTempModule.m in Sources */,
 				65DBD1E51BD7A2A100784DAC /* XMPPMessageArchiving_Message_CoreDataObject.m in Sources */,
 				65DBD1DE1BD7A2A100784DAC /* XMPPCapabilities.xcdatamodel in Sources */,
@@ -2726,6 +2809,7 @@
 				65DBD1DB1BD7A2A100784DAC /* XMPPMessage+XEP_0085.m in Sources */,
 				65DBD1AF1BD7A2A100784DAC /* XMPPRoster.m in Sources */,
 				652608531C04604D00370630 /* BTAttributedLabel.m in Sources */,
+				6543651F1C280A08003F8D89 /* BTIMTabBarController.m in Sources */,
 				65DBD1D41BD7A2A100784DAC /* XMPPIQ+XEP_0060.m in Sources */,
 				B44579FC1C140FC300CB10DC /* BTSettingViewController.m in Sources */,
 				65DBD1C61BD7A2A100784DAC /* XMPPvCardAvatarCoreDataStorageObject.m in Sources */,
@@ -2754,6 +2838,7 @@
 				65F4262C1BD9F5F600295796 /* UIImage+Addition.m in Sources */,
 				65DBD0961BD77CE700784DAC /* XMPPDeprecatedDigestAuthentication.m in Sources */,
 				65DBD1B41BD7A2A100784DAC /* XMPPIQ+LastActivity.m in Sources */,
+				6523EF571C27AE370016D63C /* BTIMHomePageViewController.m in Sources */,
 				65DBD1EA1BD7A2A100784DAC /* XMPPPresence+XEP_0172.m in Sources */,
 				65DBD1C21BD7A2A100784DAC /* XMPPMessage+XEP0045.m in Sources */,
 				B44579F51C140B1900CB10DC /* BTAddTimelineViewController.m in Sources */,

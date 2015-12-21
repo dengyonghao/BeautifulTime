@@ -14,18 +14,22 @@
 #import "BTRecordViewController.h"
 #import "BTJournalController.h"
 #import "BTWeatherModel.h"
+#import "BTCalendarView.h"
+#import "BTWeatherStatusVeiw.h"
 #import "BTHomePageViewController.h"
+#import "UIView+BTAddition.h"
+
+static const CGFloat itemWidth = 70;
 
 @interface BTAddJournalViewController ()<UITextViewDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
-@property (strong, nonatomic) CLLocationManager* locationManager;
+@property (nonatomic, strong) CLLocationManager* locationManager;
 @property (nonatomic, strong) UIView *toolsView;
+@property (nonatomic, strong) BTCalendarView *calendarView;
+@property (nonatomic, strong) BTWeatherStatusVeiw *weatherStatusView;
 @property (nonatomic, strong) UIScrollView *bodyScrollView;
-@property (nonatomic, strong) UIButton *photos;
-@property (nonatomic, strong) UIButton *site;
-@property (nonatomic, strong) UIButton *weather;
+@property (nonatomic, strong) UIImageView *photos;
 @property (nonatomic, strong) UIButton *records;
-@property (nonatomic, strong) UIButton *date;
 @property (nonatomic, strong) UITextView *content;
 
 @property (nonatomic, strong) UIButton *finshBnt;
@@ -40,9 +44,8 @@
     self.titleLabel.text = @"记笔记";
     [self.finishButton setTitle:@"保存" forState:UIControlStateNormal];
     [self.view addSubview:self.toolsView];
-    [self.toolsView addSubview:self.date];
-    [self.toolsView addSubview:self.site];
-    [self.toolsView addSubview:self.weather];
+    [self.toolsView addSubview:self.calendarView];
+    [self.toolsView addSubview:self.weatherStatusView];
     [self.toolsView addSubview:self.photos];
     [self.toolsView addSubview:self.records];
     [self.bodyView addSubview:self.bodyScrollView];
@@ -62,32 +65,34 @@
         make.top.equalTo(weakSelf.bodyView).offset(5);
         make.left.equalTo(weakSelf.bodyView).offset(10);
         make.right.equalTo(weakSelf.bodyView).offset(-10);
-        make.height.equalTo(@((BT_SCREEN_WIDTH - 20) / 4));
+        make.height.equalTo(@(80));
     }];
-    [self.date mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+    CGFloat offset = (BT_SCREEN_WIDTH - 20 - itemWidth * 4) / 5;
+    [self.calendarView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakSelf.toolsView).offset(5);
+        make.left.equalTo(weakSelf.toolsView).offset(offset);
+        make.width.equalTo(@(itemWidth));
+        make.height.equalTo(@(itemWidth));
     }];
-    
-    [self.site mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.toolsView).offset(10);
-        make.top.equalTo(weakSelf.toolsView).offset(10);
-        make.width.equalTo(@(60));
-        make.height.equalTo(@(40));
-    }];
-    
-    [self.weather mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+    [self.weatherStatusView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakSelf.toolsView).offset(5);
+        make.left.equalTo(weakSelf.calendarView).offset(itemWidth + offset);
+        make.width.equalTo(@(itemWidth));
+        make.height.equalTo(@(itemWidth));
     }];
     
     [self.photos mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+        make.top.equalTo(weakSelf.toolsView).offset(5);
+        make.left.equalTo(weakSelf.weatherStatusView).offset(itemWidth + offset);
+        make.width.equalTo(@(itemWidth));
+        make.height.equalTo(@(itemWidth));
     }];
     
     [self.records mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(weakSelf.toolsView);
-        make.centerX.equalTo(weakSelf.toolsView);
-        make.width.equalTo(@(60));
-        make.height.equalTo(@(40));
+        make.top.equalTo(weakSelf.toolsView).offset(5);
+        make.left.equalTo(weakSelf.photos).offset(itemWidth + offset);
+        make.width.equalTo(@(itemWidth));
+        make.height.equalTo(@(itemWidth));
     }];
     
     [self.bodyScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -147,7 +152,6 @@
         for (CLPlacemark * placemark in placemarks) {
             NSDictionary *info = [placemark addressDictionary];
             NSString * city = [info objectForKey:@"City"];
-            [self.site setTitle:city forState:UIControlStateNormal];
             [BTNetManager netManagerReqeustWeatherInfo:[self cutStr:city] successCallback:^(NSDictionary *retDict) {
                 BTWeatherModel *model = [[BTWeatherModel alloc] init];
                 model.city = retDict[@"HeWeather data service 3.0"][0][@"basic"][@"city"];
@@ -157,7 +161,7 @@
                 model.minTemperature = retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"tmp"][@"min"];
                 model.dayWeatherIcon = retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"cond"][@"txt_d"];
                 model.nightWeatherIcon = retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"cond"][@"txt_n"];
-
+                [self.weatherStatusView bindData:model];
                 
             } failCallback:^(NSError *error) {
                 
@@ -185,7 +189,7 @@
     NSData* data = [self.content.text dataUsingEncoding:NSUTF8StringEncoding];
     newJournal.journalContent = data;
     newJournal.journalDate = [NSDate date];
-    newJournal.site = self.site.titleLabel.text;
+    newJournal.site = @"";
     newJournal.records = [BTJournalController sharedInstance].record;
     [[AppDelegate getInstance].coreDataHelper saveContext];
     for (UIViewController *controller in self.navigationController.viewControllers) {
@@ -211,15 +215,33 @@
 - (UIView *)toolsView {
     if (!_toolsView) {
         _toolsView = [[UIView alloc] init];
-        _toolsView.backgroundColor = [UIColor greenColor];
+        _toolsView.backgroundColor = [[BTThemeManager getInstance] BTThemeColor:@"cl_press_e"] ;
+        [_toolsView setBorderWithWidth:1 color:nil cornerRadius:8];
     }
     return _toolsView;
+}
+
+- (BTCalendarView *)calendarView {
+    if (!_calendarView) {
+        _calendarView = [[BTCalendarView alloc] initWithFrame:CGRectMake(0, 0, itemWidth, itemWidth)];
+        NSDate *date = [NSDate date];
+        [_calendarView bindData:date];
+    }
+    return _calendarView;
+}
+
+- (BTWeatherStatusVeiw *)weatherStatusView {
+    if (!_weatherStatusView) {
+        _weatherStatusView = [[BTWeatherStatusVeiw alloc] initWithFrame:CGRectMake(0, 0, itemWidth, itemWidth)];
+    }
+    return _weatherStatusView;
 }
 
 - (UIScrollView *)bodyScrollView {
     if (!_bodyScrollView) {
         _bodyScrollView = [[UIScrollView alloc] init];
         _bodyScrollView.contentSize = CGSizeMake(BT_SCREEN_WIDTH - 20, BT_SCREEN_HEIGHT);
+        [_content setBorderWithWidth:1 color:nil cornerRadius:6];
     }
     return _bodyScrollView;
 }
@@ -228,46 +250,27 @@
     if (!_content) {
         _content = [[UITextView alloc] init];
         _content.delegate = self;
+        [_content setBorderWithWidth:1 color:nil cornerRadius:6];
     }
     return _content;
 }
 
-- (UIButton *)photos {
+- (UIImageView *)photos {
     if (!_photos) {
-        _photos = [[UIButton alloc] init];
+        _photos = [[UIImageView alloc] init];
+        [_photos setBorderWithWidth:1 color:[[BTThemeManager getInstance] BTThemeColor:@"cl_line_b_leftbar"] cornerRadius:5];
     }
     return _photos;
-}
-
-- (UIButton *)site {
-    if (!_site) {
-        _site = [[UIButton alloc] init];
-    }
-    return _site;
-}
-
-- (UIButton *)weather {
-    if (!_weather) {
-        _weather = [[UIButton alloc] init];
-    }
-    return _weather;
 }
 
 - (UIButton *)records {
     if (!_records) {
         _records = [[UIButton alloc] init];
-        [_records setTitle:@"录音" forState:UIControlStateNormal];
+        [_records setBorderWithWidth:1 color:[[BTThemeManager getInstance] BTThemeColor:@"cl_line_b_leftbar"] cornerRadius:5];
+        [_records setImage:BT_LOADIMAGE(@"com_ic_voice") forState:UIControlStateNormal];
         [_records addTarget:self action:@selector(recordsClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _records;
 }
-
-- (UIButton *)date {
-    if (!_date) {
-        _date = [[UIButton alloc] init];
-    }
-    return _date;
-}
-
 
 @end

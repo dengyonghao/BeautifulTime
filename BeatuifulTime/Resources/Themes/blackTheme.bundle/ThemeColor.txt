@@ -16,7 +16,7 @@
 	"cl_press_b":"0xff003366",
 	"cl_btn_d":"0xcc22c064",
 	"cl_press_d":"0xff126635",
-
+    "cl_press_e":"0xffdbdbdb",
 
 	"cl_line_a1_item":"0x0fffffff",
 	"cl_line_a2_progress":"0x1affffff",

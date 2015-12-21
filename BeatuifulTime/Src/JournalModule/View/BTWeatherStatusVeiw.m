@@ -69,7 +69,7 @@ static const CGFloat iconHeight = 20;
             make.height.equalTo(weakSelf.pm25ImageView);
         }];
         [self setBorderWithWidth:1 color:[[BTThemeManager getInstance] BTThemeColor:@"cl_line_b_leftbar"] cornerRadius:5];
-//        self.backgroundColor = [UIColor whiteColor];
+//        self.backgroundColor = [[BTThemeManager getInstance] BTThemeColor:@"cl_other_c"] ;
        
         [self addTapGesture];
     }
@@ -152,7 +152,7 @@ static const CGFloat iconHeight = 20;
 - (UIView *)titleView {
     if (!_titleView) {
         _titleView = [[UIView alloc] init];
-        _titleView.backgroundColor = [[BTThemeManager getInstance] BTThemeColor:@"cl_other_a_bg"];
+        _titleView.backgroundColor = [[BTThemeManager getInstance] BTThemeColor:@"cl_other_c"];
     }
     return _titleView;
 }
@@ -161,6 +161,7 @@ static const CGFloat iconHeight = 20;
     if (!_cityName) {
         _cityName = [[UILabel alloc] init];
         _cityName.textAlignment = NSTextAlignmentCenter;
+        _cityName.font = BT_FONTSIZE(14);
     }
     return _cityName;
 }

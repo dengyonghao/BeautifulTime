@@ -9,6 +9,7 @@
 #import "BTContacterViewController.h"
 #import "BTContacterModel.h"
 #import "BTContacterCell.h"
+#import "BTXMPPTool.h"
 
 @interface BTContacterViewController ()<NSFetchedResultsControllerDelegate,UISearchBarDelegate,UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -36,6 +37,7 @@
     [self setupSearchBar];
     [self getFriendData];
     [self.view addSubview:self.tableview];
+    [[BTXMPPTool sharedInstance] addFried:nil];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -179,15 +181,12 @@
 }
 
 #pragma mark - tableview delegate
-#pragma mark - 返回有多少个区
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
     return self.keys.count;
 }
-#pragma mark 返回有多少个行
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {    
     NSString *key=self.keys[section];
     NSArray *arr=[self.data objectForKey:key];
     return arr.count;

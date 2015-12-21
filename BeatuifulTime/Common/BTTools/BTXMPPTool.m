@@ -12,9 +12,7 @@ static BTXMPPTool *xmppTool;
 
 @interface BTXMPPTool ()<XMPPStreamDelegate>
 {
-    //定义这个block
     XMPPResultBlock _resultBlock;
-    //自动连接对象
     XMPPReconnect *_reconnect;
     //定义一个消息对象
     XMPPMessageArchiving *_messageArching;
@@ -74,11 +72,11 @@ static BTXMPPTool *xmppTool;
     if(!_xmppStream){
         [self setupXmppStream];
     }
-    XMPPJID *myJid=[XMPPJID jidWithUser:@"wanglin" domain:ServerName resource:nil];
-    self.jid=myJid;  //参数赋值
+    NSString *user = [[NSUserDefaults standardUserDefaults] valueForKey:userID];
+    XMPPJID *myJid=[XMPPJID jidWithUser:user domain:ServerName resource:nil];
+    self.jid=myJid;
     _xmppStream.myJID=myJid;
-    //设置服务器域名或ip地址
-    _xmppStream.hostName=ServerAddress;  //IP地址或域名都可以
+    _xmppStream.hostName=ServerAddress;
     _xmppStream.hostPort=ServerPort;
     
     NSError *error=nil;
@@ -92,16 +90,11 @@ static BTXMPPTool *xmppTool;
 #pragma mark 连接成功调用这个方法
 -(void)xmppStreamDidConnect:(XMPPStream *)sender
 {
-    NSLog(@"连接主机成功");
-    //想服务器端发送密码
-    
-    //判断是登录还是注册
-    if(self.isRegisterOperation) {  //注册操作
-        
-        NSString *password = @"12345";//
-        //调用注册方法  （这个方法会调用代理方法）
+    NSLog(@"连接主机成功");    
+    if(self.isRegisterOperation) {
+        NSString *password = [[NSUserDefaults standardUserDefaults] valueForKey:userPassword];
         [_xmppStream registerWithPassword:password error:nil];
-    }else{  //登录操作
+    } else {
         [self sendPwdToHost];
     }
     
@@ -119,7 +112,7 @@ static BTXMPPTool *xmppTool;
 -(void)sendPwdToHost
 {
     NSError *error=nil;
-    NSString *password=@"12345";
+    NSString *password=@"x5829189130";
     //验证密码
     [_xmppStream authenticateWithPassword:password error:&error];
     if(error){
@@ -163,12 +156,8 @@ static BTXMPPTool *xmppTool;
 }
 
 #pragma mark 登录的方法
--(void)login:(XMPPResultBlock)xmppBlock
-{
-    //把block存起来
-    
+-(void)login:(XMPPResultBlock)xmppBlock {
     _resultBlock=xmppBlock;
-    //断开服务器重新连接
     [_xmppStream disconnect];
     //连接到主机
     [self connectToHost];
@@ -183,21 +172,32 @@ static BTXMPPTool *xmppTool;
 //    user.uname=nil;
 //    user.password=nil;
 //    user.loginStatus=NO; //退出登录状态
+}
+
+- (void)addFried:(XMPPJID *)friedJid {
+    XMPPJID *myJid=[XMPPJID jidWithUser:@"wang" domain:ServerName resource:nil];
+    [_roster subscribePresenceToUser:myJid];
+}
+- (void)xmppRoster:(XMPPRoster *)sender didReceivePresenceSubscriptionRequest:(XMPPPresence *)presence
+{
+    //取得好友状态
+    NSString *presenceType = [NSString stringWithFormat:@"%@", [presence type]]; //online/offline
+    //请求的用户
+    NSString *presenceFromUser =[NSString stringWithFormat:@"%@", [[presence from] user]];
+    NSLog(@"presenceType:%@",presenceType);
     
+    NSLog(@"presence2:%@  sender2:%@",presence,sender);
+    
+    XMPPJID *jid = [XMPPJID jidWithString:presenceFromUser];
+    [_roster acceptPresenceSubscriptionRequestFrom:jid andAddToRoster:YES];
     
 }
+
 #pragma mark 调用注册的方法
--(void)regist:(XMPPResultBlock)xmppType
-{
-    //把block保存起来
+-(void)regist:(XMPPResultBlock)xmppType {
     _resultBlock=xmppType;
-    //断开连接
     [_xmppStream disconnect];
-    //连接主机
     [self connectToHost];
-    
-    
-    
 }
 #pragma mark 注册成功
 -(void)xmppStreamDidRegister:(XMPPStream *)sender{
@@ -216,18 +216,13 @@ static BTXMPPTool *xmppTool;
 }
 #pragma mark 接收到消息的事件
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message{
-    // NSLog(@"有消息了! %@",message);
-    // NSLog(@"接收到的离线信息是：%@",[self getDelayStampTime:message]);
     NSDate *date=[self getDelayStampTime:message];
-    //如果不是消息的话
     if(date==nil){
         date=[NSDate date];
     }
     NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *strDate=[formatter stringFromDate:date];
-    //NSLog(@"离线消息 ：(%@)",strDate);
-    
     XMPPJID *jid=[message from];
     
     
