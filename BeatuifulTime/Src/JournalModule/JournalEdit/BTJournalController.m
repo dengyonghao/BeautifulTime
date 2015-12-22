@@ -39,9 +39,9 @@ static BTJournalController *journalController;
     return self;
 }
 
-- (NSMutableArray *)photos {
+- (NSArray *)photos {
     if (!_photos) {
-        _photos = [[NSMutableArray alloc] init];
+        _photos = [[NSArray alloc] init];
     }
     return _photos;
 }

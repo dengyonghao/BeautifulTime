@@ -18,6 +18,7 @@
 #import "BTWeatherStatusVeiw.h"
 #import "BTHomePageViewController.h"
 #import "UIView+BTAddition.h"
+#import "BTMyAlbumViewController.h"
 
 static const CGFloat itemWidth = 70;
 
@@ -51,6 +52,15 @@ static const CGFloat itemWidth = 70;
     [self.bodyView addSubview:self.bodyScrollView];
     [self.bodyScrollView addSubview:self.content];
     [self startLocation];
+    [self addImageViewGesture];
+}
+
+#pragma mark 添加手势识别器
+-(void)addImageViewGesture
+{
+    UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(photosClick)];
+    tap.numberOfTapsRequired=1;
+    [self.photos addGestureRecognizer:tap];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -190,6 +200,8 @@ static const CGFloat itemWidth = 70;
     newJournal.journalContent = data;
     newJournal.journalDate = [NSDate date];
     newJournal.site = @"";
+    NSData *photosData = [NSKeyedArchiver archivedDataWithRootObject:[BTJournalController sharedInstance].photos];
+    newJournal.photos = photosData;
     newJournal.records = [BTJournalController sharedInstance].record;
     [[AppDelegate getInstance].coreDataHelper saveContext];
     for (UIViewController *controller in self.navigationController.viewControllers) {
@@ -198,6 +210,12 @@ static const CGFloat itemWidth = 70;
         }
     }
 
+}
+
+- (void)photosClick {
+    BTMyAlbumViewController *vc = [[BTMyAlbumViewController alloc] init];
+    vc.isSelectModel = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)recordsClick {
@@ -259,6 +277,7 @@ static const CGFloat itemWidth = 70;
     if (!_photos) {
         _photos = [[UIImageView alloc] init];
         [_photos setBorderWithWidth:1 color:[[BTThemeManager getInstance] BTThemeColor:@"cl_line_b_leftbar"] cornerRadius:5];
+        _photos.userInteractionEnabled = YES;
     }
     return _photos;
 }

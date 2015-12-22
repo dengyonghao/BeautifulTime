@@ -22,6 +22,7 @@ static CGSize AssetGridThumbnailSize;
     self = [super initWithFrame:frame];
     if (self) {
         [self.contentView addSubview:self.imageView];
+        [self.contentView addSubview:self.isSelect];
         
         CGFloat iconWidth = BT_SCREEN_WIDTH / 3;
         CGFloat scale = [UIScreen mainScreen].scale;
@@ -32,6 +33,13 @@ static CGSize AssetGridThumbnailSize;
             make.height.equalTo(@(iconWidth));
             make.centerX.equalTo(weakSelf.contentView.mas_centerX);
         }];
+        
+//        [self.isSelect mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.right.equalTo(weakSelf).offset(-5);
+//            make.bottom.equalTo(weakSelf).offset(-5);
+//            make.width.equalTo(@(24));
+//            make.height.equalTo(@(24));
+//        }];
     }
     return self;
 }
@@ -62,9 +70,17 @@ static CGSize AssetGridThumbnailSize;
 - (UIImageView *)imageView {
     if (!_imageView) {
         _imageView = [[UIImageView alloc] init];
-        _imageView.backgroundColor = [UIColor blueColor];
     }
     return _imageView;
+}
+
+- (UIImageView *)isSelect {
+    if (!_isSelect) {
+        _isSelect = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+        _isSelect.image = BT_LOADIMAGE(@"com_ic_selected");
+        _isSelect.hidden = YES;
+    }
+    return _isSelect;
 }
 
 @end

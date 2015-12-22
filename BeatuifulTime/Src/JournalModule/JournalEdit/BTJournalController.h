@@ -18,7 +18,7 @@
 + (instancetype)sharedInstance;
 
 @property (nonatomic, weak) id <BTJournalControllerDelegate> delegate;
-@property (nonatomic, strong) NSMutableArray *photos;
+@property (nonatomic, strong) NSArray *photos;
 @property (nonatomic, strong) NSDate *currentDate;
 @property (nonatomic, strong) NSData *record;
 

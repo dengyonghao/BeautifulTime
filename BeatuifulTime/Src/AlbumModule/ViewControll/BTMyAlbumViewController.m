@@ -32,8 +32,10 @@ static CGFloat const iconHeight = 120.0f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.finishButton setHidden:NO];
-    [self.finishButton setTitle:@"添加" forState:UIControlStateNormal];
+    if (!self.isSelectModel) {
+        [self.finishButton setHidden:NO];
+        [self.finishButton setTitle:@"添加" forState:UIControlStateNormal];
+    }
     self.titleLabel.text = @"我的相册";
     [self initDataSource];
     [self.bodyView addSubview:self.collectionView];
@@ -219,6 +221,7 @@ static CGFloat const iconHeight = 120.0f;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     BTPhotoListViewController *vc = [[BTPhotoListViewController alloc] init];
+    vc.isSelectModel = self.isSelectModel;
     if (indexPath.section == 0 && indexPath.row == 0) {
         vc.fetchResult = self.dataSource[indexPath.section * showNumber + indexPath.row];
         vc.assetCollection = nil;

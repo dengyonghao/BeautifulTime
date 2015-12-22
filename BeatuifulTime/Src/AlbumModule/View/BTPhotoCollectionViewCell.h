@@ -11,6 +11,8 @@
 
 @interface BTPhotoCollectionViewCell : UICollectionViewCell
 
+@property (nonatomic, strong) UIImageView *isSelect;
+
 - (void)bindData:(PHAsset *)asset;
 
 @end

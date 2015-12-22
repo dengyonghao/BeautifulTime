@@ -10,4 +10,6 @@
 
 @interface BTMyAlbumViewController : BTBaseViewController
 
+@property (nonatomic, assign) BOOL isSelectModel;
+
 @end

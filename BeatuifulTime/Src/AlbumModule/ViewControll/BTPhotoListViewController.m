@@ -9,6 +9,8 @@
 #import "BTPhotoListViewController.h"
 #import "BTPhotoCollectionViewCell.h"
 #import "BTPhotoDetailsViewController.h"
+#import "BTJournalController.h"
+#import "BTAddJournalViewController.h"
 
 static  NSString *kcellIdentifier = @"kPhotoCollectionCellID";
 static int const showNumber = 3;
@@ -20,6 +22,8 @@ static CGFloat const iconHeight = 90.0f;
 
 @property (nonatomic, strong)UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
+@property (nonatomic, strong) NSMutableDictionary *flageArray;
+@property (nonatomic, strong) NSMutableDictionary *photoSource;
 
 @end
 
@@ -28,6 +32,10 @@ static CGFloat const iconHeight = 90.0f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.titleLabel.text = @"相册详情";
+    if (self.isSelectModel) {
+        self.finishButton.hidden = NO;
+        [self.finishButton setTitle:@"选择" forState:UIControlStateNormal];
+    }
     [self initDataSource];
     [self.bodyView addSubview:self.collectionView];
 }
@@ -51,6 +59,12 @@ static CGFloat const iconHeight = 90.0f;
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
+}
+
+- (void)finishButtonClick {
+    [[BTJournalController sharedInstance] setPhotos:[self.photoSource allValues]];
+    BTAddJournalViewController *vc = [[BTAddJournalViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)initDataSource {
@@ -158,16 +172,37 @@ static CGFloat const iconHeight = 90.0f;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     BTPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kcellIdentifier forIndexPath:indexPath];
+    NSString *str = [self.flageArray valueForKey:[[NSString alloc] initWithFormat:@"%ld",(indexPath.section * showNumber + indexPath.row)]];
+    if ([str isEqualToString:@"YES"]) {
+        cell.isSelect.hidden = NO;
+    } else {
+        cell.isSelect.hidden = YES;
+    }
     [cell bindData:self.dataSource[indexPath.section * showNumber + indexPath.row]];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    BTPhotoDetailsViewController *vc = [[BTPhotoDetailsViewController alloc] init];
-    vc.assets = self.dataSource;
-    vc.index = indexPath.section * showNumber + indexPath.row;
-    [self.navigationController pushViewController:vc animated:YES];
+    long index = indexPath.section * showNumber + indexPath.row;
+    if (self.isSelectModel) {
+        BTPhotoCollectionViewCell *cell = (BTPhotoCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+        if (cell.isSelect.hidden) {
+            cell.isSelect.hidden = NO;
+            [self.flageArray setValue:@"YES" forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
+            [self.photoSource setValue:self.dataSource[index] forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
+        } else {
+            cell.isSelect.hidden = YES;
+            [self.flageArray setValue:@"NO" forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
+            [self.photoSource removeObjectForKey:[[NSString alloc] initWithFormat:@"%ld",index]];
+        }
+        
+    } else {
+        BTPhotoDetailsViewController *vc = [[BTPhotoDetailsViewController alloc] init];
+        vc.assets = self.dataSource;
+        vc.index = indexPath.section * showNumber + indexPath.row;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 //定义UICollectionView 的 margin
@@ -189,12 +224,26 @@ static CGFloat const iconHeight = 90.0f;
     return _collectionView;
 }
 
-- (NSMutableArray *)dataSource
-{
+- (NSMutableArray *)dataSource {
     if (!_dataSource) {
         _dataSource = [[NSMutableArray alloc] init];
     }
     return _dataSource;
 }
+
+- (NSMutableDictionary *)flageArray {
+    if (!_flageArray) {
+        _flageArray = [[NSMutableDictionary alloc] init];
+    }
+    return _flageArray;
+}
+
+- (NSMutableDictionary *)photoSource {
+    if (!_photoSource) {
+        _photoSource = [[NSMutableDictionary alloc] init];
+    }
+    return _photoSource;
+}
+
 
 @end

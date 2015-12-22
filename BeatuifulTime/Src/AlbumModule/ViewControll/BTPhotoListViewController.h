@@ -13,5 +13,6 @@
 
 @property (nonatomic, strong) PHFetchResult *fetchResult;
 @property (nonatomic, strong) PHAssetCollection *assetCollection;
+@property (nonatomic, assign) BOOL isSelectModel;
 
 @end
