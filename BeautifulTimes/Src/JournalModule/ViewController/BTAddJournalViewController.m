@@ -72,7 +72,7 @@ static const CGFloat itemWidth = 70;
     WS(weakSelf);
     
     [self.toolsView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.bodyView).offset(5);
+        make.top.equalTo(weakSelf.bodyView);
         make.left.equalTo(weakSelf.bodyView).offset(10);
         make.right.equalTo(weakSelf.bodyView).offset(-10);
         make.height.equalTo(@(80));
@@ -276,6 +276,7 @@ static const CGFloat itemWidth = 70;
 - (UIImageView *)photos {
     if (!_photos) {
         _photos = [[UIImageView alloc] init];
+        [_photos setImage:BT_LOADIMAGE(@"com_ic_photo")];
         [_photos setBorderWithWidth:1 color:[[BTThemeManager getInstance] BTThemeColor:@"cl_line_b_leftbar"] cornerRadius:5];
         _photos.userInteractionEnabled = YES;
     }

@@ -13,7 +13,7 @@ static CGSize AssetGridThumbnailSize;
 static NSInteger currentIndex;
 static NSInteger headIndex;
 static NSInteger tailIndex;
-static NSInteger cacheNumber = 15;
+static NSInteger cacheNumber = 10;
 
 @interface BTPhotoDetailsViewController () <UIScrollViewDelegate>
 

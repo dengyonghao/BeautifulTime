@@ -187,8 +187,8 @@
     if (!_username) {
         _username = [[BTTextField alloc] init];
         _username.delegate=self;
-        _username.image=@"bt_login_user_icon";
-        _username.contentPlaceholder=@"请输入用户名";
+        _username.image = @"bt_login_user_icon";
+        _username.contentPlaceholder = @"请输入用户名";
     }
     return _username;
 }

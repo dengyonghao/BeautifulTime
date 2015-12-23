@@ -190,7 +190,7 @@ static CGFloat const iconHeight = 90.0f;
         if (cell.isSelect.hidden) {
             cell.isSelect.hidden = NO;
             [self.flageArray setValue:@"YES" forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
-            [self.photoSource setValue:self.dataSource[index] forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
+            [self.photoSource setValue:cell.imageView.image forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
         } else {
             cell.isSelect.hidden = YES;
             [self.flageArray setValue:@"NO" forKey:[[NSString alloc] initWithFormat:@"%ld",index]];

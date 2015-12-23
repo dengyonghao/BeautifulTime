@@ -104,6 +104,11 @@
     self.cityName.text = model.site;
     [self.calendarView bindData:model.journalDate];
     self.contentLaber.text = [[NSString alloc] initWithData:model.journalContent encoding:NSUTF8StringEncoding];
+    NSArray *photoArray = [NSKeyedUnarchiver unarchiveObjectWithData:model.photos];
+    if (photoArray.count > 0) {
+        UIImage *image = photoArray[0];
+        self.photoImageView.image = image;
+    }
 }
 
 - (BTCalendarView *)calendarView {
@@ -163,6 +168,7 @@
 - (UIImageView *)photoImageView {
     if (!_photoImageView) {
         _photoImageView = [[UIImageView alloc] init];
+        _photoImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _photoImageView;
 }

@@ -12,7 +12,8 @@ static CGSize AssetGridThumbnailSize;
 
 @interface BTPhotoCollectionViewCell ()
 
-@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) PHCachingImageManager *imageManager;
+@property (nonatomic, strong) PHImageRequestOptions *options;
 
 @end
 
@@ -52,14 +53,11 @@ static CGSize AssetGridThumbnailSize;
 
 - (void)bindData:(PHAsset *)asset {
     self.imageView.image = BT_LOADIMAGE(@"music_ic_albumcover");
-    PHCachingImageManager *imageManager = [[PHCachingImageManager alloc] init];
-    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-    options.resizeMode = PHImageRequestOptionsResizeModeExact;
     WS(weakSelf);
-    [imageManager requestImageForAsset:asset
+    [self.imageManager requestImageForAsset:asset
                             targetSize:AssetGridThumbnailSize
                            contentMode:PHImageContentModeAspectFill
-                               options:options
+                               options:self.options
                          resultHandler:^(UIImage *result, NSDictionary *info) {
                              
                              weakSelf.imageView.image = result;
@@ -67,9 +65,26 @@ static CGSize AssetGridThumbnailSize;
                          }];
 }
 
+- (PHCachingImageManager *)imageManager {
+    if (!_imageManager) {
+        _imageManager = [[PHCachingImageManager alloc] init];
+    }
+    return _imageManager;
+}
+
+-(PHImageRequestOptions *)options {
+    if (!_options) {
+        _options = [[PHImageRequestOptions alloc] init];
+        _options.resizeMode = PHImageRequestOptionsResizeModeExact;
+        _options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+    }
+    return _options;
+}
+
 - (UIImageView *)imageView {
     if (!_imageView) {
         _imageView = [[UIImageView alloc] init];
+        _imageView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _imageView;
 }

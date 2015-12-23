@@ -49,16 +49,16 @@
     self.titleLabel = [[UILabel alloc] initWithFrame:self.headerView.bounds];
     self.titleLabel.backgroundColor = BT_CLEARCOLOR;
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.titleLabel.font = BT_FONTSIZE(20);
+    self.titleLabel.font = BT_FONTSIZE(22);
     [self.headerView addSubview:self.titleLabel];
     
     
-    self.finishButton = [[UIButton alloc] initWithFrame:CGRectMake(BT_SCREEN_WIDTH - BACKBUTTONWIDTH - 16, 8, BACKBUTTONWIDTH, BACKBUTTONWIDTH)];
+    self.finishButton = [[UIButton alloc] initWithFrame:CGRectMake(BT_SCREEN_WIDTH - BACKBUTTONWIDTH - 10, 0, BACKBUTTONWIDTH, BACKBUTTONWIDTH)];
     self.finishButton.exclusiveTouch = YES;
     [self.finishButton addTarget:self action:@selector(finishButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.headerView addSubview:self.finishButton];
     
-    self.backButton = [[UIButton alloc] initWithFrame:CGRectMake(16, 8, BACKBUTTONWIDTH, BACKBUTTONWIDTH)];
+    self.backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, BACKBUTTONWIDTH, BACKBUTTONWIDTH)];
     self.backButton.exclusiveTouch = YES;
     [self.backButton addTarget:self action:@selector(backButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.headerView addSubview:self.backButton];
