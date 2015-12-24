@@ -249,8 +249,8 @@ static const CGFloat BUTTONWIDTH = 48;
 - (UIButton *)userCenter {
     if (!_userCenter) {
         _userCenter = [[UIButton alloc] init];
-        _userCenter.backgroundColor = [UIColor blueColor];
         [_userCenter setTitle:@"我的" forState:UIControlStateNormal];
+        [_userCenter setTitleColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_other_d"] forState:UIControlStateNormal];
         [_userCenter addTarget:self action:@selector(userCenterClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _userCenter;
@@ -259,8 +259,8 @@ static const CGFloat BUTTONWIDTH = 48;
 - (UIButton *)setting {
     if (!_setting) {
         _setting = [[UIButton alloc] init];
-        _setting.backgroundColor = [UIColor blueColor];
         [_setting setTitle:@"设置" forState:UIControlStateNormal];
+        [_setting setTitleColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_other_d"] forState:UIControlStateNormal];
         [_setting addTarget:self action:@selector(settingClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _setting;
@@ -269,8 +269,7 @@ static const CGFloat BUTTONWIDTH = 48;
 - (UIButton *)timeline {
     if (!_timeline) {
         _timeline = [[UIButton alloc] init];
-        _timeline.backgroundColor = [UIColor blueColor];
-        [_timeline setTitle:@"时光轴" forState:UIControlStateNormal];
+        [_timeline setTitleColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_other_d"] forState:UIControlStateNormal];        [_timeline setTitle:@"时光轴" forState:UIControlStateNormal];
         [_timeline addTarget:self action:@selector(timelineClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _timeline;
@@ -279,7 +278,7 @@ static const CGFloat BUTTONWIDTH = 48;
 - (UIButton *)album {
     if (!_album) {
         _album = [[UIButton alloc] init];
-        _album.backgroundColor = [UIColor blueColor];
+        [_album setTitleColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_other_d"] forState:UIControlStateNormal];
         [_album setTitle:@"相册" forState:UIControlStateNormal];
         [_album addTarget:self action:@selector(albumClick) forControlEvents:UIControlEventTouchUpInside];
     }

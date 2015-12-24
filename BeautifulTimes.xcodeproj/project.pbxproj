@@ -32,6 +32,12 @@
 		650498941BFAD3F70072AE47 /* BTMyAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 650498931BFAD3F70072AE47 /* BTMyAlbumViewController.m */; };
 		650498971BFAD50B0072AE47 /* BTAlbumCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 650498961BFAD50B0072AE47 /* BTAlbumCollectionViewCell.m */; };
 		6508D5061C08504700E77DAB /* BTPhotoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508D5051C08504600E77DAB /* BTPhotoDetailsViewController.m */; };
+		650ABD7D1C2BD8A9004FBC89 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 650ABD731C2BD8A9004FBC89 /* FMDatabase.m */; };
+		650ABD7E1C2BD8A9004FBC89 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 650ABD751C2BD8A9004FBC89 /* FMDatabaseAdditions.m */; };
+		650ABD7F1C2BD8A9004FBC89 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 650ABD771C2BD8A9004FBC89 /* FMDatabasePool.m */; };
+		650ABD801C2BD8A9004FBC89 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 650ABD791C2BD8A9004FBC89 /* FMDatabaseQueue.m */; };
+		650ABD811C2BD8A9004FBC89 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 650ABD7C1C2BD8A9004FBC89 /* FMResultSet.m */; };
+		650ABD831C2BD9EF004FBC89 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 650ABD821C2BD9EF004FBC89 /* libsqlite3.tbd */; };
 		65104E901C0D438800241323 /* BTAddAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65104E8F1C0D438800241323 /* BTAddAlbumViewController.m */; };
 		6523EF571C27AE370016D63C /* BTIMHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6523EF561C27AE370016D63C /* BTIMHomePageViewController.m */; };
 		6523EF5E1C27CC300016D63C /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 6523EF5A1C27CC300016D63C /* MBProgressHUD+MJ.m */; };
@@ -341,6 +347,18 @@
 		650498961BFAD50B0072AE47 /* BTAlbumCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAlbumCollectionViewCell.m; sourceTree = "<group>"; };
 		6508D5041C08504600E77DAB /* BTPhotoDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTPhotoDetailsViewController.h; sourceTree = "<group>"; };
 		6508D5051C08504600E77DAB /* BTPhotoDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTPhotoDetailsViewController.m; sourceTree = "<group>"; };
+		650ABD721C2BD8A9004FBC89 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		650ABD731C2BD8A9004FBC89 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		650ABD741C2BD8A9004FBC89 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		650ABD751C2BD8A9004FBC89 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		650ABD761C2BD8A9004FBC89 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		650ABD771C2BD8A9004FBC89 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		650ABD781C2BD8A9004FBC89 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		650ABD791C2BD8A9004FBC89 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		650ABD7A1C2BD8A9004FBC89 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		650ABD7B1C2BD8A9004FBC89 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		650ABD7C1C2BD8A9004FBC89 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		650ABD821C2BD9EF004FBC89 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		65104E8E1C0D438800241323 /* BTAddAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAddAlbumViewController.h; sourceTree = "<group>"; };
 		65104E8F1C0D438800241323 /* BTAddAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAddAlbumViewController.m; sourceTree = "<group>"; };
 		6523EF551C27AE370016D63C /* BTIMHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTIMHomePageViewController.h; sourceTree = "<group>"; };
@@ -830,6 +848,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				650ABD831C2BD9EF004FBC89 /* libsqlite3.tbd in Frameworks */,
 				B4FABC0D1C02115500213AB7 /* libresolv.tbd in Frameworks */,
 				65F52A5B1BFDB4AA00351941 /* AVFoundation.framework in Frameworks */,
 				65DBD0C41BD77F3900784DAC /* libidn.a in Frameworks */,
@@ -978,6 +997,24 @@
 				65104E8F1C0D438800241323 /* BTAddAlbumViewController.m */,
 			);
 			path = ViewControll;
+			sourceTree = "<group>";
+		};
+		650ABD711C2BD8A9004FBC89 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				650ABD721C2BD8A9004FBC89 /* FMDatabase.h */,
+				650ABD731C2BD8A9004FBC89 /* FMDatabase.m */,
+				650ABD741C2BD8A9004FBC89 /* FMDatabaseAdditions.h */,
+				650ABD751C2BD8A9004FBC89 /* FMDatabaseAdditions.m */,
+				650ABD761C2BD8A9004FBC89 /* FMDatabasePool.h */,
+				650ABD771C2BD8A9004FBC89 /* FMDatabasePool.m */,
+				650ABD781C2BD8A9004FBC89 /* FMDatabaseQueue.h */,
+				650ABD791C2BD8A9004FBC89 /* FMDatabaseQueue.m */,
+				650ABD7A1C2BD8A9004FBC89 /* FMDB.h */,
+				650ABD7B1C2BD8A9004FBC89 /* FMResultSet.h */,
+				650ABD7C1C2BD8A9004FBC89 /* FMResultSet.m */,
+			);
+			path = fmdb;
 			sourceTree = "<group>";
 		};
 		6523EF531C27AE1B0016D63C /* HomePageModule */ = {
@@ -2174,6 +2211,7 @@
 		65F312E11C15A69F00EA926C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				650ABD821C2BD9EF004FBC89 /* libsqlite3.tbd */,
 				65F52A5A1BFDB4AA00351941 /* AVFoundation.framework */,
 				65DBD0BF1BD77D1F00784DAC /* Security.framework */,
 				65DBD0BD1BD77D1300784DAC /* CFNetwork.framework */,
@@ -2308,6 +2346,7 @@
 		B44506E81BCFFB9F008BD5AC /* 3rdparty */ = {
 			isa = PBXGroup;
 			children = (
+				650ABD711C2BD8A9004FBC89 /* fmdb */,
 				6523EF581C27CC300016D63C /* MBProgressHUD */,
 				65F253AD1C1ECF0300E0F0CE /* JSONModel */,
 				B4FABBDA1C020FE600213AB7 /* SDWebImage */,
@@ -2617,6 +2656,7 @@
 				65DBD0A81BD77CE700784DAC /* XMPPIQ.m in Sources */,
 				65DBD0A11BD77CE700784DAC /* DDFileLogger.m in Sources */,
 				B445070A1BCFFB9F008BD5AC /* MASViewConstraint.m in Sources */,
+				650ABD7F1C2BD8A9004FBC89 /* FMDatabasePool.m in Sources */,
 				65DBD0A41BD77CE700784DAC /* ContextFilterLogFormatter.m in Sources */,
 				6500E7501BEF395C007158BF /* AFNetworkActivityIndicatorManager.m in Sources */,
 				65E2D3371BCFC965001E29A9 /* AppDelegate.m in Sources */,
@@ -2640,6 +2680,7 @@
 				6500E74B1BEF395C007158BF /* AFSecurityPolicy.m in Sources */,
 				654B269E1C19A75E002E965C /* BTNetManager+BTAddJournal.m in Sources */,
 				65DBD1B71BD7A2A100784DAC /* XMPPRoom.xcdatamodeld in Sources */,
+				650ABD801C2BD8A9004FBC89 /* FMDatabaseQueue.m in Sources */,
 				65DBD1E81BD7A2A100784DAC /* XMPPvCardAvatarModule.m in Sources */,
 				65DBD0951BD77CE700784DAC /* XMPPAnonymousAuthentication.m in Sources */,
 				65DBD1C31BD7A2A100784DAC /* XMPPMUC.m in Sources */,
@@ -2681,6 +2722,7 @@
 				650022CF1C1A72430037D32E /* BTAddressBookViewController.m in Sources */,
 				6500E7481BEF395C007158BF /* AFHTTPRequestOperationManager.m in Sources */,
 				B4FABC041C020FE600213AB7 /* SDWebImagePrefetcher.m in Sources */,
+				650ABD811C2BD8A9004FBC89 /* FMResultSet.m in Sources */,
 				6500E7511BEF395C007158BF /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				B44507091BCFFB9F008BD5AC /* MASViewAttribute.m in Sources */,
 				65DBD1AC1BD7A2A100784DAC /* XMPPResourceMemoryStorageObject.m in Sources */,
@@ -2721,6 +2763,8 @@
 				65DBD0971BD77CE700784DAC /* XMPPDeprecatedPlainAuthentication.m in Sources */,
 				65DBD0A91BD77CE700784DAC /* XMPPJID.m in Sources */,
 				6500E71E1BEF3935007158BF /* BTNetManager.m in Sources */,
+				650ABD7E1C2BD8A9004FBC89 /* FMDatabaseAdditions.m in Sources */,
+				650ABD7D1C2BD8A9004FBC89 /* FMDatabase.m in Sources */,
 				65DBD1DC1BD7A2A100784DAC /* XMPPTransports.m in Sources */,
 				65DCFE4A1BD334F800DBD0DE /* BTUserInfoView.m in Sources */,
 				6500E7471BEF395C007158BF /* AFHTTPRequestOperation.m in Sources */,

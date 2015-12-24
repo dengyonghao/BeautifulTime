@@ -63,8 +63,12 @@ static CGFloat const iconHeight = 90.0f;
 
 - (void)finishButtonClick {
     [[BTJournalController sharedInstance] setPhotos:[self.photoSource allValues]];
-    BTAddJournalViewController *vc = [[BTAddJournalViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[BTAddJournalViewController class]]) {
+            [self.navigationController popToViewController:controller animated:YES];
+        }
+    }
+
 }
 
 - (void)initDataSource {

@@ -8,6 +8,7 @@
 
 #import "BTJournalListItem.h"
 #import "BTCalendarView.h"
+#import "UIView+BTAddition.h"
 
 @interface BTJournalListItem ()
 

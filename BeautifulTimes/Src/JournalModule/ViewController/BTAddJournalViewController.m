@@ -32,9 +32,7 @@ static const CGFloat itemWidth = 70;
 @property (nonatomic, strong) UIImageView *photos;
 @property (nonatomic, strong) UIButton *records;
 @property (nonatomic, strong) UITextView *content;
-
-@property (nonatomic, strong) UIButton *finshBnt;
-@property (nonatomic, strong) UIScrollView *mainScrollView;
+@property (nonatomic, strong) BTWeatherModel *model;
 
 @end
 
@@ -163,15 +161,14 @@ static const CGFloat itemWidth = 70;
             NSDictionary *info = [placemark addressDictionary];
             NSString * city = [info objectForKey:@"City"];
             [BTNetManager netManagerReqeustWeatherInfo:[self cutStr:city] successCallback:^(NSDictionary *retDict) {
-                BTWeatherModel *model = [[BTWeatherModel alloc] init];
-                model.city = retDict[@"HeWeather data service 3.0"][0][@"basic"][@"city"];
-                model.pm25 = retDict[@"HeWeather data service 3.0"][0][@"aqi"][@"city"][@"pm25"];
-                model.updateTime = retDict[@"HeWeather data service 3.0"][0][@"basic"][@"update"][@"loc"];
-                model.maxTemperature = retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"tmp"][@"max"];
-                model.minTemperature = retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"tmp"][@"min"];
-                model.dayWeatherIcon = retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"cond"][@"txt_d"];
-                model.nightWeatherIcon = retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"cond"][@"txt_n"];
-                [self.weatherStatusView bindData:model];
+                self.model.city = retDict[@"HeWeather data service 3.0"][0][@"basic"][@"city"];
+                self.model.pm25 = retDict[@"HeWeather data service 3.0"][0][@"aqi"][@"city"][@"pm25"];
+                self.model.updateTime = retDict[@"HeWeather data service 3.0"][0][@"basic"][@"update"][@"loc"];
+                self.model.maxTemperature = retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"tmp"][@"max"];
+                self.model.minTemperature = retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"tmp"][@"min"];
+                self.model.dayWeatherIcon = retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"cond"][@"txt_d"];
+                self.model.nightWeatherIcon = retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"cond"][@"txt_n"];
+                [self.weatherStatusView bindData:self.model];
                 
             } failCallback:^(NSError *error) {
                 
@@ -199,7 +196,7 @@ static const CGFloat itemWidth = 70;
     NSData* data = [self.content.text dataUsingEncoding:NSUTF8StringEncoding];
     newJournal.journalContent = data;
     newJournal.journalDate = [NSDate date];
-    newJournal.site = @"";
+    newJournal.site = self.model.city;
     NSData *photosData = [NSKeyedArchiver archivedDataWithRootObject:[BTJournalController sharedInstance].photos];
     newJournal.photos = photosData;
     newJournal.records = [BTJournalController sharedInstance].record;
@@ -291,6 +288,13 @@ static const CGFloat itemWidth = 70;
         [_records addTarget:self action:@selector(recordsClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _records;
+}
+
+- (BTWeatherModel *)model {
+    if (!_model) {
+        _model = [[BTWeatherModel alloc] init];
+    }
+    return _model;
 }
 
 @end

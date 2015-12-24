@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Journal.h"
 
-@interface BTEditJournalViewController : UIViewController
+@interface BTEditJournalViewController : BTBaseViewController
+
+@property (nonatomic, strong) Journal *journal;
 
 @end

@@ -10,6 +10,7 @@
 #import "BTJournalListItem.h"
 #import "Journal.h"
 #import "BTJournalManager.h"
+#import "BTEditJournalViewController.h"
 
 static NSString *kJournalCellIdentifier = @"kJournalCellIdentifier";
 
@@ -63,7 +64,9 @@ static NSString *kJournalCellIdentifier = @"kJournalCellIdentifier";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    BTEditJournalViewController *vc = [[BTEditJournalViewController alloc] init];
+    vc.journal = self.dataSource[indexPath.row];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
