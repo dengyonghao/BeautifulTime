@@ -117,17 +117,17 @@ static const CGFloat BUTTONWIDTH = 48;
     }];
     
     [self.addJournal mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(weakSelf.view);
+        make.left.equalTo(weakSelf.view).offset(BT_SCREEN_WIDTH / 4);
         make.centerY.equalTo(weakSelf.view);
-        make.height.equalTo(@(40));
-        make.width.equalTo(@(80));
+        make.height.equalTo(@(70));
+        make.width.equalTo(@(70));
     }];
     
     [self.addTimeline mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.addJournal);
-        make.centerY.equalTo(self.addJournal).offset(50);
-        make.height.equalTo(@(40));
-        make.width.equalTo(@(80));
+        make.right.equalTo(weakSelf.view).offset(-BT_SCREEN_WIDTH / 4);
+        make.centerY.equalTo(weakSelf.addJournal).offset(70);
+        make.height.equalTo(@(70));
+        make.width.equalTo(@(70));
     }];
     
     [self.reminiscence mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -306,7 +306,9 @@ static const CGFloat BUTTONWIDTH = 48;
     if (!_addJournal) {
         _addJournal = [[UIButton alloc] init];
         [_addJournal setTitle:@"记日记" forState:UIControlStateNormal];
-        _addJournal.backgroundColor = [UIColor blueColor];
+        _addJournal.titleLabel.font = BT_FONTSIZE(14);
+        [_addJournal setTitleColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_other_d"] forState:UIControlStateNormal];
+        [_addJournal setBackgroundImage:BT_LOADIMAGE(@"com_ic_addJournal") forState:UIControlStateNormal];
         [_addJournal addTarget:self action:@selector(addJournalClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _addJournal;
@@ -316,7 +318,8 @@ static const CGFloat BUTTONWIDTH = 48;
     if (!_addTimeline) {
         _addTimeline = [[UIButton alloc] init];
         [_addTimeline setTitle:@"记点滴" forState:UIControlStateNormal];
-        _addTimeline.backgroundColor = [UIColor blueColor];
+        [_addTimeline setTitleColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_other_d"] forState:UIControlStateNormal];
+        [_addTimeline setBackgroundImage:BT_LOADIMAGE(@"com_ic_addJournal") forState:UIControlStateNormal];
         [_addTimeline addTarget:self action:@selector(addTimelineClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _addTimeline;

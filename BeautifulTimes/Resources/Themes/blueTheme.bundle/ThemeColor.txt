@@ -45,7 +45,7 @@
 	"cl_other_b_leftbar":"0xff426792",
 	"cl_other_c_highlight":"0xff0080ff",
 	"cl_other_c":"0xff0080ff",	
-	"cl_other_d_index":"0xff0066cc",
+	"cl_other_d":"0xff0066cc",
 	"cl_other_e_leftbar_hightlight":"0xff0c94d3",
 	"cl_other_f_free":"0xff52cc66",
 	"cl_other_h_bg":"0xffcc1237",
