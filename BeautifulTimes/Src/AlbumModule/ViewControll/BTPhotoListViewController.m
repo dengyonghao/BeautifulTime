@@ -18,9 +18,9 @@ static CGSize AssetGridThumbnailSize;
 static CGFloat const iconWidth = 90.0f;
 static CGFloat const iconHeight = 90.0f;
 
-@interface BTPhotoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, PHPhotoLibraryChangeObserver>
+@interface BTPhotoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, PHPhotoLibraryChangeObserver, UIActionSheetDelegate>
 
-@property (nonatomic, strong)UICollectionView *collectionView;
+@property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 @property (nonatomic, strong) NSMutableDictionary *flageArray;
 @property (nonatomic, strong) NSMutableDictionary *photoSource;
@@ -62,9 +62,13 @@ static CGFloat const iconHeight = 90.0f;
 }
 
 - (void)finishButtonClick {
-    [[BTJournalController sharedInstance] setPhotos:[self.photoSource allValues]];
+    [[BTJournalController sharedInstance] setPhotos: [self sortDictionaryByAsc:self.photoSource]];
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if ([controller isKindOfClass:[BTAddJournalViewController class]]) {
+            BTAddJournalViewController *vc = (BTAddJournalViewController *)controller;
+            if ([BTJournalController sharedInstance].photos.count > 0) {
+                vc.photos.image = [BTJournalController sharedInstance].photos[0];
+            }
             [self.navigationController popToViewController:controller animated:YES];
         }
     }
@@ -215,6 +219,18 @@ static CGFloat const iconHeight = 90.0f;
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
+- (NSArray *)sortDictionaryByAsc:(NSDictionary *)dict {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    NSArray *keys = [dict allKeys];
+    NSArray *sortedArray = [keys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [obj1 compare:obj2 options:NSNumericSearch];
+    }];
+    for (NSString *categoryId in sortedArray) {
+        [array addObject:[dict objectForKey:categoryId]];
+    }
+    return array;
+}
+
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
@@ -248,6 +264,5 @@ static CGFloat const iconHeight = 90.0f;
     }
     return _photoSource;
 }
-
 
 @end

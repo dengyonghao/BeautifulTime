@@ -16,7 +16,6 @@ static NSString *kJournalCellIdentifier = @"kJournalCellIdentifier";
 
 @interface BTJournalListViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataSource;
 
 @end

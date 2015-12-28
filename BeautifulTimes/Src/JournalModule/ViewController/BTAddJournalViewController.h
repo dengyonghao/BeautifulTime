@@ -10,4 +10,6 @@
 
 @interface BTAddJournalViewController : BTBaseViewController
 
+@property (nonatomic, strong) UIImageView *photos;
+
 @end

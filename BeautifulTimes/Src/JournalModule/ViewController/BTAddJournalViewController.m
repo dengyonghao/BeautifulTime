@@ -29,7 +29,6 @@ static const CGFloat itemWidth = 70;
 @property (nonatomic, strong) BTCalendarView *calendarView;
 @property (nonatomic, strong) BTWeatherStatusVeiw *weatherStatusView;
 @property (nonatomic, strong) UIScrollView *bodyScrollView;
-@property (nonatomic, strong) UIImageView *photos;
 @property (nonatomic, strong) UIButton *records;
 @property (nonatomic, strong) UITextView *content;
 @property (nonatomic, strong) BTWeatherModel *model;
@@ -199,6 +198,9 @@ static const CGFloat itemWidth = 70;
     newJournal.site = self.model.city;
     NSData *photosData = [NSKeyedArchiver archivedDataWithRootObject:[BTJournalController sharedInstance].photos];
     newJournal.photos = photosData;
+    
+    NSData *weatherData = [NSKeyedArchiver archivedDataWithRootObject:self.model];
+    newJournal.weather = weatherData;
     newJournal.records = [BTJournalController sharedInstance].record;
     [[AppDelegate getInstance].coreDataHelper saveContext];
     for (UIViewController *controller in self.navigationController.viewControllers) {
@@ -265,6 +267,7 @@ static const CGFloat itemWidth = 70;
     if (!_content) {
         _content = [[UITextView alloc] init];
         _content.delegate = self;
+        [_content setFont:BT_FONTSIZE(18)];
         [_content setBorderWithWidth:1 color:nil cornerRadius:6];
     }
     return _content;

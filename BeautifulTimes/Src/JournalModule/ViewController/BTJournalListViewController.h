@@ -10,4 +10,8 @@
 
 @interface BTJournalListViewController : BTBaseViewController
 
+@property (nonatomic, strong) UITableView *tableView;
+
+- (void)initDataSource;
+
 @end

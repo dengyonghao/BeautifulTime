@@ -10,10 +10,13 @@
 #import "BTCalendarView.h"
 #import "BTWeatherStatusVeiw.h"
 #import "UIView+BTAddition.h"
+#import "BTWeatherModel.h"
+#import "AppDelegate.h"
+#import "BTJournalListViewController.h"
 
 static const CGFloat itemWidth = 70;
 
-@interface BTEditJournalViewController () <UITextViewDelegate>
+@interface BTEditJournalViewController () <UITextViewDelegate, UIActionSheetDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) UIView *toolsView;
 @property (nonatomic, strong) BTCalendarView *calendarView;
@@ -22,6 +25,8 @@ static const CGFloat itemWidth = 70;
 @property (nonatomic, strong) UIImageView *photos;
 @property (nonatomic, strong) UIButton *records;
 @property (nonatomic, strong) UITextView *content;
+@property (nonatomic, strong) UIActionSheet * selectActionSheet;
+
 
 @end
 
@@ -101,6 +106,80 @@ static const CGFloat itemWidth = 70;
     [super didReceiveMemoryWarning];
 }
 
+- (void)finishButtonClick {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:nil
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:nil];
+    [actionSheet addButtonWithTitle:@"修改日记"];
+    [actionSheet addButtonWithTitle:@"删除日记"];
+    [actionSheet addButtonWithTitle:@"取消"];
+    //设置取消按钮
+    actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
+    [actionSheet showFromRect:self.view.superview.bounds inView:self.view.superview animated:NO];
+    
+    if (self.selectActionSheet) {
+        self.selectActionSheet = nil;
+    }
+    
+    self.selectActionSheet = actionSheet;
+}
+
+#pragma mark -
+#pragma mark UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == actionSheet.cancelButtonIndex)
+    {
+        return;
+    }
+    
+    switch (buttonIndex)
+    {
+        case 0:
+        {
+            
+        }
+            break;
+            
+        case 1:
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"确定删除？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            [alert show];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+#pragma mark -
+#pragma mark UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        
+    } else {
+        [[AppDelegate getInstance].coreDataHelper.context deleteObject:self.journal];
+        
+        for (UIViewController *controller in self.navigationController.viewControllers) {
+            if ([controller isKindOfClass:[BTJournalListViewController class]]) {
+                BTJournalListViewController *vc = (BTJournalListViewController *)controller;
+                [vc initDataSource];
+                [vc.tableView reloadData];
+                [self.navigationController popToViewController:controller animated:YES];
+            }
+        }
+
+    }
+}
+
+
+- (void)recordsClick {
+
+}
+
 - (UIView *)toolsView {
     if (!_toolsView) {
         _toolsView = [[UIView alloc] init];
@@ -121,6 +200,10 @@ static const CGFloat itemWidth = 70;
 - (BTWeatherStatusVeiw *)weatherStatusView {
     if (!_weatherStatusView) {
         _weatherStatusView = [[BTWeatherStatusVeiw alloc] initWithFrame:CGRectMake(0, 0, itemWidth, itemWidth)];
+        if (self.journal.weather) {
+            BTWeatherModel *model = [NSKeyedUnarchiver unarchiveObjectWithData:self.journal.weather];
+            [_weatherStatusView bindData:model];
+        }
     }
     return _weatherStatusView;
 }
@@ -138,7 +221,13 @@ static const CGFloat itemWidth = 70;
     if (!_content) {
         _content = [[UITextView alloc] init];
         _content.delegate = self;
+        _content.editable = NO;
+        [_content setFont:BT_FONTSIZE(18)];
         [_content setBorderWithWidth:1 color:nil cornerRadius:6];
+        if (self.journal.journalContent) {
+            NSString *content = [[NSString alloc] initWithData:self.journal.journalContent encoding:NSUTF8StringEncoding];
+            _content.text = content;
+        }
     }
     return _content;
 }
@@ -149,6 +238,12 @@ static const CGFloat itemWidth = 70;
         [_photos setImage:BT_LOADIMAGE(@"com_ic_photo")];
         [_photos setBorderWithWidth:1 color:[[BTThemeManager getInstance] BTThemeColor:@"cl_line_b_leftbar"] cornerRadius:5];
         _photos.userInteractionEnabled = YES;
+        if (self.journal.photos) {
+            NSArray *photos = [NSKeyedUnarchiver unarchiveObjectWithData:self.journal.photos];
+            if (photos.count > 0) {
+                _photos.image = photos[0];
+            }
+        }
     }
     return _photos;
 }
@@ -162,5 +257,14 @@ static const CGFloat itemWidth = 70;
     }
     return _records;
 }
+
+
+- (UIActionSheet *)selectActionSheet {
+    if (!_selectActionSheet) {
+        _selectActionSheet = [[UIActionSheet alloc] init];
+    }
+    return _selectActionSheet;
+}
+
 
 @end
