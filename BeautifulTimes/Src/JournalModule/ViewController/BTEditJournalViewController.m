@@ -13,6 +13,8 @@
 #import "BTWeatherModel.h"
 #import "AppDelegate.h"
 #import "BTJournalListViewController.h"
+#import "BTCircularProgressButton.h"
+
 
 static const CGFloat itemWidth = 70;
 

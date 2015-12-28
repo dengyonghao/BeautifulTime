@@ -115,6 +115,7 @@
 - (BTCalendarView *)calendarView {
     if (!_calendarView) {
         _calendarView = [[BTCalendarView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
+        _calendarView.userInteractionEnabled = NO;
     }
     return _calendarView;
 }
