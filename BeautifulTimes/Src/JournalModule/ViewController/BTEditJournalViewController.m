@@ -22,6 +22,7 @@ static const CGFloat itemWidth = 70.0f;
 @interface BTEditJournalViewController () <UITextViewDelegate, UIActionSheetDelegate, UIAlertViewDelegate, AVAudioPlayerDelegate> {
     AVAudioPlayer *_player;
     AVAudioSession *_audioSession;
+    BOOL isEditModel;
 }
 
 @property (nonatomic, strong) UIView *toolsView;
@@ -54,6 +55,7 @@ static const CGFloat itemWidth = 70.0f;
     [self.bodyView addSubview:self.bodyScrollView];
     [self.bodyScrollView addSubview:self.content];
     _audioSession = [AVAudioSession sharedInstance];
+    isEditModel = NO;
 }
 
 - (void)viewDidLayoutSubviews {
@@ -143,23 +145,33 @@ static const CGFloat itemWidth = 70.0f;
 }
 
 - (void)finishButtonClick {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:nil
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:nil];
-    [actionSheet addButtonWithTitle:@"修改日记"];
-    [actionSheet addButtonWithTitle:@"删除日记"];
-    [actionSheet addButtonWithTitle:@"取消"];
-    //设置取消按钮
-    actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
-    [actionSheet showFromRect:self.view.superview.bounds inView:self.view.superview animated:NO];
-    
-    if (self.selectActionSheet) {
-        self.selectActionSheet = nil;
+    if (!isEditModel) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:nil
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:nil];
+        [actionSheet addButtonWithTitle:@"修改日记"];
+        [actionSheet addButtonWithTitle:@"删除日记"];
+        [actionSheet addButtonWithTitle:@"取消"];
+        //设置取消按钮
+        actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
+        [actionSheet showFromRect:self.view.superview.bounds inView:self.view.superview animated:NO];
+        
+        if (self.selectActionSheet) {
+            self.selectActionSheet = nil;
+        }
+        
+        self.selectActionSheet = actionSheet;
+
+    } else {
+        isEditModel = NO;
+        [self.finishButton setTitle:@"编辑" forState:UIControlStateNormal];
+        self.content.editable = NO;
+        NSData* data = [self.content.text dataUsingEncoding:NSUTF8StringEncoding];
+        self.journal.journalContent = data;
+        
     }
-    
-    self.selectActionSheet = actionSheet;
 }
 
 - (void)playButtonClick:(UIButton *)sender {
@@ -229,7 +241,9 @@ static const CGFloat itemWidth = 70.0f;
     {
         case 0:
         {
-            
+            isEditModel = YES;
+            [self.finishButton setTitle:@"保存" forState:UIControlStateNormal];
+            self.content.editable = YES;
         }
             break;
             

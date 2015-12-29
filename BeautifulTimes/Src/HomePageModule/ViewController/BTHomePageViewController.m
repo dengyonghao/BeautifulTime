@@ -269,7 +269,8 @@ static const CGFloat BUTTONWIDTH = 48;
 - (UIButton *)timeline {
     if (!_timeline) {
         _timeline = [[UIButton alloc] init];
-        [_timeline setTitleColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_other_d"] forState:UIControlStateNormal];        [_timeline setTitle:@"时光轴" forState:UIControlStateNormal];
+        [_timeline setTitleColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_other_d"] forState:UIControlStateNormal];
+        [_timeline setTitle:@"时光轴" forState:UIControlStateNormal];
         [_timeline addTarget:self action:@selector(timelineClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _timeline;
@@ -305,7 +306,7 @@ static const CGFloat BUTTONWIDTH = 48;
     if (!_addJournal) {
         _addJournal = [[UIButton alloc] init];
         [_addJournal setTitle:@"记日记" forState:UIControlStateNormal];
-        _addJournal.titleLabel.font = BT_FONTSIZE(14);
+        _addJournal.titleLabel.font = BT_FONTSIZE(15);
         [_addJournal setTitleColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_other_d"] forState:UIControlStateNormal];
         [_addJournal setBackgroundImage:BT_LOADIMAGE(@"com_ic_addJournal") forState:UIControlStateNormal];
         [_addJournal addTarget:self action:@selector(addJournalClick) forControlEvents:UIControlEventTouchUpInside];
@@ -317,8 +318,9 @@ static const CGFloat BUTTONWIDTH = 48;
     if (!_addTimeline) {
         _addTimeline = [[UIButton alloc] init];
         [_addTimeline setTitle:@"记点滴" forState:UIControlStateNormal];
+        _addTimeline.titleLabel.font = BT_FONTSIZE(15);
         [_addTimeline setTitleColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_other_d"] forState:UIControlStateNormal];
-        [_addTimeline setBackgroundImage:BT_LOADIMAGE(@"com_ic_addJournal") forState:UIControlStateNormal];
+        [_addTimeline setBackgroundImage:BT_LOADIMAGE(@"com_ic_timeline") forState:UIControlStateNormal];
         [_addTimeline addTarget:self action:@selector(addTimelineClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _addTimeline;

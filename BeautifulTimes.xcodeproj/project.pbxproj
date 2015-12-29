@@ -2574,6 +2574,7 @@
 				TargetAttributes = {
 					65E2D32D1BCFC965001E29A9 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = WAU5CTT2Y9;
 					};
 					65E2D3491BCFC966001E29A9 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -3017,6 +3018,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BeautifulTimes/BeautifulTimes-Prefix.pch";
@@ -3034,6 +3036,7 @@
 				);
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "最美时光";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -3043,6 +3046,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BeautifulTimes/BeautifulTimes-Prefix.pch";
@@ -3060,6 +3064,7 @@
 				);
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "最美时光";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
