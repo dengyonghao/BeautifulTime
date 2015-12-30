@@ -39,6 +39,12 @@ static BTJournalController *journalController;
     return self;
 }
 
+- (void)resetAllParameters {
+    self.photos = nil;
+    self.currentDate = nil;
+    self.record = nil;
+}
+
 - (NSArray *)photos {
     if (!_photos) {
         _photos = [[NSArray alloc] init];

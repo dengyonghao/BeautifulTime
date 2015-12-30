@@ -8,12 +8,16 @@
 
 #import "BTSelectPhotosViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
-#import "BTAlbumCollectionViewCell.h"
+#import "BTChoosePhotosItem.h"
+#import "BTMyAlbumViewController.h"
+#import "BTJournalController.h"
+#import "BTAddJournalViewController.h"
 
 static  NSString *kcellIdentifier = @"kSelectPhotosCollectionCellID";
 static int const showNumber = 3;
+static CGFloat const OFFSET = 15.0f;
 
-@interface BTSelectPhotosViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
+@interface BTSelectPhotosViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, BTChoosePhotoDelegate>
 
 @property (nonatomic, strong) UIImagePickerController *picker;
 @property (nonatomic, copy) NSString *chosenMediaType;
@@ -39,37 +43,81 @@ static int const showNumber = 3;
     [super viewWillLayoutSubviews];
     WS(weakSelf);
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+        make.left.equalTo(weakSelf.bodyView).offset(5);
+        make.right.equalTo(weakSelf.bodyView).offset(5);
+        make.top.equalTo(weakSelf.bodyView).offset(5);
+        make.height.equalTo(@(BT_ViewHeight(weakSelf.bodyView) / 2));
     }];
     
     [self.usePhoto mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+        make.centerX.equalTo(weakSelf.bodyView);
+        make.centerY.equalTo(weakSelf.bodyView).offset(44);
+        make.width.equalTo(@(120));
+        make.height.equalTo(@(44));
     }];
     
     [self.useCamera mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+        make.centerX.equalTo(weakSelf.bodyView);
+        make.centerY.equalTo(weakSelf.usePhoto).offset(44 + 22);
+        make.width.equalTo(@(120));
+        make.height.equalTo(@(44));
     }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.collectionView registerClass:[BTAlbumCollectionViewCell class] forCellWithReuseIdentifier:kcellIdentifier];
+    [self.collectionView registerClass:[BTChoosePhotosItem class] forCellWithReuseIdentifier:kcellIdentifier];
+    self.dataSource = [[BTJournalController sharedInstance] photos];
+    [self.collectionView reloadData];
+    [self checkButtonStatus];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-- (void)finishButtonClick {
+- (void)checkButtonStatus {
+    if ([BTJournalController sharedInstance].photos.count == 0) {
+        self.finishButton.hidden = YES;
+    } else {
+        self.finishButton.hidden = NO;
+    }
+    if ([BTJournalController sharedInstance].photos.count == 6) {
+        self.usePhoto.enabled = NO;
+        self.useCamera.enabled = NO;
+    } else {
+        self.usePhoto.enabled = YES;
+        self.useCamera.enabled = YES;
+    }
+}
 
+- (void)cancelChoosePhoto {
+    self.dataSource = [BTJournalController sharedInstance].photos;
+    [self.collectionView reloadData];
+    [self checkButtonStatus];
+}
+
+- (void)finishButtonClick {
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[BTAddJournalViewController class]]) {
+            BTAddJournalViewController *vc = (BTAddJournalViewController *)controller;
+            if ([BTJournalController sharedInstance].photos.count > 0) {
+                vc.photos.image = [BTJournalController sharedInstance].photos[0];
+            }
+            [self.navigationController popToViewController:controller animated:YES];
+        }
+    }
 }
 
 - (void)usePhotoClick {
-    [self shootPiicturePrVideo];
+    BTMyAlbumViewController *vc = [[BTMyAlbumViewController alloc] init];
+    vc.isSelectModel = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)useCameraClick {
-    [self selectExistingPictureOrVideo];
+//    [self selectExistingPictureOrVideo];
+    [self shootPiicturePrVideo];
 }
 
 #pragma  mark- 拍照模块
@@ -79,7 +127,7 @@ static int const showNumber = 3;
 }
 //从相册中选择
 -(void)selectExistingPictureOrVideo{
-//    [self getMediaFromSource:UIImagePickerControllerSourceTypePhotoLibrary];
+    [self getMediaFromSource:UIImagePickerControllerSourceTypePhotoLibrary];
 }
 
 #pragma 拍照模块
@@ -126,38 +174,51 @@ static int const showNumber = 3;
 #pragma mark - UICollectionView delegate
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    if (self.dataSource.count % showNumber == 0) {
-        return self.dataSource.count / showNumber;
-    }
-    
-    return self.dataSource.count / showNumber + 1;
+//    if (self.dataSource.count % showNumber == 0) {
+//        return self.dataSource.count / showNumber;
+//    }
+//    
+//    return self.dataSource.count / showNumber + 1;
+    return 2;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if (self.dataSource.count % showNumber != 0) {
-        if (section == self.dataSource.count / showNumber) {
-            return self.dataSource.count % showNumber;
-        }
-    }
-    
+//    if (self.dataSource.count % showNumber != 0) {
+//        if (section == self.dataSource.count / showNumber) {
+//            return self.dataSource.count % showNumber;
+//        }
+//    }
+//    
     return showNumber;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(100, 100);
+    CGFloat itemWidth = (BT_SCREEN_WIDTH - OFFSET * (showNumber + 1)) / showNumber;
+    return CGSizeMake(itemWidth, itemWidth + OFFSET);
     
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-        return nil;
+    BTChoosePhotosItem *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kcellIdentifier forIndexPath:indexPath];
+    cell.delegate = self;
+    long index = indexPath.section * showNumber + indexPath.row;
+    cell.tag = index;
+    if (self.dataSource.count > index) {
+        if (self.dataSource[index]) {
+           [cell bindData:self.dataSource[index] isShowColseButton:YES];
+        }
+    } else {
+        [cell bindData:nil isShowColseButton:NO];
+    }
+    return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-   
+    NSLog(@"dfghjkldvbn-");
 }
 
 //定义UICollectionView 的 margin

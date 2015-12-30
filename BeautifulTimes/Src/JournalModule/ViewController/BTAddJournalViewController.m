@@ -18,7 +18,7 @@
 #import "BTWeatherStatusVeiw.h"
 #import "BTHomePageViewController.h"
 #import "UIView+BTAddition.h"
-#import "BTMyAlbumViewController.h"
+#import "BTSelectPhotosViewController.h"
 
 static const CGFloat itemWidth = 70;
 
@@ -203,17 +203,25 @@ static const CGFloat itemWidth = 70;
     newJournal.weather = weatherData;
     newJournal.records = [BTJournalController sharedInstance].record;
     [[AppDelegate getInstance].coreDataHelper saveContext];
+    
+    [[BTJournalController sharedInstance] resetAllParameters];
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if ([controller isKindOfClass:[BTHomePageViewController class]]) {
             [self.navigationController popToViewController:controller animated:YES];
         }
     }
+}
 
+- (void)backButtonClick {
+    [[BTJournalController sharedInstance] resetAllParameters];
+    [super backButtonClick];
 }
 
 - (void)photosClick {
-    BTMyAlbumViewController *vc = [[BTMyAlbumViewController alloc] init];
-    vc.isSelectModel = YES;
+//    BTMyAlbumViewController *vc = [[BTMyAlbumViewController alloc] init];
+//    vc.isSelectModel = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
+    BTSelectPhotosViewController *vc = [[BTSelectPhotosViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

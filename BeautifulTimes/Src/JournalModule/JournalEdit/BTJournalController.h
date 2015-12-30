@@ -22,6 +22,8 @@
 @property (nonatomic, strong) NSDate *currentDate;
 @property (nonatomic, strong) NSData *record;
 
+- (void)resetAllParameters;
+
 @end
 
 @protocol BTJournalControllerDelegate <NSObject>

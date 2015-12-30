@@ -212,6 +212,7 @@
 		65DE12B11BD0E1AB00D01BCA /* guide_3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DE12A51BD0E1AB00D01BCA /* guide_3@3x.png */; };
 		65DE12B21BD0E1AB00D01BCA /* guide_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DE12A61BD0E1AB00D01BCA /* guide_4@2x.png */; };
 		65DE12B31BD0E1AB00D01BCA /* guide_4@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65DE12A71BD0E1AB00D01BCA /* guide_4@3x.png */; };
+		65E1FC7C1C33B53B001D5942 /* BTChoosePhotosItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E1FC7B1C33B53B001D5942 /* BTChoosePhotosItem.m */; };
 		65E234191BD3BAB60041E719 /* BTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E234181BD3BAB60041E719 /* BTBaseViewController.m */; };
 		65E2D3341BCFC965001E29A9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D3331BCFC965001E29A9 /* main.m */; };
 		65E2D3371BCFC965001E29A9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D3361BCFC965001E29A9 /* AppDelegate.m */; };
@@ -701,6 +702,8 @@
 		65DE12A51BD0E1AB00D01BCA /* guide_3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guide_3@3x.png"; sourceTree = "<group>"; };
 		65DE12A61BD0E1AB00D01BCA /* guide_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guide_4@2x.png"; sourceTree = "<group>"; };
 		65DE12A71BD0E1AB00D01BCA /* guide_4@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guide_4@3x.png"; sourceTree = "<group>"; };
+		65E1FC7A1C33B53B001D5942 /* BTChoosePhotosItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTChoosePhotosItem.h; sourceTree = "<group>"; };
+		65E1FC7B1C33B53B001D5942 /* BTChoosePhotosItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTChoosePhotosItem.m; sourceTree = "<group>"; };
 		65E234171BD3BAB60041E719 /* BTBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBaseViewController.h; sourceTree = "<group>"; };
 		65E234181BD3BAB60041E719 /* BTBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBaseViewController.m; sourceTree = "<group>"; };
 		65E2D32E1BCFC965001E29A9 /* 最美时光.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "最美时光.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1188,6 +1191,8 @@
 				65F253A81C1EB2D000E0F0CE /* BTCalendarView.m */,
 				65F253AA1C1ECC5A00E0F0CE /* BTWeatherStatusVeiw.h */,
 				65F253AB1C1ECC5A00E0F0CE /* BTWeatherStatusVeiw.m */,
+				65E1FC7A1C33B53B001D5942 /* BTChoosePhotosItem.h */,
+				65E1FC7B1C33B53B001D5942 /* BTChoosePhotosItem.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2800,6 +2805,7 @@
 				B4FABC011C020FE600213AB7 /* SDWebImageDownloader.m in Sources */,
 				65DBD1A41BD7A2A100784DAC /* XMPPGoogleSharedStatus.m in Sources */,
 				65DBD1F21BD7A2A100784DAC /* XEP_0223.m in Sources */,
+				65E1FC7C1C33B53B001D5942 /* BTChoosePhotosItem.m in Sources */,
 				65DBD0A01BD77CE700784DAC /* DDASLLogger.m in Sources */,
 				6500E74C1BEF395C007158BF /* AFURLConnectionOperation.m in Sources */,
 				65F253AC1C1ECC5A00E0F0CE /* BTWeatherStatusVeiw.m in Sources */,

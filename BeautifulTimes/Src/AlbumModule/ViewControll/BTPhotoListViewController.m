@@ -10,7 +10,7 @@
 #import "BTPhotoCollectionViewCell.h"
 #import "BTPhotoDetailsViewController.h"
 #import "BTJournalController.h"
-#import "BTAddJournalViewController.h"
+#import "BTSelectPhotosViewController.h"
 
 static  NSString *kcellIdentifier = @"kPhotoCollectionCellID";
 static int const showNumber = 3;
@@ -18,7 +18,9 @@ static CGSize AssetGridThumbnailSize;
 static CGFloat const iconWidth = 90.0f;
 static CGFloat const iconHeight = 90.0f;
 
-@interface BTPhotoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, PHPhotoLibraryChangeObserver, UIActionSheetDelegate>
+@interface BTPhotoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, PHPhotoLibraryChangeObserver, UIActionSheetDelegate> {
+    long photosNumber;
+}
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
@@ -31,6 +33,7 @@ static CGFloat const iconHeight = 90.0f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    photosNumber = [BTJournalController sharedInstance].photos.count;
     self.titleLabel.text = @"相册详情";
     if (self.isSelectModel) {
         self.finishButton.hidden = NO;
@@ -62,13 +65,11 @@ static CGFloat const iconHeight = 90.0f;
 }
 
 - (void)finishButtonClick {
-    [[BTJournalController sharedInstance] setPhotos: [self sortDictionaryByAsc:self.photoSource]];
+    NSMutableArray *ary = [[NSMutableArray alloc] initWithArray:[BTJournalController sharedInstance].photos];
+    [ary addObjectsFromArray:[self sortDictionaryByAsc:self.photoSource]];
+    [[BTJournalController sharedInstance] setPhotos:ary];
     for (UIViewController *controller in self.navigationController.viewControllers) {
-        if ([controller isKindOfClass:[BTAddJournalViewController class]]) {
-            BTAddJournalViewController *vc = (BTAddJournalViewController *)controller;
-            if ([BTJournalController sharedInstance].photos.count > 0) {
-                vc.photos.image = [BTJournalController sharedInstance].photos[0];
-            }
+        if ([controller isKindOfClass:[BTSelectPhotosViewController class]]) {
             [self.navigationController popToViewController:controller animated:YES];
         }
     }
@@ -195,14 +196,19 @@ static CGFloat const iconHeight = 90.0f;
     long index = indexPath.section * showNumber + indexPath.row;
     if (self.isSelectModel) {
         BTPhotoCollectionViewCell *cell = (BTPhotoCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-        if (cell.isSelect.hidden) {
+        if (cell.isSelect.hidden && photosNumber < 6) {
             cell.isSelect.hidden = NO;
             [self.flageArray setValue:@"YES" forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
             [self.photoSource setValue:cell.imageView.image forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
+            photosNumber++;
         } else {
+            if (photosNumber == 6 && cell.isSelect.hidden) {
+                return;
+            }
             cell.isSelect.hidden = YES;
             [self.flageArray setValue:@"NO" forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
             [self.photoSource removeObjectForKey:[[NSString alloc] initWithFormat:@"%ld",index]];
+            photosNumber--;
         }
         
     } else {
