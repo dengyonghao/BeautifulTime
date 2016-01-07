@@ -136,7 +136,9 @@ static CGFloat const OFFSET = 15.0f;
     if([self.chosenMediaType isEqual:(NSString *) kUTTypeImage]){
         UIImage *chosenImage=[info objectForKey:UIImagePickerControllerOriginalImage];
         
-        
+        NSMutableArray *ary = [[NSMutableArray alloc] initWithArray:[BTJournalController sharedInstance].photos];
+        [ary addObject:chosenImage];
+        [BTJournalController sharedInstance].photos = ary;
     }
     if([self.chosenMediaType isEqual:(NSString *) kUTTypeMovie]){
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示信息!" message:@"系统只支持图片格式" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
@@ -144,7 +146,7 @@ static CGFloat const OFFSET = 15.0f;
         
     }
     [picker dismissViewControllerAnimated:YES completion:^{
-        
+        [self.collectionView reloadData];
     }];
 }
 -(void) imagePickerControllerDidCancel:(UIImagePickerController *)picker{

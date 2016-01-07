@@ -201,7 +201,9 @@ static const CGFloat itemWidth = 70;
     
     NSData *weatherData = [NSKeyedArchiver archivedDataWithRootObject:self.model];
     newJournal.weather = weatherData;
+    
     newJournal.records = [BTJournalController sharedInstance].record;
+    
     [[AppDelegate getInstance].coreDataHelper saveContext];
     
     [[BTJournalController sharedInstance] resetAllParameters];

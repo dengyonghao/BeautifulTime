@@ -15,14 +15,17 @@
 
 static BTThemeManager * _themeManager = nil;
 
-@interface BTThemeManager (){
+@interface BTThemeManager () {
     NSDictionary *_themeColors;
 }
+
 @property (nonatomic, strong) NSDictionary *themeColors;
 @property (nonatomic, strong) NSBundle     *themeBundle;
+
 @end
 
 @implementation BTThemeManager
+
 @synthesize themeStyle = _themeStyle;
 @synthesize themeColors = _themeColors;
 
@@ -48,7 +51,6 @@ static BTThemeManager * _themeManager = nil;
 
 
 - (void)setThemeStyle:(BTThemeType)themeStyle
-
 {
     if (_themeStyle == themeStyle ) {
         return;
@@ -108,7 +110,7 @@ static BTThemeManager * _themeManager = nil;
     if([themeName rangeOfString:@".zip"].location != NSNotFound) {
         themeName = [themeName substringToIndex:(themeName.length - 4)];
     }
-    NSString * filePath = [NSString stringWithFormat:@"%@/%@.bundle", [self getCarlifeSkinsDocPath], themeName];
+    NSString * filePath = [NSString stringWithFormat:@"%@/%@.bundle", [self getBeautifulTimesSkinsDocPath], themeName];
     
     self.themeBundle = [NSBundle bundleWithPath:filePath];
     
@@ -149,12 +151,6 @@ static BTThemeManager * _themeManager = nil;
 
 - (void )BTThemeImage:(NSString *)imageName completionHandler:(void (^)(UIImage *image))handler;
 {
-    if (_themeStyle == BTThemeType_AUDI) {
-        
-    }else if (_themeStyle == BTThemeType_BENZ){
-        
-    }
-    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // 耗时的操作
         NSString *imagePath = [NSString stringWithFormat:@"image/%@",imageName];
@@ -237,9 +233,9 @@ static BTThemeManager * _themeManager = nil;
 }
 
 /*
- * 获取CarlifeSkins文件夹的路径
+ * 获取BeautifulTimesSkins文件夹的路径
  */
-- (NSString *) getCarlifeSkinsDocPath {
+- (NSString *) getBeautifulTimesSkinsDocPath {
     NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString * docPath = [paths firstObject];
     NSString * carlifeSkinsDoc = [NSString stringWithFormat:@"%@/%@", docPath, @"CarlifeSkins"];

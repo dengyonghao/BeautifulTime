@@ -9,6 +9,7 @@
 #import "BTJournalListItem.h"
 #import "BTCalendarView.h"
 #import "UIView+BTAddition.h"
+#import "BTWeatherModel.h"
 
 @interface BTJournalListItem ()
 
@@ -109,6 +110,27 @@
     if (photoArray.count > 0) {
         UIImage *image = photoArray[0];
         self.photoImageView.image = image;
+    }
+    BTWeatherModel *weather = [NSKeyedUnarchiver unarchiveObjectWithData:model.weather];
+    if (!weather.dayWeatherIcon) {
+        [self.weatherIcon setImage:BT_LOADIMAGE(@"weather_qing")];
+    }
+    else {
+        if ([weather.dayWeatherIcon rangeOfString:@"雪"].location != NSNotFound) {
+            [self.weatherIcon setImage:BT_LOADIMAGE(@"weather_xue")];
+        }
+        else if ([weather.dayWeatherIcon rangeOfString:@"晴"].location != NSNotFound) {
+            [self.weatherIcon setImage:BT_LOADIMAGE(@"weather_qing")];
+        }
+        else if ([weather.dayWeatherIcon rangeOfString:@"云"].location != NSNotFound) {
+            [self.weatherIcon setImage:BT_LOADIMAGE(@"weather_duoyun")];
+        }
+        else if ([weather.dayWeatherIcon rangeOfString:@"雨"].location != NSNotFound) {
+            [self.weatherIcon setImage:BT_LOADIMAGE(@"weather_yu")];
+        }
+        else if ([weather.dayWeatherIcon rangeOfString:@"阴"].location != NSNotFound) {
+            [self.weatherIcon setImage:BT_LOADIMAGE(@"weather_yin")];
+        }
     }
 }
 

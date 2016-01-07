@@ -11,10 +11,8 @@
 typedef enum {
     BTThemeType_BT_BLUE = 1,
     BTThemeType_BT_BLACK = 2,
-    BTThemeType_AUDI = 3,
-    BTThemeType_BENZ = 4,
-    BTThemeType_TEST = 5, //for themetest页面
-    BTThemeType_ONLINE = 6, //for 在线皮肤
+    BTThemeType_TEST = 3, //for themetest页面
+    BTThemeType_ONLINE = 4, //for 在线皮肤Ω
 }BTThemeType;
 
 
@@ -76,7 +74,7 @@ typedef enum {
 /*
  * 获取CarlifeSkins文件夹的路径
  */
-- (NSString *) getCarlifeSkinsDocPath;
+- (NSString *) getBeautifulTimesSkinsDocPath;
 
 /*
  * 在默认(黑色)皮肤中加载一张图片

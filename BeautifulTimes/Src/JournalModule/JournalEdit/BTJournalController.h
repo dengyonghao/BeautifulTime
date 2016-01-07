@@ -20,7 +20,7 @@
 @property (nonatomic, weak) id <BTJournalControllerDelegate> delegate;
 @property (nonatomic, strong) NSArray *photos;
 @property (nonatomic, strong) NSDate *currentDate;
-@property (nonatomic, strong) NSData *record;
+@property (nonatomic, strong) NSString *record;
 
 - (void)resetAllParameters;
 

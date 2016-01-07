@@ -69,7 +69,6 @@ static const CGFloat iconHeight = 20;
             make.height.equalTo(weakSelf.pm25ImageView);
         }];
         [self setBorderWithWidth:1 color:[[BTThemeManager getInstance] BTThemeColor:@"cl_line_b_leftbar"] cornerRadius:5];
-//        self.backgroundColor = [[BTThemeManager getInstance] BTThemeColor:@"cl_other_c"] ;
        
         [self addTapGesture];
     }

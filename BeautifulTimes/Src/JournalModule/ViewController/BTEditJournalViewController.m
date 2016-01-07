@@ -131,12 +131,14 @@ static const CGFloat itemWidth = 70.0f;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (self.journal.records) {
-        [self.records setHidden:YES];
-        [self.progressButton setHidden:NO];
-    } else {
+    if (self.journal.records == nil || [self.journal.records isEqualToString:@""]) {
         [self.records setHidden:NO];
         [self.progressButton setHidden:YES];
+        [self.playButton setHidden:YES];
+    } else {
+        [self.records setHidden:YES];
+        [self.progressButton setHidden:NO];
+        [self.playButton setHidden:NO];
     }
 }
 
@@ -190,7 +192,12 @@ static const CGFloat itemWidth = 70.0f;
     [_audioSession setActive:YES error:nil];
     if (self.journal.records){
         if (!_player) {
-            _player = [[AVAudioPlayer alloc] initWithData:self.journal.records error:nil];
+            
+            NSArray *directoryPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *documentDirectory = [directoryPaths objectAtIndex:0];
+            NSString *recordPath = [documentDirectory stringByAppendingPathComponent:self.journal.records];
+            NSData *recordData = [[NSData alloc] initWithContentsOfFile:recordPath];
+            _player = [[AVAudioPlayer alloc] initWithData:recordData error:nil];
             _player.delegate = self;
             _player.volume = 1;
         }

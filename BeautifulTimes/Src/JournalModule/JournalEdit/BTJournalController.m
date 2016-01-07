@@ -59,9 +59,9 @@ static BTJournalController *journalController;
     return _currentDate;
 }
 
-- (NSData *)record {
+- (NSString *)record {
     if (!_record) {
-        _record = [[NSData alloc] init];
+        _record = [[NSString alloc] init];
     }
     return _record;
 }

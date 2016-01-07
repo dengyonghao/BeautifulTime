@@ -144,7 +144,21 @@ static CGFloat const recorderDuration = 600;
     if (self.recordUrl) {
         NSString *filePath = [self.recordUrl absoluteString];
         NSData *data = [[NSData alloc] initWithContentsOfFile:filePath];
-        [[BTJournalController sharedInstance] setRecord:data];
+        
+        NSArray *directoryPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentDirectory = [directoryPaths objectAtIndex:0];
+        
+        NSString *savePath = [documentDirectory stringByAppendingPathComponent:[self getSaveFilePath]];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        while (true) {
+            if (![fileManager fileExistsAtPath:savePath]) {
+                break;
+            } else {
+                savePath = [documentDirectory stringByAppendingPathComponent:[self getSaveFilePath]];
+            }
+        }
+        [data writeToFile:savePath atomically:YES];
+        [[BTJournalController sharedInstance] setRecord:filePath];
     }
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if ([controller isKindOfClass:[BTAddJournalViewController class]]) {
@@ -211,6 +225,11 @@ static CGFloat const recorderDuration = 600;
     }
 }
 
+- (NSString *)getSaveFilePath {
+    NSString *uid = [[NSUUID UUID] UUIDString];
+    return uid;
+}
+
 #pragma mark AVAudioRecorder设置
 - (void)startRecord {
     if ([recorder prepareToRecord]) {
@@ -227,7 +246,7 @@ static CGFloat const recorderDuration = 600;
     //设置录音采样率(Hz) 如：AVSampleRateKey==8000/44100/96000（影响音频的质量）
     [recordSetting setValue:[NSNumber numberWithFloat:44100] forKey:AVSampleRateKey];
     //录音通道数  1 或 2
-    [recordSetting setValue:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];
+    [recordSetting setValue:[NSNumber numberWithInt:1] forKey:AVNumberOfChannelsKey];
     //线性采样位数  8、16、24、32
     [recordSetting setValue:[NSNumber numberWithInt:24] forKey:AVLinearPCMBitDepthKey];
     [recordSetting setValue:[NSNumber numberWithInt:AVAudioQualityHigh] forKey:AVEncoderAudioQualityKey];
