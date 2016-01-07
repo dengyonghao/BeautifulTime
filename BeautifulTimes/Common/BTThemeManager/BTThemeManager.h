@@ -12,7 +12,7 @@ typedef enum {
     BTThemeType_BT_BLUE = 1,
     BTThemeType_BT_BLACK = 2,
     BTThemeType_TEST = 3, //for themetest页面
-    BTThemeType_ONLINE = 4, //for 在线皮肤Ω
+    BTThemeType_ONLINE = 4, //for 在线皮肤
 }BTThemeType;
 
 
@@ -55,8 +55,6 @@ typedef enum {
 - (void) removeThemeListener:(id) obj;
 
 
-
-
 /*1.图片资源*/
 - (void )BTThemeImage:(NSString *)imagePath completionHandler:(void (^)(UIImage *image))handler;
 
@@ -64,7 +62,6 @@ typedef enum {
 - (UIColor *) BTThemeColor:(NSString *)colorKey;
 
 /*3.字体*/
-
 /*
  * @param dic 传入bundle字典，包含bundle名与bundle的path，用于themetest页面
  */
@@ -72,7 +69,7 @@ typedef enum {
 
 
 /*
- * 获取CarlifeSkins文件夹的路径
+ * 获取BeautifulTimesSkins文件夹的路径
  */
 - (NSString *) getBeautifulTimesSkinsDocPath;
 

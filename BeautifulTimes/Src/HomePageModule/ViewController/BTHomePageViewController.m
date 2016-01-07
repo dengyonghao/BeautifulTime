@@ -20,6 +20,7 @@
 #import "BTUserLoginViewController.h"
 #import "BTIMHomePageViewController.h"
 #import "BTXMPPTool.h"
+#import "BTIMTabBarController.h"
 
 static const CGFloat BUTTONWIDTH = 48;
 
@@ -233,8 +234,8 @@ static const CGFloat BUTTONWIDTH = 48;
 - (void)chatClick {
     if ([[NSUserDefaults standardUserDefaults] valueForKey:userID] && [[NSUserDefaults standardUserDefaults] valueForKey:userPassword]) {
         [[BTXMPPTool sharedInstance] login:nil];
-        BTIMHomePageViewController *vc = [[BTIMHomePageViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        BTIMTabBarController *tab = [[BTIMTabBarController alloc]init];
+        [self presentViewController:tab animated:NO completion:nil];
     } else {
         BTUserLoginViewController *vc = [[BTUserLoginViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];

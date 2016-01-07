@@ -147,8 +147,8 @@ static CGFloat const recorderDuration = 600;
         
         NSArray *directoryPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentDirectory = [directoryPaths objectAtIndex:0];
-        
-        NSString *savePath = [documentDirectory stringByAppendingPathComponent:[self getSaveFilePath]];
+        NSString *uid = [self getSaveFilePath];
+        NSString *savePath = [documentDirectory stringByAppendingPathComponent:uid];
         NSFileManager *fileManager = [NSFileManager defaultManager];
         while (true) {
             if (![fileManager fileExistsAtPath:savePath]) {
@@ -158,7 +158,7 @@ static CGFloat const recorderDuration = 600;
             }
         }
         [data writeToFile:savePath atomically:YES];
-        [[BTJournalController sharedInstance] setRecord:filePath];
+        [[BTJournalController sharedInstance] setRecord:uid];
     }
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if ([controller isKindOfClass:[BTAddJournalViewController class]]) {

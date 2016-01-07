@@ -22,4 +22,5 @@
 #import "BTXMPPTool.h"
 #import "BTBaseViewController.h"
 #import "BTThemeManager.h"
+#import "UIView+BTAddition.h"
 #endif

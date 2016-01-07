@@ -239,6 +239,10 @@
 		65F253D31C1ECF8300E0F0CE /* BTWeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F253D21C1ECF8300E0F0CE /* BTWeatherModel.m */; };
 		65F4262C1BD9F5F600295796 /* UIImage+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F4262B1BD9F5F600295796 /* UIImage+Addition.m */; };
 		65F426441BDA281400295796 /* BTContacterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F426431BDA281400295796 /* BTContacterModel.m */; };
+		65F47DD51C3E82E8008117BC /* BTTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F47DD41C3E82E8008117BC /* BTTabBarView.m */; };
+		65F47DD81C3E8323008117BC /* BTTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F47DD71C3E8323008117BC /* BTTabBarButton.m */; };
+		65F47DDB1C3E87F9008117BC /* BTIMNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F47DDA1C3E87F9008117BC /* BTIMNavViewController.m */; };
+		65F47DE21C3E8F48008117BC /* BTIMAboutMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F47DE11C3E8F48008117BC /* BTIMAboutMeViewController.m */; };
 		65F52A5B1BFDB4AA00351941 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F52A5A1BFDB4AA00351941 /* AVFoundation.framework */; };
 		65F52A5F1BFDC88700351941 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65F52A611BFDC88700351941 /* Localizable.strings */; };
 		65F9E2561C17CA8F0038774D /* BTJournalListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F9E2551C17CA8F0038774D /* BTJournalListItem.m */; };
@@ -756,6 +760,14 @@
 		65F4262B1BD9F5F600295796 /* UIImage+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Addition.m"; sourceTree = "<group>"; };
 		65F426421BDA281400295796 /* BTContacterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTContacterModel.h; sourceTree = "<group>"; };
 		65F426431BDA281400295796 /* BTContacterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTContacterModel.m; sourceTree = "<group>"; };
+		65F47DD31C3E82E8008117BC /* BTTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTabBarView.h; sourceTree = "<group>"; };
+		65F47DD41C3E82E8008117BC /* BTTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTabBarView.m; sourceTree = "<group>"; };
+		65F47DD61C3E8323008117BC /* BTTabBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTabBarButton.h; sourceTree = "<group>"; };
+		65F47DD71C3E8323008117BC /* BTTabBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTabBarButton.m; sourceTree = "<group>"; };
+		65F47DD91C3E87F9008117BC /* BTIMNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTIMNavViewController.h; sourceTree = "<group>"; };
+		65F47DDA1C3E87F9008117BC /* BTIMNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTIMNavViewController.m; sourceTree = "<group>"; };
+		65F47DE01C3E8F48008117BC /* BTIMAboutMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTIMAboutMeViewController.h; sourceTree = "<group>"; };
+		65F47DE11C3E8F48008117BC /* BTIMAboutMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTIMAboutMeViewController.m; sourceTree = "<group>"; };
 		65F52A5A1BFDB4AA00351941 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		65F52A5C1BFDC76E00351941 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		65F52A601BFDC88700351941 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -1079,6 +1091,10 @@
 		6543651B1C280975003F8D89 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				65F47DD31C3E82E8008117BC /* BTTabBarView.h */,
+				65F47DD41C3E82E8008117BC /* BTTabBarView.m */,
+				65F47DD61C3E8323008117BC /* BTTabBarButton.h */,
+				65F47DD71C3E8323008117BC /* BTTabBarButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1088,6 +1104,8 @@
 			children = (
 				6543651D1C280A08003F8D89 /* BTIMTabBarController.h */,
 				6543651E1C280A08003F8D89 /* BTIMTabBarController.m */,
+				65F47DD91C3E87F9008117BC /* BTIMNavViewController.h */,
+				65F47DDA1C3E87F9008117BC /* BTIMNavViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2241,6 +2259,7 @@
 		65F4262D1BDA0F1400295796 /* IMModule */ = {
 			isa = PBXGroup;
 			children = (
+				65F47DDC1C3E8F07008117BC /* AboutMeModule */,
 				654365191C280975003F8D89 /* MainModule */,
 				6523EF531C27AE1B0016D63C /* HomePageModule */,
 				65F4262E1BDA0F1400295796 /* ContacterModule */,
@@ -2274,6 +2293,39 @@
 				65AD650A1BF57FB700785AC1 /* BTContacterCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		65F47DDC1C3E8F07008117BC /* AboutMeModule */ = {
+			isa = PBXGroup;
+			children = (
+				65F47DDD1C3E8F07008117BC /* Model */,
+				65F47DDE1C3E8F07008117BC /* View */,
+				65F47DDF1C3E8F07008117BC /* ViewController */,
+			);
+			path = AboutMeModule;
+			sourceTree = "<group>";
+		};
+		65F47DDD1C3E8F07008117BC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		65F47DDE1C3E8F07008117BC /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		65F47DDF1C3E8F07008117BC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				65F47DE01C3E8F48008117BC /* BTIMAboutMeViewController.h */,
+				65F47DE11C3E8F48008117BC /* BTIMAboutMeViewController.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		B43EF7551C188078004FB2B5 /* contactModule */ = {
@@ -2668,6 +2720,7 @@
 				65E2D3371BCFC965001E29A9 /* AppDelegate.m in Sources */,
 				65DBD1F61BD7A2A100784DAC /* XMPPMessage+XEP_0308.m in Sources */,
 				B44507071BCFFB9F008BD5AC /* MASConstraintMaker.m in Sources */,
+				65F47DD51C3E82E8008117BC /* BTTabBarView.m in Sources */,
 				65DBD1D11BD7A2A100784DAC /* XMPPvCardTempTel.m in Sources */,
 				65DBD0B81BD77CE700784DAC /* XMPPIDTracker.m in Sources */,
 				65DCFE521BD348F400DBD0DE /* BTBaseNavigationController.m in Sources */,
@@ -2803,6 +2856,7 @@
 				65DBD0A31BD77CE700784DAC /* DDTTYLogger.m in Sources */,
 				B445071D1BD0044B008BD5AC /* BTGuideViewController.m in Sources */,
 				B4FABC011C020FE600213AB7 /* SDWebImageDownloader.m in Sources */,
+				65F47DDB1C3E87F9008117BC /* BTIMNavViewController.m in Sources */,
 				65DBD1A41BD7A2A100784DAC /* XMPPGoogleSharedStatus.m in Sources */,
 				65DBD1F21BD7A2A100784DAC /* XEP_0223.m in Sources */,
 				65E1FC7C1C33B53B001D5942 /* BTChoosePhotosItem.m in Sources */,
@@ -2839,6 +2893,7 @@
 				6500E7561BEF395C007158BF /* UIRefreshControl+AFNetworking.m in Sources */,
 				65F253D01C1ECF0300E0F0CE /* JSONValueTransformer.m in Sources */,
 				65DBD0AC1BD77CE700784DAC /* XMPPParser.m in Sources */,
+				65F47DE21C3E8F48008117BC /* BTIMAboutMeViewController.m in Sources */,
 				65DBD1E11BD7A2A100784DAC /* XMPPCapsResourceCoreDataStorageObject.m in Sources */,
 				65DBD1BE1BD7A2A100784DAC /* XMPPRoomOccupantHybridMemoryStorageObject.m in Sources */,
 				65DCFE4B1BD334F800DBD0DE /* BTRegisterAccountViewController.m in Sources */,
@@ -2889,6 +2944,7 @@
 				65F4262C1BD9F5F600295796 /* UIImage+Addition.m in Sources */,
 				65DBD0961BD77CE700784DAC /* XMPPDeprecatedDigestAuthentication.m in Sources */,
 				65DBD1B41BD7A2A100784DAC /* XMPPIQ+LastActivity.m in Sources */,
+				65F47DD81C3E8323008117BC /* BTTabBarButton.m in Sources */,
 				6523EF571C27AE370016D63C /* BTIMHomePageViewController.m in Sources */,
 				65DBD1EA1BD7A2A100784DAC /* XMPPPresence+XEP_0172.m in Sources */,
 				65DBD1C21BD7A2A100784DAC /* XMPPMessage+XEP0045.m in Sources */,

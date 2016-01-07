@@ -96,7 +96,7 @@
         
         BTContacterModel *friend = [[BTContacterModel alloc]init];
         friend.jid=user.jid;
-        friend.tidStr=[self cutStr:user.jidStr];
+        friend.firendName=[self cutStr:user.jidStr];
 
         if(user.photo){
             friend.headIcon = user.photo;
@@ -111,10 +111,10 @@
         if (friend.nickName == nil) {
             friend.nickName = [@"" stringByAppendingFormat:@"%@",friend.jid];
         }
-        friend.py=[friend.nickName stringToPinyin];
+        friend.firendNamePinyin=[friend.nickName stringToPinyin];
         
         //取出拼音首字母
-        NSString *firstName=[friend.py substringToIndex:1];
+        NSString *firstName=[friend.firendNamePinyin substringToIndex:1];
         firstName = [firstName uppercaseString]; //转成大写
         
         //获得key所对应的数据(数组)

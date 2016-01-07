@@ -146,9 +146,6 @@ static BTThemeManager * _themeManager = nil;
     }
 }
 
-
-
-
 - (void )BTThemeImage:(NSString *)imageName completionHandler:(void (^)(UIImage *image))handler;
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -156,12 +153,12 @@ static BTThemeManager * _themeManager = nil;
         NSString *imagePath = [NSString stringWithFormat:@"image/%@",imageName];
         UIImage *image = nil;
         
-        image   = [UIImage loadImage:imagePath fromBundle:self.themeBundle];
+        image = [UIImage loadImage:imagePath fromBundle:self.themeBundle];
         
         if (image == nil && self.themeStyle != BTThemeType_BT_BLUE) {
             //当前的themeBundle没有，则到蓝色主题中寻找
-            NSString * themeBundlePath = [[NSBundle mainBundle] pathForResource:@"blueTheme" ofType:@"bundle"];
-            NSBundle * bluetheme = [NSBundle bundleWithPath:themeBundlePath];
+            NSString *themeBundlePath = [[NSBundle mainBundle] pathForResource:@"blueTheme" ofType:@"bundle"];
+            NSBundle *bluetheme = [NSBundle bundleWithPath:themeBundlePath];
             image = [UIImage loadImage:imagePath fromBundle:bluetheme];
         }
         
@@ -173,7 +170,7 @@ static BTThemeManager * _themeManager = nil;
         }
         
         if (image == nil) {
-            image  = [UIImage imageNamed:imageName];
+            image = [UIImage imageNamed:imageName];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             // 更新界面
@@ -185,26 +182,16 @@ static BTThemeManager * _themeManager = nil;
 //BT_BG_COLOR
 - (UIColor *) BTThemeColor:(NSString *)colorKey
 {
-    
     /*从颜色值资源包 找到对应的色值*/
-    //    uint colorValue = [self.themeColors intValueForKey:colorKey defaultValue:0];
     NSString *jsonValue = [self.themeColors stringValueForKey:colorKey defaultValue:@"0xffffffff" operation:NSStringOperationTypeNone];
     if (jsonValue == nil) {
         NSLog(@"色值为空！！！ colorkey = %@", colorKey);
         return [UIColor blackColor];
     }
     
-    //    NSString *str = @"0xff055008";
-    //先以16为参数告诉strtoul字符串参数表示16进制数字，然后使用0x%X转为数字类型
     unsigned long colorValue = strtoul([jsonValue UTF8String],0,16);
-    //strtoul如果传入的字符开头是“0x”,那么第三个参数是0，也是会转为十六进制的,这样写也可以：
-    //    unsigned long red = strtoul([@"0x6587" UTF8String],0,0);
-    //    NSLog(@"转换完的数字为：%lx",colorValue);
     
-    
-    
-    //    [self.themeColors objectForKey:colorKey];
-    return   [UIColor colorWithHex:(uint)colorValue];
+    return [UIColor colorWithHex:(uint)colorValue];
 }
 
 /*
@@ -245,13 +232,12 @@ static BTThemeManager * _themeManager = nil;
 /*
  * 在默认(黑色)皮肤中加载一张图片
  */
-
 - (UIImage *) loadImageInDefaultThemeWithName:(NSString *) imageName {
     if (!imageName) {
         NSLog(@"图片名字为空");
         return nil;
     }
-    NSBundle * bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"blackTheme" ofType:@"bundle"]];
+    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"blackTheme" ofType:@"bundle"]];
     if (!bundle) {
         NSLog(@"默认主题缺失");
         return nil;
@@ -260,17 +246,16 @@ static BTThemeManager * _themeManager = nil;
     NSString *imagePath = [NSString stringWithFormat:@"image/%@",imageName];
     UIImage *image = nil;
     
-    image   = [UIImage loadImage:imagePath fromBundle:bundle];
+    image = [UIImage loadImage:imagePath fromBundle:bundle];
     
     if (image == nil) {
-        image  = [UIImage imageNamed:imageName];
+        image = [UIImage imageNamed:imageName];
     }
     
     if (!image) {
         NSLog(@"找不到图片%@",imageName);
         return nil;
     }
-    
     return image;
 }
 
