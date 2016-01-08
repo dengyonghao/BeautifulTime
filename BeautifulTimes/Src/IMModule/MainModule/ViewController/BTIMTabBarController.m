@@ -91,8 +91,6 @@
     [self.tabBarView addTabBarButtonItem:childVc.tabBarItem];
 }
 
-
-
 //返回白色的状态栏
 -(UIStatusBarStyle)preferredStatusBarStyle
 {

@@ -1,18 +1,16 @@
 //
-//  ContacterCell.h
-//  微信
+//  BTContacterCell.h
+//  BeautifulTimes
 //
-//  Created by Think_lion on 15/6/18.
-//  Copyright (c) 2015年 Think_lion. All rights reserved.
+//  Created by dengyonghao on 15/10/23.
+//  Copyright (c) 2015年 dengyonghao. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-@class BTContacterModel;
+#import "BTContacterModel.h"
+
 @interface BTContacterCell : UITableViewCell
 
-
-@property (nonatomic,strong) BTContacterModel *contacerModel;
-
-+(instancetype)cellWithTableView:(UITableView*)tableView indentifier:(NSString*)indentifier;
+- (void)bindData:(BTContacterModel *)model;
 
 @end

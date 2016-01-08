@@ -1,53 +1,76 @@
 //
-//  ContacterCell.m
-//  微信
+//  BTContacterCell.m
+//  BeautifulTimes
 //
-//  Created by Think_lion on 15/6/18.
-//  Copyright (c) 2015年 Think_lion. All rights reserved.
+//  Created by dengyonghao on 15/10/23.
+//  Copyright (c) 2015年 dengyonghao. All rights reserved.
 //
 
 #import "BTContacterCell.h"
-//#import "BTContacterView.h"
+
+static CGFloat const OFFSET = 5.0f;
+static CGFloat const ICONWIDTH = 30.0f;
+static CGFloat const ICONHEIGHT = 30.0f;
 
 @interface BTContacterCell ()
-//@property (nonatomic,weak) ContacterView *cView;
+
+@property (nonatomic, strong) UIImageView *headIcon;
+@property (nonatomic, strong) UILabel *friendName;
 
 @end
 
 
 @implementation BTContacterCell
 
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self=[super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if(self){
-        //添加子控件
-        [self adChildView];
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self.contentView addSubview:self.headIcon];
+        [self.contentView addSubview:self.friendName];
+        WS(weakSelf);
+        
+        [self.headIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(weakSelf).offset(OFFSET);
+            make.left.equalTo(weakSelf).offset(OFFSET);
+            make.width.equalTo(@(ICONWIDTH));
+            make.height.equalTo(@(ICONHEIGHT));
+        }];
+        
+        [self.friendName mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(weakSelf.headIcon);
+            make.left.equalTo(weakSelf.headIcon).offset(ICONWIDTH + OFFSET);
+            make.right.equalTo(weakSelf).offset(-OFFSET);
+            make.height.equalTo(@(20));
+        }];
+        
     }
     return self;
 }
 
-//设置模型数据
--(void)setContacerModel:(BTContacterModel *)contacerModel
-{
-   // _contacerModel=contacerModel;
-//    self.cView.BTcontacterModel=contacerModel;
-    
-}
-#pragma mark 初始化单元格
-+(instancetype)cellWithTableView:(UITableView *)tableView indentifier:(NSString *)indentifier
-{
-    BTContacterCell *cell=[tableView dequeueReusableCellWithIdentifier:indentifier];
-    if(cell==nil){
-        cell=[[BTContacterCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:indentifier];
+- (void)bindData:(BTContacterModel *)model {
+    self.headIcon.image = model.headIcon;
+    if (model.nickName != nil) {
+        self.friendName.text = model.nickName;
+    } else {
+        self.friendName.text = model.friendName;
     }
     
-    return cell;
 }
 
--(void)adChildView
-{
-   
+- (UIImageView *)headIcon {
+    if (!_headIcon) {
+        _headIcon = [[UIImageView alloc] init];
+    }
+    return _headIcon;
+}
+
+- (UILabel *)friendName {
+    if (!_friendName) {
+        _friendName = [[UILabel alloc] init];
+        _friendName.font = BT_FONTSIZE(15);
+    }
+    return _friendName;
 }
 
 @end

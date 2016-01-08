@@ -11,6 +11,8 @@
 #import "BTContacterCell.h"
 #import "BTXMPPTool.h"
 
+static NSString *kcellContacterIndentifier = @"contacterIndentifier";
+
 @interface BTContacterViewController ()<NSFetchedResultsControllerDelegate,UISearchBarDelegate,UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic,strong) NSFetchedResultsController *resultsContrl;
@@ -58,28 +60,22 @@
 {
     
     BTXMPPTool *xmppTool=[BTXMPPTool sharedInstance];
-    //1.上下文   XMPPRoster.xcdatamodel
     NSManagedObjectContext *context = xmppTool.rosterStorage.mainThreadManagedObjectContext;
     
-    //2.Fetch请求
     NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:@"XMPPUserCoreDataStorageObject"];
-    //3.排序和过滤
-    //    NSPredicate *pre=[NSPredicate predicateWithFormat:@"streamBareJidStr =%@",xmpp.jid];
-    //    fetch.predicate=pre;
-    //
+    
     NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
     fetch.sortDescriptors = @[sort];
     
-    //4.执行查询获取数据
     _resultsContrl = [[NSFetchedResultsController alloc]initWithFetchRequest:fetch managedObjectContext:context sectionNameKeyPath:nil cacheName:nil];
     _resultsContrl.delegate=self;
-    //执行
+
     NSError *error = nil;
     [_resultsContrl performFetch:&error];
     if(error){
         NSLog(@"出现错误%@",error);
     }
-    //如果数组里面有值才调用这个方法
+
     if(_resultsContrl.fetchedObjects.count){
         [self devideFriend];
         self.isLoad=YES;
@@ -95,15 +91,15 @@
     for(XMPPUserCoreDataStorageObject *user in _resultsContrl.fetchedObjects){
         
         BTContacterModel *friend = [[BTContacterModel alloc]init];
-        friend.jid=user.jid;
-        friend.firendName=[self cutStr:user.jidStr];
+        friend.jid = user.jid;
+        friend.friendName = [self cutStr:user.jidStr];
 
         if(user.photo){
             friend.headIcon = user.photo;
         }else{
             friend.headIcon = [UIImage imageWithData: [xmppToll.avatar photoDataForJID:user.jid]];
         }
-        friend.nickName=user.nickname;
+        friend.nickName = user.nickname;
 
 //        friend.vcClass = [ChatController class];
         
@@ -111,10 +107,10 @@
         if (friend.nickName == nil) {
             friend.nickName = [@"" stringByAppendingFormat:@"%@",friend.jid];
         }
-        friend.firendNamePinyin=[friend.nickName stringToPinyin];
+        friend.friendNamePinyin=[friend.nickName stringToPinyin];
         
-        //取出拼音首字母
-        NSString *firstName=[friend.firendNamePinyin substringToIndex:1];
+        //取出拼音首字母x
+        NSString *firstName=[friend.friendNamePinyin substringToIndex:1];
         firstName = [firstName uppercaseString]; //转成大写
         
         //获得key所对应的数据(数组)
@@ -150,28 +146,22 @@
 #pragma mark 添加搜索栏
 -(void)setupSearchBar
 {
-    UISearchBar *search=[[UISearchBar alloc]init];
-    search.frame=CGRectMake(10, 5, BT_SCREEN_WIDTH - 20, 25);
-    search.barStyle=UIBarStyleDefault;
+    UISearchBar *search = [[UISearchBar alloc]init];
+    search.frame = CGRectMake(10, 5, BT_SCREEN_WIDTH - 20, 25);
+    search.barStyle = UIBarStyleDefault;
     search.backgroundColor=[UIColor whiteColor];
+    //取消首字母大写
+    search.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    search.autocorrectionType = UITextAutocorrectionTypeNo;
+    search.placeholder = @"搜索";
+    search.layer.borderWidth = 0;
     
-    //实例化一个搜索栏
-    //取消首字母吧大写
-    search.autocapitalizationType=UITextAutocapitalizationTypeNone;
-    search.autocorrectionType=UITextAutocorrectionTypeNo;
-    //代理
-    search.placeholder=@"搜索";
-    search.layer.borderWidth=0;
-    
-    UIView *searchV=[[UIView alloc]initWithFrame:CGRectMake(0, 0, BT_SCREEN_WIDTH - 20, 35)];
+    UIView *searchV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, BT_SCREEN_WIDTH - 20, 35)];
     searchV.backgroundColor = [UIColor greenColor];
     [searchV addSubview:search];
-    // search.delegate=self;
-    
+    search.delegate=self;
     
     self.tableview.tableHeaderView=searchV;
-    
-    
 }
 
 #pragma  mark 去掉@符号
@@ -194,24 +184,20 @@
 #pragma mark 设置每个区的标题
 -(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    //如果是第一个区 不返回
-    if(section==0){
-        return nil;
-    }
     NSString *title=self.keys[section];
     return title;
 }
 #pragma mark 表单元的设置
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    BTContacterCell *cell=[BTContacterCell cellWithTableView:tableView indentifier:@"friendCell"];
-//
-//    NSString *key=self.keys[indexPath.section];
-//    NSArray *arr=[self.data objectForKey:key];
-//    ContacterModel *contacter=arr[indexPath.row];
-//    //传递模型
-//    cell.contacerModel=contacter;
-    
+    BTContacterCell *cell = [tableView dequeueReusableCellWithIdentifier:kcellContacterIndentifier];
+    if (!cell) {
+        cell = [[BTContacterCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kcellContacterIndentifier];
+    }
+    NSString *key = self.keys[indexPath.section];
+    NSArray *arr = [self.data objectForKey:key];
+    BTContacterModel *contacter = arr[indexPath.row];
+    [cell bindData:contacter];
     return cell;
 }
 
@@ -242,10 +228,10 @@
 #pragma mark 返回分区头的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    //如果是第一个区
-    if(section==0){
-        return 0;
-    }
+//    //如果是第一个区
+//    if(section==0){
+//        return 0;
+//    }
     return 10;
 }
 #pragma mark 返回标示图的索引
