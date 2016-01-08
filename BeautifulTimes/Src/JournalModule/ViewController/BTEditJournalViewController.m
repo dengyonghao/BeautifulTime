@@ -16,7 +16,6 @@
 #import "BTCircularProgressButton.h"
 #import <AVFoundation/AVFoundation.h>
 
-
 static const CGFloat itemWidth = 70.0f;
 
 @interface BTEditJournalViewController () <UITextViewDelegate, UIActionSheetDelegate, UIAlertViewDelegate, AVAudioPlayerDelegate> {
@@ -349,8 +348,13 @@ static const CGFloat itemWidth = 70.0f;
         [_photos setImage:BT_LOADIMAGE(@"com_ic_photo")];
         [_photos setBorderWithWidth:1 color:[[BTThemeManager getInstance] BTThemeColor:@"cl_line_b_leftbar"] cornerRadius:5];
         _photos.userInteractionEnabled = YES;
-        if (self.journal.photos) {
-            NSArray *photos = [NSKeyedUnarchiver unarchiveObjectWithData:self.journal.photos];
+        NSArray *directoryPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentDirectory = [directoryPaths objectAtIndex:0];
+        NSString *photosPath = [documentDirectory stringByAppendingPathComponent:self.journal.photos];
+        NSData *photosData = [[NSData alloc] initWithContentsOfFile:photosPath];
+        
+        if (photosData) {
+            NSArray *photos = [NSKeyedUnarchiver unarchiveObjectWithData:photosData];
             if (photos.count > 0) {
                 _photos.image = photos[0];
             }
@@ -398,7 +402,5 @@ static const CGFloat itemWidth = 70.0f;
     }
     return _playButton;
 }
-
-
 
 @end

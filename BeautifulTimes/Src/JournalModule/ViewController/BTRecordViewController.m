@@ -154,7 +154,8 @@ static CGFloat const recorderDuration = 600;
             if (![fileManager fileExistsAtPath:savePath]) {
                 break;
             } else {
-                savePath = [documentDirectory stringByAppendingPathComponent:[self getSaveFilePath]];
+                uid = [self getSaveFilePath];
+                savePath = [documentDirectory stringByAppendingPathComponent:uid];
             }
         }
         [data writeToFile:savePath atomically:YES];

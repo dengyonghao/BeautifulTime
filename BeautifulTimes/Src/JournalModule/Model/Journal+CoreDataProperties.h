@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *journalTime;
 @property (nullable, nonatomic, retain) NSData *weather;
 @property (nullable, nonatomic, retain) NSString *site;
-@property (nullable, nonatomic, retain) NSData *photos;
+@property (nullable, nonatomic, retain) NSString *photos;
 @property (nullable, nonatomic, retain) NSString *records;
 
 @end

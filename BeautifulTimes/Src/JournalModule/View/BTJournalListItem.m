@@ -106,7 +106,12 @@
     self.cityName.text = model.site;
     [self.calendarView bindData:model.journalDate];
     self.contentLaber.text = [[NSString alloc] initWithData:model.journalContent encoding:NSUTF8StringEncoding];
-    NSArray *photoArray = [NSKeyedUnarchiver unarchiveObjectWithData:model.photos];
+    NSArray *directoryPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [directoryPaths objectAtIndex:0];
+    NSString *photosPath = [documentDirectory stringByAppendingPathComponent:model.photos];
+    NSData *photosData = [[NSData alloc] initWithContentsOfFile:photosPath];
+    
+    NSArray *photoArray = [NSKeyedUnarchiver unarchiveObjectWithData:photosData];
     if (photoArray.count > 0) {
         UIImage *image = photoArray[0];
         self.photoImageView.image = image;

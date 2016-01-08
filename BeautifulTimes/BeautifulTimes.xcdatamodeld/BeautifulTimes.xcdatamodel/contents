@@ -5,7 +5,7 @@
         <attribute name="journalDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="journalId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="journalTime" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="photos" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="photos" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="records" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="site" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weather" optional="YES" attributeType="Binary" syncable="YES"/>

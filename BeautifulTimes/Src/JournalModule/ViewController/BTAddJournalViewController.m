@@ -197,7 +197,23 @@ static const CGFloat itemWidth = 70;
     newJournal.journalDate = [NSDate date];
     newJournal.site = self.model.city;
     NSData *photosData = [NSKeyedArchiver archivedDataWithRootObject:[BTJournalController sharedInstance].photos];
-    newJournal.photos = photosData;
+    
+    NSArray *directoryPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [directoryPaths objectAtIndex:0];
+    NSString *uid = [self getSaveFilePath];
+    NSString *savePath = [documentDirectory stringByAppendingPathComponent:uid];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    while (true) {
+        if (![fileManager fileExistsAtPath:savePath]) {
+            break;
+        } else {
+            uid = [self getSaveFilePath];
+            savePath = [documentDirectory stringByAppendingPathComponent:uid];
+        }
+    }
+    [photosData writeToFile:savePath atomically:YES];
+    
+    newJournal.photos = uid;
     
     NSData *weatherData = [NSKeyedArchiver archivedDataWithRootObject:self.model];
     newJournal.weather = weatherData;
@@ -212,6 +228,11 @@ static const CGFloat itemWidth = 70;
             [self.navigationController popToViewController:controller animated:YES];
         }
     }
+}
+
+- (NSString *)getSaveFilePath {
+    NSString *uid = [[NSUUID UUID] UUIDString];
+    return uid;
 }
 
 - (void)backButtonClick {
