@@ -76,7 +76,6 @@ static CGFloat const iconHeight = 120.0f;
 - (void)photoLibraryDidChange:(PHChange *)changeInstance {
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        // Loop through the section fetch results, replacing any fetch results that have been updated.
         NSMutableArray *updatedSectionFetchResults = [self.sectionFetchResults mutableCopy];
         __block BOOL reloadRequired = NO;
         
@@ -115,7 +114,7 @@ static CGFloat const iconHeight = 120.0f;
             
         }
         else {
-            for  (PHFetchResult *result in self.sectionFetchResults[i]) {
+            for (PHFetchResult *result in self.sectionFetchResults[i]) {
                 PHAssetCollection *assetCollection = (PHAssetCollection *)result;
                 
                 if ([assetCollection isKindOfClass:[PHAssetCollection class]]) {

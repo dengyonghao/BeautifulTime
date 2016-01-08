@@ -8,12 +8,7 @@
 
 #import "BTPhotoCollectionViewCell.h"
 
-static CGSize AssetGridThumbnailSize;
-
 @interface BTPhotoCollectionViewCell ()
-
-@property (nonatomic, strong) PHCachingImageManager *imageManager;
-@property (nonatomic, strong) PHImageRequestOptions *options;
 
 @end
 
@@ -26,13 +21,12 @@ static CGSize AssetGridThumbnailSize;
         [self.contentView addSubview:self.isSelect];
         
         CGFloat iconWidth = BT_SCREEN_WIDTH / 3;
-        CGFloat scale = [UIScreen mainScreen].scale;
-        AssetGridThumbnailSize = CGSizeMake(iconWidth * scale, iconWidth * scale);
         WS(weakSelf);
         [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(weakSelf);
+            make.left.equalTo(weakSelf);
             make.width.equalTo(@(iconWidth));
             make.height.equalTo(@(iconWidth));
-            make.centerX.equalTo(weakSelf.contentView.mas_centerX);
         }];
         
 //        [self.isSelect mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -51,34 +45,8 @@ static CGSize AssetGridThumbnailSize;
     
 }
 
-- (void)bindData:(PHAsset *)asset {
-    self.imageView.image = BT_LOADIMAGE(@"music_ic_albumcover");
-    WS(weakSelf);
-    [self.imageManager requestImageForAsset:asset
-                            targetSize:AssetGridThumbnailSize
-                           contentMode:PHImageContentModeAspectFill
-                               options:self.options
-                         resultHandler:^(UIImage *result, NSDictionary *info) {
-                             
-                             weakSelf.imageView.image = result;
-                             
-                         }];
-}
-
-- (PHCachingImageManager *)imageManager {
-    if (!_imageManager) {
-        _imageManager = [[PHCachingImageManager alloc] init];
-    }
-    return _imageManager;
-}
-
--(PHImageRequestOptions *)options {
-    if (!_options) {
-        _options = [[PHImageRequestOptions alloc] init];
-        _options.resizeMode = PHImageRequestOptionsResizeModeExact;
-        _options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
-    }
-    return _options;
+- (void)bindData:(UIImage *)image {
+    self.imageView.image = image;
 }
 
 - (UIImageView *)imageView {

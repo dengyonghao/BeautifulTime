@@ -57,6 +57,10 @@ static NSInteger cacheNumber = 10;
     [super didReceiveMemoryWarning];
 }
 
+- (void)dealloc {
+    self.imageManager = nil;
+}
+
 - (void)photoParseWithIndex:(NSInteger)index imageView:(UIImageView *)imageView{
     if (index < 0 || index > self.assets.count - 1) {
         return;
@@ -99,7 +103,7 @@ static NSInteger cacheNumber = 10;
 }
 
 - (void)parsePhoto {
-    for (int i = 0; i <= cacheNumber; i++) {
+    for (int i = 0; i <= cacheNumber / 2; i++) {
         if (headIndex == tailIndex) {
             [self parsePhotoWithIndex:headIndex];
             headIndex++;

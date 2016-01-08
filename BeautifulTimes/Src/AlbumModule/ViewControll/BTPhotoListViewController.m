@@ -15,8 +15,6 @@
 static  NSString *kcellIdentifier = @"kPhotoCollectionCellID";
 static int const showNumber = 3;
 static CGSize AssetGridThumbnailSize;
-static CGFloat const iconWidth = 90.0f;
-static CGFloat const iconHeight = 90.0f;
 
 @interface BTPhotoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, PHPhotoLibraryChangeObserver, UIActionSheetDelegate> {
     long photosNumber;
@@ -26,6 +24,8 @@ static CGFloat const iconHeight = 90.0f;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 @property (nonatomic, strong) NSMutableDictionary *flageArray;
 @property (nonatomic, strong) NSMutableDictionary *photoSource;
+@property (nonatomic, strong) PHCachingImageManager *imageManager;
+@property (nonatomic, strong) PHImageRequestOptions *options;
 
 @end
 
@@ -41,13 +41,21 @@ static CGFloat const iconHeight = 90.0f;
     }
     [self initDataSource];
     [self.bodyView addSubview:self.collectionView];
+    [self resetCachedAssets];
+    [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.collectionView registerClass:[BTPhotoCollectionViewCell class] forCellWithReuseIdentifier:kcellIdentifier];
     CGFloat scale = [UIScreen mainScreen].scale;
-    AssetGridThumbnailSize = CGSizeMake(iconWidth * scale, iconHeight * scale);
+    AssetGridThumbnailSize = CGSizeMake((BT_SCREEN_WIDTH / 3) * scale, (BT_SCREEN_WIDTH / 3) * scale);
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    // Begin caching assets in and around collection view's visible rect.
+    [self updateCachedAssets];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -64,6 +72,48 @@ static CGFloat const iconHeight = 90.0f;
     
 }
 
+- (void)dealloc {
+    [self resetCachedAssets];
+    [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
+}
+
+#pragma mark - Asset Caching
+
+- (void)resetCachedAssets {
+    [self.imageManager stopCachingImagesForAllAssets];
+}
+
+- (void)updateCachedAssets {
+    BOOL isViewVisible = [self isViewLoaded] && [[self view] window] != nil;
+    if (!isViewVisible) {
+        return;
+    }
+    
+    NSMutableArray *addedIndexPaths = [NSMutableArray array];
+
+    NSArray *assetsToStartCaching = [self assetsAtIndexPaths:addedIndexPaths];
+
+    [self.imageManager startCachingImagesForAssets:assetsToStartCaching
+                                        targetSize:AssetGridThumbnailSize
+                                       contentMode:PHImageContentModeAspectFill
+                                           options:self.options];
+}
+
+- (NSArray *)assetsAtIndexPaths:(NSArray *)indexPaths {
+    if (indexPaths.count == 0) {
+        return nil;
+    }
+    
+    NSMutableArray *assets = [NSMutableArray arrayWithCapacity:indexPaths.count];
+    for (NSIndexPath *indexPath in indexPaths) {
+        PHAsset *asset = self.dataSource[indexPath.item];
+        [assets addObject:asset];
+    }
+    
+    return assets;
+}
+
+
 - (void)finishButtonClick {
     NSMutableArray *ary = [[NSMutableArray alloc] initWithArray:[BTJournalController sharedInstance].photos];
     [ary addObjectsFromArray:[self sortDictionaryByAsc:self.photoSource]];
@@ -79,7 +129,6 @@ static CGFloat const iconHeight = 90.0f;
 - (void)initDataSource {
     
     [self.dataSource removeAllObjects];
-    
         
     if (!self.assetCollection) {
         
@@ -95,7 +144,6 @@ static CGFloat const iconHeight = 90.0f;
         
         for (int i = 0; i < assetsFetchResult.count; i++) {
             PHAsset *asset = assetsFetchResult[i];
-            
             [self.dataSource addObject:asset];
         }
     }
@@ -172,7 +220,7 @@ static CGFloat const iconHeight = 90.0f;
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat width = BT_SCREEN_WIDTH / showNumber;
-    CGFloat height = iconHeight;
+    CGFloat height = width;
     
     return CGSizeMake(width, height);
     
@@ -181,13 +229,23 @@ static CGFloat const iconHeight = 90.0f;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     BTPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kcellIdentifier forIndexPath:indexPath];
-    NSString *str = [self.flageArray valueForKey:[[NSString alloc] initWithFormat:@"%ld",(indexPath.section * showNumber + indexPath.row)]];
+    long index = indexPath.section * showNumber + indexPath.row;
+    NSString *str = [self.flageArray valueForKey:[[NSString alloc] initWithFormat:@"%ld",index]];
     if ([str isEqualToString:@"YES"]) {
         cell.isSelect.hidden = NO;
     } else {
         cell.isSelect.hidden = YES;
     }
-    [cell bindData:self.dataSource[indexPath.section * showNumber + indexPath.row]];
+    
+    [self.imageManager requestImageForAsset:self.dataSource[index]
+                                 targetSize:AssetGridThumbnailSize
+                                contentMode:PHImageContentModeAspectFill
+                                    options:self.options
+                              resultHandler:^(UIImage *result, NSDictionary *info) {
+                                  [cell bindData:result];
+                                  
+                              }];
+    
     return cell;
 }
 
@@ -269,6 +327,22 @@ static CGFloat const iconHeight = 90.0f;
         _photoSource = [[NSMutableDictionary alloc] init];
     }
     return _photoSource;
+}
+
+- (PHCachingImageManager *)imageManager {
+    if (!_imageManager) {
+        _imageManager = [[PHCachingImageManager alloc] init];
+    }
+    return _imageManager;
+}
+
+-(PHImageRequestOptions *)options {
+    if (!_options) {
+        _options = [[PHImageRequestOptions alloc] init];
+        _options.resizeMode = PHImageRequestOptionsResizeModeExact;
+        _options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+    }
+    return _options;
 }
 
 @end

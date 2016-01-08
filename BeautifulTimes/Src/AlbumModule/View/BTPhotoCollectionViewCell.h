@@ -14,6 +14,6 @@
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIImageView *isSelect;
 
-- (void)bindData:(PHAsset *)asset;
+- (void)bindData:(UIImage *)image;
 
 @end
