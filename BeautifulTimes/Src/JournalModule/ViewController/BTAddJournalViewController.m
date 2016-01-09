@@ -159,6 +159,7 @@ static const CGFloat itemWidth = 70;
         for (CLPlacemark * placemark in placemarks) {
             NSDictionary *info = [placemark addressDictionary];
             NSString * city = [info objectForKey:@"City"];
+            [[NSUserDefaults standardUserDefaults] setObject:[self cutStr:city] forKey:currentCity];
             [BTNetManager netManagerReqeustWeatherInfo:[self cutStr:city] successCallback:^(NSDictionary *retDict) {
                 self.model.city = retDict[@"HeWeather data service 3.0"][0][@"basic"][@"city"];
                 self.model.pm25 = retDict[@"HeWeather data service 3.0"][0][@"aqi"][@"city"][@"pm25"];

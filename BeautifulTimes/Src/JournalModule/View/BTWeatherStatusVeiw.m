@@ -161,6 +161,9 @@ static const CGFloat iconHeight = 20;
         _cityName = [[UILabel alloc] init];
         _cityName.textAlignment = NSTextAlignmentCenter;
         _cityName.font = BT_FONTSIZE(14);
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:currentCity]) {
+            _cityName.text = [[NSUserDefaults standardUserDefaults] objectForKey:currentCity];
+        }
     }
     return _cityName;
 }
@@ -170,6 +173,7 @@ static const CGFloat iconHeight = 20;
         _weatherInfo = [[UILabel alloc] init];
         _weatherInfo.textAlignment = NSTextAlignmentLeft;
         _weatherInfo.font = BT_FONTSIZE(11);
+        _weatherInfo.text = @"0℃";
     }
     return _weatherInfo;
 }
@@ -177,6 +181,7 @@ static const CGFloat iconHeight = 20;
 - (UIImageView *)weatherIcon {
     if (!_weatherIcon) {
         _weatherIcon = [[UIImageView alloc] init];
+        [_weatherIcon setImage:BT_LOADIMAGE(@"weather_qing")];
     }
     return _weatherIcon;
 }
@@ -186,6 +191,7 @@ static const CGFloat iconHeight = 20;
         _pm25Label = [[UILabel alloc] init];
         _pm25Label.textAlignment = NSTextAlignmentLeft;
         _pm25Label.font = BT_FONTSIZE(11);
+        _pm25Label.text = @"优";
     }
     return _pm25Label;
 }

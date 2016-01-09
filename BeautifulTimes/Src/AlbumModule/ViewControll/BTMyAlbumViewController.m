@@ -136,7 +136,6 @@ static CGFloat const iconHeight = 120.0f;
     if (self.dataSource.count % showNumber == 0) {
         return self.dataSource.count / showNumber;
     }
-    
     return self.dataSource.count / showNumber + 1;
 }
 
@@ -147,7 +146,6 @@ static CGFloat const iconHeight = 120.0f;
             return self.dataSource.count % showNumber;
         }
     }
-    
     return showNumber;
 }
 
@@ -155,9 +153,7 @@ static CGFloat const iconHeight = 120.0f;
 {
     CGFloat width = BT_SCREEN_WIDTH / showNumber;
     CGFloat height = cellHeight;
-    
     return CGSizeMake(width, height);
-
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -237,6 +233,7 @@ static CGFloat const iconHeight = 120.0f;
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
+#pragma mark -setter
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];

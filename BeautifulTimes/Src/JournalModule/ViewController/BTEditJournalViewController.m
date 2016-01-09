@@ -145,6 +145,17 @@ static const CGFloat itemWidth = 70.0f;
     [super didReceiveMemoryWarning];
 }
 
+- (void)backButtonClick {
+    [super backButtonClick];
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[BTJournalListViewController class]]) {
+            BTJournalListViewController *vc = (BTJournalListViewController *)controller;
+            [vc initDataSource];
+            [vc.tableView reloadData];
+        }
+    }
+}
+
 - (void)finishButtonClick {
     if (!isEditModel) {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
@@ -191,7 +202,6 @@ static const CGFloat itemWidth = 70.0f;
     [_audioSession setActive:YES error:nil];
     if (self.journal.records){
         if (!_player) {
-            
             NSArray *directoryPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
             NSString *documentDirectory = [directoryPaths objectAtIndex:0];
             NSString *recordPath = [documentDirectory stringByAppendingPathComponent:self.journal.records];
@@ -208,11 +218,11 @@ static const CGFloat itemWidth = 70.0f;
 
 - (void)stopPlay {
     [_player stop];
+    _player.currentTime = 0.0f;
     [self.timer invalidate];
     self.timer = nil;
     [self nowPlayingRecordCurrentTime:0 duration:_player.duration];
     [_audioSession setActive:NO error:nil];
-    _player = nil;
 }
 
 - (void)playProgressTime:(NSTimer *)timer {
@@ -272,7 +282,6 @@ static const CGFloat itemWidth = 70.0f;
         
     } else {
         [[AppDelegate getInstance].coreDataHelper.context deleteObject:self.journal];
-        
         for (UIViewController *controller in self.navigationController.viewControllers) {
             if ([controller isKindOfClass:[BTJournalListViewController class]]) {
                 BTJournalListViewController *vc = (BTJournalListViewController *)controller;
@@ -281,7 +290,6 @@ static const CGFloat itemWidth = 70.0f;
                 [self.navigationController popToViewController:controller animated:YES];
             }
         }
-
     }
 }
 

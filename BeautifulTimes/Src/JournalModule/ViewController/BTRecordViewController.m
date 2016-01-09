@@ -20,6 +20,7 @@ static CGFloat const recorderDuration = 600;
     AVAudioPlayer *player;
     AVAudioRecorder *recorder;
     AVAudioSession * audioSession;
+    BOOL isEditModel;
 }
 
 @property (nonatomic, strong) BTCircularProgressButton *progressButton; /**< 进度环 */
@@ -48,14 +49,23 @@ static CGFloat const recorderDuration = 600;
     [self.bodyView addSubview:self.saveButton];
     audioSession = [AVAudioSession sharedInstance];
     [self initRecorder];
+    isEditModel = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.playButton setHidden:YES];
-    [self.resetButton setHidden:YES];
-    [self.saveButton setHidden:YES];
     [self.circlesImageView setHidden:YES];
+    if ([BTJournalController sharedInstance].record  && ![[BTJournalController sharedInstance].record isEqualToString:@""]) {
+        isEditModel = YES;
+        [self.recordButton setHidden:YES];
+        [self.playButton setHidden:NO];
+        [self.resetButton setHidden:NO];
+        [self.saveButton setHidden:YES];
+    } else {
+        [self.playButton setHidden:YES];
+        [self.resetButton setHidden:YES];
+        [self.saveButton setHidden:YES];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -114,14 +124,13 @@ static CGFloat const recorderDuration = 600;
         make.width.equalTo(@(40));
         make.height.equalTo(@(40));
     }];
-
-
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark -click event
 - (void)recordButtonClick:(UIButton *)sender {
     if (!self.recordButton.selected) {
         self.recordButton.selected = YES;
@@ -137,18 +146,19 @@ static CGFloat const recorderDuration = 600;
         [self stopAnimate];
         self.recordButton.selected = NO;
     }
-    
 }
 
 - (void)saveButtonClick:(UIButton *)sender {
+    if (player.isPlaying) {
+        [player stop];
+    }
     if (self.recordUrl) {
         NSString *filePath = [self.recordUrl absoluteString];
         NSData *data = [[NSData alloc] initWithContentsOfFile:filePath];
         
-        NSArray *directoryPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentDirectory = [directoryPaths objectAtIndex:0];
+        NSString *documentDirectory = [self getDocumentPath];
         NSString *uid = [self getSaveFilePath];
-        NSString *savePath = [documentDirectory stringByAppendingPathComponent:uid];
+        NSString *savePath = [[self getDocumentPath] stringByAppendingPathComponent:uid];
         NSFileManager *fileManager = [NSFileManager defaultManager];
         while (true) {
             if (![fileManager fileExistsAtPath:savePath]) {
@@ -200,7 +210,13 @@ static CGFloat const recorderDuration = 600;
     [audioSession setActive:YES error:nil];
     if (self.recordUrl != nil){
         if (!player) {
-            player = [[AVAudioPlayer alloc] initWithContentsOfURL:self.recordUrl error:nil];
+            if (isEditModel) {
+                NSString *saveRecordPath = [[self getDocumentPath] stringByAppendingPathComponent:[BTJournalController sharedInstance].record];
+                NSData *recordData = [[NSData alloc] initWithContentsOfFile:saveRecordPath];
+                player = [[AVAudioPlayer alloc] initWithData:recordData error:nil];
+            } else {
+                player = [[AVAudioPlayer alloc] initWithContentsOfURL:self.recordUrl error:nil];
+            }
             player.delegate = self;
             player.volume = 1;
         }
@@ -212,6 +228,7 @@ static CGFloat const recorderDuration = 600;
 
 - (void)stopPlay {
     [player stop];
+    player.currentTime = 0.0f;
     [self.timer invalidate];
     self.timer = nil;
     [self nowPlayingRecordCurrentTime:0 duration:player.duration];
@@ -220,10 +237,24 @@ static CGFloat const recorderDuration = 600;
 
 - (void)deleteRecordFile {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *filePath = [self.recordUrl absoluteString];
-    if ([fileManager fileExistsAtPath:filePath]) {
-        [fileManager removeItemAtPath:filePath error:nil];
+    if (isEditModel) {
+        NSString *savePath = [[self getDocumentPath] stringByAppendingPathComponent:[BTJournalController sharedInstance].record];
+        [BTJournalController sharedInstance].record = nil;
+        if ([fileManager fileExistsAtPath:savePath]) {
+            [fileManager removeItemAtPath:savePath error:nil];
+        }
+    } else {
+        NSString *filePath = [self.recordUrl absoluteString];
+        if ([fileManager fileExistsAtPath:filePath]) {
+            [fileManager removeItemAtPath:filePath error:nil];
+        }
     }
+}
+
+- (NSString *)getDocumentPath {
+    NSArray *directoryPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [directoryPaths objectAtIndex:0];
+    return documentDirectory;
 }
 
 - (NSString *)getSaveFilePath {
@@ -244,12 +275,12 @@ static CGFloat const recorderDuration = 600;
 - (void)initRecorder {
     NSMutableDictionary *recordSetting = [[NSMutableDictionary alloc]init];
     [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatLinearPCM] forKey:AVFormatIDKey];
-    //设置录音采样率(Hz) 如：AVSampleRateKey==8000/44100/96000（影响音频的质量）
-    [recordSetting setValue:[NSNumber numberWithFloat:44100] forKey:AVSampleRateKey];
-    //录音通道数  1 或 2
+    //常用的音频采样频率有8kHz、11.025kHz、22.05kHz、16kHz、37.8kHz、44.1kHz、48kHz等
+    [recordSetting setValue:[NSNumber numberWithFloat:11025] forKey:AVSampleRateKey];
+    //录音通道数  1 或 2（立体）
     [recordSetting setValue:[NSNumber numberWithInt:1] forKey:AVNumberOfChannelsKey];
     //线性采样位数  8、16、24、32
-    [recordSetting setValue:[NSNumber numberWithInt:24] forKey:AVLinearPCMBitDepthKey];
+    [recordSetting setValue:[NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];
     [recordSetting setValue:[NSNumber numberWithInt:AVAudioQualityHigh] forKey:AVEncoderAudioQualityKey];
     
     NSDate *now = [NSDate date];
@@ -327,6 +358,7 @@ static CGFloat const recorderDuration = 600;
     [super BTThemeDidNeedUpdateStyle];
 }
 
+#pragma mark - setter
 - (BTCircularProgressButton *)progressButton {
     if (!_progressButton) {
         _progressButton = [[BTCircularProgressButton alloc] initWithFrame:CGRectMake(0, 0, durationCircleSize, durationCircleSize)

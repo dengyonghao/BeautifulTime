@@ -37,6 +37,7 @@ static inline UIImage* naviimage_from_mainbundle(NSString* filename_and_type)
 }
 
 #define firstLaunch              @"firstLaunch"
+#define currentCity               @"btCurrentCity"
 #define userID                   @"btUserID"
 #define userPassword             @"btPassword"
 
