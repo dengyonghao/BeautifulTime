@@ -39,7 +39,6 @@
 		650ABD811C2BD8A9004FBC89 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 650ABD7C1C2BD8A9004FBC89 /* FMResultSet.m */; };
 		650ABD831C2BD9EF004FBC89 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 650ABD821C2BD9EF004FBC89 /* libsqlite3.tbd */; };
 		65104E901C0D438800241323 /* BTAddAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65104E8F1C0D438800241323 /* BTAddAlbumViewController.m */; };
-		6523EF571C27AE370016D63C /* BTIMHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6523EF561C27AE370016D63C /* BTIMHomePageViewController.m */; };
 		6523EF5E1C27CC300016D63C /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 6523EF5A1C27CC300016D63C /* MBProgressHUD+MJ.m */; };
 		6523EF5F1C27CC300016D63C /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6523EF5B1C27CC300016D63C /* MBProgressHUD.bundle */; };
 		6523EF601C27CC300016D63C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6523EF5D1C27CC300016D63C /* MBProgressHUD.m */; };
@@ -245,6 +244,10 @@
 		65F47DE21C3E8F48008117BC /* BTIMAboutMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F47DE11C3E8F48008117BC /* BTIMAboutMeViewController.m */; };
 		65F52A5B1BFDB4AA00351941 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F52A5A1BFDB4AA00351941 /* AVFoundation.framework */; };
 		65F52A5F1BFDC88700351941 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65F52A611BFDC88700351941 /* Localizable.strings */; };
+		65F90A141C43C75300BAC2A2 /* BTChatMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F90A131C43C75300BAC2A2 /* BTChatMessageCell.m */; };
+		65F90A181C43CA2300BAC2A2 /* BTIMHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F90A171C43CA2300BAC2A2 /* BTIMHomePageViewController.m */; };
+		65F90A1C1C43CA5E00BAC2A2 /* BTChatMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F90A1B1C43CA5E00BAC2A2 /* BTChatMessageModel.m */; };
+		65F90A231C43D87A00BAC2A2 /* BTChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F90A221C43D87A00BAC2A2 /* BTChatViewController.m */; };
 		65F9E2561C17CA8F0038774D /* BTJournalListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F9E2551C17CA8F0038774D /* BTJournalListItem.m */; };
 		B43EF74A1C187A78004FB2B5 /* BTJournalDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B43EF7491C187A78004FB2B5 /* BTJournalDetailsViewController.m */; };
 		B4404F8C1BE7B32000226334 /* Journal+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = B4404F891BE7B32000226334 /* Journal+CoreDataProperties.m */; };
@@ -366,8 +369,6 @@
 		650ABD821C2BD9EF004FBC89 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		65104E8E1C0D438800241323 /* BTAddAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAddAlbumViewController.h; sourceTree = "<group>"; };
 		65104E8F1C0D438800241323 /* BTAddAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAddAlbumViewController.m; sourceTree = "<group>"; };
-		6523EF551C27AE370016D63C /* BTIMHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTIMHomePageViewController.h; sourceTree = "<group>"; };
-		6523EF561C27AE370016D63C /* BTIMHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTIMHomePageViewController.m; sourceTree = "<group>"; };
 		6523EF591C27CC300016D63C /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
 		6523EF5A1C27CC300016D63C /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
 		6523EF5B1C27CC300016D63C /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
@@ -772,6 +773,14 @@
 		65F52A5C1BFDC76E00351941 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		65F52A601BFDC88700351941 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		65F52A621BFDC8AB00351941 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		65F90A121C43C75300BAC2A2 /* BTChatMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTChatMessageCell.h; sourceTree = "<group>"; };
+		65F90A131C43C75300BAC2A2 /* BTChatMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTChatMessageCell.m; sourceTree = "<group>"; };
+		65F90A161C43CA2300BAC2A2 /* BTIMHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTIMHomePageViewController.h; sourceTree = "<group>"; };
+		65F90A171C43CA2300BAC2A2 /* BTIMHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTIMHomePageViewController.m; sourceTree = "<group>"; };
+		65F90A1A1C43CA5E00BAC2A2 /* BTChatMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTChatMessageModel.h; sourceTree = "<group>"; };
+		65F90A1B1C43CA5E00BAC2A2 /* BTChatMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTChatMessageModel.m; sourceTree = "<group>"; };
+		65F90A211C43D87A00BAC2A2 /* BTChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTChatViewController.h; sourceTree = "<group>"; };
+		65F90A221C43D87A00BAC2A2 /* BTChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTChatViewController.m; sourceTree = "<group>"; };
 		65F9E2541C17CA8F0038774D /* BTJournalListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTJournalListItem.h; sourceTree = "<group>"; };
 		65F9E2551C17CA8F0038774D /* BTJournalListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTJournalListItem.m; sourceTree = "<group>"; };
 		B43EF7481C187A78004FB2B5 /* BTJournalDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTJournalDetailsViewController.h; sourceTree = "<group>"; };
@@ -1035,18 +1044,11 @@
 		6523EF531C27AE1B0016D63C /* HomePageModule */ = {
 			isa = PBXGroup;
 			children = (
-				6523EF541C27AE1B0016D63C /* ViewController */,
-				6523EF551C27AE370016D63C /* BTIMHomePageViewController.h */,
-				6523EF561C27AE370016D63C /* BTIMHomePageViewController.m */,
+				65F90A191C43CA3400BAC2A2 /* Model */,
+				65F90A151C43CA2300BAC2A2 /* ViewController */,
+				65F90A111C43C70700BAC2A2 /* View */,
 			);
 			path = HomePageModule;
-			sourceTree = "<group>";
-		};
-		6523EF541C27AE1B0016D63C /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		6523EF581C27CC300016D63C /* MBProgressHUD */ = {
@@ -2259,6 +2261,7 @@
 		65F4262D1BDA0F1400295796 /* IMModule */ = {
 			isa = PBXGroup;
 			children = (
+				65F90A1D1C43D84F00BAC2A2 /* ChatModel */,
 				65F47DDC1C3E8F07008117BC /* AboutMeModule */,
 				654365191C280975003F8D89 /* MainModule */,
 				6523EF531C27AE1B0016D63C /* HomePageModule */,
@@ -2324,6 +2327,66 @@
 			children = (
 				65F47DE01C3E8F48008117BC /* BTIMAboutMeViewController.h */,
 				65F47DE11C3E8F48008117BC /* BTIMAboutMeViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		65F90A111C43C70700BAC2A2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				65F90A121C43C75300BAC2A2 /* BTChatMessageCell.h */,
+				65F90A131C43C75300BAC2A2 /* BTChatMessageCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		65F90A151C43CA2300BAC2A2 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				65F90A161C43CA2300BAC2A2 /* BTIMHomePageViewController.h */,
+				65F90A171C43CA2300BAC2A2 /* BTIMHomePageViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		65F90A191C43CA3400BAC2A2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				65F90A1A1C43CA5E00BAC2A2 /* BTChatMessageModel.h */,
+				65F90A1B1C43CA5E00BAC2A2 /* BTChatMessageModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		65F90A1D1C43D84F00BAC2A2 /* ChatModel */ = {
+			isa = PBXGroup;
+			children = (
+				65F90A1E1C43D84F00BAC2A2 /* Model */,
+				65F90A1F1C43D84F00BAC2A2 /* View */,
+				65F90A201C43D84F00BAC2A2 /* ViewController */,
+			);
+			path = ChatModel;
+			sourceTree = "<group>";
+		};
+		65F90A1E1C43D84F00BAC2A2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		65F90A1F1C43D84F00BAC2A2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		65F90A201C43D84F00BAC2A2 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				65F90A211C43D87A00BAC2A2 /* BTChatViewController.h */,
+				65F90A221C43D87A00BAC2A2 /* BTChatViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2800,6 +2863,8 @@
 				65E2D3341BCFC965001E29A9 /* main.m in Sources */,
 				65DBD0B11BD77CE700784DAC /* DDXMLElement.m in Sources */,
 				65DBD09D1BD77CE700784DAC /* NSXMLElement+XMPP.m in Sources */,
+				65F90A1C1C43CA5E00BAC2A2 /* BTChatMessageModel.m in Sources */,
+				65F90A181C43CA2300BAC2A2 /* BTIMHomePageViewController.m in Sources */,
 				65DBD1CB1BD7A2A100784DAC /* XMPPvCardTempAdr.m in Sources */,
 				6500E74D1BEF395C007158BF /* AFURLRequestSerialization.m in Sources */,
 				6500E7541BEF395C007158BF /* UIImageView+AFNetworking.m in Sources */,
@@ -2896,6 +2961,8 @@
 				65F47DE21C3E8F48008117BC /* BTIMAboutMeViewController.m in Sources */,
 				65DBD1E11BD7A2A100784DAC /* XMPPCapsResourceCoreDataStorageObject.m in Sources */,
 				65DBD1BE1BD7A2A100784DAC /* XMPPRoomOccupantHybridMemoryStorageObject.m in Sources */,
+				65F90A141C43C75300BAC2A2 /* BTChatMessageCell.m in Sources */,
+				65F90A231C43D87A00BAC2A2 /* BTChatViewController.m in Sources */,
 				65DCFE4B1BD334F800DBD0DE /* BTRegisterAccountViewController.m in Sources */,
 				65DBD1CF1BD7A2A100784DAC /* XMPPvCardTempLabel.m in Sources */,
 				65DBD1B01BD7A2A100784DAC /* XMPPSystemInputActivityMonitor.m in Sources */,
@@ -2945,7 +3012,6 @@
 				65DBD0961BD77CE700784DAC /* XMPPDeprecatedDigestAuthentication.m in Sources */,
 				65DBD1B41BD7A2A100784DAC /* XMPPIQ+LastActivity.m in Sources */,
 				65F47DD81C3E8323008117BC /* BTTabBarButton.m in Sources */,
-				6523EF571C27AE370016D63C /* BTIMHomePageViewController.m in Sources */,
 				65DBD1EA1BD7A2A100784DAC /* XMPPPresence+XEP_0172.m in Sources */,
 				65DBD1C21BD7A2A100784DAC /* XMPPMessage+XEP0045.m in Sources */,
 				B44579F51C140B1900CB10DC /* BTAddTimelineViewController.m in Sources */,
@@ -3079,8 +3145,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Liu Yusheng (3GDZ6JR3TD)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Liu Yusheng (3GDZ6JR3TD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: rd szlbs (KWNPF2348G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: rd szlbs (KWNPF2348G)";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BeautifulTimes/BeautifulTimes-Prefix.pch";
@@ -3107,8 +3173,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Liu Yusheng (3GDZ6JR3TD)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Liu Yusheng (3GDZ6JR3TD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: rd szlbs (KWNPF2348G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: rd szlbs (KWNPF2348G)";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BeautifulTimes/BeautifulTimes-Prefix.pch";

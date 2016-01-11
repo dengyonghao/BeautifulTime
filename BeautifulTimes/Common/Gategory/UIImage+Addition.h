@@ -20,4 +20,9 @@
  */
 +(UIImage*)createImageWithColor:(UIColor*)color andSize:(CGSize)size;
 
+//拉伸图片
++ (UIImage *)resizedImage:(UIImage *)image;
+
++(UIImage *)resizedImage:(UIImage *)image left:(CGFloat)left top:(CGFloat)top;
+
 @end

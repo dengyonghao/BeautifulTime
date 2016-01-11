@@ -14,9 +14,8 @@
 #import "BTTabBarView.h"
 
 @interface BTIMTabBarController ()<BTTabBarViewDelegate>
-//自定义的标签栏
-@property (nonatomic,weak) BTTabBarView *tabBarView;
 
+@property (nonatomic,strong) BTTabBarView *tabBarView;
 @property (nonatomic,strong) BTIMHomePageViewController  *homeVC;
 @property (nonatomic,strong) BTContacterViewController *contacter;
 @property (nonatomic,strong) BTIMAboutMeViewController *aboutMe;
@@ -31,28 +30,15 @@
     //这样才会显示tabBar上面的按钮
     for(UIView *child in self.tabBar.subviews){
         if([child isKindOfClass:[UIControl class]]){
-            [child removeFromSuperview];  //从父类视图中移除
+            [child removeFromSuperview];
         }
     }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupTabbar];
+    [self.tabBar addSubview:self.tabBarView];
     [self setupChilControllers];
-}
-
-#pragma  mark 初始化标签栏的方法
--(void)setupTabbar{
-    BTTabBarView *tabBarView=[[BTTabBarView alloc]init];
-    
-    tabBarView.delegate=self;  //实现代理
-    
-    tabBarView.frame=self.tabBar.bounds;
-    
-    [self.tabBar addSubview:tabBarView];
-    //给视图TabBar赋值  就是创建标签栏视图
-    self.tabBarView = tabBarView;
 }
 
 #pragma mark 实现自定义标签试图的代理方法
@@ -65,13 +51,11 @@
 {
     BTIMHomePageViewController *homeVC = [[BTIMHomePageViewController alloc]init];
     self.homeVC = homeVC;
-
     [self setupChildViewController:homeVC title:@"私语" imageName:@"tab_recent_nor" selectedImageName:@"tab_recent_press"];
 
     BTContacterViewController *contacter=[[BTContacterViewController alloc]init];
     self.contacter=contacter;
     [self setupChildViewController:contacter title:@"通讯录" imageName:@"" selectedImageName:@""];
-
 
     BTIMAboutMeViewController *aboutMe = [[BTIMAboutMeViewController alloc]init];
     self.aboutMe = aboutMe;
@@ -95,6 +79,14 @@
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
+}
+
+- (BTTabBarView *)tabBarView {
+    if (!_tabBarView) {
+        _tabBarView = [[BTTabBarView alloc] initWithFrame:self.tabBar.bounds];
+        _tabBarView.delegate = self;
+    }
+    return _tabBarView;
 }
 
 @end

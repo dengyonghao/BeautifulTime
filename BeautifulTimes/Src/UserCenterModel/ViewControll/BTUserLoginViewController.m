@@ -13,6 +13,7 @@
 #import "BTRegisterAccountViewController.h"
 #import "MBProgressHUD+MJ.h"
 #import "BTIMTabBarController.h"
+#import "AppDelegate.h"
 
 #define margin 20
 #define textFieldHeight 30
@@ -165,9 +166,9 @@
     [self dismissViewControllerAnimated:NO completion:nil];
     
     BTIMTabBarController *tab = [[BTIMTabBarController alloc]init];
-    [self presentViewController:tab animated:NO completion:nil];
-//    BTContacterViewController *vc = [[BTContacterViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:NO];
+//    [AppDelegate getInstance].window.rootViewController = nil;
+    [AppDelegate getInstance].window.rootViewController = tab;
+
 }
 
 #pragma mark 截取字符串空格的方法

@@ -21,6 +21,7 @@
 #import "BTIMHomePageViewController.h"
 #import "BTXMPPTool.h"
 #import "BTIMTabBarController.h"
+#import "AppDelegate.h"
 
 static const CGFloat BUTTONWIDTH = 48;
 
@@ -235,7 +236,8 @@ static const CGFloat BUTTONWIDTH = 48;
     if ([[NSUserDefaults standardUserDefaults] valueForKey:userID] && [[NSUserDefaults standardUserDefaults] valueForKey:userPassword]) {
         [[BTXMPPTool sharedInstance] login:nil];
         BTIMTabBarController *tab = [[BTIMTabBarController alloc]init];
-        [self presentViewController:tab animated:NO completion:nil];
+//        [AppDelegate getInstance].window.rootViewController = nil;
+        [AppDelegate getInstance].window.rootViewController = tab;
     } else {
         BTUserLoginViewController *vc = [[BTUserLoginViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];

@@ -1,26 +1,27 @@
 //
-//  BTIMAboutMeViewController.m
+//  BTIMHomePageViewController.m
 //  BeautifulTimes
 //
-//  Created by dengyonghao on 16/1/7.
-//  Copyright © 2016年 dengyonghao. All rights reserved.
+//  Created by dengyonghao on 15/12/21.
+//  Copyright © 2015年 dengyonghao. All rights reserved.
 //
 
-#import "BTIMAboutMeViewController.h"
+#import "BTIMHomePageViewController.h"
 #import "BTChatMessageCell.h"
 
 static NSString *cellIdentifier = @"chatMessageListCell";
 
-@interface BTIMAboutMeViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface BTIMHomePageViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
 @end
 
-@implementation BTIMAboutMeViewController
+@implementation BTIMHomePageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupSearchBar];
     [self.view addSubview:self.tableView];
 }
 
@@ -34,6 +35,27 @@ static NSString *cellIdentifier = @"chatMessageListCell";
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark 添加搜索栏
+-(void)setupSearchBar
+{
+    UISearchBar *search=[[UISearchBar alloc]init];
+    search.frame = CGRectMake(10, 5, BT_SCREEN_WIDTH - 20, 25);
+    search.barStyle = UIBarStyleDefault;
+    search.backgroundColor = [UIColor whiteColor];
+    //取消首字母吧大写
+    search.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    search.autocorrectionType = UITextAutocorrectionTypeNo;
+    //代理
+    search.placeholder = @"搜索";
+    search.layer.borderWidth = 0;
+    
+    UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, BT_SCREEN_WIDTH, 35)];
+    searchView.backgroundColor = [[UIColor alloc] initWithRed:189 green:189 blue:195 alpha:0.7f];
+    [searchView addSubview:search];
+    // search.delegate=self;
+    self.tableView.tableHeaderView = searchView;
 }
 
 #pragma mark - UITableView delegate
@@ -55,6 +77,7 @@ static NSString *cellIdentifier = @"chatMessageListCell";
     }
     return cell;
 }
+
 
 #pragma -mark getter
 - (UITableView *)tableView {

@@ -36,6 +36,7 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupRightButtun];
     [self setupSearchBar];
     [self getFriendData];
     [self.view addSubview:self.tableview];
@@ -52,6 +53,16 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    
+}
+
+-(void)setupRightButtun
+{
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:BT_LOADIMAGE(@"com_ic_nav_addfriend") style:UIBarButtonItemStylePlain target:self action:@selector(navRightClic)] ;
+    
+}
+-(void)navRightClic
+{
     
 }
 

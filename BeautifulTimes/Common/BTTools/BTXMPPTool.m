@@ -225,25 +225,23 @@ static BTXMPPTool *xmppTool;
     NSString *strDate=[formatter stringFromDate:date];
     XMPPJID *jid=[message from];
     
-    
     //[jid user]; 通过这个行为可获得用户名
     //获得body里面的内容
     NSString *body=[[message elementForName:@"body"] stringValue];
     //NSLog(@"xmpp   %@",body);
     //body=[NSString stringWithFormat:@"%@:%@ %@",[jid user],body,strDate];
     //本地通知
-    UILocalNotification *local=[[UILocalNotification alloc]init];
-    local.alertBody=body;
-    local.alertAction=body;
+    UILocalNotification *local = [[UILocalNotification alloc]init];
+    local.alertBody = body;
+    local.alertAction = body;
     //声音
-    local.soundName=[[NSBundle mainBundle] pathForResource:@"shake_match" ofType:@"mp3"];
+    local.soundName = [[NSBundle mainBundle] pathForResource:@"shake_match" ofType:@"mp3"];
     //时区  根据用户手机的位置来显示不同的时区
-    local.timeZone=[NSTimeZone defaultTimeZone];
+    local.timeZone = [NSTimeZone defaultTimeZone];
     //开启通知
     [[UIApplication sharedApplication] scheduleLocalNotification:local];
-    //发送一个通知
     if(body){
-        NSDictionary *dict=@{@"uname":[jid user],@"time":strDate,@"body":body,@"jid":jid,@"user":@"other"};
+        NSDictionary *dict = @{@"uname":[jid user],@"time":strDate,@"body":body,@"jid":jid,@"user":@"other"};
         NSNotification *note=[[NSNotification alloc]initWithName:SendMsgName object:dict userInfo:nil];
         [[NSNotificationCenter defaultCenter] postNotification:note];
     }

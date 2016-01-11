@@ -1,18 +1,18 @@
 //
-//  BTIMHomePageViewController.m
+//  BTChatViewController.m
 //  BeautifulTimes
 //
-//  Created by dengyonghao on 15/12/21.
-//  Copyright © 2015年 dengyonghao. All rights reserved.
+//  Created by dengyonghao on 16/1/11.
+//  Copyright © 2016年 dengyonghao. All rights reserved.
 //
 
-#import "BTIMHomePageViewController.h"
+#import "BTChatViewController.h"
 
-@interface BTIMHomePageViewController ()
+@interface BTChatViewController ()
 
 @end
 
-@implementation BTIMHomePageViewController
+@implementation BTChatViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

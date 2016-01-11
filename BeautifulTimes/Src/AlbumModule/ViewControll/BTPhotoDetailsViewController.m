@@ -42,7 +42,7 @@ static NSInteger cacheNumber = 10;
     currentIndex = self.index;
     [self parsePhoto];
     [self.scrollView scrollRectToVisible:CGRectMake(BT_SCREEN_WIDTH * (currentIndex - 1), 0, BT_SCREEN_WIDTH , BT_SCREEN_HEIGHT) animated:NO];
-    
+
 }
 
 - (void)viewDidLayoutSubviews {
