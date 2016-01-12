@@ -174,8 +174,14 @@ static BTXMPPTool *xmppTool;
 //    user.loginStatus=NO; //退出登录状态
 }
 
-- (void)addFried:(XMPPJID *)friedJid {
-    XMPPJID *myJid=[XMPPJID jidWithUser:@"wang" domain:ServerName resource:nil];
+#pragma mark 删除好友,取消加好友，或者加好友后需要删除
+- (void)removeFried:(XMPPJID *)friedJid
+{    
+    [_roster removeUser:friedJid];
+}
+
+- (void)addFried:(NSString *)friedJid {
+    XMPPJID *myJid=[XMPPJID jidWithUser:friedJid domain:ServerName resource:nil];
     [_roster subscribePresenceToUser:myJid];
 }
 - (void)xmppRoster:(XMPPRoster *)sender didReceivePresenceSubscriptionRequest:(XMPPPresence *)presence

@@ -236,7 +236,6 @@ static const CGFloat BUTTONWIDTH = 48;
     if ([[NSUserDefaults standardUserDefaults] valueForKey:userID] && [[NSUserDefaults standardUserDefaults] valueForKey:userPassword]) {
         [[BTXMPPTool sharedInstance] login:nil];
         BTIMTabBarController *tab = [[BTIMTabBarController alloc]init];
-//        [AppDelegate getInstance].window.rootViewController = nil;
         [AppDelegate getInstance].window.rootViewController = tab;
     } else {
         BTUserLoginViewController *vc = [[BTUserLoginViewController alloc] init];

@@ -10,6 +10,8 @@
 #import "BTContacterModel.h"
 #import "BTContacterCell.h"
 #import "BTXMPPTool.h"
+#import "BTChatViewController.h"
+#import "BTAddFriendViewController.h"
 
 static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 
@@ -63,7 +65,9 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 }
 -(void)navRightClic
 {
-    
+    BTAddFriendViewController *vc = [[BTAddFriendViewController alloc] init];
+    vc.title = @"添加好友";
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark 获得好朋友
@@ -158,19 +162,19 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 -(void)setupSearchBar
 {
     UISearchBar *search = [[UISearchBar alloc]init];
-    search.frame = CGRectMake(10, 5, BT_SCREEN_WIDTH - 20, 25);
+    search.frame = CGRectMake(0, 5, BT_SCREEN_WIDTH , 25);
     search.barStyle = UIBarStyleDefault;
-    search.backgroundColor=[UIColor whiteColor];
+    search.backgroundColor = [UIColor whiteColor];
     //取消首字母大写
     search.autocapitalizationType = UITextAutocapitalizationTypeNone;
     search.autocorrectionType = UITextAutocorrectionTypeNo;
     search.placeholder = @"搜索";
     search.layer.borderWidth = 0;
     
-    UIView *searchV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, BT_SCREEN_WIDTH - 20, 35)];
-    searchV.backgroundColor = [UIColor greenColor];
+    UIView *searchV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, BT_SCREEN_WIDTH , 35)];
+    searchV.backgroundColor = [UIColor grayColor];
     [searchV addSubview:search];
-    search.delegate=self;
+    search.delegate = self;
     
     self.tableview.tableHeaderView=searchV;
 }
@@ -217,32 +221,16 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 {
     NSString *key=self.keys[indexPath.section];
     NSArray *arr=[self.data objectForKey:key];
-    
-//    ContacterModel *contacter=arr[indexPath.row];
-    
-//    UIViewController *vc=[[contacter.vcClass alloc]init];
-//    vc.title=contacter.tidStr;
-//    //如果是聊天控制器
-//    if([vc isKindOfClass:[ChatController class]]){
-//        
-//        ChatController  *chat=(ChatController*)vc;
-//        chat.jid=contacter.jid;
-//        chat.photo=contacter.headIcon;  //传递头像
-//        [self.navigationController pushViewController:chat animated:YES];
-//        return ;
-//    }
-    
-//    [self.navigationController pushViewController:vc animated:YES];
-    
+    BTContacterModel *contacter = arr[indexPath.row];
+    BTChatViewController *chatVc = [[BTChatViewController alloc] init];
+    chatVc.contacter = contacter;
+    chatVc.title = contacter.friendName;
+    [self.navigationController pushViewController:chatVc animated:YES];
 }
 
 #pragma mark 返回分区头的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-//    //如果是第一个区
-//    if(section==0){
-//        return 0;
-//    }
     return 10;
 }
 #pragma mark 返回标示图的索引
@@ -263,9 +251,7 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 #pragma mark 单元格删除的点击事件
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //当点击删除按钮的时候执行
-    if(editingStyle==UITableViewCellEditingStyleDelete){
-        //赋值indexPath
+    if(editingStyle == UITableViewCellEditingStyleDelete){
         self.indexPath=indexPath;
         //弹出提醒框
 //        [self alert];

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BTContacterModel.h"
 
 @interface BTChatViewController : UIViewController
+
+@property (nonatomic, strong) BTContacterModel *contacter;
 
 @end

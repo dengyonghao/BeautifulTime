@@ -18,7 +18,5 @@
 
 //记录用户当前状态  “0”- 在线    “1”- 离开    “2”- 离线
 @property (nonatomic,assign) int userStatus;
-//要跳转的类
-@property (nonatomic,strong) Class vcClass;
 
 @end

@@ -37,11 +37,12 @@
 #pragma mark 当push的时候调用这个方法
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
 
-    [super pushViewController:viewController animated:animated];
-    
-    if (viewController.navigationItem.leftBarButtonItem == nil) {
+    if(self.viewControllers.count > 0){
+        viewController.hidesBottomBarWhenPushed = YES; //当push 的时候隐藏底部兰
+    } else {
         viewController.navigationItem.leftBarButtonItem = [self creatBackButton];
     }
+    [super pushViewController:viewController animated:animated];
 }
 
 

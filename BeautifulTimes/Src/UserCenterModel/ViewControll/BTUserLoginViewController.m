@@ -121,7 +121,7 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     BTXMPPTool *xmppTool=[BTXMPPTool sharedInstance];
     xmppTool.registerOperation=NO;
-    
+    [MBProgressHUD showMessage:@"登录中..." toView:self.view];
     WS(weakSelf);
     [self.view endEditing:YES];
     [xmppTool login:^(XMPPResultType xmppType) {
@@ -133,20 +133,14 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         switch (xmppType) {
             case XMPPResultSuccess:
-            {
                 [MBProgressHUD showSuccess:@"登录成功" toView:self.view];
                 [self enterHome];
-            }
                 break;
             case XMPPResultFaiture:
-            {
                 [MBProgressHUD showError:@"用户名或密码错误" toView:self.view];
-            }
                 break;
             case XMPPResultNetworkErr:
-            {
                 [MBProgressHUD showError:@"网络不给力" toView:self.view];
-            }
                 break;
             case XMPPResultRegisterSuccess:
                 [MBProgressHUD showError:@"注册成功" toView:self.view];
@@ -166,7 +160,6 @@
     [self dismissViewControllerAnimated:NO completion:nil];
     
     BTIMTabBarController *tab = [[BTIMTabBarController alloc]init];
-//    [AppDelegate getInstance].window.rootViewController = nil;
     [AppDelegate getInstance].window.rootViewController = tab;
 
 }
