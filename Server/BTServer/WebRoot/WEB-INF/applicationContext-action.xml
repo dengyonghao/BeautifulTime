@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!--配置bean -->
+
+	<!--邓永豪 登录 2015.01.07 -->
+	<bean id="loginAction" class="com.order.student.control.StudentAction"
+		scope="prototype">
+		<property name="studentService">
+			<ref bean="studentServiceImpl" />
+		</property>
+
+	</bean>
+
+	<!--邓永豪 书本信息 2015.01.07 -->
+	<bean id="bookListAction" class="com.order.student.control.StudentAction"
+		scope="prototype">
+		<property name="studentService">
+			<ref bean="studentServiceImpl" />
+		</property>
+		<property name="bookService">
+			<ref bean="bookServiceImpl" />
+		</property>
+		<property name="orderService">
+			<ref bean="orderServiceImpl" />
+		</property>
+
+	</bean>
+
+</beans>

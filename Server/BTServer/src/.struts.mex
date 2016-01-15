@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="order" location="10,165" size="805,420">
+    <action name="loginAction" location="555,222" size="150,62">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="bookListAction" namespace="" />
+      </result>
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="login.jsp" />
+      </result>
+    </action>
+    <action name="loginoutAction" location="555,117" size="150,62">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="login.jsp" />
+      </result>
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="login.jsp" />
+      </result>
+    </action>
+    <action name="bookListAction" location="555,327" size="150,62">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="main.jsp" />
+      </result>
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="error.jsp" />
+      </result>
+    </action>
+    <action name="addorderAction" location="310,117" size="150,62">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="order.jsp" />
+      </result>
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="error.jsp" />
+      </result>
+    </action>
+    <action name="viewOrderAction" location="65,117" size="150,62">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="order.jsp" />
+      </result>
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="error.jsp" />
+      </result>
+    </action>
+  </package>
+  <webResource name="login.jsp" path="/login.jsp" location="870,255" size="150,55" />
+  <webResource name="main.jsp" path="main.jsp" location="590,640" size="150,55" />
+  <webResource name="error.jsp" path="/error.jsp" location="345,745" size="150,55" />
+  <webResource name="order.jsp" path="order.jsp" location="100,10" size="150,55" />
+  <include file="struts-default.xml" location="20,920" size="150,30" />
+  <include file="struts-plugin.xml" location="265,920" size="150,30" />
+  <include file="struts-plugin.xml" location="510,920" size="150,30" />
+  <include file="struts-plugin.xml" location="755,920" size="150,30" />
+</Struts2Diagram>
+

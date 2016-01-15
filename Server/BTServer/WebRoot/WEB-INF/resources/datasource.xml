@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DatasourceManager>
+<Databases>
+<Database class="com.fr.data.impl.JDBCDatabase">
+<DatabaseAttr name="coa" />
+<JDBCDatabaseAttr url="jdbc:oracle:thin:localhost:1521:JISUANJI" driver="oracle.jdbc.driver.OracleDriver" user="jisuanji" password="___007900270079007a000500bb0041007e"
+ encryptPassword="true" />
+</Database>
+</Databases>
+<TableDataMap>
+<TableData name="Check" class="com.fr.data.impl.DBTableData">
+<Attributes type="0" isCache="true" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select * from Check]]></Query>
+</TableData>
+<TableData name="Simple" class="com.fr.data.impl.DBTableData">
+<Attributes type="0" isCache="true" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select * from StScore order by StScore.ClassNo asc, StScore.Sex asc]]></Query>
+</TableData>
+<TableData name="stuff" class="com.fr.data.impl.DBTableData">
+<Attributes type="0" isCache="true" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select * from 员工]]></Query>
+</TableData>
+<TableData name="Array" class="com.fr.data.impl.ClassTableData">
+<ClassTableDataAttr className="com.demo.ArrayTableDataDemo" />
+</TableData>
+<TableData name="Employee" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="ID" type="0" pop="true" />
+<O t="S">1</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="true" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select * from Employees where Employees.EmployeeID = [?ID|1?]]]></Query>
+</TableData>
+<TableData name="country" class="com.fr.data.impl.DBTableData">
+<Attributes type="0" isCache="true" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select * from Country]]></Query>
+</TableData>
+</TableDataMap>
+<MapMap>
+<Map name="productname" class="com.fr.data.impl.DBMap">
+<DBMapAttr tableName="product" keyColumnIndex="1" valueColumnIndex="2"/>
+<Database class="com.fr.data.impl.JDBCDatabase">
+<DatabaseAttr name="FRDemo" />
+<JDBCDatabaseAttr url="jdbc:odbc:FRDemo" driver="sun.jdbc.odbc.JdbcOdbcDriver" user="" password="___"
+ encryptPassword="true" />
+</Database>
+</Map>
+<Map name="customername" class="com.fr.data.impl.DBMap">
+<DBMapAttr tableName="customer" keyColumnIndex="1" valueColumnIndex="2"/>
+<Database class="com.fr.data.impl.JDBCDatabase">
+<DatabaseAttr name="FRDemo" />
+<JDBCDatabaseAttr url="jdbc:odbc:FRDemo" driver="sun.jdbc.odbc.JdbcOdbcDriver" user="" password="___"
+ encryptPassword="true" />
+</Database>
+</Map>
+</MapMap>
+</DatasourceManager>

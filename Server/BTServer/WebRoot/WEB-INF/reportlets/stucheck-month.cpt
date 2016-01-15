@@ -1,0 +1,1550 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WorkBook>
+<Version>6.1</Version>
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<TableDataMap>
+<NameTableData name="s1">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[SELECT
+     (case when(s1.XN-1)is null then -1 else(s1.XN-1)end)as fXN1,
+     (case when(s1.XN)is null then '' else(s1.XN)end)as xn1,
+     (case when(s1.XQ)is null then-1else(s1.XQ)end)as xq1,
+     (case when(s1.XM)is null then ''else(s1.XM)end)as xm1,
+     (case when(s1.month)is null then-1else(s1.month)end)as mouth1,
+     (case when(s1.day)is null then-1else(s1.day)end)as day1,
+     (case when(s1.bj)is null then ''else(s1.BJ)end)as bj1,
+     (case when(s1.kcmc)is null then ''else(s1.kcmc)end)as kcmc1,
+     (case when(s1.jsxm)is null then ''else(s1.jsxm)end)as jsxm1,
+     (case when(s1.xh)is null then ''else(s1.xh)end)as xh1,
+     (case when s1.xb=1 then '男' when s1.xb=0 then '女' else '其他' end)as xb1,
+((case when (s1.month) is null then -1 else (s1.month) end)) ||'.' ||(case when (s1.day) is null then -1 else (s1.day) end) as md1,
+(case when s1.status=1 then '√'
+  when s1.status=2 then '×'
+ when s1.status=3 then '○'
+ when s1.status=4 then '○'
+ when s1.status=5 then '△'
+ when s1.status=6 then '#'
+end) as status1 
+FROM
+     studentcheck s1
+ where  s1.XN = [?xn|2014?]
+     and s1.XQ = [?xq|2?]
+     and s1.KCMC LIKE '[?kcmc|刑法学?]'
+     and s1.JSGH = [?jsgh|02067?]
+     and s1.SKDD LIKE '[?skdd|JD206?]'
+     and s1.BJ LIKE '[?bj|06计算机1班?]'
+     and s1.sj = next_day(trunc(sysdate,'month')-1,'星期一')]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s2">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s2.month) is null then -1 else (s2.month) end)) ||'.' ||(case when (s2.day) is null then -1 else (s2.day) end) md2,
+(case when s2.status=1 then '√'
+  when s2.status=2 then '×'
+ when s2.status=3 then '○'
+ when s2.status=4 then '○'
+ when s2.status=5 then '△'
+ when s2.status=6 then '#'
+end) as status2 
+ from studentcheck s2 
+ where rownum =1
+ and s2.XN = [?xn|2014?]
+ and s2.XQ = [?xq|2?]
+ and s2.KCMC LIKE '[?kcmc|刑法学?]'
+ and s2.JSGH = [?jsgh|02067?]
+ and s2.SKDD LIKE '[?skdd|JD206?]'
+ and s2.BJ LIKE '[?bj|06计算机1班?]'
+ and s2.sj = next_day(trunc(sysdate,'month')-1,'星期一')+1]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s3">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s3.month) is null then -1 else (s3.month) end)) ||'.' ||(case when (s3.day) is null then -1 else (s3.day) end) md3,
+(case when s3.status=1 then '√'
+  when s3.status=2 then '×'
+ when s3.status=3 then '○'
+ when s3.status=4 then '○'
+ when s3.status=5 then '△'
+ when s3.status=6 then '#'
+end) as status3 
+ from studentcheck s3 
+ where rownum =1
+ and s3.XN = [?xn|2014?]
+ and s3.XQ = [?xq|2?]
+ and s3.KCMC LIKE '[?kcmc|刑法学?]'
+ and s3.JSGH = [?jsgh|02067?]
+ and s3.SKDD LIKE '[?skdd|JD206?]'
+ and s3.BJ LIKE '[?bj|06计算机1班?]'
+ and s3.sj = next_day(trunc(sysdate,'month')-1,'星期一')+2]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s4">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s4.month) is null then -1 else (s4.month) end)) ||'.' ||(case when (s4.day) is null then -1 else (s4.day) end) md4,
+(case when s4.status=1 then '√'
+  when s4.status=2 then '×'
+ when s4.status=3 then '○'
+ when s4.status=4 then '○'
+ when s4.status=5 then '△'
+ when s4.status=6 then '#'
+end) as status4 
+ from studentcheck s4 
+ where rownum =1
+ and s4.XN = [?xn|2014?]
+ and s4.XQ = [?xq|2?]
+ and s4.KCMC LIKE '[?kcmc|刑法学?]'
+ and s4.JSGH = [?jsgh|02067?]
+ and s4.SKDD LIKE '[?skdd|JD206?]'
+ and s4.BJ LIKE '[?bj|06计算机1班?]'
+ and s4.sj = next_day(trunc(sysdate,'month')-1,'星期一')+3]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s5">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s5.month) is null then -1 else (s5.month) end)) ||'.' ||(case when (s5.day) is null then -1 else (s5.day) end) md5,
+(case when s5.status=1 then '√'
+  when s5.status=2 then '×'
+ when s5.status=3 then '○'
+ when s5.status=4 then '○'
+ when s5.status=5 then '△'
+ when s5.status=6 then '#'
+end) as status5 
+ from studentcheck s5 
+ where rownum =1
+ and s5.XN = [?xn|2014?]
+ and s5.XQ = [?xq|2?]
+ and s5.KCMC LIKE '[?kcmc|刑法学?]'
+ and s5.JSGH = [?jsgh|02067?]
+ and s5.SKDD LIKE '[?skdd|JD206?]'
+ and s5.BJ LIKE '[?bj|06计算机1班?]'
+ and s5.sj = next_day(trunc(sysdate,'month')-1,'星期一')+4]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s6">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s6.month) is null then -1 else (s6.month) end)) ||'.' ||(case when (s6.day) is null then -1 else (s6.day) end) md6,
+(case when s6.status=1 then '√'
+  when s6.status=2 then '×'
+ when s6.status=3 then '○'
+ when s6.status=4 then '○'
+ when s6.status=5 then '△'
+ when s6.status=6 then '#'
+end) as status6 
+ from studentcheck s6 
+ where rownum =1
+ and s6.XN = [?xn|2014?]
+ and s6.XQ = [?xq|2?]
+ and s6.KCMC LIKE '[?kcmc|刑法学?]'
+ and s6.JSGH = [?jsgh|02067?]
+ and s6.SKDD LIKE '[?skdd|JD206?]'
+ and s6.BJ LIKE '[?bj|06计算机1班?]'
+ and s6.sj = next_day(trunc(sysdate,'month')-1,'星期一')+7]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s7">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s7.month) is null then -1 else (s7.month) end)) ||'.' ||(case when (s7.day) is null then -1 else (s7.day) end) md7,
+(case when s7.status=1 then '√'
+  when s7.status=2 then '×'
+ when s7.status=3 then '○'
+ when s7.status=4 then '○'
+ when s7.status=5 then '△'
+ when s7.status=6 then '#'
+end) as status7 
+ from studentcheck s7 
+ where rownum =1
+ and s7.XN = [?xn|2014?]
+ and s7.XQ = [?xq|2?]
+ and s7.KCMC LIKE '[?kcmc|刑法学?]'
+ and s7.JSGH = [?jsgh|02067?]
+ and s7.SKDD LIKE '[?skdd|JD206?]'
+ and s7.BJ LIKE '[?bj|06计算机1班?]'
+  and s7.sj = next_day(trunc(sysdate,'month')-1,'星期一')+8]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s8">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s8.month) is null then -1 else (s8.month) end)) ||'.' ||(case when (s8.day) is null then -1 else (s8.day) end) md8,
+(case when s8.status=1 then '√'
+  when s8.status=2 then '×'
+ when s8.status=3 then '○'
+ when s8.status=4 then '○'
+ when s8.status=5 then '△'
+ when s8.status=6 then '#'
+end) as status8 
+ from studentcheck s8 
+ where rownum =1
+ and s8.XN = [?xn|2014?]
+ and s8.XQ = [?xq|2?]
+ and s8.KCMC LIKE '[?kcmc|刑法学?]'
+ and s8.JSGH = [?jsgh|02067?]
+ and s8.SKDD LIKE '[?skdd|JD206?]'
+ and s8.BJ LIKE '[?bj|06计算机1班?]'
+  and s8.sj = next_day(trunc(sysdate,'month')-1,'星期一')+9]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s9">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s9.month) is null then -1 else (s9.month) end)) ||'.' ||(case when (s9.day) is null then -1 else (s9.day) end) md9,
+(case when s9.status=1 then '√'
+  when s9.status=2 then '×'
+ when s9.status=3 then '○'
+ when s9.status=4 then '○'
+ when s9.status=5 then '△'
+ when s9.status=6 then '#'
+end) as status9 
+ from studentcheck s9 
+ where rownum =1
+ and s9.XN = [?xn|2014?]
+ and s9.XQ = [?xq|2?]
+ and s9.KCMC LIKE '[?kcmc|刑法学?]'
+ and s9.JSGH = [?jsgh|02067?]
+ and s9.SKDD LIKE '[?skdd|JD206?]'
+ and s9.BJ LIKE '[?bj|06计算机1班?]'
+  and s9.sj = next_day(trunc(sysdate,'month')-1,'星期一')+10]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s10">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s10.month) is null then -1 else (s10.month) end)) ||'.' ||(case when (s10.day) is null then -1 else (s10.day) end) md10,
+(case when s10.status=1 then '√'
+  when s10.status=2 then '×'
+ when s10.status=3 then '○'
+ when s10.status=4 then '○'
+ when s10.status=5 then '△'
+ when s10.status=6 then '#'
+end) as status10 
+ from studentcheck s10 
+ where rownum =1
+ and s10.XN = [?xn|2014?]
+ and s10.XQ = [?xq|2?]
+ and s10.KCMC LIKE '[?kcmc|刑法学?]'
+ and s10.JSGH = [?jsgh|02067?]
+ and s10.SKDD LIKE '[?skdd|JD206?]'
+ and s10.BJ LIKE '[?bj|06计算机1班?]'
+ and s10.sj = next_day(trunc(sysdate,'month')-1,'星期一')+11]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s11">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s11.month) is null then -1 else (s11.month) end)) ||'.' ||(case when (s11.day) is null then -1 else (s11.day) end) md11,
+(case when s11.status=1 then '√'
+  when s11.status=2 then '×'
+ when s11.status=3 then '○'
+ when s11.status=4 then '○'
+ when s11.status=5 then '△'
+ when s11.status=6 then '#'
+end) as status11 
+ from studentcheck s11 
+ where rownum =1
+ and s11.XN = [?xn|2014?]
+ and s11.XQ = [?xq|2?]
+ and s11.KCMC LIKE '[?kcmc|刑法学?]'
+ and s11.JSGH = [?jsgh|02067?]
+ and s11.SKDD LIKE '[?skdd|JD206?]'
+ and s11.BJ LIKE '[?bj|06计算机1班?]'
+  and s11.sj = next_day(trunc(sysdate,'month')-1,'星期一')+14]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s12">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s12.month) is null then -1 else (s12.month) end)) ||'.'||(case when (s12.day) is null then -1 else (s12.day) end) md12,
+(case when s12.status=1 then '√'
+  when s12.status=2 then '×'
+ when s12.status=3 then '○'
+ when s12.status=4 then '○'
+ when s12.status=5 then '△'
+ when s12.status=6 then '#'
+end) as status12 
+ from studentcheck s12 
+ where rownum =1
+ and s12.XN = [?xn|2014?]
+ and s12.XQ = [?xq|2?]
+ and s12.KCMC LIKE '[?kcmc|刑法学?]'
+ and s12.JSGH = [?jsgh|02067?]
+ and s12.SKDD LIKE '[?skdd|JD206?]'
+ and s12.BJ LIKE '[?bj|06计算机1班?]'
+ and s12.sj = next_day(trunc(sysdate,'month')-1,'星期一')+15]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s13">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s13.month) is null then -1 else (s13.month) end)) ||'.' ||(case when (s13.day) is null then -1 else (s13.day) end) md13,
+(case when s13.status=1 then '√'
+  when s13.status=2 then '×'
+ when s13.status=3 then '○'
+ when s13.status=4 then '○'
+ when s13.status=5 then '△'
+ when s13.status=6 then '#'
+end) as status13 
+ from studentcheck s13 
+ where rownum =1
+ and s13.XN = [?xn|2014?]
+ and s13.XQ = [?xq|2?]
+ and s13.KCMC LIKE '[?kcmc|刑法学?]'
+ and s13.JSGH = [?jsgh|02067?]
+ and s13.SKDD LIKE '[?skdd|JD206?]'
+ and s13.BJ LIKE '[?bj|06计算机1班?]'
+ and s13.sj = next_day(trunc(sysdate,'month')-1,'星期一')+16]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s14">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s14.month) is null then -1 else (s14.month) end)) ||'.' ||(case when (s14.day) is null then -1 else (s14.day) end) md14,
+(case when s14.status=1 then '√'
+  when s14.status=2 then '×'
+ when s14.status=3 then '○'
+ when s14.status=4 then '○'
+ when s14.status=5 then '△'
+ when s14.status=6 then '#'
+end) as status14 
+ from studentcheck s14 
+ where rownum =1
+ and s14.XN = [?xn|2014?]
+ and s14.XQ = [?xq|2?]
+ and s14.KCMC LIKE '[?kcmc|刑法学?]'
+ and s14.JSGH = [?jsgh|02067?]
+ and s14.SKDD LIKE '[?skdd|JD206?]'
+ and s14.BJ LIKE '[?bj|06计算机1班?]'
+  and s14.sj = next_day(trunc(sysdate,'month')-1,'星期一')+17]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s15">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s15.month) is null then -1 else (s15.month) end)) ||'.' ||(case when (s15.day) is null then -1 else (s15.day) end) md15,
+(case when s15.status=1 then '√'
+  when s15.status=2 then '×'
+ when s15.status=3 then '○'
+ when s15.status=4 then '○'
+ when s15.status=5 then '△'
+ when s15.status=6 then '#'
+end) as status15 
+ from studentcheck s15 
+ where rownum =1
+ and s15.XN = [?xn|2014?]
+ and s15.XQ = [?xq|2?]
+ and s15.KCMC LIKE '[?kcmc|刑法学?]'
+ and s15.JSGH = [?jsgh|02067?]
+ and s15.SKDD LIKE '[?skdd|JD206?]'
+ and s15.BJ LIKE '[?bj|06计算机1班?]'
+ and s15.sj = next_day(trunc(sysdate,'month')-1,'星期一')+18]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s16">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s16.month) is null then -1 else (s16.month) end)) ||'.' ||(case when (s16.day) is null then -1 else (s16.day) end) md16,
+(case when s16.status=1 then '√'
+  when s16.status=2 then '×'
+ when s16.status=3 then '○'
+ when s16.status=4 then '○'
+ when s16.status=5 then '△'
+ when s16.status=6 then '#'
+end) as status16 
+ from studentcheck s16 
+ where rownum =1
+ and s16.XN = [?xn|2014?]
+ and s16.XQ = [?xq|2?]
+ and s16.KCMC LIKE '[?kcmc|刑法学?]'
+ and s16.JSGH = [?jsgh|02067?]
+ and s16.SKDD LIKE '[?skdd|JD206?]'
+ and s16.BJ LIKE '[?bj|06计算机1班?]'
+  and s16.sj = next_day(trunc(sysdate,'month')-1,'星期一')+21]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s17">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s17.month) is null then -1 else (s17.month) end)) ||'.' ||(case when (s17.day) is null then -1 else (s17.day) end) md17,
+(case when s17.status=1 then '√'
+  when s17.status=2 then '×'
+ when s17.status=3 then '○'
+ when s17.status=4 then '○'
+ when s17.status=5 then '△'
+ when s17.status=6 then '#'
+end) as status17 
+ from studentcheck s17 
+ where rownum =1
+ and s17.XN = [?xn|2014?]
+ and s17.XQ = [?xq|2?]
+ and s17.KCMC LIKE '[?kcmc|刑法学?]'
+ and s17.JSGH = [?jsgh|02067?]
+ and s17.SKDD LIKE '[?skdd|JD206?]'
+ and s17.BJ LIKE '[?bj|06计算机1班?]'
+  and s17.sj = next_day(trunc(sysdate,'month')-1,'星期一')+22]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s18">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s18.month) is null then -1 else (s18.month) end)) ||'.' ||(case when (s18.day) is null then -1 else (s18.day) end) md18,
+(case when s18.status=1 then '√'
+  when s18.status=2 then '×'
+ when s18.status=3 then '○'
+ when s18.status=4 then '○'
+ when s18.status=5 then '△'
+ when s18.status=6 then '#'
+end) as status18 
+ from studentcheck s18 
+ where rownum =1
+ and s18.XN = [?xn|2014?]
+ and s18.XQ = [?xq|2?]
+ and s18.KCMC LIKE '[?kcmc|刑法学?]'
+ and s18.JSGH = [?jsgh|02067?]
+ and s18.SKDD LIKE '[?skdd|JD206?]'
+ and s18.BJ LIKE '[?bj|06计算机1班?]'
+ and s18.sj = next_day(trunc(sysdate,'month')-1,'星期一')+23]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s19">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s19.month) is null then -1 else (s19.month) end)) ||'.' ||(case when (s19.day) is null then -1 else (s19.day) end) md19,
+(case when s19.status=1 then '√'
+  when s19.status=2 then '×'
+ when s19.status=3 then '○'
+ when s19.status=4 then '○'
+ when s19.status=5 then '△'
+ when s19.status=6 then '#'
+end) as status19 
+ from studentcheck s19 
+ where rownum =1
+ and s19.XN = [?xn|2014?]
+ and s19.XQ = [?xq|2?]
+ and s19.KCMC LIKE '[?kcmc|刑法学?]'
+ and s19.JSGH = [?jsgh|02067?]
+ and s19.SKDD LIKE '[?skdd|JD206?]'
+ and s19.BJ LIKE '[?bj|06计算机1班?]'
+ and s19.sj = next_day(trunc(sysdate,'month')-1,'星期一')+24]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s20">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s20.month) is null then -1 else (s20.month) end)) ||'.' ||(case when (s20.day) is null then -1 else (s20.day) end) md20,
+(case when s20.status=1 then '√'
+  when s20.status=2 then '×'
+ when s20.status=3 then '○'
+ when s20.status=4 then '○'
+ when s20.status=5 then '△'
+ when s20.status=6 then '#'
+end) as status20 
+ from studentcheck s20 
+ where rownum =1
+ and s20.XN = [?xn|2014?]
+ and s20.XQ = [?xq|2?]
+ and s20.KCMC LIKE '[?kcmc|刑法学?]'
+ and s20.JSGH = [?jsgh|02067?]
+ and s20.SKDD LIKE '[?skdd|JD206?]'
+ and s20.BJ LIKE '[?bj|06计算机1班?]'
+ and s20.sj = next_day(trunc(sysdate,'month')-1,'星期一')+25]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s21">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s21.month) is null then -1 else (s21.month) end)) ||'.' ||(case when (s21.day) is null then -1 else (s21.day) end) md21,
+(case when s21.status=1 then '√'
+  when s21.status=2 then '×'
+ when s21.status=3 then '○'
+ when s21.status=4 then '○'
+ when s21.status=5 then '△'
+ when s21.status=6 then '#'
+end) as status21 
+ from studentcheck s21 
+ where rownum =1
+ and s21.XN = [?xn|2014?]
+ and s21.XQ = [?xq|2?]
+ and s21.KCMC LIKE '[?kcmc|刑法学?]'
+ and s21.JSGH = [?jsgh|02067?]
+ and s21.SKDD LIKE '[?skdd|JD206?]'
+ and s21.BJ LIKE '[?bj|06计算机1班?]'
+ and s21.sj = next_day(trunc(sysdate,'month')-1,'星期一')+28]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s22">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s22.month) is null then -1 else (s22.month) end)) ||'.' ||(case when (s22.day) is null then -1 else (s22.day) end) md22,
+(case when s22.status=1 then '√'
+  when s22.status=2 then '×'
+ when s22.status=3 then '○'
+ when s22.status=4 then '○'
+ when s22.status=5 then '△'
+ when s22.status=6 then '#'
+end) as status22 
+ from studentcheck s22 
+ where rownum =1
+ and s22.XN = [?xn|2014?]
+ and s22.XQ = [?xq|2?]
+ and s22.KCMC LIKE '[?kcmc|刑法学?]'
+ and s22.JSGH = [?jsgh|02067?]
+ and s22.SKDD LIKE '[?skdd|JD206?]'
+ and s22.BJ LIKE '[?bj|06计算机1班?]'
+ and s22.sj = next_day(trunc(sysdate,'month')-1,'星期一')+29]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s23">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s23.month) is null then -1 else (s23.month) end)) ||'.' ||(case when (s23.day) is null then -1 else (s23.day) end) md23,
+(case when s23.status=1 then '√'
+  when s23.status=2 then '×'
+ when s23.status=3 then '○'
+ when s23.status=4 then '○'
+ when s23.status=5 then '△'
+ when s23.status=6 then '#'
+end) as status23 
+ from studentcheck s23 
+ where rownum =1
+ and s23.XN = [?xn|2014?]
+ and s23.XQ = [?xq|2?]
+ and s23.KCMC LIKE '[?kcmc|刑法学?]'
+ and s23.JSGH = [?jsgh|02067?]
+ and s23.SKDD LIKE '[?skdd|JD206?]'
+ and s23.BJ LIKE '[?bj|06计算机1班?]'
+ and s23.sj = next_day(trunc(sysdate,'month')-1,'星期一')+30]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s24">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s24.month) is null then -1 else (s24.month) end)) ||'.' ||(case when (s24.day) is null then -1 else (s24.day) end) md24,
+(case when s24.status=1 then '√'
+  when s24.status=2 then '×'
+ when s24.status=3 then '○'
+ when s24.status=4 then '○'
+ when s24.status=5 then '△'
+ when s24.status=6 then '#'
+end) as status24 
+ from studentcheck s24 
+ where rownum =1
+ and s24.XN = [?xn|2014?]
+ and s24.XQ = [?xq|2?]
+ and s24.KCMC LIKE '[?kcmc|刑法学?]'
+ and s24.JSGH = [?jsgh|02067?]
+ and s24.SKDD LIKE '[?skdd|JD206?]'
+ and s24.BJ LIKE '[?bj|06计算机1班?]'
+ and s24.sj = next_day(trunc(sysdate,'month')-1,'星期一')+31]]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s25">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+((case when (s25.month) is null then -1 else (s25.month) end)) ||'.' ||(case when (s25.day) is null then -1 else (s25.day) end) md25,
+(case when s25.status=1 then '√'
+  when s25.status=2 then '×'
+ when s25.status=3 then '○'
+ when s25.status=4 then '○'
+ when s25.status=5 then '△'
+ when s25.status=6 then '#'
+end) as status25 
+ from studentcheck s25 
+ where rownum =1
+ and s25.XN = [?xn|2014?]
+ and s25.XQ = [?xq|2?]
+ and s25.KCMC LIKE '[?kcmc|刑法学?]'
+ and s25.JSGH = [?jsgh|02067?]
+ and s25.SKDD LIKE '[?skdd|JD206?]'
+ and s25.BJ LIKE '[?bj|06计算机1班?]'
+and s25.sj = next_day(trunc(sysdate,'month')-1,'星期一')+32]]></Query>
+</TableData>
+</NameTableData>
+</TableDataMap>
+<ReportSettings shrinkToFit="false" headerHeight="0.33" footerHeight="0.33">
+<Margin top="0.27" left="0.7499999999999999" bottom="0.27" right="0.7499999999999999" />
+</ReportSettings>
+<ReportParameterAttr>
+<Parameters>
+</Parameters>
+<Attributes showWindow="true" delayPlaying="true" windowPosition="0" userDefineWindow="false" />
+</ReportParameterAttr>
+<AutoRecalculate>false</AutoRecalculate>
+<DesignAttributes>
+</DesignAttributes>
+<ReportWebAttr>
+<EmailManager mailHost="" password="" user="" fromEmailAddress="" />
+<ServerPrinter>
+</ServerPrinter>
+</ReportWebAttr>
+<ReportWriteAttr>
+</ReportWriteAttr>
+<RowHeight defaultValue="19.0">
+<![CDATA[19.0,19.0,19.0,19.0,27.0]]>
+</RowHeight>
+<ColumnWidth defaultValue="72.0">
+<![CDATA[28.0,77.0,46.0,19.0,19.0,19.0,19.0,19.0,19.0,19.0,19.0,19.0,19.0,19.0,19.0,19.0,19.0,19.0,19.0,19.0,19.0,19.0,19.0,19.0,19.0,19.0,19.0,19.0,19.0]]>
+</ColumnWidth>
+<FloatElementList>
+</FloatElementList>
+<CellElementList>
+<C c="0" r="0" cs="29" s="0"><O t="DSColumn"><Attributes dsName="s1" columnName="FXN1" />
+<O t="Formula" class="Formula" ><Attributes
+><![CDATA[="北京理工大学珠海学院" + FXN1 + "—"+XN1+"学年第 "+XQ1+" 学期 "+BJ1+" 考勤表"]]>
+</Attributes>
+</O></O></C>
+<C c="0" r="1" cs="29" s="1"><O t="DSColumn"><Attributes dsName="s1" columnName="BJ1" />
+</O></C>
+<C c="0" r="2" cs="29" s="2"><O t="DSColumn"><Attributes dsName="s1" columnName="KCMC1" />
+<O t="Formula" class="Formula" ><Attributes
+><![CDATA[="课 程 学 生 出 勤 情 况" +"   "+KCMC1+"("+JSXM1+")"]]>
+</Attributes>
+</O></O></C>
+<C c="0" r="3" s="1"><O t="S">序号</O></C>
+<C c="1" r="3" s="1"><O t="S">考核方式</O></C>
+<C c="2" r="3" cs="27" s="1"><O t="S">病假○ 事假* 旷课× 迟到△ 早退# 出勤√</O></C>
+<C c="0" r="4" s="3"><O t="I">0</O></C>
+<C c="1" r="4" s="1"><O t="S">学号</O></C>
+<C c="2" r="4" s="1"><O t="S">姓名</O></C>
+<C c="3" r="4" s="1"><O t="S">性别</O></C>
+<C c="4" r="4" s="1"><O t="DSColumn"><Attributes dsName="s1" columnName="MD1" />
+</O></C>
+<C c="5" r="4" s="1"><O t="DSColumn"><Attributes dsName="s2" columnName="MD2" />
+</O></C>
+<C c="6" r="4" s="1"><O t="DSColumn"><Attributes dsName="s3" columnName="MD3" />
+</O></C>
+<C c="7" r="4" s="1"><O t="DSColumn"><Attributes dsName="s4" columnName="MD4" />
+</O></C>
+<C c="8" r="4" s="1"><O t="DSColumn"><Attributes dsName="s5" columnName="MD5" />
+</O></C>
+<C c="9" r="4" s="1"><O t="DSColumn"><Attributes dsName="s6" columnName="MD6" />
+</O></C>
+<C c="10" r="4" s="1"><O t="DSColumn"><Attributes dsName="s7" columnName="MD7" />
+</O></C>
+<C c="11" r="4" s="1"><O t="DSColumn"><Attributes dsName="s8" columnName="MD8" />
+</O></C>
+<C c="12" r="4" s="1"><O t="DSColumn"><Attributes dsName="s9" columnName="MD9" />
+</O></C>
+<C c="13" r="4" s="1"><O t="DSColumn"><Attributes dsName="s10" columnName="MD10" />
+</O></C>
+<C c="14" r="4" s="1"><O t="DSColumn"><Attributes dsName="s11" columnName="MD11" />
+</O></C>
+<C c="15" r="4" s="1"><O t="DSColumn"><Attributes dsName="s12" columnName="MD12" />
+</O></C>
+<C c="16" r="4" s="1"><O t="DSColumn"><Attributes dsName="s13" columnName="MD13" />
+</O></C>
+<C c="17" r="4" s="1"><O t="DSColumn"><Attributes dsName="s14" columnName="MD14" />
+</O></C>
+<C c="18" r="4" s="1"><O t="DSColumn"><Attributes dsName="s15" columnName="MD15" />
+</O></C>
+<C c="19" r="4" s="1"><O t="DSColumn"><Attributes dsName="s16" columnName="MD16" />
+</O></C>
+<C c="20" r="4" s="1"><O t="DSColumn"><Attributes dsName="s17" columnName="MD17" />
+</O></C>
+<C c="21" r="4" s="1"><O t="DSColumn"><Attributes dsName="s18" columnName="MD18" />
+</O></C>
+<C c="22" r="4" s="1"><O t="DSColumn"><Attributes dsName="s19" columnName="MD19" />
+</O></C>
+<C c="23" r="4" s="1"><O t="DSColumn"><Attributes dsName="s20" columnName="MD20" />
+</O></C>
+<C c="24" r="4" s="1"><O t="DSColumn"><Attributes dsName="s21" columnName="MD21" />
+</O></C>
+<C c="25" r="4" s="1"><O t="DSColumn"><Attributes dsName="s22" columnName="MD22" />
+</O></C>
+<C c="26" r="4" s="1"><O t="DSColumn"><Attributes dsName="s23" columnName="MD23" />
+</O></C>
+<C c="27" r="4" s="1"><O t="DSColumn"><Attributes dsName="s24" columnName="MD24" />
+</O></C>
+<C c="28" r="4" s="1"><O t="DSColumn"><Attributes dsName="s25" columnName="MD25" />
+</O></C>
+<C c="0" r="5" s="3"><O t="ExpandSerial"><O t="Formula" class="Formula" ><Attributes
+><![CDATA[=$$$]]>
+</Attributes>
+</O><Serial><ST><![CDATA[1]]></ST><EN><![CDATA[]]></EN></Serial></O></C>
+<C c="1" r="5" s="1"><O t="DSColumn"><Attributes dsName="s1" columnName="XH1" />
+</O><Expand dir="0" />
+</C>
+<C c="2" r="5" s="1"><O t="DSColumn"><Attributes dsName="s1" columnName="XM1" />
+</O><Expand dir="0" />
+</C>
+<C c="3" r="5" s="1"><O t="DSColumn"><Attributes dsName="s1" columnName="XB1" />
+</O><Expand dir="0" />
+</C>
+<C c="4" r="5" s="2"><O t="DSColumn"><Attributes dsName="s1" columnName="STATUS1" />
+</O><Expand dir="0" />
+</C>
+<C c="5" r="5" s="2"><O t="DSColumn"><Attributes dsName="s2" columnName="STATUS2" />
+</O><Expand dir="0" />
+</C>
+<C c="6" r="5" s="2"><O t="DSColumn"><Attributes dsName="s3" columnName="STATUS3" />
+</O><Expand dir="0" />
+</C>
+<C c="7" r="5" s="2"><O t="DSColumn"><Attributes dsName="s4" columnName="STATUS4" />
+</O><Expand dir="0" />
+</C>
+<C c="8" r="5" s="2"><O t="DSColumn"><Attributes dsName="s5" columnName="STATUS5" />
+</O><Expand dir="0" />
+</C>
+<C c="9" r="5" s="2"><O t="DSColumn"><Attributes dsName="s6" columnName="STATUS6" />
+</O><Expand dir="0" />
+</C>
+<C c="10" r="5" s="2"><O t="DSColumn"><Attributes dsName="s7" columnName="STATUS7" />
+</O><Expand dir="0" />
+</C>
+<C c="11" r="5" s="2"><O t="DSColumn"><Attributes dsName="s8" columnName="STATUS8" />
+</O><Expand dir="0" />
+</C>
+<C c="12" r="5" s="2"><O t="DSColumn"><Attributes dsName="s9" columnName="STATUS9" />
+</O><Expand dir="0" />
+</C>
+<C c="13" r="5" s="2"><O t="DSColumn"><Attributes dsName="s10" columnName="STATUS10" />
+</O><Expand dir="0" />
+</C>
+<C c="14" r="5" s="2"><O t="DSColumn"><Attributes dsName="s11" columnName="STATUS11" />
+</O><Expand dir="0" />
+</C>
+<C c="15" r="5" s="2"><O t="DSColumn"><Attributes dsName="s12" columnName="STATUS12" />
+</O><Expand dir="0" />
+</C>
+<C c="16" r="5" s="2"><O t="DSColumn"><Attributes dsName="s13" columnName="STATUS13" />
+</O><Expand dir="0" />
+</C>
+<C c="17" r="5" s="2"><O t="DSColumn"><Attributes dsName="s14" columnName="STATUS14" />
+</O><Expand dir="0" />
+</C>
+<C c="18" r="5" s="2"><O t="DSColumn"><Attributes dsName="s15" columnName="STATUS15" />
+</O><Expand dir="0" />
+</C>
+<C c="19" r="5" s="2"><O t="DSColumn"><Attributes dsName="s16" columnName="STATUS16" />
+</O><Expand dir="0" />
+</C>
+<C c="20" r="5" s="2"><O t="DSColumn"><Attributes dsName="s17" columnName="STATUS17" />
+</O><Expand dir="0" />
+</C>
+<C c="21" r="5" s="2"><O t="DSColumn"><Attributes dsName="s18" columnName="STATUS18" />
+</O><Expand dir="0" />
+</C>
+<C c="22" r="5" s="2"><O t="DSColumn"><Attributes dsName="s19" columnName="STATUS19" />
+</O><Expand dir="0" />
+</C>
+<C c="23" r="5" s="2"><O t="DSColumn"><Attributes dsName="s20" columnName="STATUS20" />
+</O><Expand dir="0" />
+</C>
+<C c="24" r="5" s="2"><O t="DSColumn"><Attributes dsName="s21" columnName="STATUS21" />
+</O><Expand dir="0" />
+</C>
+<C c="25" r="5" s="2"><O t="DSColumn"><Attributes dsName="s22" columnName="STATUS22" />
+</O><Expand dir="0" />
+</C>
+<C c="26" r="5" s="2"><O t="DSColumn"><Attributes dsName="s23" columnName="STATUS23" />
+</O><Expand dir="0" />
+</C>
+<C c="27" r="5" s="2"><O t="DSColumn"><Attributes dsName="s24" columnName="STATUS24" />
+</O><Expand dir="0" />
+</C>
+<C c="28" r="5" s="2"><O t="DSColumn"><Attributes dsName="s25" columnName="STATUS25" />
+</O><Expand dir="0" />
+</C>
+<C c="0" r="6" s="1"><O t="S"></O></C>
+<C c="1" r="6" s="1"><O t="S"></O></C>
+<C c="2" r="6" s="1"><O t="S"></O></C>
+<C c="3" r="6" s="1"><O t="S"></O></C>
+<C c="4" r="6" s="1"><O t="S"></O></C>
+<C c="5" r="6" s="1"><O t="S"></O></C>
+<C c="6" r="6" s="1"><O t="S"></O></C>
+<C c="7" r="6" s="1"><O t="S"></O></C>
+<C c="8" r="6" s="1"><O t="S"></O></C>
+<C c="9" r="6" s="1"><O t="S"></O></C>
+<C c="10" r="6" s="1"><O t="S"></O></C>
+<C c="11" r="6" s="1"><O t="S"></O></C>
+<C c="12" r="6" s="1"><O t="S"></O></C>
+<C c="13" r="6" s="1"><O t="S"></O></C>
+<C c="14" r="6" s="1"><O t="S"></O></C>
+<C c="15" r="6" s="1"><O t="S"></O></C>
+<C c="16" r="6" s="1"><O t="S"></O></C>
+<C c="17" r="6" s="1"><O t="S"></O></C>
+<C c="18" r="6" s="1"><O t="S"></O></C>
+<C c="19" r="6" s="1"><O t="S"></O></C>
+<C c="20" r="6" s="1"><O t="S"></O></C>
+<C c="21" r="6" s="1"><O t="S"></O></C>
+<C c="22" r="6" s="1"><O t="S"></O></C>
+<C c="23" r="6" s="1"><O t="S"></O></C>
+<C c="24" r="6" s="1"><O t="S"></O></C>
+<C c="25" r="6" s="1"><O t="S"></O></C>
+<C c="26" r="6" s="1"><O t="S"></O></C>
+<C c="27" r="6" s="1"><O t="S"></O></C>
+<C c="28" r="6" s="1"><O t="S"></O></C>
+<C c="0" r="7" s="1"><O t="S"></O></C>
+<C c="1" r="7" s="1"><O t="S"></O></C>
+<C c="2" r="7" s="1"><O t="S"></O></C>
+<C c="3" r="7" s="1"><O t="S"></O></C>
+<C c="4" r="7" s="1"><O t="S"></O></C>
+<C c="5" r="7" s="1"><O t="S"></O></C>
+<C c="6" r="7" s="1"><O t="S"></O></C>
+<C c="7" r="7" s="1"><O t="S"></O></C>
+<C c="8" r="7" s="1"><O t="S"></O></C>
+<C c="9" r="7" s="1"><O t="S"></O></C>
+<C c="10" r="7" s="1"><O t="S"></O></C>
+<C c="11" r="7" s="1"><O t="S"></O></C>
+<C c="12" r="7" s="1"><O t="S"></O></C>
+<C c="13" r="7" s="1"><O t="S"></O></C>
+<C c="14" r="7" s="1"><O t="S"></O></C>
+<C c="15" r="7" s="1"><O t="S"></O></C>
+<C c="16" r="7" s="1"><O t="S"></O></C>
+<C c="17" r="7" s="1"><O t="S"></O></C>
+<C c="18" r="7" s="1"><O t="S"></O></C>
+<C c="19" r="7" s="1"><O t="S"></O></C>
+<C c="20" r="7" s="1"><O t="S"></O></C>
+<C c="21" r="7" s="1"><O t="S"></O></C>
+<C c="22" r="7" s="1"><O t="S"></O></C>
+<C c="23" r="7" s="1"><O t="S"></O></C>
+<C c="24" r="7" s="1"><O t="S"></O></C>
+<C c="25" r="7" s="1"><O t="S"></O></C>
+<C c="26" r="7" s="1"><O t="S"></O></C>
+<C c="27" r="7" s="1"><O t="S"></O></C>
+<C c="28" r="7" s="1"><O t="S"></O></C>
+<C c="0" r="8" s="1"><O t="S"></O></C>
+<C c="1" r="8" s="1"><O t="S"></O></C>
+<C c="2" r="8" s="1"><O t="S"></O></C>
+<C c="3" r="8" s="1"><O t="S"></O></C>
+<C c="4" r="8" s="1"><O t="S"></O></C>
+<C c="5" r="8" s="1"><O t="S"></O></C>
+<C c="6" r="8" s="1"><O t="S"></O></C>
+<C c="7" r="8" s="1"><O t="S"></O></C>
+<C c="8" r="8" s="1"><O t="S"></O></C>
+<C c="9" r="8" s="1"><O t="S"></O></C>
+<C c="10" r="8" s="1"><O t="S"></O></C>
+<C c="11" r="8" s="1"><O t="S"></O></C>
+<C c="12" r="8" s="1"><O t="S"></O></C>
+<C c="13" r="8" s="1"><O t="S"></O></C>
+<C c="14" r="8" s="1"><O t="S"></O></C>
+<C c="15" r="8" s="1"><O t="S"></O></C>
+<C c="16" r="8" s="1"><O t="S"></O></C>
+<C c="17" r="8" s="1"><O t="S"></O></C>
+<C c="18" r="8" s="1"><O t="S"></O></C>
+<C c="19" r="8" s="1"><O t="S"></O></C>
+<C c="20" r="8" s="1"><O t="S"></O></C>
+<C c="21" r="8" s="1"><O t="S"></O></C>
+<C c="22" r="8" s="1"><O t="S"></O></C>
+<C c="23" r="8" s="1"><O t="S"></O></C>
+<C c="24" r="8" s="1"><O t="S"></O></C>
+<C c="25" r="8" s="1"><O t="S"></O></C>
+<C c="26" r="8" s="1"><O t="S"></O></C>
+<C c="27" r="8" s="1"><O t="S"></O></C>
+<C c="28" r="8" s="1"><O t="S"></O></C>
+<C c="0" r="9" s="1"><O t="S"></O></C>
+<C c="1" r="9" s="1"><O t="S"></O></C>
+<C c="2" r="9" s="1"><O t="S"></O></C>
+<C c="3" r="9" s="1"><O t="S"></O></C>
+<C c="4" r="9" s="1"><O t="S"></O></C>
+<C c="5" r="9" s="1"><O t="S"></O></C>
+<C c="6" r="9" s="1"><O t="S"></O></C>
+<C c="7" r="9" s="1"><O t="S"></O></C>
+<C c="8" r="9" s="1"><O t="S"></O></C>
+<C c="9" r="9" s="1"><O t="S"></O></C>
+<C c="10" r="9" s="1"><O t="S"></O></C>
+<C c="11" r="9" s="1"><O t="S"></O></C>
+<C c="12" r="9" s="1"><O t="S"></O></C>
+<C c="13" r="9" s="1"><O t="S"></O></C>
+<C c="14" r="9" s="1"><O t="S"></O></C>
+<C c="15" r="9" s="1"><O t="S"></O></C>
+<C c="16" r="9" s="1"><O t="S"></O></C>
+<C c="17" r="9" s="1"><O t="S"></O></C>
+<C c="18" r="9" s="1"><O t="S"></O></C>
+<C c="19" r="9" s="1"><O t="S"></O></C>
+<C c="20" r="9" s="1"><O t="S"></O></C>
+<C c="21" r="9" s="1"><O t="S"></O></C>
+<C c="22" r="9" s="1"><O t="S"></O></C>
+<C c="23" r="9" s="1"><O t="S"></O></C>
+<C c="24" r="9" s="1"><O t="S"></O></C>
+<C c="25" r="9" s="1"><O t="S"></O></C>
+<C c="26" r="9" s="1"><O t="S"></O></C>
+<C c="27" r="9" s="1"><O t="S"></O></C>
+<C c="28" r="9" s="1"><O t="S"></O></C>
+<C c="0" r="10" s="1"><O t="S"></O></C>
+<C c="1" r="10" s="1"><O t="S"></O></C>
+<C c="2" r="10" s="1"><O t="S"></O></C>
+<C c="3" r="10" s="1"><O t="S"></O></C>
+<C c="4" r="10" s="1"><O t="S"></O></C>
+<C c="5" r="10" s="1"><O t="S"></O></C>
+<C c="6" r="10" s="1"><O t="S"></O></C>
+<C c="7" r="10" s="1"><O t="S"></O></C>
+<C c="8" r="10" s="1"><O t="S"></O></C>
+<C c="9" r="10" s="1"><O t="S"></O></C>
+<C c="10" r="10" s="1"><O t="S"></O></C>
+<C c="11" r="10" s="1"><O t="S"></O></C>
+<C c="12" r="10" s="1"><O t="S"></O></C>
+<C c="13" r="10" s="1"><O t="S"></O></C>
+<C c="14" r="10" s="1"><O t="S"></O></C>
+<C c="15" r="10" s="1"><O t="S"></O></C>
+<C c="16" r="10" s="1"><O t="S"></O></C>
+<C c="17" r="10" s="1"><O t="S"></O></C>
+<C c="18" r="10" s="1"><O t="S"></O></C>
+<C c="19" r="10" s="1"><O t="S"></O></C>
+<C c="20" r="10" s="1"><O t="S"></O></C>
+<C c="21" r="10" s="1"><O t="S"></O></C>
+<C c="22" r="10" s="1"><O t="S"></O></C>
+<C c="23" r="10" s="1"><O t="S"></O></C>
+<C c="24" r="10" s="1"><O t="S"></O></C>
+<C c="25" r="10" s="1"><O t="S"></O></C>
+<C c="26" r="10" s="1"><O t="S"></O></C>
+<C c="27" r="10" s="1"><O t="S"></O></C>
+<C c="28" r="10" s="1"><O t="S"></O></C>
+<C c="0" r="11" s="1"><O t="S"></O></C>
+<C c="1" r="11" s="1"><O t="S"></O></C>
+<C c="2" r="11" s="1"><O t="S"></O></C>
+<C c="3" r="11" s="1"><O t="S"></O></C>
+<C c="4" r="11" s="1"><O t="S"></O></C>
+<C c="5" r="11" s="1"><O t="S"></O></C>
+<C c="6" r="11" s="1"><O t="S"></O></C>
+<C c="7" r="11" s="1"><O t="S"></O></C>
+<C c="8" r="11" s="1"><O t="S"></O></C>
+<C c="9" r="11" s="1"><O t="S"></O></C>
+<C c="10" r="11" s="1"><O t="S"></O></C>
+<C c="11" r="11" s="1"><O t="S"></O></C>
+<C c="12" r="11" s="1"><O t="S"></O></C>
+<C c="13" r="11" s="1"><O t="S"></O></C>
+<C c="14" r="11" s="1"><O t="S"></O></C>
+<C c="15" r="11" s="1"><O t="S"></O></C>
+<C c="16" r="11" s="1"><O t="S"></O></C>
+<C c="17" r="11" s="1"><O t="S"></O></C>
+<C c="18" r="11" s="1"><O t="S"></O></C>
+<C c="19" r="11" s="1"><O t="S"></O></C>
+<C c="20" r="11" s="1"><O t="S"></O></C>
+<C c="21" r="11" s="1"><O t="S"></O></C>
+<C c="22" r="11" s="1"><O t="S"></O></C>
+<C c="23" r="11" s="1"><O t="S"></O></C>
+<C c="24" r="11" s="1"><O t="S"></O></C>
+<C c="25" r="11" s="1"><O t="S"></O></C>
+<C c="26" r="11" s="1"><O t="S"></O></C>
+<C c="27" r="11" s="1"><O t="S"></O></C>
+<C c="28" r="11" s="1"><O t="S"></O></C>
+</CellElementList>
+</Report>
+<StyleList>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="1" size="14" />
+<Background name="NullBackground" />
+<Border><Top style="1" /><Bottom style="1" /><Left style="1" /><Right style="1" /></Border>
+</Style>
+<Style>
+<FRFont name="SimSun" style="0" size="12" />
+<Background name="NullBackground" />
+<Border><Top style="1" /><Bottom style="1" /><Left style="1" /><Right style="1" /></Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12" />
+<Background name="NullBackground" />
+<Border><Top style="1" /><Bottom style="1" /><Left style="1" /><Right style="1" /></Border>
+</Style>
+<Style horizontal_alignment="4">
+<FRFont name="SimSun" style="0" size="12" />
+<Background name="NullBackground" />
+<Border><Top style="1" /><Bottom style="1" /><Left style="1" /><Right style="1" /></Border>
+</Style>
+</StyleList>
+</WorkBook>

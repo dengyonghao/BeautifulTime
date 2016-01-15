@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<!-- by 邓永豪-->
+	<!--登录（2015.01.07） -->
+	<bean id="studentDaoImpl" class="com.order.student.dao.hibernate.StudentDAOImpl"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="studentServiceImpl" class="com.order.student.service.impl.StudentServiceImpl"
+		scope="prototype">
+		<property name="studentDAO">
+			<ref bean="studentDaoImpl" />
+		</property>
+	</bean>
+	
+	<!-- by 邓永豪-->
+	<!--显示书本信息（2015.01.08） -->
+	<bean id="bookDaoImpl" class="com.order.student.dao.hibernate.BookDAOImpl"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="bookServiceImpl" class="com.order.student.service.impl.BookServiceImpl"
+		scope="prototype">
+		<property name="bookDAO">
+			<ref bean="bookDaoImpl" />
+		</property>
+	</bean>
+	
+	<!-- by 邓永豪-->
+	<!--显示书本信息维护（2015.01.08） -->
+	<bean id="orderDaoImpl" class="com.order.student.dao.hibernate.OrderDAOImpl"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="orderServiceImpl" class="com.order.student.service.impl.OrderServiceImpl"
+		scope="prototype">
+		<property name="orderDAO">
+			<ref bean="orderDaoImpl" />
+		</property>
+	</bean>
+	
+</beans>

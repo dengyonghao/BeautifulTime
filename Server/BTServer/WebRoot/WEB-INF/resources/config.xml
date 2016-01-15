@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ReportServerParameter>
+<Write serverCharacterEncoding="GBK" />
+<SM sessionTimeout="300000" concurrency="30" /><ReportWebAttr>
+<EmailManager mailHost="" password="" user="" fromEmailAddress="" />
+<ServerPrinter>
+</ServerPrinter>
+<ToolbarManager specifiedToolbar="true" toolbarPosition="1" isIconVisible="true" isTextVisible="true" isShowPageSetup="true" isShowPDFPrint="false" isShowPDF="false" isShowExcel="true" isShowPrint="false" isShowExport="false" isShowEmail="false">
+<firstIconObject path="/com/fr/web/images/first.png">
+</firstIconObject>
+<previousIconObject path="/com/fr/web/images/previous.png">
+</previousIconObject>
+<nextIconObject path="/com/fr/web/images/next.png">
+</nextIconObject>
+<lastIconObject path="/com/fr/web/images/last.png">
+</lastIconObject>
+<pageSetupIconObject path="/com/fr/web/images/pageSetup.png">
+</pageSetupIconObject>
+<pdfPrintIconObject path="/com/fr/web/images/pdfPrint.png">
+</pdfPrintIconObject>
+<pdfIconObject path="/com/fr/web/images/pdf.png">
+</pdfIconObject>
+<printIconObject path="/com/fr/web/images/serverPrint.png">
+</printIconObject>
+<exportIconObject path="/com/fr/web/images/export.png">
+</exportIconObject>
+<emailIconObject path="/com/fr/web/images/email.png">
+</emailIconObject>
+</ToolbarManager>
+</ReportWebAttr>
+</ReportServerParameter>

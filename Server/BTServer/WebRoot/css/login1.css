@@ -1,0 +1,64 @@
+body {
+	background: url(../images/login_bg.jpg) repeat-x scroll;
+	font-size:12px;
+}
+#login_bg{
+	background: url(../images/book_bg.jpg) repeat-x scroll;
+	height:299px;
+	width:930px;
+	position:absolute;   
+	top:50%;   
+	left:50%;
+	margin:-200px 0 0 -490px; 
+}
+#login_bg1{
+	background: url(../images/book_bacg.jpg) repeat-x scroll;
+	height:350px;
+	width:500px;
+	position:absolute;
+	top:50%;   
+	left:50%;
+	margin:-230px 0 0 -75px;
+}
+#login_content{
+	height:150px;
+	width: 420px;
+	position:absolute;  
+	left:50%;
+	margin:160px 0 0 -85px;
+}
+
+#login_content ul{
+	list-style:none;
+	width: 320px;
+}
+#login_content ul li{
+	height:40px;
+}
+.loginTxt{
+	font-weight: bold;
+	font-family:"宋体";
+	font-size:18px;
+	color:gray;
+}
+.inputTxt{
+	height:20px;
+	width:180px;
+}
+.loginBtn{
+	padding-left:40px;
+	padding-top:10px; 
+}
+.submit{
+	background:url(../images/loginBtn.jpg) no-repeat scroll 0 0 transparent;
+	width:60px; 
+	height:22px;
+	border:none;	 
+}
+.reset{
+	margin-left:30px;
+	background:url(../images/resetBtn.jpg) no-repeat scroll 0 0 transparent;
+	width:60px; 
+	height:22px;
+	border:none;
+}

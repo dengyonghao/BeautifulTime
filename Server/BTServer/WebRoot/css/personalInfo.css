@@ -1,0 +1,127 @@
+/*右边表格样式*/
+#rightStyle{
+    font-size:12px;
+    color:#000;
+    margin-right:5px;
+    margin-top:12px;
+    padding-bottom:12px;
+}
+#rightStyle ul{
+	float:left;
+	padding:0;
+	margin:0;
+	border-top:#c7defd 1px solid;
+	list-style:none;
+}
+#rightStyle li{
+	float:top;
+	display: block;
+	height:30px;
+	margin:0;
+	border-right:#c7defd 1px solid;
+	border-bottom:#c7defd 1px solid;
+	line-height:30px;
+	color:#000;
+	overflow:hidden;
+	text-align:left;
+}
+#tableFrame{
+	height:auto;
+	margin:0 0 0 10px;
+	font-size:12px;
+	overflow:hidden
+}
+/*表头*/
+#tableFrameTitle{ width:8%;}
+#tableFrameTitle li{
+	background:rgb(242, 246, 251); 
+	text-align:right;
+}
+
+/*表格内容*/
+#tableCase{ width:24.3%;}
+#tableCase li{
+	padding-left:5px;
+	text-align:left;
+}
+/*教师照片*/
+#tableFrameTitle li.tblPhoto,#tableCase li.tblPhoto{
+	line-height:216px;
+	height:216px;
+	overflow:hidden;
+}
+#tableFrameTitle li.tblTwoLine,#tableCase li.tblTwoLine{
+	line-height:61px;
+	height:61px;
+	overflow:hidden;
+}
+
+#tableCase li.tblPhoto span{
+	margin:0;
+	padding:0;
+	width:96px;
+	height:128px;
+}
+#tblPhotoBtn{
+	background:url("../images/btnBg.png") no-repeat scroll transparent;
+	width:100px;
+	height:27px;
+	border: medium none;
+	cursor: pointer;
+	font-size: 15px;
+	font-family:"Verdana, Tahoma, Arial, Helvetica, sans-serif";
+	text-align: center;
+    vertical-align: middle;
+}
+
+.inputTxt{
+	width:155px;
+	margin-top:5px;
+}
+#rightStyle input.btnSubmit{
+	background:url("../images/btnBg.png") no-repeat scroll transparent;
+	width:100px;
+	height:30px;
+	border: medium none;
+	cursor: pointer;
+	font-size: 15px;
+	font-family:"Verdana, Tahoma, Arial, Helvetica, sans-serif";
+	text-align: center;
+    vertical-align: middle;
+    
+}
+.input-date {
+	background: url(/coa/images/date_r1_c1.gif) no-repeat right;
+	margin-top:5px;
+}
+/*#addDiv ul {
+	width: 450px;
+	list-style: none outside none;
+	padding-left: 10px
+}
+#addDiv ul li {
+	padding-top: 2px;
+	font-size: 14px;	
+	line-height: 20px;
+	list-style: none outside none
+}
+#addDiv ul li label {
+	font-weight: 700
+}
+#addDiv li ul .labelTxt
+	{
+	width: 150px;
+	float: left
+}
+*/.subBtn {
+	background: url(/coa/images/btnBg1.png) no-repeat scroll transparent;
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	border: medium none;
+	cursor: pointer;
+	font-size: 14px;
+	font-family: "Verdana, Tahoma, Arial, Helvetica, sans-serif";
+	text-align: center;
+	vertical-align: middle
+}

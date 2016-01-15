@@ -1,0 +1,3145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WorkBook>
+<Version>6.1</Version>
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<TableDataMap>
+<NameTableData name="s1">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O><CellEditorDef class="com.fr.report.cellElement.TextCellEditorDef"><Attr allowBlank="false" /></CellEditorDef></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O><CellEditorDef class="com.fr.report.cellElement.TextCellEditorDef"><Attr allowBlank="false" /></CellEditorDef></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O><CellEditorDef class="com.fr.report.cellElement.TextCellEditorDef"><Attr allowBlank="false" /></CellEditorDef></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O><CellEditorDef class="com.fr.report.cellElement.TextCellEditorDef"><Attr allowBlank="false" /></CellEditorDef></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O><CellEditorDef class="com.fr.report.cellElement.TextCellEditorDef"><Attr allowBlank="false" /></CellEditorDef></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O><CellEditorDef class="com.fr.report.cellElement.TextCellEditorDef"><Attr allowBlank="false" /></CellEditorDef></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj1" type="0" pop="true" />
+<O t="S">2014-05-17</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[SELECT
+     (case when(s1.XN-1)is null then -1 else(s1.XN-1)end)as fXN1,
+     (case when(s1.XN)is null then ''else(s1.XN)end)as xn1,
+     (case when(s1.XQ)is null then-1else(s1.XQ)end)as xq1,
+     (case when(s1.XM)is null then ''else(s1.XM)end)as xm1,
+     (case when(s1.month)is null then-1else(s1.month)end)as mouth1,
+     (case when(s1.day)is null then-1else(s1.day)end)as day1,
+     (case when(s1.bj)is null then ''else(s1.BJ)end)as bj1
+FROM
+     studentcheck s1
+WHERE  
+     s1.XN = [?xn|2014?]
+     and s1.XQ = [?xq|2?]
+     and s1.KCMC LIKE '[?kcmc|刑法学?]'
+     and s1.JSGH = [?jsgh|02067?]
+     and s1.SKDD LIKE '[?skdd|JD206?]'
+     and s1.BJ LIKE '[?bj|06计算机1班?]'	
+     and to_char(s1.SJ,'YYYY-MM-DD') like '[?sj1|2014-05-17?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s2">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj2" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s2.XN-1) is null then '' else (s2.xn) end) as fXN2, 
+--(case when (s2.XN) is null then '' else (s2.XN) end) as xn2, 
+--(case when (s2.XQ) is null then -1 else (s2.XQ) end) as xq2,
+--(case when (s2.XM) is null then '' else (s2.XM) end) as xm2,
+(case when (s2.month) is null then -1 else (s2.month) end) as mouth2,
+(case when (s2.day) is null then -1 else (s2.day) end) as day2
+--(case when (s2.bj) is null then '' else (s2.BJ)end) as bj2
+from studentcheck s2
+ where  s2.XQ = [?xq|2?]
+     and s2.KCMC LIKE '[?kcmc|刑法学?]'
+  and s2.JSGH = [?jsgh|02067?]
+ and s2.SKDD LIKE '[?skdd|JD206?]'
+ and s2.BJ LIKE '[?bj|06计算机1班?]'
+ and to_char(s2.SJ,'YYYY-MM-DD') like '[?sj2|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s3">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj3" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+--(case when (s3.XN-1) is null then '' else (s3.xn) end) as fXN3, 
+--(case when (s3.XN) is null then '' else (s3.XN) end) as xn3, 
+--(case when (s3.XQ) is null then -1 else (s3.XQ) end) as xq3,
+--(case when (s3.XM) is null then '' else (s3.XM) end) as xm3,
+(case when (s3.month) is null then -1 else (s3.month) end) as mouth3,
+(case when (s3.day) is null then -1 else (s3.day) end) as day3
+--(case when (s3.djjk) is null then -1 else (s3.djjk)end) as djjk3,
+--(case when (s3.status) is null then -1 else (s3.status) end) as status3,
+--(case when (s3.bj) is null then '' else (s3.BJ)end) as bj3
+from studentcheck s3
+WHERE    s3.XN = [?xn|2014?]
+     and s3.XQ = [?xq|2?]
+     and s3.KCMC LIKE '[?kcmc|刑法学?]'
+     and s3.JSGH = [?jsgh|02067?]
+     and s3.SKDD LIKE '[?skdd|JD206?]'
+     and s3.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s3.SJ,'YYYY-MM-DD') like '[?sj3|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s4">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj4" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+--(case when (s4.XN-1) is null then '' else (s4.xn) end) as fXN4, 
+--(case when (s4.XN) is null then '' else (s4.XN) end) as xn4, 
+--(case when (s4.XQ) is null then -1 else (s4.XQ) end) as xq4,
+--(case when (s4.XM) is null then '' else (s4.XM) end) as xm4,
+(case when (s4.month) is null then -1 else (s4.month) end) as mouth4,
+(case when (s4.day) is null then -1 else (s4.day) end) as day4
+--(case when (s4.djjk) is null then -1 else (s4.djjk)end) as djjk4,
+--(case when (s4.status) is null then -1 else (s4.status) end) as status4,
+--(case when (s4.bj) is null then '' else (s4.BJ)end) as bj4
+from studentcheck s4
+WHERE   s4.XN = [?xn|2014?]
+     and s4.XQ = [?xq|2?]
+     and s4.KCMC LIKE '[?kcmc|刑法学?]'
+     and s4.JSGH = [?jsgh|02067?]
+     and s4.SKDD LIKE '[?skdd|JD206?]'
+     and s4.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s4.SJ,'YYYY-MM-DD') like '[?sj4|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s5">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj5" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+--(case when (s5.XN-1) is null then '' else (s5.xn) end) as fXN5, 
+--(case when (s5.XN) is null then '' else (s5.XN) end) as xn5, 
+--(case when (s5.XQ) is null then -1 else (s5.XQ) end) as xq5,
+--(case when (s5.XM) is null then '' else (s5.XM) end) as xm5,
+(case when (s5.month) is null then -1 else (s5.month) end) as mouth5,
+(case when (s5.day) is null then -1 else (s5.day) end) as day5
+--(case when (s5.djjk) is null then -1 else (s5.djjk)end) as djjk5,
+--(case when (s5.status) is null then -1 else (s5.status) end) as status5,
+--(case when (s5.bj) is null then '' else (s5.BJ)end) as bj5
+from studentcheck s5
+WHERE      s5.XN = [?xn|2014?]
+     and s5.XQ = [?xq|2?]
+     and s5.KCMC LIKE '[?kcmc|刑法学?]'
+     and s5.JSGH = [?jsgh|02067?]
+     and s5.SKDD LIKE '[?skdd|JD206?]'
+     and s5.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s5.SJ,'YYYY-MM-DD') like '[?sj5|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s102">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj1" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s102.djjk) is null then -1 else (s102.djjk)end) as djjk102,
+(case when s102.status=1 then '√'
+  when s102.status=2 then '×'
+ when s102.status=3 then '○'
+ when s102.status=4 then '○'
+ when s102.status=5 then '△'
+ when s102.status=6 then '#'
+end) as status102
+from studentcheck s102
+where s102.djjk=2
+     and s102.XN = [?xn|2014?]
+     and s102.XQ = [?xq|2?]
+     and s102.KCMC LIKE '[?kcmc|刑法学?]'
+     and s102.JSGH = [?jsgh|02067?]
+     and s102.SKDD LIKE '[?skdd|JD206?]'
+     and s102.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s102.SJ,'YYYY-MM-DD') like '[?sj1|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s103">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj1" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+(case when s103.status=1 then '√'
+  when s103.status=2 then '×'
+ when s103.status=3 then '○'
+ when s103.status=4 then '○'
+ when s103.status=5 then '△'
+ when s103.status=6 then '#'
+end) as status103
+from jisuanji.studentcheck s103
+where  s103.djjk=3
+     and  s103.XN = [?xn|2014?]
+     and s103.XQ = [?xq|2?]
+     and s103.KCMC LIKE '[?kcmc|刑法学?]'
+     and s103.JSGH = [?jsgh|02067?]
+     and s103.SKDD LIKE '[?skdd|JD206?]'
+     and s103.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s103.SJ,'YYYY-MM-DD') like '[?sj1|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s104">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj1" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select 
+(case when s104.status=1 then '√'
+  when s104.status=2 then '×'
+ when s104.status=3 then '○'
+ when s104.status=4 then '○'
+ when s104.status=5 then '△'
+ when s104.status=6 then '#'
+end) as status104
+from jisuanji.studentcheck s104
+where s104.djjk=4
+     and s104.XN = [?xn|2014?]
+     and s104.XQ = [?xq|2?]
+     and s104.KCMC LIKE '[?kcmc|刑法学?]'
+     and s104.JSGH = [?jsgh|02067?]
+     and s104.SKDD LIKE '[?skdd|JD206?]'
+     and s104.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s104.SJ,'YYYY-MM-DD') like '[?sj1|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s105">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj1" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s105.djjk) is null then -1 else (s105.djjk)end) as djjk105,
+(case when s105.status=1 then '√'
+  when s105.status=2 then '×'
+ when s105.status=3 then '○'
+ when s105.status=4 then '○'
+ when s105.status=5 then '△'
+ when s105.status=6 then '#'
+end) as status105
+from studentcheck s105
+where s105.djjk=5
+     and s105.XN = [?xn|2014?]
+     and s105.XQ = [?xq|2?]
+     and s105.KCMC LIKE '[?kcmc|刑法学?]'
+     and s105.JSGH = [?jsgh|02067?]
+     and s105.SKDD LIKE '[?skdd|JD206?]'
+     and s105.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s105.SJ,'YYYY-MM-DD') like '[?sj1|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s106">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj1" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s105.djjk) is null then -1 else (s105.djjk)end) as djjk105,
+(case when s105.status=1 then '√'
+  when s105.status=2 then '×'
+ when s105.status=3 then '○'
+ when s105.status=4 then '○'
+ when s105.status=5 then '△'
+ when s105.status=6 then '#'
+end) as status105
+from studentcheck s105
+where s105.djjk=5
+     and s105.XN = [?xn|2014?]
+     and s105.XQ = [?xq|2?]
+     and s105.KCMC LIKE '[?kcmc|刑法学?]'
+     and s105.JSGH = [?jsgh|02067?]
+     and s105.SKDD LIKE '[?skdd|JD206?]'
+     and s105.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s105.SJ,'YYYY-MM-DD') like '[?sj1|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s107">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj1" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s107.djjk) is null then -1 else (s107.djjk)end) as djjk107,
+(case when s107.status=1 then '√'
+  when s107.status=2 then '×'
+ when s107.status=3 then '○'
+ when s107.status=4 then '○'
+ when s107.status=5 then '△'
+ when s107.status=6 then '#'
+end) as status107
+from studentcheck s107
+where s107.djjk=7
+     and s107.XN = [?xn|2014?]
+     and s107.XQ = [?xq|2?]
+     and s107.KCMC LIKE '[?kcmc|刑法学?]'
+     and s107.JSGH = [?jsgh|02067?]
+     and s107.SKDD LIKE '[?skdd|JD206?]'
+     and s107.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s107.SJ,'YYYY-MM-DD') like '[?sj1|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s108">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj1" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s108.djjk) is null then -1 else (s108.djjk)end) as djjk107,
+(case when s108.status=1 then '√'
+  when s108.status=2 then '×'
+ when s108.status=3 then '○'
+ when s108.status=4 then '○'
+ when s108.status=5 then '△'
+ when s108.status=6 then '#'
+end) as status108
+from studentcheck s108
+where s108.djjk=7
+     and s108.XN = [?xn|2014?]
+     and s108.XQ = [?xq|2?]
+     and s108.KCMC LIKE '[?kcmc|刑法学?]'
+     and s108.JSGH = [?jsgh|02067?]
+     and s108.SKDD LIKE '[?skdd|JD206?]'
+     and s108.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s108.SJ,'YYYY-MM-DD') like '[?sj1|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s109">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj1" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s109.djjk) is null then -1 else (s109.djjk)end) as djjk109,
+(case when s109.status=1 then '√'
+  when s109.status=2 then '×'
+ when s109.status=3 then '○'
+ when s109.status=4 then '○'
+ when s109.status=5 then '△'
+ when s109.status=6 then '#'
+end) as status109
+from studentcheck s109
+where s109.djjk=9
+     and s109.XN = [?xn|2014?]
+     and s109.XQ = [?xq|2?]
+     and s109.KCMC LIKE '[?kcmc|刑法学?]'
+     and s109.JSGH = [?jsgh|02067?]
+     and s109.SKDD LIKE '[?skdd|JD206?]'
+     and s109.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s109.SJ,'YYYY-MM-DD') like '[?sj1|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s110">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj1" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s110.djjk) is null then -1 else (s110.djjk)end) as djjk110,
+(case when s110.status=1 then '√'
+  when s110.status=2 then '×'
+ when s110.status=3 then '○'
+ when s110.status=4 then '○'
+ when s110.status=5 then '△'
+ when s110.status=6 then '#'
+end) as status110
+from studentcheck s110
+where s110.djjk=10
+     and s110.XN = [?xn|2014?]
+     and s110.XQ = [?xq|2?]
+     and s110.KCMC LIKE '[?kcmc|刑法学?]'
+     and s110.JSGH = [?jsgh|02067?]
+     and s110.SKDD LIKE '[?skdd|JD206?]'
+     and s110.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s110.SJ,'YYYY-MM-DD') like '[?sj1|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s111">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj1" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s111.djjk) is null then -1 else (s111.djjk)end) as djjk111,
+(case when s111.status=1 then '√'
+  when s111.status=2 then '×'
+ when s111.status=3 then '○'
+ when s111.status=4 then '○'
+ when s111.status=5 then '△'
+ when s111.status=6 then '#'
+end)  as status111
+from studentcheck s111
+where s111.djjk=11
+     and s111.XN = [?xn|2014?]
+     and s111.XQ = [?xq|2?]
+     and s111.KCMC LIKE '[?kcmc|刑法学?]'
+     and s111.JSGH = [?jsgh|02067?]
+     and s111.SKDD LIKE '[?skdd|JD206?]'
+     and s111.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s111.SJ,'YYYY-MM-DD') like '[?sj1|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s202">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj2" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s202.djjk) is null then -1 else (s202.djjk)end) as djjk202,
+(case when s202.status=1 then '√'
+  when s202.status=2 then '×'
+ when s202.status=3 then '○'
+ when s202.status=4 then '○'
+ when s202.status=5 then '△'
+ when s202.status=6 then '#'
+end) as status202
+from studentcheck s202
+where s202.djjk=2
+     and s202.XN = [?xn|2014?]
+     and s202.XQ = [?xq|2?]
+     and s202.KCMC LIKE '[?kcmc|刑法学?]'
+     and s202.JSGH = [?jsgh|02067?]
+     and s202.SKDD LIKE '[?skdd|JD206?]'
+     and s202.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s202.SJ,'YYYY-MM-DD') like '[?sj2|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s203">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj2" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s203.djjk) is null then -1 else (s203.djjk)end) as djjk203,
+(case when s203.status=1 then '√'
+  when s203.status=2 then '×'
+ when s203.status=3 then '○'
+ when s203.status=4 then '○'
+ when s203.status=5 then '△'
+ when s203.status=6 then '#'
+end) as status203
+from studentcheck s203
+where s203.djjk=3
+     and s203.XN = [?xn|2014?]
+     and s203.XQ = [?xq|2?]
+     and s203.KCMC LIKE '[?kcmc|刑法学?]'
+     and s203.JSGH = [?jsgh|02067?]
+     and s203.SKDD LIKE '[?skdd|JD206?]'
+     and s203.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s203.SJ,'YYYY-MM-DD') like '[?sj2|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s204">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj2" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s204.djjk) is null then -1 else (s204.djjk)end) as djjk204,
+(case when s204.status=1 then '√'
+  when s204.status=2 then '×'
+ when s204.status=3 then '○'
+ when s204.status=4 then '○'
+ when s204.status=5 then '△'
+ when s204.status=6 then '#'
+end) as status204
+from studentcheck s204
+where s204.djjk=4
+     and s204.XN = [?xn|2014?]
+     and s204.XQ = [?xq|2?]
+     and s204.KCMC LIKE '[?kcmc|刑法学?]'
+     and s204.JSGH = [?jsgh|02067?]
+     and s204.SKDD LIKE '[?skdd|JD206?]'
+     and s204.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s204.SJ,'YYYY-MM-DD') like '[?sj2|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s205">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj2" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s205.djjk) is null then -1 else (s205.djjk)end) as djjk205,
+(case when s205.status=1 then '√'
+  when s205.status=2 then '×'
+ when s205.status=3 then '○'
+ when s205.status=4 then '○'
+ when s205.status=5 then '△'
+ when s205.status=6 then '#'
+end) as status205
+from studentcheck s205
+where s205.djjk=5
+     and s205.XN = [?xn|2014?]
+     and s205.XQ = [?xq|2?]
+     and s205.KCMC LIKE '[?kcmc|刑法学?]'
+     and s205.JSGH = [?jsgh|02067?]
+     and s205.SKDD LIKE '[?skdd|JD206?]'
+     and s205.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s205.SJ,'YYYY-MM-DD') like '[?sj2|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s206">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj2" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s206.djjk) is null then -1 else (s206.djjk)end) as djjk206,
+(case when s206.status=1 then '√'
+  when s206.status=2 then '×'
+ when s206.status=3 then '○'
+ when s206.status=4 then '○'
+ when s206.status=5 then '△'
+ when s206.status=6 then '#'
+end) as status206
+from studentcheck s206
+where s206.djjk=6
+     and s206.XN = [?xn|2014?]
+     and s206.XQ = [?xq|2?]
+     and s206.KCMC LIKE '[?kcmc|刑法学?]'
+     and s206.JSGH = [?jsgh|02067?]
+     and s206.SKDD LIKE '[?skdd|JD206?]'
+     and s206.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s206.SJ,'YYYY-MM-DD') like '[?sj2|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s207">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj2" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s207.djjk) is null then -1 else (s207.djjk)end) as djjk207,
+(case when s207.status=1 then '√'
+  when s207.status=2 then '×'
+ when s207.status=3 then '○'
+ when s207.status=4 then '○'
+ when s207.status=5 then '△'
+ when s207.status=6 then '#'
+end) as status207
+from studentcheck s207
+where s207.djjk=7
+     and s207.XN = [?xn|2014?]
+     and s207.XQ = [?xq|2?]
+     and s207.KCMC LIKE '[?kcmc|刑法学?]'
+     and s207.JSGH = [?jsgh|02067?]
+     and s207.SKDD LIKE '[?skdd|JD206?]'
+     and s207.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s207.SJ,'YYYY-MM-DD') like '[?sj2|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s208">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj2" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s208.djjk) is null then -1 else (s208.djjk)end) as djjk208,
+(case when s208.status=1 then '√'
+  when s208.status=2 then '×'
+ when s208.status=3 then '○'
+ when s208.status=4 then '○'
+ when s208.status=5 then '△'
+ when s208.status=6 then '#'
+end) as status208
+from studentcheck s208
+where s208.djjk=8
+     and s208.XN = [?xn|2014?]
+     and s208.XQ = [?xq|2?]
+     and s208.KCMC LIKE '[?kcmc|刑法学?]'
+     and s208.JSGH = [?jsgh|02067?]
+     and s208.SKDD LIKE '[?skdd|JD206?]'
+     and s208.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s208.SJ,'YYYY-MM-DD') like '[?sj2|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s209">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj2" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s209.djjk) is null then -1 else (s209.djjk)end) as djjk209,
+(case when s209.status=1 then '√'
+  when s209.status=2 then '×'
+ when s209.status=3 then '○'
+ when s209.status=4 then '○'
+ when s209.status=5 then '△'
+ when s209.status=6 then '#'
+end)  as status209
+from studentcheck s209
+where s209.djjk=9
+     and s209.XN = [?xn|2014?]
+     and s209.XQ = [?xq|2?]
+     and s209.KCMC LIKE '[?kcmc|刑法学?]'
+     and s209.JSGH = [?jsgh|02067?]
+     and s209.SKDD LIKE '[?skdd|JD206?]'
+     and s209.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s209.SJ,'YYYY-MM-DD') like '[?sj2|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s210">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj2" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s210.djjk) is null then -1 else (s210.djjk)end) as djjk210,
+(case when s210.status=1 then '√'
+  when s210.status=2 then '×'
+ when s210.status=3 then '○'
+ when s210.status=4 then '○'
+ when s210.status=5 then '△'
+ when s210.status=6 then '#'
+end) as status210
+from studentcheck s210
+where s210.djjk=10
+     and s210.XN = [?xn|2014?]
+     and s210.XQ = [?xq|2?]
+     and s210.KCMC LIKE '[?kcmc|刑法学?]'
+     and s210.JSGH = [?jsgh|02067?]
+     and s210.SKDD LIKE '[?skdd|JD206?]'
+     and s210.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s210.SJ,'YYYY-MM-DD') like '[?sj2|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s211">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj2" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s211.djjk) is null then -1 else (s211.djjk)end) as djjk211,
+(case when s211.status=1 then '√'
+  when s211.status=2 then '×'
+ when s211.status=3 then '○'
+ when s211.status=4 then '○'
+ when s211.status=5 then '△'
+ when s211.status=6 then '#'
+end) as status211
+from studentcheck s211
+where s211.djjk=11
+     and s211.XN = [?xn|2014?]
+     and s211.XQ = [?xq|2?]
+     and s211.KCMC LIKE '[?kcmc|刑法学?]'
+     and s211.JSGH = [?jsgh|02067?]
+     and s211.SKDD LIKE '[?skdd|JD206?]'
+     and s211.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s211.SJ,'YYYY-MM-DD') like '[?sj2|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s302">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj3" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s302.djjk) is null then -1 else (s302.djjk)end) as djjk302,
+(case when s302.status=1 then '√'
+  when s302.status=2 then '×'
+ when s302.status=3 then '○'
+ when s302.status=4 then '○'
+ when s302.status=5 then '△'
+ when s302.status=6 then '#'
+end) as status302
+from studentcheck s302
+where s302.djjk=2
+     and s302.XN = [?xn|2014?]
+     and s302.XQ = [?xq|2?]
+     and s302.KCMC LIKE '[?kcmc|刑法学?]'
+     and s302.JSGH = [?jsgh|02067?]
+     and s302.SKDD LIKE '[?skdd|JD206?]'
+     and s302.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s302.SJ,'YYYY-MM-DD') like '[?sj3|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s303">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj3" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s303.djjk) is null then -1 else (s303.djjk)end) as djjk303,
+(case when s303.status=1 then '√'
+  when s303.status=2 then '×'
+ when s303.status=3 then '○'
+ when s303.status=4 then '○'
+ when s303.status=5 then '△'
+ when s303.status=6 then '#'
+end) as status303
+from studentcheck s303
+where s303.djjk=3
+     and s303.XN = [?xn|2014?]
+     and s303.XQ = [?xq|2?]
+     and s303.KCMC LIKE '[?kcmc|刑法学?]'
+     and s303.JSGH = [?jsgh|02067?]
+     and s303.SKDD LIKE '[?skdd|JD206?]'
+     and s303.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s303.SJ,'YYYY-MM-DD') like '[?sj3|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s304">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj3" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s304.djjk) is null then -1 else (s304.djjk)end) as djjk304,
+(case when s304.status=1 then '√'
+  when s304.status=2 then '×'
+ when s304.status=3 then '○'
+ when s304.status=4 then '○'
+ when s304.status=5 then '△'
+ when s304.status=6 then '#'
+end) as status304 
+from studentcheck s304
+where s304.djjk=4
+     and s304.XN = [?xn|2014?]
+     and s304.XQ = [?xq|2?]
+     and s304.KCMC LIKE '[?kcmc|刑法学?]'
+     and s304.JSGH = [?jsgh|02067?]
+     and s304.SKDD LIKE '[?skdd|JD206?]'
+     and s304.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s304.SJ,'YYYY-MM-DD') like '[?sj3|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s305">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj3" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s305.djjk) is null then -1 else (s305.djjk)end) as djjk305,
+(case when s305.status=1 then '√'
+  when s305.status=2 then '×'
+ when s305.status=3 then '○'
+ when s305.status=4 then '○'
+ when s305.status=5 then '△'
+ when s305.status=6 then '#'
+end)  as status305
+from studentcheck s305
+where s305.djjk=5
+     and s305.XN = [?xn|2014?]
+     and s305.XQ = [?xq|2?]
+     and s305.KCMC LIKE '[?kcmc|刑法学?]'
+     and s305.JSGH = [?jsgh|02067?]
+     and s305.SKDD LIKE '[?skdd|JD206?]'
+     and s305.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s305.SJ,'YYYY-MM-DD') like '[?sj3|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s306">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj3" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s306.djjk) is null then -1 else (s306.djjk)end) as djjk306,
+(case when s306.status=1 then '√'
+  when s306.status=2 then '×'
+ when s306.status=3 then '○'
+ when s306.status=4 then '○'
+ when s306.status=5 then '△'
+ when s306.status=6 then '#'
+end) as status306
+from studentcheck s306
+where s306.djjk=6
+     and s306.XN = [?xn|2014?]
+     and s306.XQ = [?xq|2?]
+     and s306.KCMC LIKE '[?kcmc|刑法学?]'
+     and s306.JSGH = [?jsgh|02067?]
+     and s306.SKDD LIKE '[?skdd|JD206?]'
+     and s306.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s306.SJ,'YYYY-MM-DD') like '[?sj3|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s307">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj3" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s307.djjk) is null then -1 else (s307.djjk)end) as djjk307,
+(case when s307.status=1 then '√'
+  when s307.status=2 then '×'
+ when s307.status=3 then '○'
+ when s307.status=4 then '○'
+ when s307.status=5 then '△'
+ when s307.status=6 then '#'
+end)  as status307
+from studentcheck s307
+where s307.djjk=7
+     and s307.XN = [?xn|2014?]
+     and s307.XQ = [?xq|2?]
+     and s307.KCMC LIKE '[?kcmc|刑法学?]'
+     and s307.JSGH = [?jsgh|02067?]
+     and s307.SKDD LIKE '[?skdd|JD206?]'
+     and s307.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s307.SJ,'YYYY-MM-DD') like '[?sj3|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s308">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj3" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s308.djjk) is null then -1 else (s308.djjk)end) as djjk308,
+(case when s308.status=1 then '√'
+  when s308.status=2 then '×'
+ when s308.status=3 then '○'
+ when s308.status=4 then '○'
+ when s308.status=5 then '△'
+ when s308.status=6 then '#'
+end)  as status308
+from studentcheck s308
+where s308.djjk=8
+     and s308.XN = [?xn|2014?]
+     and s308.XQ = [?xq|2?]
+     and s308.KCMC LIKE '[?kcmc|刑法学?]'
+     and s308.JSGH = [?jsgh|02067?]
+     and s308.SKDD LIKE '[?skdd|JD206?]'
+     and s308.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s308.SJ,'YYYY-MM-DD') like '[?sj3|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s309">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj3" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s309.djjk) is null then -1 else (s309.djjk)end) as djjk309,
+(case when s309.status=1 then '√'
+  when s309.status=2 then '×'
+ when s309.status=3 then '○'
+ when s309.status=4 then '○'
+ when s309.status=5 then '△'
+ when s309.status=6 then '#'
+end)  as status309
+from studentcheck s309
+where s309.djjk=9
+     and s309.XN = [?xn|2014?]
+     and s309.XQ = [?xq|2?]
+     and s309.KCMC LIKE '[?kcmc|刑法学?]'
+     and s309.JSGH = [?jsgh|02067?]
+     and s309.SKDD LIKE '[?skdd|JD206?]'
+     and s309.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s309.SJ,'YYYY-MM-DD') like '[?sj3|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s310">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj3" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s310.djjk) is null then -1 else (s310.djjk)end) as djjk310,
+(case when s310.status=1 then '√'
+  when s310.status=2 then '×'
+ when s310.status=3 then '○'
+ when s310.status=4 then '○'
+ when s310.status=5 then '△'
+ when s310.status=6 then '#'
+end) as status310
+from studentcheck s310
+where s310.djjk=10
+     and s310.XN = [?xn|2014?]
+     and s310.XQ = [?xq|2?]
+     and s310.KCMC LIKE '[?kcmc|刑法学?]'
+     and s310.JSGH = [?jsgh|02067?]
+     and s310.SKDD LIKE '[?skdd|JD206?]'
+     and s310.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s310.SJ,'YYYY-MM-DD') like '[?sj3|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s311">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj3" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s311.djjk) is null then -1 else (s311.djjk)end) as djjk311,
+(case when s311.status=1 then '√'
+  when s311.status=2 then '×'
+ when s311.status=3 then '○'
+ when s311.status=4 then '○'
+ when s311.status=5 then '△'
+ when s311.status=6 then '#'
+end) as status311
+from studentcheck s311
+where s311.djjk=11
+     and s311.XN = [?xn|2014?]
+     and s311.XQ = [?xq|2?]
+     and s311.KCMC LIKE '[?kcmc|刑法学?]'
+     and s311.JSGH = [?jsgh|02067?]
+     and s311.SKDD LIKE '[?skdd|JD206?]'
+     and s311.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s311.SJ,'YYYY-MM-DD') like '[?sj3|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s402">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj4" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s402.djjk) is null then -1 else (s402.djjk)end) as djjk402,
+(case when s402.status=1 then '√'
+  when s402.status=2 then '×'
+ when s402.status=3 then '○'
+ when s402.status=4 then '○'
+ when s402.status=5 then '△'
+ when s402.status=6 then '#'
+end) as status402
+from studentcheck s402
+where s402.djjk=2
+     and s402.XN = [?xn|2014?]
+     and s402.XQ = [?xq|2?]
+     and s402.KCMC LIKE '[?kcmc|刑法学?]'
+     and s402.JSGH = [?jsgh|02067?]
+     and s402.SKDD LIKE '[?skdd|JD206?]'
+     and s402.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s402.SJ,'YYYY-MM-DD') like '[?sj4|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s403">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj4" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s403.djjk) is null then -1 else (s403.djjk)end) as djjk403,
+(case when s403.status=1 then '√'
+  when s403.status=2 then '×'
+ when s403.status=3 then '○'
+ when s403.status=4 then '○'
+ when s403.status=5 then '△'
+ when s403.status=6 then '#'
+end) as status403
+from studentcheck s403
+where s403.djjk=3
+     and s403.XN = [?xn|2014?]
+     and s403.XQ = [?xq|2?]
+     and s403.KCMC LIKE '[?kcmc|刑法学?]'
+     and s403.JSGH = [?jsgh|02067?]
+     and s403.SKDD LIKE '[?skdd|JD206?]'
+     and s403.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s403.SJ,'YYYY-MM-DD') like '[?sj4|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s404">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj4" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s404.djjk) is null then -1 else (s404.djjk)end) as djjk404,
+(case when s404.status=1 then '√'
+  when s404.status=2 then '×'
+ when s404.status=3 then '○'
+ when s404.status=4 then '○'
+ when s404.status=5 then '△'
+ when s404.status=6 then '#'
+end) as status404
+from studentcheck s404
+where s404.djjk=4
+     and s404.XN = [?xn|2014?]
+     and s404.XQ = [?xq|2?]
+     and s404.KCMC LIKE '[?kcmc|刑法学?]'
+     and s404.JSGH = [?jsgh|02067?]
+     and s404.SKDD LIKE '[?skdd|JD206?]'
+     and s404.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s404.SJ,'YYYY-MM-DD') like '[?sj4|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s405">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj4" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s405.djjk) is null then -1 else (s405.djjk)end) as djjk405,
+(case when s405.status=1 then '√'
+  when s405.status=2 then '×'
+ when s405.status=3 then '○'
+ when s405.status=4 then '○'
+ when s405.status=5 then '△'
+ when s405.status=6 then '#'
+end) as status405
+from studentcheck s405
+where s405.djjk=5
+     and s405.XN = [?xn|2014?]
+     and s405.XQ = [?xq|2?]
+     and s405.KCMC LIKE '[?kcmc|刑法学?]'
+     and s405.JSGH = [?jsgh|02067?]
+     and s405.SKDD LIKE '[?skdd|JD206?]'
+     and s405.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s405.SJ,'YYYY-MM-DD') like '[?sj4|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s406">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj4" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s406.djjk) is null then -1 else (s406.djjk)end) as djjk406,
+(case when s406.status=1 then '√'
+  when s406.status=2 then '×'
+ when s406.status=3 then '○'
+ when s406.status=4 then '○'
+ when s406.status=5 then '△'
+ when s406.status=6 then '#'
+end) as status406
+from studentcheck s406
+where s406.djjk=6
+     and s406.XN = [?xn|2014?]
+     and s406.XQ = [?xq|2?]
+     and s406.KCMC LIKE '[?kcmc|刑法学?]'
+     and s406.JSGH = [?jsgh|02067?]
+     and s406.SKDD LIKE '[?skdd|JD206?]'
+     and s406.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s406.SJ,'YYYY-MM-DD') like '[?sj4|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s407">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj4" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s407.djjk) is null then -1 else (s407.djjk)end) as djjk407,
+(case when s407.status=1 then '√'
+  when s407.status=2 then '×'
+ when s407.status=3 then '○'
+ when s407.status=4 then '○'
+ when s407.status=5 then '△'
+ when s407.status=6 then '#'
+end) as status407
+from studentcheck s407
+where s407.djjk=7
+     and s407.XN = [?xn|2014?]
+     and s407.XQ = [?xq|2?]
+     and s407.KCMC LIKE '[?kcmc|刑法学?]'
+     and s407.JSGH = [?jsgh|02067?]
+     and s407.SKDD LIKE '[?skdd|JD206?]'
+     and s407.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s407.SJ,'YYYY-MM-DD') like '[?sj4|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s408">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj4" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s408.djjk) is null then -1 else (s408.djjk)end) as djjk408,
+(case when s408.status=1 then '√'
+  when s408.status=2 then '×'
+ when s408.status=3 then '○'
+ when s408.status=4 then '○'
+ when s408.status=5 then '△'
+ when s408.status=6 then '#'
+end) as status408
+from studentcheck s408
+where s408.djjk=8
+     and s408.XN = [?xn|2014?]
+     and s408.XQ = [?xq|2?]
+     and s408.KCMC LIKE '[?kcmc|刑法学?]'
+     and s408.JSGH = [?jsgh|02067?]
+     and s408.SKDD LIKE '[?skdd|JD206?]'
+     and s408.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s408.SJ,'YYYY-MM-DD') like '[?sj4|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s409">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj4" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s409.djjk) is null then -1 else (s409.djjk)end) as djjk409,
+(case when s409.status=1 then '√'
+  when s409.status=2 then '×'
+ when s409.status=3 then '○'
+ when s409.status=4 then '○'
+ when s409.status=5 then '△'
+ when s409.status=6 then '#'
+end) as status409
+from studentcheck s409
+where s409.djjk=9
+     and s409.XN = [?xn|2014?]
+     and s409.XQ = [?xq|2?]
+     and s409.KCMC LIKE '[?kcmc|刑法学?]'
+     and s409.JSGH = [?jsgh|02067?]
+     and s409.SKDD LIKE '[?skdd|JD206?]'
+     and s409.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s409.SJ,'YYYY-MM-DD') like '[?sj4|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s410">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj4" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s410.djjk) is null then -1 else (s410.djjk)end) as djjk410,
+(case when s410.status=1 then '√'
+  when s410.status=2 then '×'
+ when s410.status=3 then '○'
+ when s410.status=4 then '○'
+ when s410.status=5 then '△'
+ when s410.status=6 then '#'
+end) as status410
+from studentcheck s410
+where s410.djjk=10
+     and s410.XN = [?xn|2014?]
+     and s410.XQ = [?xq|2?]
+     and s410.KCMC LIKE '[?kcmc|刑法学?]'
+     and s410.JSGH = [?jsgh|02067?]
+     and s410.SKDD LIKE '[?skdd|JD206?]'
+     and s410.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s410.SJ,'YYYY-MM-DD') like '[?sj4|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s411">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj4" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s411.djjk) is null then -1 else (s411.djjk)end) as djjk411,
+(case when s411.status=1 then '√'
+  when s411.status=2 then '×'
+ when s411.status=3 then '○'
+ when s411.status=4 then '○'
+ when s411.status=5 then '△'
+ when s411.status=6 then '#'
+end) as status411
+from studentcheck s411
+where s411.djjk=11
+     and s411.XN = [?xn|2014?]
+     and s411.XQ = [?xq|2?]
+     and s411.KCMC LIKE '[?kcmc|刑法学?]'
+     and s411.JSGH = [?jsgh|02067?]
+     and s411.SKDD LIKE '[?skdd|JD206?]'
+     and s411.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s411.SJ,'YYYY-MM-DD') like '[?sj4|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s502">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj5" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s502.djjk) is null then -1 else (s502.djjk)end) as djjk502,
+(case when s502.status=1 then '√'
+  when s502.status=2 then '×'
+ when s502.status=3 then '○'
+ when s502.status=4 then '○'
+ when s502.status=5 then '△'
+ when s502.status=6 then '#'
+end) as status502
+from studentcheck s502
+where s502.djjk=2
+     and s502.XN = [?xn|2014?]
+     and s502.XQ = [?xq|2?]
+     and s502.KCMC LIKE '[?kcmc|刑法学?]'
+     and s502.JSGH = [?jsgh|02067?]
+     and s502.SKDD LIKE '[?skdd|JD206?]'
+     and s502.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s502.SJ,'YYYY-MM-DD') like '[?sj5|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s503">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj5" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s503.djjk) is null then -1 else (s503.djjk)end) as djjk503,
+(case when s503.status=1 then '√'
+  when s503.status=2 then '×'
+ when s503.status=3 then '○'
+ when s503.status=4 then '○'
+ when s503.status=5 then '△'
+ when s503.status=6 then '#'
+end)  as status503
+from studentcheck s503
+where s503.djjk=3
+     and s503.XN = [?xn|2014?]
+     and s503.XQ = [?xq|2?]
+     and s503.KCMC LIKE '[?kcmc|刑法学?]'
+     and s503.JSGH = [?jsgh|02067?]
+     and s503.SKDD LIKE '[?skdd|JD206?]'
+     and s503.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s503.SJ,'YYYY-MM-DD') like '[?sj5|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s504">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj5" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s504.djjk) is null then -1 else (s504.djjk)end) as djjk504,
+(case when s504.status=1 then '√'
+  when s504.status=2 then '×'
+ when s504.status=3 then '○'
+ when s504.status=4 then '○'
+ when s504.status=5 then '△'
+ when s504.status=6 then '#'
+end)  as status504
+from studentcheck s504
+where s504.djjk=4
+     and s504.XN = [?xn|2014?]
+     and s504.XQ = [?xq|2?]
+     and s504.KCMC LIKE '[?kcmc|刑法学?]'
+     and s504.JSGH = [?jsgh|02067?]
+     and s504.SKDD LIKE '[?skdd|JD206?]'
+     and s504.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s504.SJ,'YYYY-MM-DD') like '[?sj5|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s505">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj5" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s505.djjk) is null then -1 else (s505.djjk)end) as djjk505,
+(case when s505.status=1 then '√'
+  when s505.status=2 then '×'
+ when s505.status=3 then '○'
+ when s505.status=4 then '○'
+ when s505.status=5 then '△'
+ when s505.status=6 then '#'
+end)  as status505
+from studentcheck s505
+where s505.djjk=5
+    and s505.XN = [?xn|2014?]
+     and s505.XQ = [?xq|2?]
+     and s505.KCMC LIKE '[?kcmc|刑法学?]'
+     and s505.JSGH = [?jsgh|02067?]
+     and s505.SKDD LIKE '[?skdd|JD206?]'
+     and s505.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s505.SJ,'YYYY-MM-DD') like '[?sj5|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s506">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj5" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s506.djjk) is null then -1 else (s506.djjk)end) as djjk506,
+(case when s506.status=1 then '√'
+  when s506.status=2 then '×'
+ when s506.status=3 then '○'
+ when s506.status=4 then '○'
+ when s506.status=5 then '△'
+ when s506.status=6 then '#'
+end)  as status506
+from studentcheck s506
+where s506.djjk=6
+    and s506.XN = [?xn|2014?]
+     and s506.XQ = [?xq|2?]
+     and s506.KCMC LIKE '[?kcmc|刑法学?]'
+     and s506.JSGH = [?jsgh|02067?]
+     and s506.SKDD LIKE '[?skdd|JD206?]'
+     and s506.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s506.SJ,'YYYY-MM-DD') like '[?sj5|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s507">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj5" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s507.djjk) is null then -1 else (s507.djjk)end) as djjk507,
+(case when s507.status=1 then '√'
+  when s507.status=2 then '×'
+ when s507.status=3 then '○'
+ when s507.status=4 then '○'
+ when s507.status=5 then '△'
+ when s507.status=6 then '#'
+end)  as status507
+from studentcheck s507
+where s507.djjk=7
+    and s507.XN = [?xn|2014?]
+     and s507.XQ = [?xq|2?]
+     and s507.KCMC LIKE '[?kcmc|刑法学?]'
+     and s507.JSGH = [?jsgh|02067?]
+     and s507.SKDD LIKE '[?skdd|JD206?]'
+     and s507.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s507.SJ,'YYYY-MM-DD') like '[?sj5|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s508">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj5" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s508.djjk) is null then -1 else (s508.djjk)end) as djjk508,
+(case when s508.status=1 then '√'
+  when s508.status=2 then '×'
+ when s508.status=3 then '○'
+ when s508.status=4 then '○'
+ when s508.status=5 then '△'
+ when s508.status=6 then '#'
+end)  as status508
+from studentcheck s508
+where s508.djjk=8
+    and s508.XN = [?xn|2014?]
+     and s508.XQ = [?xq|2?]
+     and s508.KCMC LIKE '[?kcmc|刑法学?]'
+     and s508.JSGH = [?jsgh|02067?]
+     and s508.SKDD LIKE '[?skdd|JD206?]'
+     and s508.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s508.SJ,'YYYY-MM-DD') like '[?sj5|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s509">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj5" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s509.djjk) is null then -1 else (s509.djjk)end) as djjk509,
+(case when s509.status=1 then '√'
+  when s509.status=2 then '×'
+ when s509.status=3 then '○'
+ when s509.status=4 then '○'
+ when s509.status=5 then '△'
+ when s509.status=6 then '#'
+end) as status509
+from studentcheck s509
+where s509.djjk=9
+    and s509.XN = [?xn|2014?]
+     and s509.XQ = [?xq|2?]
+     and s509.KCMC LIKE '[?kcmc|刑法学?]'
+     and s509.JSGH = [?jsgh|02067?]
+     and s509.SKDD LIKE '[?skdd|JD206?]'
+     and s509.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s509.SJ,'YYYY-MM-DD') like '[?sj5|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s510">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj5" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s510.djjk) is null then -1 else (s510.djjk)end) as djjk510,
+(case when s510.status=1 then '√'
+  when s510.status=2 then '×'
+ when s510.status=3 then '○'
+ when s510.status=4 then '○'
+ when s510.status=5 then '△'
+ when s510.status=6 then '#'
+end) as status510
+from studentcheck s510
+where s510.djjk=10
+    and s510.XN = [?xn|2014?]
+     and s510.XQ = [?xq|2?]
+     and s510.KCMC LIKE '[?kcmc|刑法学?]'
+     and s510.JSGH = [?jsgh|02067?]
+     and s510.SKDD LIKE '[?skdd|JD206?]'
+     and s510.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s510.SJ,'YYYY-MM-DD') like '[?sj5|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s511">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj5" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s511.djjk) is null then -1 else (s511.djjk)end) as djjk511,
+(case when s511.status=1 then '√'
+  when s511.status=2 then '×'
+ when s511.status=3 then '○'
+ when s511.status=4 then '○'
+ when s511.status=5 then '△'
+ when s511.status=6 then '#'
+end) as status511
+from studentcheck s511
+where s511.djjk=11
+    and s511.XN = [?xn|2014?]
+     and s511.XQ = [?xq|2?]
+     and s511.KCMC LIKE '[?kcmc|刑法学?]'
+     and s511.JSGH = [?jsgh|02067?]
+     and s511.SKDD LIKE '[?skdd|JD206?]'
+     and s511.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s511.SJ,'YYYY-MM-DD') like '[?sj5|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s101">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj1" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s101.djjk) is null then -1 else (s101.djjk)end) as djjk101,
+(case when s101.status=1 then '√'
+  when s101.status=2 then '×'
+ when s101.status=3 then '○'
+ when s101.status=4 then '○'
+ when s101.status=5 then '△'
+ when s101.status=6 then '#'
+end) as status101
+from studentcheck s101
+where s101.djjk=1
+    and s101.XN = [?xn|2014?]
+     and s101.XQ = [?xq|2?]
+     and s101.KCMC LIKE '[?kcmc|刑法学?]'
+     and s101.JSGH = [?jsgh|02067?]
+     and s101.SKDD LIKE '[?skdd|JD206?]'
+     and s101.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s101.SJ,'YYYY-MM-DD') like '[?sj1|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s201">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj2" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s201.djjk) is null then -1 else (s201.djjk)end) as djjk201,
+(case when s201.status=1 then '√'
+  when s201.status=2 then '×'
+ when s201.status=3 then '○'
+ when s201.status=4 then '○'
+ when s201.status=5 then '△'
+ when s201.status=6 then '#'
+end) as status201
+from studentcheck s201
+where s201.djjk=1
+    and s201.XN = [?xn|2014?]
+     and s201.XQ = [?xq|2?]
+     and s201.KCMC LIKE '[?kcmc|刑法学?]'
+     and s201.JSGH = [?jsgh|02067?]
+     and s201.SKDD LIKE '[?skdd|JD206?]'
+     and s201.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s201.SJ,'YYYY-MM-DD') like '[?sj2|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s301">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj3" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s301.djjk) is null then -1 else (s301.djjk)end) as djjk301,
+(case when s301.status=1 then '√'
+  when s301.status=2 then '×'
+ when s301.status=3 then '○'
+ when s301.status=4 then '○'
+ when s301.status=5 then '△'
+ when s301.status=6 then '#'
+end) as status301
+from studentcheck s301
+where s301.djjk=1
+    and s301.XN = [?xn|2014?]
+     and s301.XQ = [?xq|2?]
+     and s301.KCMC LIKE '[?kcmc|刑法学?]'
+     and s301.JSGH = [?jsgh|02067?]
+     and s301.SKDD LIKE '[?skdd|JD206?]'
+     and s301.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s301.SJ,'YYYY-MM-DD') like '[?sj3|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s401">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj4" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s401.djjk) is null then -1 else (s401.djjk)end) as djjk401,
+(case when s401.status=1 then '√'
+  when s401.status=2 then '×'
+ when s401.status=3 then '○'
+ when s401.status=4 then '○'
+ when s401.status=5 then '△'
+ when s401.status=6 then '#'
+end) as status401
+from studentcheck s401
+where s401.djjk=1
+     and s401.XN = [?xn|2014?]
+     and s401.XQ = [?xq|2?]
+     and s401.KCMC LIKE '[?kcmc|刑法学?]'
+     and s401.JSGH = [?jsgh|02067?]
+     and s401.SKDD LIKE '[?skdd|JD206?]'
+     and s401.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s401.SJ,'YYYY-MM-DD') like '[?sj4|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+<NameTableData name="s501">
+<TableData class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xn" type="0" pop="true" />
+<O t="S">2014</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="xq" type="0" pop="true" />
+<O t="S">2</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="kcmc" type="0" pop="true" />
+<O t="S">刑法学</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="jsgh" type="0" pop="true" />
+<O t="S">02067</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="skdd" type="0" pop="true" />
+<O t="S">JD206</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="bj" type="0" pop="true" />
+<O t="S">06计算机1班</O></Parameter>
+<Parameter class="com.fr.report.parameter.DefaultParameter">
+<Attributes name="sj5" type="0" pop="true" />
+<O t="S">2014-05-09</O></Parameter>
+</Parameters>
+<Attributes type="0" isCache="false" />
+<Database class="com.fr.data.impl.NameDatabase">
+<DatabaseName><![CDATA[coa]]></DatabaseName>
+</Database>
+<Query><![CDATA[select
+--(case when (s501.djjk) is null then -1 else (s501.djjk)end) as djjk501,
+(case when s501.status=1 then '√'
+  when s501.status=2 then '×'
+ when s501.status=3 then '○'
+ when s501.status=4 then '○'
+ when s501.status=5 then '△'
+ when s501.status=6 then '#'
+end) as status501
+from studentcheck s501
+where s501.djjk=1
+     and s501.XN = [?xn|2014?]
+     and s501.XQ = [?xq|2?]
+     and s501.KCMC LIKE '[?kcmc|刑法学?]'
+     and s501.JSGH = [?jsgh|02067?]
+     and s501.SKDD LIKE '[?skdd|JD206?]'
+     and s501.BJ LIKE '[?bj|06计算机1班?]'
+     and to_char(s501.SJ,'YYYY-MM-DD') like '[?sj5|2014-05-09?]']]></Query>
+</TableData>
+</NameTableData>
+</TableDataMap>
+<ReportSettings shrinkToFit="false" headerHeight="0.33" footerHeight="0.33">
+<Margin top="0.27" left="0.7499999999999999" bottom="0.27" right="0.7499999999999999" />
+</ReportSettings>
+<ReportParameterAttr>
+<Parameters>
+</Parameters>
+<Attributes showWindow="true" delayPlaying="true" windowPosition="0" userDefineWindow="false" />
+</ReportParameterAttr>
+<AutoRecalculate>false</AutoRecalculate>
+<DesignAttributes>
+</DesignAttributes>
+<ReportWebAttr>
+<EmailManager mailHost="" password="" user="" fromEmailAddress="" />
+<ServerPrinter>
+</ServerPrinter>
+</ReportWebAttr>
+<ReportWriteAttr>
+</ReportWriteAttr>
+<RowHeight defaultValue="19.0">
+<![CDATA[40.0,19.0,19.0,20.0,58.0]]>
+</RowHeight>
+<ColumnWidth defaultValue="72.0">
+<![CDATA[33.0,47.0,21.0,21.0,21.0,21.0,21.0,21.0,21.0,21.0,21.0,21.0,21.0,21.0,21.0,21.0,21.0,21.0,21.0,21.0,21.0,21.0,21.0,21.0,21.0,21.0,21.0,23.0,23.0,23.0,23.0,23.0]]>
+</ColumnWidth>
+<FloatElementList>
+</FloatElementList>
+<CellElementList>
+<C c="0" r="0" cs="27" s="0"><O t="DSColumn"><Attributes dsName="s1" columnName="FXN1" />
+<O t="Formula" class="Formula" ><Attributes
+><![CDATA[="北京理工大学珠海学院" + FXN1 + "—"+XN1+"学年第 "+XQ1+" 学期 "+BJ1+" 考勤表"]]>
+</Attributes>
+</O></O></C>
+<C c="0" r="1" cs="27" s="1"><O t="DSColumn"><Attributes dsName="s1" columnName="BJ1" />
+</O></C>
+<C c="0" r="2" rs="3" s="2"><O t="S">序号</O></C>
+<C c="1" r="2" rs="2" s="3"><O t="S">日期</O></C>
+<C c="2" r="2" cs="25" s="3"><O t="S">课 程 学 生 出 勤 情 况</O></C>
+<C c="2" r="3" cs="5" s="3"><O t="DSColumn"><Attributes dsName="s1" columnName="FXN1" />
+<O t="Formula" class="Formula" ><Attributes
+><![CDATA[="" + MOUTH1 + ""+"  月  "+DAY1+"  日"]]>
+</Attributes>
+</O></O></C>
+<C c="7" r="3" cs="5" s="3"><O t="DSColumn"><Attributes dsName="s2" columnName="MOUTH2" />
+<O t="Formula" class="Formula" ><Attributes
+><![CDATA[="" + MOUTH2 + ""+"  月  "+DAY2+"  日"]]>
+</Attributes>
+</O></O></C>
+<C c="12" r="3" cs="5" s="3"><O t="DSColumn"><Attributes dsName="s3" columnName="DAY3" />
+<O t="Formula" class="Formula" ><Attributes
+><![CDATA[="" + MOUTH3 + ""+"  月  "+DAY3+"  日"]]>
+</Attributes>
+</O></O></C>
+<C c="17" r="3" cs="5" s="3"><O t="DSColumn"><Attributes dsName="s4" columnName="MOUTH4" />
+<O t="Formula" class="Formula" ><Attributes
+><![CDATA[="" + MOUTH4 + ""+"  月  "+DAY4+"  日"]]>
+</Attributes>
+</O></O></C>
+<C c="22" r="3" cs="5" s="3"><O t="DSColumn"><Attributes dsName="s5" columnName="MOUTH5" />
+<O t="Formula" class="Formula" ><Attributes
+><![CDATA[="" + MOUTH5 + ""+"  月  "+DAY5+"  日"]]>
+</Attributes>
+</O></O></C>
+<C c="1" r="4" s="4"><O type="BiasTextPainter">
+<IsBackSlash value="false"/>
+<![CDATA[ 节次| 姓名]]>
+</O>
+</C>
+<C c="2" r="4" s="4"><O t="S">1/2</O></C>
+<C c="3" r="4" s="4"><O t="S">3/5</O></C>
+<C c="4" r="4" s="4"><O t="S">6/7</O></C>
+<C c="5" r="4" s="4"><O t="S">8/9</O></C>
+<C c="6" r="4" s="1"><O t="S">10 / 12</O></C>
+<C c="7" r="4" s="4"><O t="S">1/2</O></C>
+<C c="8" r="4" s="4"><O t="S">3/5</O></C>
+<C c="9" r="4" s="4"><O t="S">6/7</O></C>
+<C c="10" r="4" s="4"><O t="S">8/9</O></C>
+<C c="11" r="4" s="1"><O t="S">10 / 12</O></C>
+<C c="12" r="4" s="4"><O t="S">1/2</O></C>
+<C c="13" r="4" s="4"><O t="S">3/5</O></C>
+<C c="14" r="4" s="4"><O t="S">6/7</O></C>
+<C c="15" r="4" s="4"><O t="S">8/9</O></C>
+<C c="16" r="4" s="1"><O t="S">10 / 12</O></C>
+<C c="17" r="4" s="4"><O t="S">1/2</O></C>
+<C c="18" r="4" s="4"><O t="S">3/5</O></C>
+<C c="19" r="4" s="4"><O t="S">6/7</O></C>
+<C c="20" r="4" s="4"><O t="S">8/9</O></C>
+<C c="21" r="4" s="1"><O t="S">10 / 12</O></C>
+<C c="22" r="4" s="4"><O t="S">1/2</O></C>
+<C c="23" r="4" s="4"><O t="S">3/5</O></C>
+<C c="24" r="4" s="4"><O t="S">6/7</O></C>
+<C c="25" r="4" s="4"><O t="S">8/9</O></C>
+<C c="26" r="4" s="1"><O t="S">10 / 12</O></C>
+<C c="0" r="5" s="1"><O t="ExpandSerial"><O t="Formula" class="Formula" ><Attributes
+><![CDATA[=$$$]]>
+</Attributes>
+</O><Serial><ST><![CDATA[1]]></ST><EN><![CDATA[]]></EN></Serial></O><Expand dir="0" />
+</C>
+<C c="1" r="5" s="1"><O t="DSColumn"><Attributes dsName="s1" columnName="XM1" />
+</O><Expand dir="0" />
+</C>
+<C c="2" r="5" s="3"><O t="DSColumn"><Attributes dsName="s101" columnName="STATUS101" />
+</O><Expand dir="0" />
+</C>
+<C c="3" r="5" s="3"><O t="DSColumn"><Attributes dsName="s103" columnName="STATUS103" />
+</O><Expand dir="0" />
+</C>
+<C c="4" r="5" s="3"><O t="DSColumn"><Attributes dsName="s106" columnName="STATUS106" />
+</O><Expand dir="0" />
+</C>
+<C c="5" r="5" s="3"><O t="DSColumn"><Attributes dsName="s108" columnName="STATUS108" />
+</O><Expand dir="0" />
+</C>
+<C c="6" r="5" s="3"><O t="DSColumn"><Attributes dsName="s110" columnName="STATUS110" />
+</O><Expand dir="0" />
+</C>
+<C c="7" r="5" s="1"><O t="DSColumn"><Attributes dsName="s201" columnName="STATUS201" />
+</O><Expand dir="0" />
+</C>
+<C c="8" r="5" s="1"><O t="DSColumn"><Attributes dsName="s203" columnName="STATUS203" />
+</O><Expand dir="0" />
+</C>
+<C c="9" r="5" s="1"><O t="DSColumn"><Attributes dsName="s206" columnName="STATUS206" />
+</O><Expand dir="0" />
+</C>
+<C c="10" r="5" s="1"><O t="DSColumn"><Attributes dsName="s208" columnName="STATUS208" />
+</O><Expand dir="0" />
+</C>
+<C c="11" r="5" s="1"><O t="DSColumn"><Attributes dsName="s210" columnName="STATUS210" />
+</O><Expand dir="0" />
+</C>
+<C c="12" r="5" s="1"><O t="DSColumn"><Attributes dsName="s301" columnName="STATUS301" />
+</O><Expand dir="0" />
+</C>
+<C c="13" r="5" s="1"><O t="DSColumn"><Attributes dsName="s303" columnName="STATUS303" />
+</O><Expand dir="0" />
+</C>
+<C c="14" r="5" s="1"><O t="DSColumn"><Attributes dsName="s306" columnName="STATUS306" />
+</O><Expand dir="0" />
+</C>
+<C c="15" r="5" s="1"><O t="DSColumn"><Attributes dsName="s308" columnName="STATUS308" />
+</O><Expand dir="0" />
+</C>
+<C c="16" r="5" s="1"><O t="DSColumn"><Attributes dsName="s310" columnName="STATUS310" />
+</O><Expand dir="0" />
+</C>
+<C c="17" r="5" s="1"><O t="DSColumn"><Attributes dsName="s401" columnName="STATUS401" />
+</O><Expand dir="0" />
+</C>
+<C c="18" r="5" s="1"><O t="DSColumn"><Attributes dsName="s403" columnName="STATUS403" />
+</O><Expand dir="0" />
+</C>
+<C c="19" r="5" s="1"><O t="DSColumn"><Attributes dsName="s406" columnName="STATUS406" />
+</O><Expand dir="0" />
+</C>
+<C c="20" r="5" s="1"><O t="DSColumn"><Attributes dsName="s408" columnName="STATUS408" />
+</O><Expand dir="0" />
+</C>
+<C c="21" r="5" s="1"><O t="DSColumn"><Attributes dsName="s410" columnName="STATUS410" />
+</O><Expand dir="0" />
+</C>
+<C c="22" r="5" s="1"><O t="DSColumn"><Attributes dsName="s501" columnName="STATUS501" />
+</O><Expand dir="0" />
+</C>
+<C c="23" r="5" s="1"><O t="DSColumn"><Attributes dsName="s503" columnName="STATUS503" />
+</O><Expand dir="0" />
+</C>
+<C c="24" r="5" s="1"><O t="DSColumn"><Attributes dsName="s506" columnName="STATUS506" />
+</O><Expand dir="0" />
+</C>
+<C c="25" r="5" s="1"><O t="DSColumn"><Attributes dsName="s508" columnName="STATUS508" />
+</O><Expand dir="0" />
+</C>
+<C c="26" r="5" s="1"><O t="DSColumn"><Attributes dsName="s510" columnName="STATUS510" />
+</O><Expand dir="0" />
+</C>
+<C c="14" r="6"><O t="S"></O></C>
+<C c="3" r="10"><O t="S"></O></C>
+</CellElementList>
+</Report>
+<StyleList>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="1" size="14" />
+<Background name="NullBackground" />
+<Border></Border>
+</Style>
+<Style>
+<FRFont name="SimSun" style="0" size="12" />
+<Background name="NullBackground" />
+<Border><Top style="1" /><Bottom style="1" /><Left style="1" /><Right style="1" /></Border>
+</Style>
+<Style horizontal_alignment="0" isVerticalText="1" textDirection="0">
+<FRFont name="SimSun" style="0" size="12" />
+<Background name="NullBackground" />
+<Border><Top style="1" /><Bottom style="1" /><Left style="1" /><Right style="1" /></Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12" />
+<Background name="NullBackground" />
+<Border><Top style="1" /><Bottom style="1" /><Left style="1" /><Right style="1" /></Border>
+</Style>
+<Style horizontal_alignment="0" isVerticalText="1" textDirection="1">
+<FRFont name="SimSun" style="0" size="12" />
+<Background name="NullBackground" />
+<Border><Top style="1" /><Bottom style="1" /><Left style="1" /><Right style="1" /></Border>
+</Style>
+</StyleList>
+</WorkBook>

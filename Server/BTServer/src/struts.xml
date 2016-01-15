@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.objectTypeDeterminer" value="notiger" />
+	<constant name="struts.objectFactory.spring.autoWire" value="name" />
+	<!--上传文件最大为10M  -->
+	<constant name="struts.multipart.maxSize" value="1000000000" />
+	<constant name="struts.multipart.saveDir" value="/tmp" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.ui.templateDir" value="template" />
+	<constant name="struts.ui.templateSuffix" value="ftl" />
+
+	<include file="struts-default.xml" />
+	<include file="struts-plugin.xml" />
+	<package name="order" extends="json-default">
+		
+		<action name="loginAction" class="loginAction" method="login">
+			<result name="success" type="chain">bookListAction</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		
+		<action name="loginoutAction" class="loginAction" method="loginout">
+			<result name="success">/login.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		
+		<action name="bookListAction" class="bookListAction" method="bookList">
+			<result name="success">main.jsp</result>
+			<result name="input">/error.jsp</result>
+		</action>
+		
+		<action name="addorderAction" class="bookListAction" method="addorder">
+			<result name="success">order.jsp</result>
+			<result name="input">/error.jsp</result>
+		</action>
+		
+		<action name="viewOrderAction" class="bookListAction" method="vieworder">
+			<result name="success">order.jsp</result>
+			<result name="input">/error.jsp</result>
+		</action>
+
+	</package>
+
+</struts>

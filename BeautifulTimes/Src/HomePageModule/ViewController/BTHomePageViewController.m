@@ -22,6 +22,7 @@
 #import "BTXMPPTool.h"
 #import "BTIMTabBarController.h"
 #import "AppDelegate.h"
+#import "AFNetworking.h"
 
 static const CGFloat BUTTONWIDTH = 48;
 
@@ -218,8 +219,94 @@ static const CGFloat BUTTONWIDTH = 48;
 }
 
 - (void)addTimelineClick {
-    BTAddTimelineViewController *vc = [[BTAddTimelineViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    BTAddTimelineViewController *vc = [[BTAddTimelineViewController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
+//    NSString *savedPath = [NSHomeDirectory() stringByAppendingString:@"/Documents/4.ai"];
+//    NSMutableDictionary *infoDic = [[NSMutableDictionary alloc] init];
+//    
+//    [infoDic setObject:@"stu_id" forKey:@"120202021020"];
+//    [infoDic setObject:@"password" forKey:@"120202021020"];
+//    [self downloadFileWithOption:infoDic
+//                   withInferface:@"http://172.18.190.122:8080/BTServer/loginAction"
+//                       savedPath:savedPath
+//                 downloadSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                     NSLog(@"+++++++++%@", responseObject);
+//                 } downloadFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                     
+//                 } progress:^(float progress) {
+//                     
+//                 }];
+    [self didClickUploadButtonAction];
+    
+}
+
+- (void)downloadFileWithOption:(NSDictionary *)paramDic
+                 withInferface:(NSString*)requestURL
+                     savedPath:(NSString*)savedPath
+               downloadSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+               downloadFailure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+                      progress:(void (^)(float progress))progress
+
+{
+    
+    AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
+    NSMutableURLRequest *request =[serializer requestWithMethod:@"POST" URLString:requestURL parameters:paramDic error:nil];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
+    [operation setOutputStream:[NSOutputStream outputStreamToFileAtPath:savedPath append:NO]];
+    [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
+        float p = (float)totalBytesRead / totalBytesExpectedToRead;
+        progress(p);
+        NSLog(@"download：%f", (float)totalBytesRead / totalBytesExpectedToRead);
+        
+    }];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        success(operation,responseObject);
+        NSLog(@"下载成功");
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        success(operation,error);
+        
+        NSLog(@"下载失败");
+        
+    }];
+    
+    [operation start];
+    
+}
+
+
+#pragma mark - AFNetworking上传文件
+- (void)didClickUploadButtonAction{
+    
+    NSString *savedPath = [NSHomeDirectory() stringByAppendingString:@"/Documents/3.png"];
+    NSMutableDictionary *infoDic = [[NSMutableDictionary alloc] init];
+    NSURL *rl = [NSURL fileURLWithPath:savedPath];
+    [infoDic setObject:@"stu_id" forKey:@"120202021020"];
+    [infoDic setObject:@"password" forKey:@"120202021020"];
+    
+    AFHTTPRequestOperationManager *requestManager = [AFHTTPRequestOperationManager manager];
+    [requestManager POST:@"http://172.18.190.122:8080/BTServer/loginAction" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        /**
+         *  appendPartWithFileURL   //  指定上传的文件
+         *  name                    //  指定在服务器中获取对应文件或文本时的key
+         *  fileName                //  指定上传文件的原始文件名
+         *  mimeType                //  指定商家文件的MIME类型
+         */
+        [formData appendPartWithFileURL:rl name:@"file" fileName:[NSString stringWithFormat:@"%@.png",@"3"] mimeType:@"image/png" error:nil];
+        
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        [[[UIAlertView alloc] initWithTitle:@"上传结果" message:[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]  delegate:self cancelButtonTitle:@"" otherButtonTitles:nil] show];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"获取服务器响应出错");
+        
+    }];
+    
 }
 
 - (void)userCenterClick {

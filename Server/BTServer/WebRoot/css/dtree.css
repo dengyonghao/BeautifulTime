@@ -1,0 +1,48 @@
+.deeptree {
+	PADDING-RIGHT: 10px;
+	PADDING-LEFT: 10px;
+	PADDING-BOTTOM: 10px;
+	WIDTH: 100%;
+	PADDING-TOP: 10px;
+	HEIGHT: 100%;
+	BACKGROUND-COLOR: #89AADC
+}
+
+TD.node {
+	FONT-SIZE: 12px;
+	VERTICAL-ALIGN: middle;
+	COLOR: #000000;
+	FONT-FAMILY: verdana;
+	HEIGHT: 22px
+}
+
+#deeptree SPAN {
+	BORDER-RIGHT: #B7E0F7 1px solid;
+	PADDING-RIGHT: 2px;
+	BORDER-TOP: #B7E0F7 1px solid;
+	PADDING-TOP: 3px;
+	BORDER-LEFT: #B7E0F7 1px solid;
+	PADDING-LEFT: 2px;
+	BORDER-BOTTOM: #B7E0F7 1px solid;
+	PADDING-BOTTOM: 1px;
+	HEIGHT: 20px;
+	MARGIN-LEFT: 2px;
+	CURSOR: hand;
+}
+
+#deeptree SPAN.NodeOver {
+	BORDER-RIGHT: #3463A9 1px solid;
+	BORDER-TOP: #3463A9 1px solid;
+	BORDER-LEFT: #3463A9 1px solid;
+	BORDER-BOTTOM: #3463A9 1px solid;
+	BACKGROUND-COLOR: #D7E1F2
+}
+
+#deeptree SPAN.NodeFocus {
+	BACKGROUND-COLOR: #6DADD7;
+	color: #FFFFFF
+}
+
+#deeptree INPUT {
+	MARGIN-BOTTOM: 2px
+}

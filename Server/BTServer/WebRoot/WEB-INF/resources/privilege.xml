@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Privilege useCustom="false">
+<Roles>
+<!-- FineReport defines two privilege types, one is "write", the other is "view".-->
+<Role rolename="administrator" privileges="write,view"/>
+<Role rolename="viewer" privileges="view"/>
+<Role rolename="anonymous" privileges="view"/>
+</Roles>
+<Reportlets>
+</Reportlets>
+</Privilege>

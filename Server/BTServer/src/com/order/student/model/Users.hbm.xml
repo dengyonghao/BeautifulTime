@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+    <class name="com.order.student.model.Users" table="users" schema="dbopenfire">
+        <id name="stu_id" type="java.lang.String">
+            <column name="STU_ID" length="20" />
+            <generator class="assigned" />
+        </id>
+        
+        <property name="stu_name" type="java.lang.String">
+            <column name="STU_NAME"  not-null="true" />
+        </property>
+        
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD"  not-null="true" />
+        </property>
+        
+      </class>  
+</hibernate-mapping>
