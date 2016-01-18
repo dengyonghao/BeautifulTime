@@ -62,6 +62,8 @@
 		6563A7111C20009600D8D1FA /* BTJournalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6563A7101C20009500D8D1FA /* BTJournalManager.m */; };
 		65A934621C02BBC300FA0185 /* BTLanguageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A934611C02BBC300FA0185 /* BTLanguageManager.m */; };
 		65AD650B1BF57FB800785AC1 /* BTContacterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AD650A1BF57FB700785AC1 /* BTContacterCell.m */; };
+		65AD973C1C4C7EA000DAB0A3 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 65AD973B1C4C7EA000DAB0A3 /* 1.png */; };
+		65AD973E1C4C86AA00DAB0A3 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 65AD973D1C4C86AA00DAB0A3 /* 2.png */; };
 		65DBCEFE1BD754D900784DAC /* BTAddJournalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBCEFD1BD754D900784DAC /* BTAddJournalViewController.m */; };
 		65DBCF011BD7552800784DAC /* BTEditJournalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBCF001BD7552800784DAC /* BTEditJournalViewController.m */; };
 		65DBCF041BD7554700784DAC /* BTJournalListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBCF031BD7554700784DAC /* BTJournalListViewController.m */; };
@@ -418,6 +420,8 @@
 		65A934611C02BBC300FA0185 /* BTLanguageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLanguageManager.m; sourceTree = "<group>"; };
 		65AD65091BF57FB700785AC1 /* BTContacterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTContacterCell.h; sourceTree = "<group>"; };
 		65AD650A1BF57FB700785AC1 /* BTContacterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTContacterCell.m; sourceTree = "<group>"; };
+		65AD973B1C4C7EA000DAB0A3 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		65AD973D1C4C86AA00DAB0A3 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		65DBCEFC1BD754D900784DAC /* BTAddJournalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAddJournalViewController.h; sourceTree = "<group>"; };
 		65DBCEFD1BD754D900784DAC /* BTAddJournalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAddJournalViewController.m; sourceTree = "<group>"; };
 		65DBCEFF1BD7552800784DAC /* BTEditJournalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTEditJournalViewController.h; sourceTree = "<group>"; };
@@ -2101,6 +2105,8 @@
 		65E2D3311BCFC965001E29A9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				65AD973D1C4C86AA00DAB0A3 /* 2.png */,
+				65AD973B1C4C7EA000DAB0A3 /* 1.png */,
 				65E2D3321BCFC965001E29A9 /* Info.plist */,
 				65E2D3331BCFC965001E29A9 /* main.m */,
 				65E2D36F1BCFCDD4001E29A9 /* BeautifulTimes-Prefix.pch */,
@@ -2750,6 +2756,7 @@
 				65DE12AA1BD0E1AB00D01BCA /* guide_1@2x.png in Resources */,
 				65E2D3401BCFC966001E29A9 /* Main.storyboard in Resources */,
 				65DE12AB1BD0E1AB00D01BCA /* guide_1@3x.png in Resources */,
+				65AD973E1C4C86AA00DAB0A3 /* 2.png in Resources */,
 				65DE12AC1BD0E1AB00D01BCA /* guide_2@2x.png in Resources */,
 				65F52A5F1BFDC88700351941 /* Localizable.strings in Resources */,
 				65E2D36D1BCFCD84001E29A9 /* blackTheme.bundle in Resources */,
@@ -2757,6 +2764,7 @@
 				65DE12AF1BD0E1AB00D01BCA /* guide_3@2x.png in Resources */,
 				65DE12B01BD0E1AB00D01BCA /* guide_3@3x.jpg in Resources */,
 				65DE12B31BD0E1AB00D01BCA /* guide_4@3x.png in Resources */,
+				65AD973C1C4C7EA000DAB0A3 /* 1.png in Resources */,
 				65DBD0A61BD77CE700784DAC /* README.txt in Resources */,
 				65DE12A91BD0E1AB00D01BCA /* enterHome@3x.png in Resources */,
 				B44507041BCFFB9F008BD5AC /* Info.plist in Resources */,

@@ -31,7 +31,16 @@ public class StudentAction extends ActionSupport {
 	private OrderService orderService;
 	private String result;
 	private String file;
+	private File filePng;
 	
+	public File getFilePng() {
+		return filePng;
+	}
+
+	public void setFilePng(File filePng) {
+		this.filePng = filePng;
+	}
+
 	public String getFile() {
 		return file;
 	}
@@ -136,30 +145,26 @@ public class StudentAction extends ActionSupport {
 		writer = response.getWriter(); 
 //        HttpServletRequest request = ServletActionContext.getRequest();
         HttpServletRequest request = (HttpServletRequest)
-        		ActionContext.getContext().get(org.apache.struts2.StrutsStatics.HTTP_REQUEST);
-        
-      //获取请求文本字节长度
-        int formDataLength = request.getContentLength();
-        //取得ServletInputStream输入流对象
-        DataInputStream dataStream = new DataInputStream(request.getInputStream());
-        byte body[] = new byte[formDataLength];
-        int totalBytes = 0;
-        while (totalBytes < formDataLength) {
-            int bytes = dataStream.read(body, totalBytes, formDataLength);
-            totalBytes += bytes;
-        }
-        String textBody = new String(body, "ISO-8859-1");
-        System.out.println("||||||||||||-------" + textBody);
+        		ActionContext.getContext().get(org.apache.struts2.StrutsStatics.HTTP_REQUEST);  
         
         
-        InputStream in = request.getInputStream();
+        InputStream in = new BufferedInputStream(new FileInputStream(getFilePng()));
+        
         System.out.println("******************" + request.getContentLength());
+        System.out.println("******************" + request.getContentType());
+        System.out.println("******************" + request.getContextPath());
+        System.out.println("******************" + request.getPathInfo());
+        System.out.println("******************" + request.getRequestURI());
+        System.out.println("******************" + request.getRequestURL());
+        System.out.println("******************" + request.getAttribute("filePng"));
+        
         String path = ServletActionContext.getServletContext().getRealPath("/");
-        File f = new File(path + "file.png");
-
+        File f = new File(path + "file33333333.png");
+        File fi = getFilePng();
+        System.out.println("~~~~~~~~~~~~" + fi.length());
         FileOutputStream fout = new FileOutputStream(f);
         byte[] b=new byte[1024];
-        System.out.println("-------------" + in.read(b));
+//        System.out.println("-------------" + in.read(b));
         int n = 0;
         while ((n = in.read(b)) != -1){
             fout.write(b,0,n);

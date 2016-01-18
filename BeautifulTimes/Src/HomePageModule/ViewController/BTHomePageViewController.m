@@ -282,6 +282,7 @@ static const CGFloat BUTTONWIDTH = 48;
     
     NSString *savedPath = [NSHomeDirectory() stringByAppendingString:@"/Documents/3.png"];
     NSMutableDictionary *infoDic = [[NSMutableDictionary alloc] init];
+    NSURL *filePath = [[NSBundle mainBundle] URLForResource:@"2" withExtension:@"png"];
     NSURL *rl = [NSURL fileURLWithPath:savedPath];
     [infoDic setObject:@"stu_id" forKey:@"120202021020"];
     [infoDic setObject:@"password" forKey:@"120202021020"];
@@ -290,7 +291,7 @@ static const CGFloat BUTTONWIDTH = 48;
     requestManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     
     requestManager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [requestManager POST:@"http://192.168.0.105:8080/BTServer/loginAction" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [requestManager POST:@"http://172.18.190.51:8080/BTServer/loginAction" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
         /**
          *  appendPartWithFileURL   //  指定上传的文件
@@ -298,7 +299,7 @@ static const CGFloat BUTTONWIDTH = 48;
          *  fileName                //  指定上传文件的原始文件名
          *  mimeType                //  指定商家文件的MIME类型
          */
-        [formData appendPartWithFileURL:rl name:@"file" fileName:[NSString stringWithFormat:@"%@.png",@"3"] mimeType:@"image/png" error:nil];
+        [formData appendPartWithFileURL:filePath name:@"filePng" fileName:[NSString stringWithFormat:@"2.png"] mimeType:@"image/png" error:nil];
         NSLog(@"%@",formData);
         
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
