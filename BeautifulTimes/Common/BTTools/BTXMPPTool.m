@@ -73,13 +73,13 @@ static BTXMPPTool *xmppTool;
         [self setupXmppStream];
     }
     NSString *user = [[NSUserDefaults standardUserDefaults] valueForKey:userID];
-    XMPPJID *myJid=[XMPPJID jidWithUser:user domain:ServerName resource:nil];
-    self.jid=myJid;
-    _xmppStream.myJID=myJid;
-    _xmppStream.hostName=ServerAddress;
-    _xmppStream.hostPort=ServerPort;
+    XMPPJID *myJid = [XMPPJID jidWithUser:user domain:ServerName resource:nil];
+    self.jid = myJid;
+    _xmppStream.myJID = myJid;
+    _xmppStream.hostName = ServerAddress;
+    _xmppStream.hostPort = ServerPort;
     
-    NSError *error=nil;
+    NSError *error = nil;
     //连接到服务器
     if(![_xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:&error]){
         NSLog(@"%@",error);
@@ -112,7 +112,7 @@ static BTXMPPTool *xmppTool;
 -(void)sendPwdToHost
 {
     NSError *error=nil;
-    NSString *password=@"x5829189130";
+    NSString *password = [[NSUserDefaults standardUserDefaults] valueForKey:userPassword];
     //验证密码
     [_xmppStream authenticateWithPassword:password error:&error];
     if(error){
@@ -151,17 +151,16 @@ static BTXMPPTool *xmppTool;
 - (void)goOffline
 {
     XMPPPresence *presence = [XMPPPresence presenceWithType:@"unavailable"];
-    
     [_xmppStream sendElement:presence];
 }
 
 #pragma mark 登录的方法
 -(void)login:(XMPPResultBlock)xmppBlock {
-    _resultBlock=xmppBlock;
+    _resultBlock = xmppBlock;
     [_xmppStream disconnect];
-    //连接到主机
     [self connectToHost];
 }
+
 #pragma mark 退出登录的操作
 -(void)xmppLoginOut
 {
@@ -201,7 +200,7 @@ static BTXMPPTool *xmppTool;
 
 #pragma mark 调用注册的方法
 -(void)regist:(XMPPResultBlock)xmppType {
-    _resultBlock=xmppType;
+    _resultBlock = xmppType;
     [_xmppStream disconnect];
     [self connectToHost];
 }

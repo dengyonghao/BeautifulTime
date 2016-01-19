@@ -114,6 +114,11 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
         }else{
             friend.headIcon = [UIImage imageWithData: [xmppToll.avatar photoDataForJID:user.jid]];
         }
+        
+        if (!friend.headIcon) {
+            friend.headIcon = BT_LOADIMAGE(@"com_ic_defaultIcon");
+        }
+        
         friend.nickName = user.nickname;
 
 //        friend.vcClass = [ChatController class];

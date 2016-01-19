@@ -104,7 +104,7 @@
     return YES;
 }
 
-#pragma mark 点击登陆的方法
+#pragma mark 点击注册的方法
 -(void)registerClick {
     BTRegisterAccountViewController *vc = [[BTRegisterAccountViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
@@ -113,14 +113,14 @@
 #pragma mark 点击登陆的方法
 -(void)loginClick
 {
-    NSString *userName = [self trim:self.username.text];
-    NSString *password = [self trim:self.password.text];
+    NSString *userName = [self.username.text trim];
+    NSString *password = [self.password.text trim];
 
     [[NSUserDefaults standardUserDefaults] setValue:userName forKey:userID];
     [[NSUserDefaults standardUserDefaults] setValue:password forKey:userPassword];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    BTXMPPTool *xmppTool=[BTXMPPTool sharedInstance];
-    xmppTool.registerOperation=NO;
+    BTXMPPTool *xmppTool = [BTXMPPTool sharedInstance];
+    xmppTool.registerOperation = NO;
     [MBProgressHUD showMessage:@"登录中..." toView:self.view];
     WS(weakSelf);
     [self.view endEditing:YES];
@@ -130,6 +130,7 @@
 }
 #pragma mark 用户登录验证的方法
 -(void)handle:(XMPPResultType)xmppType {
+    [MBProgressHUD hideHUDForView:self.view];
     dispatch_async(dispatch_get_main_queue(), ^{
         switch (xmppType) {
             case XMPPResultSuccess:
@@ -162,12 +163,6 @@
     BTIMTabBarController *tab = [[BTIMTabBarController alloc]init];
     [AppDelegate getInstance].window.rootViewController = tab;
 
-}
-
-#pragma mark 截取字符串空格的方法
--(NSString*)trim:(NSString*)str {
-    str=[str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    return [str lowercaseString]; //转成小写
 }
 
 - (UIButton *)loginBtn {
