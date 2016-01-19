@@ -198,9 +198,7 @@ static const CGFloat itemWidth = 70;
     newJournal.journalDate = [NSDate date];
     newJournal.site = self.model.city;
     NSData *photosData = [NSKeyedArchiver archivedDataWithRootObject:[BTJournalController sharedInstance].photos];
-    
-    NSArray *directoryPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectory = [directoryPaths objectAtIndex:0];
+        NSString *documentDirectory = [BTTool getDocumentDirectory];
     NSString *uid = [self getSaveFilePath];
     NSString *savePath = [documentDirectory stringByAppendingPathComponent:uid];
     NSFileManager *fileManager = [NSFileManager defaultManager];

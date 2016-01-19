@@ -206,8 +206,7 @@ static const CGFloat itemWidth = 70.0f;
     [_audioSession setActive:YES error:nil];
     if (self.journal.records){
         if (!_player) {
-            NSArray *directoryPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-            NSString *documentDirectory = [directoryPaths objectAtIndex:0];
+            NSString *documentDirectory = [BTTool getDocumentDirectory];
             NSString *recordPath = [documentDirectory stringByAppendingPathComponent:self.journal.records];
             NSData *recordData = [[NSData alloc] initWithContentsOfFile:recordPath];
             _player = [[AVAudioPlayer alloc] initWithData:recordData error:nil];
@@ -360,8 +359,8 @@ static const CGFloat itemWidth = 70.0f;
         [_photos setImage:BT_LOADIMAGE(@"com_ic_photo")];
         [_photos setBorderWithWidth:1 color:[[BTThemeManager getInstance] BTThemeColor:@"cl_line_b_leftbar"] cornerRadius:5];
         _photos.userInteractionEnabled = YES;
-        NSArray *directoryPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentDirectory = [directoryPaths objectAtIndex:0];
+        
+        NSString *documentDirectory = [BTTool getDocumentDirectory];
         NSString *photosPath = [documentDirectory stringByAppendingPathComponent:self.journal.photos];
         NSData *photosData = [[NSData alloc] initWithContentsOfFile:photosPath];
         

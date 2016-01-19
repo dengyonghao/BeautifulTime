@@ -106,8 +106,7 @@
     self.cityName.text = model.site;
     [self.calendarView bindData:model.journalDate];
     self.contentLaber.text = [[NSString alloc] initWithData:model.journalContent encoding:NSUTF8StringEncoding];
-    NSArray *directoryPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectory = [directoryPaths objectAtIndex:0];
+    NSString *documentDirectory = [BTTool getDocumentDirectory];
     NSString *photosPath = [documentDirectory stringByAppendingPathComponent:model.photos];
     NSData *photosData = [[NSData alloc] initWithContentsOfFile:photosPath];
     

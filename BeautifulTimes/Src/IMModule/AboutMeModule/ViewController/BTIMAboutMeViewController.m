@@ -57,6 +57,7 @@ static NSString *cellIdentifier = @"chatMessageListCell";
 }
 
 #pragma -mark getter
+
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc] init];
