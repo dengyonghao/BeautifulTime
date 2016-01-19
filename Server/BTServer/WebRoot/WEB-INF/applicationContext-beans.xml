@@ -19,6 +19,20 @@
 		</property>
 	</bean>
 	
+	<bean id="userDaoImpl" class="com.bt.user.dao.hibernate.UserDAOImpl"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="userServiceImpl" class="com.bt.user.service.impl.UserServiceImpl"
+		scope="prototype">
+		<property name="userDAO">
+			<ref bean="userDaoImpl" />
+		</property>
+	</bean>
+	
 	<!-- by 邓永豪-->
 	<!--显示书本信息（2015.01.08） -->
 	<bean id="bookDaoImpl" class="com.order.student.dao.hibernate.BookDAOImpl"
