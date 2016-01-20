@@ -19,9 +19,7 @@ static BTXMPPTool *xmppTool;
     XMPPMessageArchiving *_messageArching;
     //电子名片存贮
     XMPPvCardCoreDataStorage *_vCardStorage;
-    
 }
-
 
 @end
 
@@ -45,25 +43,23 @@ static BTXMPPTool *xmppTool;
     //1.添加自动连接模块
     _reconnect=[[XMPPReconnect alloc]init];
     [_reconnect activate:_xmppStream];
-    //    //2.添加电子名片模块
+    //2.添加电子名片模块
     _vCardStorage=[XMPPvCardCoreDataStorage sharedInstance];
     _vCard=[[XMPPvCardTempModule alloc]initWithvCardStorage:_vCardStorage];
     [_vCard activate:_xmppStream];  //激活
     
-    //    //3.添加头像模块
+    //3.添加头像模块
     _avatar=[[XMPPvCardAvatarModule alloc]initWithvCardTempModule:_vCard];
     [_avatar activate:_xmppStream];
-    //    //4.添加花名册模块
+    //4.添加花名册模块
     _rosterStorage=[[XMPPRosterCoreDataStorage alloc]init];
     _roster=[[XMPPRoster alloc]initWithRosterStorage:_rosterStorage];
     [_roster activate:_xmppStream];  //激活
-    //    //5.添加聊天模块    XMPPMessageArchivingCoreDataStorage
+    //5.添加聊天模块    XMPPMessageArchivingCoreDataStorage
     _messageStroage=[[XMPPMessageArchivingCoreDataStorage alloc]init];
     _messageArching=[[XMPPMessageArchiving alloc]initWithMessageArchivingStorage:_messageStroage];
     [_messageArching activate:_xmppStream];
     
-    
-    //添加代理   把xmpp流放到子线程
     [_xmppStream addDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
     
 }
@@ -81,13 +77,11 @@ static BTXMPPTool *xmppTool;
     _xmppStream.hostPort = ServerPort;
     
     NSError *error = nil;
-    //连接到服务器
     if(![_xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:&error]){
         NSLog(@"%@",error);
     }
-    
-    
 }
+
 #pragma mark 连接成功调用这个方法
 -(void)xmppStreamDidConnect:(XMPPStream *)sender
 {
@@ -109,6 +103,7 @@ static BTXMPPTool *xmppTool;
     }
     NSLog(@"连接断开");
 }
+
 #pragma mark .连接到服务器后 在发送密码
 -(void)sendPwdToHost
 {
@@ -120,7 +115,8 @@ static BTXMPPTool *xmppTool;
         NSLog(@"授权失败%@",error);
     }
 }
-#pragma mark 验证成功 （就是密码正确）
+
+#pragma mark 验证成功
 -(void)xmppStreamDidAuthenticate:(XMPPStream *)sender
 {
     NSLog(@"验证成功");
@@ -131,7 +127,7 @@ static BTXMPPTool *xmppTool;
     }
 }
 
-#pragma mark 验证失败 （就是密码错误）
+#pragma mark 验证失败
 -(void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(DDXMLElement *)error
 {
     NSLog(@"验证失败");
@@ -167,40 +163,29 @@ static BTXMPPTool *xmppTool;
 {
     [self goOffline];
     [_xmppStream disconnect];
-    
-//    UserOperation *user=[UserOperation shareduser];
-//    user.uname=nil;
-//    user.password=nil;
-//    user.loginStatus=NO; //退出登录状态
 }
 
 - (NSFetchedResultsController *)fetchedGroupResultsController
 {
-        NSManagedObjectContext *moc = [_rosterStorage mainThreadManagedObjectContext];
-        
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"XMPPGroupCoreDataStorageObject"
-                                                  inManagedObjectContext:moc];
-        
-        NSSortDescriptor *sd1 = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSManagedObjectContext *context = [_rosterStorage mainThreadManagedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"XMPPGroupCoreDataStorageObject"
+                                              inManagedObjectContext:context];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
     
-        NSArray *sortDescriptors = [NSArray arrayWithObjects:sd1, nil];
-        
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        [fetchRequest setEntity:entity];
-        [fetchRequest setSortDescriptors:sortDescriptors];
-        [fetchRequest setFetchBatchSize:10];
-        
-        NSFetchedResultsController *fetchedGroupResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                            managedObjectContext:moc
-                                                                              sectionNameKeyPath:@"name"
-                                                                                       cacheName:nil];
-        
-        NSError *error = nil;
-        if (![fetchedGroupResultsController performFetch:&error])
-        {
-            NSLog(@"Error performing fetch: %@", error);
-        }
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    [fetchRequest setFetchBatchSize:10];
     
+    NSFetchedResultsController *fetchedGroupResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                        managedObjectContext:context
+                                                                          sectionNameKeyPath:@"name"
+                                                                                   cacheName:nil];
+    NSError *error = nil;
+    if (![fetchedGroupResultsController performFetch:&error]) {
+        NSLog(@"Error performing fetch: %@", error);
+    }
     return fetchedGroupResultsController;
 }
 
@@ -237,15 +222,12 @@ static BTXMPPTool *xmppTool;
 }
 #pragma mark 注册成功
 -(void)xmppStreamDidRegister:(XMPPStream *)sender{
-    NSLog(@"注册成功");
     if(_resultBlock){
         _resultBlock(XMPPResultRegisterSuccess);
     }
 }
 #pragma mark 注册失败
 -(void)xmppStream:(XMPPStream *)sender didNotRegister:(DDXMLElement *)error{
-    
-    NSLog(@"注册失败 %@",error);
     if(_resultBlock){
         _resultBlock(XMPPResultRegisterFailture);
     }
@@ -324,13 +306,9 @@ static BTXMPPTool *xmppTool;
     }else{
         return nil;
     }
-    
 }
 
-
-
-
-//#pragma mark  当对象销毁的时候
+#pragma mark  当对象销毁的时候
 -(void)teardownXmpp
 {
     //1.移除代理
@@ -353,11 +331,10 @@ static BTXMPPTool *xmppTool;
     _roster=nil;
     _xmppStream=nil;
 }
+
 -(void)dealloc
 {
     [self teardownXmpp];
 }
-
-
 
 @end

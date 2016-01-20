@@ -488,12 +488,12 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/BeautifulTimes/BeautifulTimes/Src/UserCenterModel/ViewControll/BTRegisterAccountViewController.m"
-                  timestampString = "474960419.669125"
+                  timestampString = "474988581.10128"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "115"
                   endingLineNumber = "115"
-                  offsetFromSymbolStart = "120">
+                  offsetFromSymbolStart = "103">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -503,12 +503,12 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/BeautifulTimes/BeautifulTimes/Src/UserCenterModel/ViewControll/BTRegisterAccountViewController.m"
-                  timestampString = "474960419.669415"
+                  timestampString = "474988581.101684"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "115"
                   endingLineNumber = "115"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "15">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -516,16 +516,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BeautifulTimes/Src/IMModule/ContacterModule/ViewController/BTContacterViewController.m"
-            timestampString = "474960418.035549"
+            filePath = "BeautifulTimes/Src/IMModule/ChatModel/View/EmotionKeyboard/Tools/HMEmotionTool.m"
+            timestampString = "474987354.298304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "-devideFriend"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "+emojiEmotions"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -535,13 +535,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BeautifulTimes/Src/IMModule/ContacterModule/ViewController/BTContacterViewController.m"
-            timestampString = "474960418.035549"
+            filePath = "BeautifulTimes/Src/IMModule/ChatModel/View/EmotionKeyboard/Tools/HMEmotionTool.m"
+            timestampString = "474987374.727019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "-devideFriend"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "+emojiEmotions"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -551,13 +551,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BeautifulTimes/Src/IMModule/ContacterModule/ViewController/BTContacterViewController.m"
-            timestampString = "474960418.965302"
+            filePath = "BeautifulTimes/Src/IMModule/ChatModel/View/EmotionKeyboard/Tools/HMEmotionTool.m"
+            timestampString = "474987378.313821"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "-devideFriend"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "+lxhEmotions"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Src/IMModule/ChatModel/View/EmotionKeyboard/Tools/HMEmotionTool.m"
+            timestampString = "474987388.925056"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "+defaultEmotions"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
