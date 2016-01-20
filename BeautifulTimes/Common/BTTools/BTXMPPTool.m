@@ -7,6 +7,7 @@
 //
 
 #import "BTXMPPTool.h"
+#import "AppDelegate.h"
 
 static BTXMPPTool *xmppTool;
 
@@ -173,9 +174,39 @@ static BTXMPPTool *xmppTool;
 //    user.loginStatus=NO; //退出登录状态
 }
 
+- (NSFetchedResultsController *)fetchedGroupResultsController
+{
+        NSManagedObjectContext *moc = [_rosterStorage mainThreadManagedObjectContext];
+        
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"XMPPGroupCoreDataStorageObject"
+                                                  inManagedObjectContext:moc];
+        
+        NSSortDescriptor *sd1 = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    
+        NSArray *sortDescriptors = [NSArray arrayWithObjects:sd1, nil];
+        
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        [fetchRequest setEntity:entity];
+        [fetchRequest setSortDescriptors:sortDescriptors];
+        [fetchRequest setFetchBatchSize:10];
+        
+        NSFetchedResultsController *fetchedGroupResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                            managedObjectContext:moc
+                                                                              sectionNameKeyPath:@"name"
+                                                                                       cacheName:nil];
+        
+        NSError *error = nil;
+        if (![fetchedGroupResultsController performFetch:&error])
+        {
+            NSLog(@"Error performing fetch: %@", error);
+        }
+    
+    return fetchedGroupResultsController;
+}
+
 #pragma mark 删除好友,取消加好友，或者加好友后需要删除
 - (void)removeFried:(XMPPJID *)friedJid
-{    
+{
     [_roster removeUser:friedJid];
 }
 

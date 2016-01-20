@@ -102,6 +102,16 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 -(void)devideFriend
 {
     BTXMPPTool *xmppToll=[BTXMPPTool sharedInstance];
+    NSFetchedResultsController *res = [xmppToll fetchedGroupResultsController];
+    NSLog(@"%lu", [res fetchedObjects].count);
+    XMPPGroupCoreDataStorageObject *group = [[res fetchedObjects] objectAtIndex:0];
+    
+    for(XMPPUserCoreDataStorageObject *user in [group users]){
+        
+        BTContacterModel *friend = [[BTContacterModel alloc]init];
+        friend.jid = user.jid;
+    }
+    NSLog(@"%@", group);
     //获得好友的列表
     for(XMPPUserCoreDataStorageObject *user in _resultsContrl.fetchedObjects){
         

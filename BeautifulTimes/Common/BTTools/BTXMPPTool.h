@@ -42,4 +42,6 @@ typedef  void (^XMPPResultBlock)(XMPPResultType xmppType);
 
 - (void)addFried:(XMPPJID *)friedJid;
 
+- (NSFetchedResultsController *)fetchedGroupResultsController;
+
 @end

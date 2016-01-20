@@ -488,7 +488,7 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/BeautifulTimes/BeautifulTimes/Src/UserCenterModel/ViewControll/BTRegisterAccountViewController.m"
-                  timestampString = "474897782.674832"
+                  timestampString = "474960419.669125"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "115"
@@ -503,7 +503,7 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/BeautifulTimes/BeautifulTimes/Src/UserCenterModel/ViewControll/BTRegisterAccountViewController.m"
-                  timestampString = "474897782.675111"
+                  timestampString = "474960419.669415"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "115"
@@ -511,6 +511,54 @@
                   offsetFromSymbolStart = "16">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Src/IMModule/ContacterModule/ViewController/BTContacterViewController.m"
+            timestampString = "474960418.035549"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "-devideFriend"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Src/IMModule/ContacterModule/ViewController/BTContacterViewController.m"
+            timestampString = "474960418.035549"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "-devideFriend"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Src/IMModule/ContacterModule/ViewController/BTContacterViewController.m"
+            timestampString = "474960418.965302"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "-devideFriend"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
