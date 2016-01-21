@@ -236,15 +236,13 @@ static const CGFloat itemWidth = 70;
     return uid;
 }
 
+#pragma mark - click event
 - (void)backButtonClick {
     [[BTJournalController sharedInstance] resetAllParameters];
     [super backButtonClick];
 }
 
 - (void)photosClick {
-//    BTMyAlbumViewController *vc = [[BTMyAlbumViewController alloc] init];
-//    vc.isSelectModel = YES;
-//    [self.navigationController pushViewController:vc animated:YES];
     BTSelectPhotosViewController *vc = [[BTSelectPhotosViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -260,7 +258,7 @@ static const CGFloat itemWidth = 70;
     return arr[0];
 }
 
-
+#pragma mark -getter
 - (UIView *)toolsView {
     if (!_toolsView) {
         _toolsView = [[UIView alloc] init];

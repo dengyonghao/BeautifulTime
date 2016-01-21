@@ -42,7 +42,11 @@ static NSString *kJournalCellIdentifier = @"kJournalCellIdentifier";
 }
 
 - (void)initDataSource {
-    self.dataSource = [[BTJournalManager shareInstance] getAllJournalData];
+    NSMutableArray *arry = [[NSMutableArray alloc] init];
+    [[[BTJournalManager shareInstance] getAllJournalData] enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [arry addObject:obj];
+    }];
+    self.dataSource = arry;
 }
 
 #pragma mark - UITableView delegate

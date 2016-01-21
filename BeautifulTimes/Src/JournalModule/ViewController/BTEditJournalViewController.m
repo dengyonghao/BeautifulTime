@@ -147,6 +147,10 @@ static const CGFloat itemWidth = 70.0f;
 
 - (void)backButtonClick {
     [super backButtonClick];
+    if (_player.isPlaying) {
+        [_player stop];
+        [_audioSession setActive:NO error:nil];
+    }
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if ([controller isKindOfClass:[BTJournalListViewController class]]) {
             BTJournalListViewController *vc = (BTJournalListViewController *)controller;
@@ -240,7 +244,7 @@ static const CGFloat itemWidth = 70.0f;
         self.timer = nil;
         self.playButton.selected = NO;
         [self nowPlayingRecordCurrentTime:0 duration:player.duration];
-        _player = nil;
+        [_audioSession setActive:NO error:nil];
     }
 }
 

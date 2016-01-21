@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.dispatcher.ServletActionRedirectResult;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -28,7 +29,25 @@ public class StudentAction extends ActionSupport {
 	private StudentService studentService;
 	private BookService bookService;
 	private OrderService orderService;
+	private String result;
+	private String file;
 	
+	public String getFile() {
+		return file;
+	}
+
+	public void setFile(String file) {
+		this.file = file;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
 	public OrderService getOrderService() {
 		return orderService;
 	}
@@ -109,26 +128,46 @@ public class StudentAction extends ActionSupport {
 //        }
 		
 		HttpServletResponse response = ServletActionContext.getResponse();
-        response.reset();
-		response.setContentType("text/plain;charset=utf-8");
+		response.setContentType("image/png");
+		ActionContext.getContext();
+		System.out.println("++++++++++++" + ActionContext.getContext());
         PrintWriter writer;
 		try {
-		writer = response.getWriter();
-		
-        HttpServletRequest request = ServletActionContext.getRequest();
+		writer = response.getWriter(); 
+//        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpServletRequest request = (HttpServletRequest)
+        		ActionContext.getContext().get(org.apache.struts2.StrutsStatics.HTTP_REQUEST);
+        
+      //获取请求文本字节长度
+        int formDataLength = request.getContentLength();
+        //取得ServletInputStream输入流对象
+        DataInputStream dataStream = new DataInputStream(request.getInputStream());
+        byte body[] = new byte[formDataLength];
+        int totalBytes = 0;
+        while (totalBytes < formDataLength) {
+            int bytes = dataStream.read(body, totalBytes, formDataLength);
+            totalBytes += bytes;
+        }
+        String textBody = new String(body, "ISO-8859-1");
+        System.out.println("||||||||||||-------" + textBody);
+        
+        
         InputStream in = request.getInputStream();
-        System.out.println(in);
+        System.out.println("******************" + request.getContentLength());
         String path = ServletActionContext.getServletContext().getRealPath("/");
-        File f = new File(path + "dengyong_upload.ai");
+        File f = new File(path + "file.png");
 
         FileOutputStream fout = new FileOutputStream(f);
         byte[] b=new byte[1024];
+        System.out.println("-------------" + in.read(b));
         int n = 0;
         while ((n = in.read(b)) != -1){
             fout.write(b,0,n);
         }
         fout.close();
         in.close();
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@" + getFile());
+        result = SUCCESS;
         System.out.println("Finished uploading files!");
         writer.println("Finished uploading files!");
         writer.close();
@@ -143,6 +182,7 @@ public class StudentAction extends ActionSupport {
 			return "input";
 		}
 	}
+	
 	
 	public String loginout(){
 		

@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeautifulTimes/Src/JournalModule/ViewController/BTRecordViewController.m"
-            timestampString = "474045832.584791"
+            timestampString = "474099922.6087"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "58"
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeautifulTimes/Src/JournalModule/ViewController/BTEditJournalViewController.m"
-            timestampString = "474049164.155397"
+            timestampString = "474100865.349781"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
             landmarkName = "-alertView:clickedButtonAtIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,13 +90,122 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeautifulTimes/Src/JournalModule/ViewController/BTEditJournalViewController.m"
-            timestampString = "474049164.155397"
+            timestampString = "474100865.349781"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "281"
-            endingLineNumber = "281"
+            startingLineNumber = "285"
+            endingLineNumber = "285"
             landmarkName = "-alertView:clickedButtonAtIndex:"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Src/HomePageModule/ViewController/BTHomePageViewController.m"
+            timestampString = "475082294.957597"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
+            landmarkName = "-didClickUploadButtonAction"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Src/HomePageModule/ViewController/BTHomePageViewController.m"
+            timestampString = "475085996.126339"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "303"
+            endingLineNumber = "303"
+            landmarkName = "-didClickUploadButtonAction"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[BTHomePageViewController didClickUploadButtonAction]"
+                  moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/deng/Desktop/BTime/BeautifulTime/BeautifulTimes/Src/HomePageModule/ViewController/BTHomePageViewController.m"
+                  timestampString = "475085996.337718"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "304"
+                  endingLineNumber = "304"
+                  offsetFromSymbolStart = "632">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__54-[BTHomePageViewController didClickUploadButtonAction]_block_invoke"
+                  moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/deng/Desktop/BTime/BeautifulTime/BeautifulTimes/Src/HomePageModule/ViewController/BTHomePageViewController.m"
+                  timestampString = "475085996.338134"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "304"
+                  endingLineNumber = "304"
+                  offsetFromSymbolStart = "254">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_261"
+                  moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/deng/Desktop/BTime/BeautifulTime/BeautifulTimes/Src/HomePageModule/ViewController/BTHomePageViewController.m"
+                  timestampString = "475085996.338364"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_262"
+                  moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/deng/Desktop/BTime/BeautifulTime/BeautifulTimes/Src/HomePageModule/ViewController/BTHomePageViewController.m"
+                  timestampString = "475085996.338599"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__54-[BTHomePageViewController didClickUploadButtonAction]_block_invoke265"
+                  moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/deng/Desktop/BTime/BeautifulTime/BeautifulTimes/Src/HomePageModule/ViewController/BTHomePageViewController.m"
+                  timestampString = "475085996.339013"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "304"
+                  endingLineNumber = "304"
+                  offsetFromSymbolStart = "62">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

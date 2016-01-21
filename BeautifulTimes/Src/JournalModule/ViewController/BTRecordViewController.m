@@ -68,8 +68,9 @@ static CGFloat const recorderDuration = 600;
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [audioSession setActive:NO error:nil];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -232,7 +233,6 @@ static CGFloat const recorderDuration = 600;
     [self.timer invalidate];
     self.timer = nil;
     [self nowPlayingRecordCurrentTime:0 duration:player.duration];
-    [audioSession setActive:NO error:nil];
 }
 
 - (void)deleteRecordFile {
@@ -305,8 +305,6 @@ static CGFloat const recorderDuration = 600;
 }
 
 - (void)stopRecord {
-    [recorder stop];
-    [audioSession setActive:NO error:nil];
     [self.timer invalidate];
     self.timer = nil;
 }

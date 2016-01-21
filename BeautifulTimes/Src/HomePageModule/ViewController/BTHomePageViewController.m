@@ -287,7 +287,10 @@ static const CGFloat BUTTONWIDTH = 48;
     [infoDic setObject:@"password" forKey:@"120202021020"];
     
     AFHTTPRequestOperationManager *requestManager = [AFHTTPRequestOperationManager manager];
-    [requestManager POST:@"http://172.18.190.122:8080/BTServer/loginAction" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    requestManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    
+    requestManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [requestManager POST:@"http://192.168.0.105:8080/BTServer/loginAction" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
         /**
          *  appendPartWithFileURL   //  指定上传的文件
@@ -296,6 +299,7 @@ static const CGFloat BUTTONWIDTH = 48;
          *  mimeType                //  指定商家文件的MIME类型
          */
         [formData appendPartWithFileURL:rl name:@"file" fileName:[NSString stringWithFormat:@"%@.png",@"3"] mimeType:@"image/png" error:nil];
+        NSLog(@"%@",formData);
         
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
@@ -303,6 +307,7 @@ static const CGFloat BUTTONWIDTH = 48;
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
+        NSLog(@"%@",error);
         NSLog(@"获取服务器响应出错");
         
     }];
