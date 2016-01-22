@@ -15,7 +15,7 @@
 {
     _emotion = emotion;
     
-    self.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@/%@", emotion.directory, emotion.png]];
+    self.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", emotion.png]];
 }
 
 @end

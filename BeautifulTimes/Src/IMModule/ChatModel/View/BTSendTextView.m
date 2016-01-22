@@ -19,14 +19,12 @@
         self.layer.borderColor = [UIColor lightGrayColor].CGColor;
         self.layer.borderWidth = 0.5;
         self.layer.cornerRadius = 5;
-        self.returnKeyType = UIReturnKeySend; //发送按钮
+        self.returnKeyType = UIReturnKeySend;
         self.font = BT_FONTSIZE(16);
-        //设置键盘自动判断有没有文本的属性
         self.enablesReturnKeyAutomatically = YES;
     }
     return self;
 }
-
 
 - (void)appendEmotion:(HMEmotion *)emotion
 {

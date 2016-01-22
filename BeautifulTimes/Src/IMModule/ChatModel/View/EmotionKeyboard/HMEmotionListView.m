@@ -37,8 +37,8 @@
         // 2.显示页码的UIPageControl
         UIPageControl *pageControl = [[UIPageControl alloc] init];
 //        pageControl.backgroundColor = [UIColor blueColor];
-        [pageControl setValue:[UIImage resizedImage:BT_UIIMAGE(@"compose_keyboard_dot_selected")] forKeyPath:@"_currentPageImage"];
-        [pageControl setValue:[UIImage resizedImage:BT_UIIMAGE(@"compose_keyboard_dot_normal")] forKeyPath:@"_pageImage"];
+        [pageControl setValue:[UIImage resizedImage:BT_LOADIMAGE(@"compose_keyboard_dot_selected")] forKeyPath:@"_currentPageImage"];
+        [pageControl setValue:[UIImage resizedImage:BT_LOADIMAGE(@"compose_keyboard_dot_normal")] forKeyPath:@"_pageImage"];
         [self addSubview:pageControl];
         self.pageControl = pageControl;
     }

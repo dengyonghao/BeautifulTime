@@ -36,7 +36,7 @@
             [UIView setAnimationsEnabled:YES];
         });
     } else { // 图片表情
-        NSString *icon = [NSString stringWithFormat:@"%@/%@", emotion.directory, emotion.png];
+        NSString *icon = [NSString stringWithFormat:@"%@", emotion.png];
         UIImage *image = [UIImage resizedImage:BT_UIIMAGE(icon)];
 //        if (iOS7) { // 不需要进行蓝色的渲染
 //            image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

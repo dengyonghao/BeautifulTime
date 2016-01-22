@@ -31,7 +31,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage resizedImage:BT_UIIMAGE(@"emoticon_keyboard_background")]];
+        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage resizedImage:BT_LOADIMAGE(@"emoticon_keyboard_background")]];
         
         // 1.添加表情列表
         HMEmotionListView *listView = [[HMEmotionListView alloc] init];

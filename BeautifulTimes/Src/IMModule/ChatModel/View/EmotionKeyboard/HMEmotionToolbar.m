@@ -23,10 +23,10 @@
     self = [super initWithFrame:frame];
     if (self) {
         // 1.添加4个按钮
-        [self setupButton:nil image:@"Expression_67" tag:HMEmotionTypeRecent];
-        [self setupButton:nil image:@"Expression_1" tag:HMEmotionTypeDefault];
-        [self setupButton:nil image:@"EmotionsEmojiHL" tag:HMEmotionTypeEmoji];
-        [self setupButton:nil image:@"lxh_buhaoyisi" tag:HMEmotionTypeLxh];
+        [self setupButton:nil image:@"com_ic_favorite" tag:HMEmotionTypeRecent];
+        [self setupButton:nil image:@"com_ic_emotion01" tag:HMEmotionTypeDefault];
+        [self setupButton:nil image:@"com_ic_emotion02" tag:HMEmotionTypeEmoji];
+        [self setupButton:nil image:@"com_ic_lxh" tag:HMEmotionTypeLxh];
       //2.添加发送按钮
         [self addSendButton:@"发送" tag:HMEmotionTypeSend];
         // 3.监听表情选中的通知
@@ -74,7 +74,7 @@
     button.tag = tag;
     //如果有图片设置图片 没有设置文字
     if(image){
-        [button setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
+        [button setImage:BT_LOADIMAGE(image) forState:UIControlStateNormal];
     }else{
         // 文字
         [button setTitle:title forState:UIControlStateNormal];
