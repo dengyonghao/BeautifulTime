@@ -105,4 +105,12 @@
     return attributedString;
 }
 
+
+- (void)bindData:(XMPPMessageArchiving_Message_CoreDataObject *)xmppMessage {
+    self.message = xmppMessage.body;
+    self.time = [NSString stringWithFormat:@"%@",xmppMessage.timestamp];
+    self.recipient = xmppMessage.bareJidStr;
+    self.isCurrentUser = [[xmppMessage outgoing] boolValue];
+}
+
 @end

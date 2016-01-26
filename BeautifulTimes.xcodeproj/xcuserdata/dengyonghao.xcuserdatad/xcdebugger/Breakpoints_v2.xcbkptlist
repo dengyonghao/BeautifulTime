@@ -488,7 +488,7 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/BeautifulTimes/BeautifulTimes/Src/UserCenterModel/ViewControll/BTRegisterAccountViewController.m"
-                  timestampString = "475136221.575349"
+                  timestampString = "475393517.053289"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "115"
@@ -503,7 +503,7 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/BeautifulTimes/BeautifulTimes/Src/UserCenterModel/ViewControll/BTRegisterAccountViewController.m"
-                  timestampString = "475136221.575706"
+                  timestampString = "475393517.053784"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "115"
@@ -511,86 +511,6 @@
                   offsetFromSymbolStart = "16">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BeautifulTimes/Src/IMModule/ChatModel/View/BTSendTextView.m"
-            timestampString = "475136220.290007"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "-appendEmotion:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BeautifulTimes/Src/IMModule/ChatModel/View/BTSendTextView.m"
-            timestampString = "475136220.290007"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "-appendEmotion:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BeautifulTimes/Src/IMModule/ChatModel/View/BTSendTextView.m"
-            timestampString = "475136220.290007"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "-appendEmotion:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BeautifulTimes/Src/IMModule/ChatModel/View/BTChatViewShow.m"
-            timestampString = "475126476.779424"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "-setFrameModel:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BeautifulTimes/Src/IMModule/ChatModel/ViewController/BTChatViewController.m"
-            timestampString = "475126942.03418"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -28,10 +28,10 @@ static CGFloat const chatToolViewHeight = 49;
 
 @implementation BTChatToolView
 
--(instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
 {
-    self=[super initWithFrame:frame];
-    if(self){
+    self = [super initWithFrame:frame];
+    if(self) {
         self.width = BT_SCREEN_WIDTH;
         self.height = chatToolViewHeight;
         [self setupFirst];
@@ -40,7 +40,7 @@ static CGFloat const chatToolViewHeight = 49;
 }
 
 #pragma mark 添加子控件
--(void)setupFirst
+- (void)setupFirst
 {
     UIImageView *line = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, BT_SCREEN_WIDTH, 0.5)];
     line.backgroundColor = [UIColor lightGrayColor];
@@ -59,7 +59,7 @@ static CGFloat const chatToolViewHeight = 49;
     
 }
 #pragma mark 添加输入框
--(void)addTextView
+- (void)addTextView
 {
     BTSendTextView *send = [[BTSendTextView alloc] init];
     [self addSubview:send];
@@ -67,7 +67,7 @@ static CGFloat const chatToolViewHeight = 49;
 }
 
 #pragma mark 添加按钮
--(UIButton*)addButtonWithImage:(UIImage *)image highImage:(UIImage *)highImage  tag:(ChatToolViewType)tag
+- (UIButton*)addButtonWithImage:(UIImage *)image highImage:(UIImage *)highImage  tag:(ChatToolViewType)tag
 {
     UIButton *btn = [[UIButton alloc]init];
     [btn setBackgroundImage:[UIImage resizedImage:image] forState:UIControlStateNormal];
@@ -117,9 +117,9 @@ static CGFloat const chatToolViewHeight = 49;
 {
     [super subviews];
 
-    CGFloat btnY=(self.height-buttonHeight)*0.5;
+    CGFloat btnY = (self.height - buttonHeight) * 0.5;
     
-    CGFloat audioX=leftMargin;
+    CGFloat audioX = leftMargin;
     self.audioButton.frame = CGRectMake(audioX, btnY, buttonWidth, buttonHeight);
     
     CGFloat inputW = BT_SCREEN_WIDTH - 3 * buttonWidth - leftMargin * 2 - centerMargin * 3;
@@ -129,12 +129,11 @@ static CGFloat const chatToolViewHeight = 49;
     CGFloat inputY = (self.height - inputH) * 0.5;
     self.toolInputView.frame = CGRectMake(inputX, inputY, inputW, inputH);
 
-    CGFloat faceX = CGRectGetMaxX(self.toolInputView.frame)+centerMargin+1;
+    CGFloat faceX = CGRectGetMaxX(self.toolInputView.frame) + centerMargin + 1;
     self.faceButton.frame=CGRectMake(faceX, btnY, buttonWidth, buttonHeight);
 
-    CGFloat addImageX=CGRectGetMaxX(self.faceButton.frame)+centerMargin-2;
+    CGFloat addImageX=CGRectGetMaxX(self.faceButton.frame) + centerMargin - 2;
     self.addButton.frame=CGRectMake(addImageX, btnY, buttonWidth, buttonHeight);
 }
-
 
 @end

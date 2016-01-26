@@ -29,12 +29,9 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
 @property (nonatomic,strong) NSMutableArray *frameModelArr;
 @property (nonatomic,weak) BTSendTextView *bottomInputView;
 @property (nonatomic, strong) HMEmotionKeyboard *kerboard;
-//用户自己的头像
 @property (nonatomic,strong) NSData *headImage;
 @property (nonatomic,assign) BOOL isChangeHeight;
-//表视图的高
 @property (nonatomic,assign) CGFloat tableViewHeight;
-//是否改变键盘样式
 @property (nonatomic,assign) BOOL changeKeyboard;
 
 @end
@@ -56,6 +53,11 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark 加载聊天数据
@@ -96,13 +98,10 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
 {
     for(XMPPMessageArchiving_Message_CoreDataObject *msg in _resultController.fetchedObjects){
         BTChatMessageModel *msgModel=[[BTChatMessageModel alloc] init];
-        msgModel.message = msg.body;
-        msgModel.time = [NSString stringWithFormat:@"%@",msg.timestamp];
-        msgModel.recipient = msg.bareJidStr;
+        [msgModel bindData:msg];
         msgModel.friendHeadIcon = self.contacter.headIcon;
         msgModel.ownHeadIcon = self.headImage;
         msgModel.hiddenTime = YES;
-        msgModel.isCurrentUser = [[msg outgoing] boolValue];
 
         BTMessageFrameModel *frameModel = [[BTMessageFrameModel alloc]init];
         frameModel.messageModel = msgModel;
@@ -115,13 +114,10 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
 - (void)dataToModelWith:(XMPPMessageArchiving_Message_CoreDataObject*)msg {
     if(msg.body != nil) {
         BTChatMessageModel *msgModel = [[BTChatMessageModel alloc] init];
-        msgModel.message = msg.body;
-        msgModel.time = [NSString stringWithFormat:@"%@",msg.timestamp];
-        msgModel.recipient = msg.bareJidStr;
+        [msgModel bindData:msg];
         msgModel.friendHeadIcon = self.contacter.headIcon;
         msgModel.ownHeadIcon = self.headImage;
         msgModel.hiddenTime = YES;
-        msgModel.isCurrentUser = [[msg outgoing] boolValue];
 
         BTMessageFrameModel *frameModel = [[BTMessageFrameModel alloc]init];
         frameModel.messageModel = msgModel;
@@ -148,7 +144,7 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
         
         NSDictionary *dict = @{@"uname":uname,@"time":strDate,@"body":msg.body,@"jid":msg.bareJid,@"user":@"this"};
         
-        NSNotification *note = [[NSNotification alloc]initWithName:SendMsgName object:dict userInfo:nil];
+        NSNotification *note = [[NSNotification alloc] initWithName:SendMsgName object:dict userInfo:nil];
         [[NSNotificationCenter defaultCenter] postNotification:note];
     }
 }
@@ -191,12 +187,8 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
 #pragma mark 发送聊天消息
 -(void)sendMsgWithText:(NSString *)text bodyType:(NSString*)bodyType
 {
-    XMPPMessage *msg = [XMPPMessage messageWithType:@"chat" to:self.contacter.jid];
-    BTXMPPTool *app=[BTXMPPTool sharedInstance];
-    // 设置内容   text指纯文本  image指图片  audio指语音
-    [msg addAttributeWithName:@"bodyType" stringValue:bodyType];
-    [msg addBody:text];
-    [app.xmppStream sendElement:msg];
+    BTXMPPTool *xmppTool = [BTXMPPTool sharedInstance];
+    [xmppTool sendMessage:text type:bodyType to:self.contacter.jid];
 }
 
 #pragma mark 表情按钮点击发送
@@ -234,13 +226,12 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
 -(void)setupBottomView
 {
     BTChatToolView *bottom = [[BTChatToolView alloc] init];
-    bottom.toolInputView.delegate = self; //实现输入框的代理
+    bottom.toolInputView.delegate = self;
     bottom.delegate = self;
     bottom.x= 0;
     bottom.y= self.view.height - 64 - bottom.height;
     [self.view addSubview:bottom];
     self.chatBottom = bottom;
-    //传递输入框
     self.bottomInputView = bottom.toolInputView;
     //监听键盘的移动
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keybordAppear:) name:UIKeyboardWillShowNotification object:nil];
@@ -266,18 +257,17 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
 -(void)openEmotion
 {
     self.changeKeyboard = YES;
-    if(self.bottomInputView.inputView){  //自定义的键盘
+    if(self.bottomInputView.inputView) {  //自定义的键盘
         self.bottomInputView.inputView = nil;
         self.chatBottom.emotionStatus = NO;
-    }else{  //系统自带的键盘
+    } else {  //系统自带的键盘
         
         self.bottomInputView.inputView = self.kerboard;
         self.chatBottom.emotionStatus = YES;
     }
-    
     [self.bottomInputView resignFirstResponder];
     //切换完成
-    self.changeKeyboard=NO;
+    self.changeKeyboard = NO;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.bottomInputView becomeFirstResponder];
     });
@@ -354,13 +344,11 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
     [self textViewDidChange:self.bottomInputView];
 }
 
-
 #pragma mark  当点击表情键盘上的删除按钮时调用
 - (void)emotionDidDeleted:(NSNotification *)note
 {
     [self.bottomInputView deleteBackward];
 }
-
 
 #pragma mark  当textView的文字改变就会调用
 - (void)textViewDidChange:(UITextView *)textView
@@ -391,14 +379,9 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
     return arr[0];
 }
 
--(void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 -(NSMutableArray *)frameModelArr
 {
-    if(_frameModelArr == nil){
+    if(!_frameModelArr){
         _frameModelArr = [NSMutableArray array];
     }
     return _frameModelArr;

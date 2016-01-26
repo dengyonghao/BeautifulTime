@@ -3152,6 +3152,7 @@
 		65F4262D1BDA0F1400295796 /* IMModule */ = {
 			isa = PBXGroup;
 			children = (
+				65F9F4791C521F4F002C4A24 /* UserManagerModel */,
 				65F90A1D1C43D84F00BAC2A2 /* ChatModel */,
 				65F47DDC1C3E8F07008117BC /* AboutMeModule */,
 				654365191C280975003F8D89 /* MainModule */,
@@ -3307,6 +3308,37 @@
 				65F9F4751C51E0A1002C4A24 /* RegexKitLite.m */,
 			);
 			path = RegexKitLite;
+			sourceTree = "<group>";
+		};
+		65F9F4791C521F4F002C4A24 /* UserManagerModel */ = {
+			isa = PBXGroup;
+			children = (
+				65F9F47A1C521F4F002C4A24 /* Model */,
+				65F9F47B1C521F4F002C4A24 /* View */,
+				65F9F47C1C521F4F002C4A24 /* ViewController */,
+			);
+			path = UserManagerModel;
+			sourceTree = "<group>";
+		};
+		65F9F47A1C521F4F002C4A24 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		65F9F47B1C521F4F002C4A24 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		65F9F47C1C521F4F002C4A24 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		65FBFD041C4DD609008D9FA3 /* History */ = {

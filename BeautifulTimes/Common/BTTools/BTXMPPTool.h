@@ -44,4 +44,6 @@ typedef  void (^XMPPResultBlock)(XMPPResultType xmppType);
 
 - (NSFetchedResultsController *)fetchedGroupResultsController;
 
+- (void)sendMessage:(NSString *)msg type:(NSString *)type to:(XMPPJID *)toName;
+
 @end

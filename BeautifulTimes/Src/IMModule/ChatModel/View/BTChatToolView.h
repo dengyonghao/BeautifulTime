@@ -21,22 +21,18 @@ typedef enum{
 @interface BTChatToolView : UIView
 
 @property (nonatomic,weak) BTSendTextView *toolInputView;
-
-
 @property (nonatomic,weak) id <ChatToolViewDelegate> delegate;
-
 //表情按钮的选中状态
 @property (assign,nonatomic) BOOL emotionStatus;
 //添加图片按钮的选中状态
 @property (assign,nonatomic) BOOL addStatus;
 
-
 @end
 
-//定义一个协议
 @protocol ChatToolViewDelegate <NSObject>
 
 @optional
+
 -(void)chatToolView:(BTChatToolView *)toolView buttonTag:(ChatToolViewType)buttonTag;
 
 @end

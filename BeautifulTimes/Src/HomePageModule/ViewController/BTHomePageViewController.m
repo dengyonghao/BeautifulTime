@@ -283,7 +283,6 @@ static const CGFloat BUTTONWIDTH = 48;
     NSString *savedPath = [NSHomeDirectory() stringByAppendingString:@"/Documents/3.png"];
     NSMutableDictionary *infoDic = [[NSMutableDictionary alloc] init];
     NSURL *filePath = [[NSBundle mainBundle] URLForResource:@"2" withExtension:@"png"];
-    NSURL *rl = [NSURL fileURLWithPath:savedPath];
     [infoDic setObject:@"stu_id" forKey:@"120202021020"];
     [infoDic setObject:@"password" forKey:@"120202021020"];
     

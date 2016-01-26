@@ -13,9 +13,11 @@
 #import "HMEmotionTool.h"
 
 @interface HMEmotionGridView()
+
 @property (nonatomic, weak) UIButton *deleteButton;
 @property (nonatomic, strong) NSMutableArray *emotionViews;
 @property (nonatomic, strong) HMEmotionPopView *popView;
+
 @end
 
 @implementation HMEmotionGridView
@@ -100,8 +102,8 @@
     _emotions = emotions;
     
     // 添加新的表情
-    int count = emotions.count;
-    int currentEmotionViewCount = self.emotionViews.count;
+    long count = emotions.count;
+    long currentEmotionViewCount = self.emotionViews.count;
     for (int i = 0; i<count; i++) {
         HMEmotionView *emotionView = nil;
         

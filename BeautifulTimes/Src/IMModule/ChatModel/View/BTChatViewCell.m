@@ -21,8 +21,7 @@
 {
     self=[super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self){
-        
-        //1.添加子控件
+
         [self setupFirst];
         
     }
@@ -32,25 +31,22 @@
 -(void)setupFirst
 {
     BTChatViewShow *viewShow=[[BTChatViewShow alloc]init];
-    
     [self.contentView addSubview:viewShow];
-    self.viewShow=viewShow;
+    self.viewShow = viewShow;
 }
 
-
-
-+(instancetype)cellWithTableView:(UITableView *)tableView indentifier:(NSString *)indentifier
++ (instancetype)cellWithTableView:(UITableView *)tableView indentifier:(NSString *)indentifier
 {
-    BTChatViewCell *cell=[tableView dequeueReusableCellWithIdentifier:indentifier];
-    if(cell==nil){
-        cell=[[BTChatViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:indentifier];
+    BTChatViewCell *cell = [tableView dequeueReusableCellWithIdentifier:indentifier];
+    if(cell == nil){
+        cell = [[BTChatViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:indentifier];
     }
     return cell;
 }
 
--(void)setFrameModel:(BTMessageFrameModel *)frameModel
+- (void)setFrameModel:(BTMessageFrameModel *)frameModel
 {
-    self.viewShow.frameModel=frameModel;
+    self.viewShow.frameModel = frameModel;
 }
 
 @end

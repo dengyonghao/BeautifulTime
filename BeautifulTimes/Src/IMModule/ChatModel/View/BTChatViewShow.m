@@ -35,27 +35,26 @@
 -(void)setupChildView
 {
     //1.时间
-    UILabel *timeLabel=[[UILabel alloc]init];
-    timeLabel.textColor=[UIColor lightGrayColor];
-    timeLabel.font=BT_FONTSIZE(15);
+    UILabel *timeLabel = [[UILabel alloc]init];
+    timeLabel.textColor = [UIColor lightGrayColor];
+    timeLabel.font = BT_FONTSIZE(15);
     timeLabel.textAlignment=NSTextAlignmentCenter;
-    timeLabel.textColor=[UIColor lightGrayColor];
+    timeLabel.textColor = [UIColor lightGrayColor];
     [self addSubview:timeLabel];
-    self.timeLabel=timeLabel;
+    self.timeLabel = timeLabel;
     //2.正文内容
-    UIButton *contentBtn=[[UIButton alloc]init];
+    UIButton *contentBtn = [[UIButton alloc]init];
     [contentBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    contentBtn.titleLabel.font=BT_FONTSIZE(15);
-    contentBtn.titleLabel.numberOfLines=0;  //多行显示
-    contentBtn.contentEdgeInsets=UIEdgeInsetsMake(10, 20, 20, 20);
+    contentBtn.titleLabel.font = BT_FONTSIZE(15);
+    contentBtn.titleLabel.numberOfLines = 0;  //多行显示
+    contentBtn.contentEdgeInsets = UIEdgeInsetsMake(10, 20, 20, 20);
     
     [self addSubview:contentBtn];
-    self.contentBtn=contentBtn;
+    self.contentBtn = contentBtn;
     //3.头像
-    UIImageView *headImage=[[UIImageView alloc]init];
+    UIImageView *headImage = [[UIImageView alloc]init];
     [self addSubview:headImage];
-    self.headImage=headImage;
-    
+    self.headImage = headImage;
 }
 
 //传递模型
@@ -75,7 +74,6 @@
     }
     self.headImage.frame = frameModel.headFrame;
 
-    
     [self.contentBtn setAttributedTitle:frameModel.messageModel.attributedBody forState:UIControlStateNormal];
     self.contentBtn.frame = frameModel.contentFrame;
 
