@@ -488,12 +488,12 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/BeautifulTimes/BeautifulTimes/Src/UserCenterModel/ViewControll/BTRegisterAccountViewController.m"
-                  timestampString = "475393517.053289"
+                  timestampString = "475492261.629436"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "115"
                   endingLineNumber = "115"
-                  offsetFromSymbolStart = "120">
+                  offsetFromSymbolStart = "103">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -503,14 +503,46 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/BeautifulTimes/BeautifulTimes/Src/UserCenterModel/ViewControll/BTRegisterAccountViewController.m"
-                  timestampString = "475393517.053784"
+                  timestampString = "475492261.629791"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "115"
                   endingLineNumber = "115"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "15">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Src/IMModule/ChatModel/History/BTChattingHistoryDB.m"
+            timestampString = "475491557.531776"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "-addHistory:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Src/IMModule/ChatModel/History/BTChattingHistoryDB.m"
+            timestampString = "475491554.188925"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "-createHistoryDBWithFriendId:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

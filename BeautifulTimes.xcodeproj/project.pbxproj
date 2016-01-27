@@ -309,6 +309,7 @@
 		6523EF601C27CC300016D63C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6523EF5D1C27CC300016D63C /* MBProgressHUD.m */; };
 		652608531C04604D00370630 /* BTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 652608521C04604D00370630 /* BTAttributedLabel.m */; };
 		652608591C0464CC00370630 /* NSMutableAttributedString+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 652608581C0464CC00370630 /* NSMutableAttributedString+Addition.m */; };
+		6533DF4F1C5754060074A15E /* BTChatMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6533DF4E1C5754060074A15E /* BTChatMessageModel.m */; };
 		6543651F1C280A08003F8D89 /* BTIMTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6543651E1C280A08003F8D89 /* BTIMTabBarController.m */; };
 		6548630C1BDB279500CF3FF1 /* BTContacterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6548630B1BDB279500CF3FF1 /* BTContacterViewController.m */; };
 		654A502C1BEF2CE20038CD47 /* BTShowWeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 654A502B1BEF2CE20038CD47 /* BTShowWeatherViewController.m */; };
@@ -502,7 +503,6 @@
 		65F52A5F1BFDC88700351941 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65F52A611BFDC88700351941 /* Localizable.strings */; };
 		65F90A141C43C75300BAC2A2 /* BTChatMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F90A131C43C75300BAC2A2 /* BTChatMessageCell.m */; };
 		65F90A181C43CA2300BAC2A2 /* BTIMHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F90A171C43CA2300BAC2A2 /* BTIMHomePageViewController.m */; };
-		65F90A1C1C43CA5E00BAC2A2 /* BTChatMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F90A1B1C43CA5E00BAC2A2 /* BTChatMessageModel.m */; };
 		65F90A231C43D87A00BAC2A2 /* BTChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F90A221C43D87A00BAC2A2 /* BTChatViewController.m */; };
 		65F9E2561C17CA8F0038774D /* BTJournalListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F9E2551C17CA8F0038774D /* BTJournalListItem.m */; };
 		65F9F4761C51E0A1002C4A24 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F9F4751C51E0A1002C4A24 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -931,6 +931,8 @@
 		652608521C04604D00370630 /* BTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAttributedLabel.m; sourceTree = "<group>"; };
 		652608571C0464CC00370630 /* NSMutableAttributedString+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+Addition.h"; sourceTree = "<group>"; };
 		652608581C0464CC00370630 /* NSMutableAttributedString+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+Addition.m"; sourceTree = "<group>"; };
+		6533DF4D1C5754060074A15E /* BTChatMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTChatMessageModel.h; sourceTree = "<group>"; };
+		6533DF4E1C5754060074A15E /* BTChatMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTChatMessageModel.m; sourceTree = "<group>"; };
 		6543651D1C280A08003F8D89 /* BTIMTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTIMTabBarController.h; sourceTree = "<group>"; };
 		6543651E1C280A08003F8D89 /* BTIMTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTIMTabBarController.m; sourceTree = "<group>"; };
 		6548630A1BDB279500CF3FF1 /* BTContacterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTContacterViewController.h; sourceTree = "<group>"; };
@@ -1324,8 +1326,6 @@
 		65F90A131C43C75300BAC2A2 /* BTChatMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTChatMessageCell.m; sourceTree = "<group>"; };
 		65F90A161C43CA2300BAC2A2 /* BTIMHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTIMHomePageViewController.h; sourceTree = "<group>"; };
 		65F90A171C43CA2300BAC2A2 /* BTIMHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTIMHomePageViewController.m; sourceTree = "<group>"; };
-		65F90A1A1C43CA5E00BAC2A2 /* BTChatMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTChatMessageModel.h; sourceTree = "<group>"; };
-		65F90A1B1C43CA5E00BAC2A2 /* BTChatMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTChatMessageModel.m; sourceTree = "<group>"; };
 		65F90A211C43D87A00BAC2A2 /* BTChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTChatViewController.h; sourceTree = "<group>"; };
 		65F90A221C43D87A00BAC2A2 /* BTChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTChatViewController.m; sourceTree = "<group>"; };
 		65F9E2541C17CA8F0038774D /* BTJournalListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTJournalListItem.h; sourceTree = "<group>"; };
@@ -3248,8 +3248,6 @@
 		65F90A191C43CA3400BAC2A2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				65F90A1A1C43CA5E00BAC2A2 /* BTChatMessageModel.h */,
-				65F90A1B1C43CA5E00BAC2A2 /* BTChatMessageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3268,6 +3266,8 @@
 		65F90A1E1C43D84F00BAC2A2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6533DF4D1C5754060074A15E /* BTChatMessageModel.h */,
+				6533DF4E1C5754060074A15E /* BTChatMessageModel.m */,
 				6523365C1C4F773100557D9F /* BTMessageFrameModel.h */,
 				6523365D1C4F773100557D9F /* BTMessageFrameModel.m */,
 			);
@@ -4065,7 +4065,6 @@
 				65DBD0B11BD77CE700784DAC /* DDXMLElement.m in Sources */,
 				65DBD09D1BD77CE700784DAC /* NSXMLElement+XMPP.m in Sources */,
 				6523365B1C4F706B00557D9F /* HMEmotionTool.m in Sources */,
-				65F90A1C1C43CA5E00BAC2A2 /* BTChatMessageModel.m in Sources */,
 				65F90A181C43CA2300BAC2A2 /* BTIMHomePageViewController.m in Sources */,
 				65DBD1CB1BD7A2A100784DAC /* XMPPvCardTempAdr.m in Sources */,
 				6500E74D1BEF395C007158BF /* AFURLRequestSerialization.m in Sources */,
@@ -4186,6 +4185,7 @@
 				65DBD0B71BD77CE700784DAC /* RFImageToDataTransformer.m in Sources */,
 				65DBD1BA1BD7A2A100784DAC /* XMPPRoomOccupantCoreDataStorageObject.m in Sources */,
 				6548630C1BDB279500CF3FF1 /* BTContacterViewController.m in Sources */,
+				6533DF4F1C5754060074A15E /* BTChatMessageModel.m in Sources */,
 				B445070E1BCFFB9F008BD5AC /* ViewController+MASAdditions.m in Sources */,
 				65DBD0AE1BD77CE700784DAC /* XMPPStream.m in Sources */,
 				655124301BFC298D001F1041 /* BTPhotoListViewController.m in Sources */,

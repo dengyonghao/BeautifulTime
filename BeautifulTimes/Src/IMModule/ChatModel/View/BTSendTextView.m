@@ -14,7 +14,7 @@
 
 -(instancetype)init
 {
-    self=[super init];
+    self = [super init];
     if(self){
         self.layer.borderColor = [UIColor lightGrayColor].CGColor;
         self.layer.borderWidth = 0.5;

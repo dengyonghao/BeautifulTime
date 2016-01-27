@@ -19,7 +19,7 @@ static BTChattingHistoryDB * historyDB = nil;
 
 @implementation BTChattingHistoryDB
 
-+ (BTChattingHistoryDB *) getInstance {
++ (BTChattingHistoryDB *) sharedInstance {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         historyDB = [[BTChattingHistoryDB alloc]init];
@@ -34,11 +34,18 @@ static BTChattingHistoryDB * historyDB = nil;
     return self;
 }
 
-- (NSString *)getDBPath {
+- (NSString *)getDBPathWithFriendId:(NSString *)friendId {
+    
+    NSString *currentUser = [[NSUserDefaults standardUserDefaults] valueForKey:userID];
+    
+    if (!friendId) {
+        return nil;
+    }
     NSString *path = [BTTool getLibraryDirectory];
-    path = [path stringByAppendingPathComponent:@"BTCaches"];
+    NSString *userSavePath = [NSString stringWithFormat:@"BTCaches/%@", currentUser];
+    path = [path stringByAppendingPathComponent:userSavePath];
     if ([BTTool createDirectory:path]) {
-        path = [path stringByAppendingPathComponent:@"CommonDB"];
+        path = [path stringByAppendingPathComponent:friendId];
         if ([BTTool createDirectory:path]) {
             path = [path stringByAppendingPathComponent:@"ChattingHistory.db"];
             return path;
@@ -53,27 +60,32 @@ static BTChattingHistoryDB * historyDB = nil;
     return nil;
 }
 
-- (void) createHistoryDB {
+- (void) createHistoryDBWithFriendId:(NSString *)friendId {
     
-    NSString * path = [self getDBPath];
+    NSString * path = [self getDBPathWithFriendId:friendId];
     
     self.queue = [FMDatabaseQueue databaseQueueWithPath:path];
     
     [self.queue inDatabase:^(FMDatabase *db) {
         //创建表
-        BOOL createTableResult=[db executeUpdate:@"CREATE TABLE  IF NOT EXISTS CallHistory (historyID INTEGER PRIMARY KEY, name text, callphone text, count integer, calltime date, photo data, calltype integer)"];
+        BOOL createTableResult = [db executeUpdate:@"CREATE TABLE  IF NOT EXISTS chattingHistory (historyID INTEGER PRIMARY KEY AUTOINCREMENT, isCurrentUser INTEGER, message text, chatTime date)"];
         if (createTableResult) {
-            NSLog(@"创建通话记录表成功");
-        }else{
-            NSLog(@"创建通话记录表失败");
+            NSLog(@"创建记录表成功");
+        } else {
+            NSLog(@"创建记录表失败");
         }
     }];
 }
 
-- (void) dealloc {
-    //    [_db close];
-    _queue = nil;
+- (void)addHistory:(BTChattingHistory *)message {
+    [self.queue inDatabase:^(FMDatabase *db) {
+        NSString *sql = @"insert into chattingHistory (isCurrentUser, message, chatTime) values (?, ?, ?)";
+        [db executeUpdate:sql, message.isCurrentUser, message.message, message.chatTime];
+    }];
 }
 
+- (void) dealloc {
+    _queue = nil;
+}
 
 @end

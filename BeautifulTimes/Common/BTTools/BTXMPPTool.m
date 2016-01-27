@@ -7,7 +7,6 @@
 //
 
 #import "BTXMPPTool.h"
-#import "AppDelegate.h"
 
 static BTXMPPTool *xmppTool;
 

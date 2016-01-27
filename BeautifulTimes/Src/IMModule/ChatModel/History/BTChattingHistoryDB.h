@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BTChattingHistory.h"
 
 @interface BTChattingHistoryDB : NSObject
 
@@ -15,18 +16,25 @@
  *
  *  @return 数据库单例
  */
-+ (BTChattingHistoryDB *) getInstance;
++ (BTChattingHistoryDB *) sharedInstance;
 
 /**
  *  数据库路径
  *
  *  @return 数据库路径
  */
-- (NSString *) getDBPath;
+- (NSString *) getDBPathWithFriendId:(NSString *)friendId;
 
 /**
  *  创建数据库
  */
-- (void) createHistoryDB;
+- (void) createHistoryDBWithFriendId:(NSString *)friendId;
+
+/**
+ *  添加一条通讯记录
+ *
+ *  @param contact 通讯记录
+ */
+- (void)addHistory:(BTChattingHistory *)message;
 
 @end

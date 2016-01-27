@@ -18,9 +18,7 @@
 -(void)setMessage:(NSString *)message
 {
     _message = [message copy];
-    
     [self createAttributedText];
-    
 }
 
 - (NSArray *)regexResultsWithText:(NSString *)text
@@ -49,19 +47,17 @@
     
     // 排序
     [regexResults sortUsingComparator:^NSComparisonResult(HMRegexResult *rr1, HMRegexResult *rr2) {
-        int loc1 = rr1.range.location;
-        int loc2 = rr2.range.location;
+        long loc1 = rr1.range.location;
+        long loc2 = rr2.range.location;
         return [@(loc1) compare:@(loc2)];
     }];
     return regexResults;
 }
 
-
 - (void)createAttributedText
 {
     if (self.message == nil) return;
     self.attributedBody = [self attributedStringWithText:self.message];
-    
 }
 
 - (NSAttributedString *)attributedStringWithText:(NSString *)text
@@ -91,20 +87,14 @@
             [attributedString appendAttributedString:attachString];
         } else { // 非表情（直接拼接普通文本）
             NSMutableAttributedString *substr = [[NSMutableAttributedString alloc] initWithString:result.string];
-            
-            
-            
-            
             [attributedString appendAttributedString:substr];
         }
     }];
     
     // 设置字体
     [attributedString addAttribute:NSFontAttributeName value:BT_FONTSIZE(16) range:NSMakeRange(0, attributedString.length)];
-    
     return attributedString;
 }
-
 
 - (void)bindData:(XMPPMessageArchiving_Message_CoreDataObject *)xmppMessage {
     self.message = xmppMessage.body;

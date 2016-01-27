@@ -17,6 +17,7 @@
 #import "BTMessageFrameModel.h"
 #import "BTXMPPTool.h"
 #import "BTChatViewCell.h"
+#import "BTChattingHistoryManager.h"
 
 static CGFloat const KEYBOARDWIDTH = 216.0f;
 static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
@@ -189,6 +190,12 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
 {
     BTXMPPTool *xmppTool = [BTXMPPTool sharedInstance];
     [xmppTool sendMessage:text type:bodyType to:self.contacter.jid];
+    NSString *friendId = [NSString stringWithFormat:@"%@", self.contacter.jid];
+    BTChattingHistory *history = [[BTChattingHistory alloc] init];
+    history.isCurrentUser = 1;
+    history.message = text;
+    history.chatTime = [[NSDate alloc] init];
+    [[BTChattingHistoryManager sharedInstance] addHistoryWithFriendId:friendId message:history];
 }
 
 #pragma mark 表情按钮点击发送
