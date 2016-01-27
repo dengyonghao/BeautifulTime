@@ -8,7 +8,7 @@
 
 #import "BTAddressBookTableViewCell.h"
 
-@interface BTAddressBookTableViewCell() <BTThemeListenerProtocol>
+@interface BTAddressBookTableViewCell()
 
 @end
 

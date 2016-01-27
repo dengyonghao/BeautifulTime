@@ -11,7 +11,7 @@
 @interface BTChattingHistory : NSObject
 
 @property (nonatomic, assign) NSInteger historyID;
-@property (nonatomic, assign) NSInteger isCurrentUser;
+@property (nonatomic, assign) int isCurrentUser;
 @property (nonatomic, strong) NSString *message;
 @property (nonatomic, strong) NSDate *chatTime;
 

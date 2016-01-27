@@ -34,16 +34,46 @@ typedef  void (^XMPPResultBlock)(XMPPResultType xmppType);
 
 + (instancetype)sharedInstance;
 
+/**
+ *  用户登录
+ *
+ *  @param xmppBlock 返回状态
+ */
 - (void)login:(XMPPResultBlock)xmppBlock;
 
+/**
+ *  退出登录
+ */
 - (void)xmppLoginOut;
 
+/**
+ *  注册用户
+ *
+ *  @param xmppType 返回状态
+ */
 - (void)regist:(XMPPResultBlock)xmppType;
 
+/**
+ *  添加好友
+ *
+ *  @param friedJid 好友id
+ */
 - (void)addFried:(XMPPJID *)friedJid;
 
+/**
+ *  好友分组
+ *
+ *  @return 分组信息
+ */
 - (NSFetchedResultsController *)fetchedGroupResultsController;
 
+/**
+ *  发送信息
+ *
+ *  @param msg    内容
+ *  @param type   类型
+ *  @param toName 接收方
+ */
 - (void)sendMessage:(NSString *)msg type:(NSString *)type to:(XMPPJID *)toName;
 
 @end

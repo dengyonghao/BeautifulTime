@@ -3653,7 +3653,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = BT;
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = dengyonghao;
 				TargetAttributes = {
 					65E2D32D1BCFC965001E29A9 = {
@@ -4304,6 +4304,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -4319,7 +4320,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -4356,7 +4357,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -4386,6 +4387,7 @@
 					"$(PROJECT_DIR)/BeautifulTimes/Common/3rdparty/XMPPFramework/libidn",
 				);
 				OTHER_LDFLAGS = "-lxml2";
+				PRODUCT_BUNDLE_IDENTIFIER = "DYH.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "最美时光";
 				PROVISIONING_PROFILE = "c005be43-836c-4af6-ab24-c2348fbddd62";
 			};
@@ -4414,6 +4416,7 @@
 					"$(PROJECT_DIR)/BeautifulTimes/Common/3rdparty/XMPPFramework/libidn",
 				);
 				OTHER_LDFLAGS = "-lxml2";
+				PRODUCT_BUNDLE_IDENTIFIER = "DYH.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "最美时光";
 				PROVISIONING_PROFILE = "c005be43-836c-4af6-ab24-c2348fbddd62";
 			};
@@ -4430,6 +4433,7 @@
 				);
 				INFOPLIST_FILE = BeautifulTimesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "DYH.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = BeautifulTimesTests;
 				TEST_HOST = "";
 			};
@@ -4442,6 +4446,7 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = BeautifulTimesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "DYH.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = BeautifulTimesTests;
 				TEST_HOST = "";
 			};

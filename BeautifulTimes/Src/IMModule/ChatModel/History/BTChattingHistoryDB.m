@@ -66,6 +66,11 @@ static BTChattingHistoryDB * historyDB = nil;
     
     self.queue = [FMDatabaseQueue databaseQueueWithPath:path];
     
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:path]) {
+        return;
+    }
+
     [self.queue inDatabase:^(FMDatabase *db) {
         //创建表
         BOOL createTableResult = [db executeUpdate:@"CREATE TABLE  IF NOT EXISTS chattingHistory (historyID INTEGER PRIMARY KEY AUTOINCREMENT, isCurrentUser INTEGER, message text, chatTime date)"];
@@ -80,7 +85,7 @@ static BTChattingHistoryDB * historyDB = nil;
 - (void)addHistory:(BTChattingHistory *)message {
     [self.queue inDatabase:^(FMDatabase *db) {
         NSString *sql = @"insert into chattingHistory (isCurrentUser, message, chatTime) values (?, ?, ?)";
-        [db executeUpdate:sql, message.isCurrentUser, message.message, message.chatTime];
+        [db executeUpdate:sql, [NSNumber numberWithInt:message.isCurrentUser], message.message, message.chatTime];
     }];
 }
 
