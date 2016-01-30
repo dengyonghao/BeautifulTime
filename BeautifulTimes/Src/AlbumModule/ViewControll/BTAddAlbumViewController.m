@@ -63,7 +63,7 @@
 }
 
 - (void)finishButtonClick {
-    [self AddAlbum];
+    [self addAlbum];
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if ([controller isKindOfClass:[BTMyAlbumViewController class]]) {
             [self.navigationController popToViewController:controller animated:YES];
@@ -107,7 +107,7 @@
 
 
 #pragma mark - 添加相册
-- (void)AddAlbum {
+- (void)addAlbum {
     [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
         [PHAssetCollectionChangeRequest creationRequestForAssetCollectionWithTitle:self.albumTitle.text];
     } completionHandler:^(BOOL success, NSError *error) {

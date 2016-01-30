@@ -19,7 +19,6 @@ static CGSize AssetGridThumbnailSize;
 static CGFloat const iconWidth = 120.0f;
 static CGFloat const iconHeight = 120.0f;
 
-
 @interface BTMyAlbumViewController () <UICollectionViewDataSource, UICollectionViewDelegate, PHPhotoLibraryChangeObserver>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -98,20 +97,21 @@ static CGFloat const iconHeight = 120.0f;
 }
 
 - (void)initDataSource {
+    [self.dataSource removeAllObjects];
     PHFetchOptions *allPhotosOptions = [[PHFetchOptions alloc] init];
     allPhotosOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
     PHFetchResult *allPhotos = [PHAsset fetchAssetsWithOptions:allPhotosOptions];
     
-    PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+//    PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
     
     PHFetchResult *topLevelUserCollections = [PHCollectionList fetchTopLevelUserCollectionsWithOptions:nil];
     
-    self.sectionFetchResults = @[allPhotos, smartAlbums, topLevelUserCollections];
+    self.sectionFetchResults = @[allPhotos, topLevelUserCollections];
+    
     for (int i = 0; i < self.sectionFetchResults.count; i++) {
+        
         if (i == 0) {
-            
             [self.dataSource addObject:self.sectionFetchResults[i]];
-            
         }
         else {
             for (PHFetchResult *result in self.sectionFetchResults[i]) {
@@ -119,10 +119,12 @@ static CGFloat const iconHeight = 120.0f;
                 
                 if ([assetCollection isKindOfClass:[PHAssetCollection class]]) {
                     
-                    PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
-                    if (assetsFetchResult.count > 0) {
-                        [self.dataSource addObject:result];
-                    }
+//                    PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
+//                    if (assetsFetchResult.count > 0) {
+//                        [self.dataSource addObject:result];
+//                    }
+//                    NSLog(@"--------%@", assetCollection.localizedTitle);
+                    [self.dataSource addObject:result];
                 }
     
             }

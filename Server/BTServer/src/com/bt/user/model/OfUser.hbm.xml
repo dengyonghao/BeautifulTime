@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+    <class name="com.bt.user.model.OfUser" table="ofUser" schema="dbopenfire">
+        <id name="username" type="java.lang.String">
+            <column name="USERNAME" length="64" />
+            <generator class="assigned" />
+        </id>
+        
+        <property name="plainPassword" type="java.lang.String">
+            <column name="plainPassword"  />
+        </property>
+        
+        <property name="encryptedPassword" type="java.lang.String">
+            <column name="encryptedPassword" />
+        </property>
+        
+        <property name="name" type="java.lang.String">
+            <column name="name"  />
+        </property>
+        
+        <property name="email" type="java.lang.String">
+            <column name="email" />
+        </property>
+        
+        <property name="creationDate" type="java.lang.String">
+            <column name="creationDate"  />
+        </property>
+        
+        <property name="modificationDate" type="java.lang.String">
+            <column name="modificationDate" />
+        </property>
+        
+      </class>  
+</hibernate-mapping>

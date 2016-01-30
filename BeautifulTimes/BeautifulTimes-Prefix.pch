@@ -23,4 +23,6 @@
 #import "BTBaseViewController.h"
 #import "BTThemeManager.h"
 #import "UIView+BTAddition.h"
+#import "BTTool.h"
+#import "UIImage+Addition.h"
 #endif

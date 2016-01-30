@@ -20,6 +20,7 @@
 
 //进入新手引导页
 - (void)enterGuidePage;
+
 //进入首页
 - (void)enterHomePage;
 

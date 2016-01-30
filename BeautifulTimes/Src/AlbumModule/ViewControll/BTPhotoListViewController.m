@@ -35,9 +35,11 @@ static CGSize AssetGridThumbnailSize;
     [super viewDidLoad];
     photosNumber = [BTJournalController sharedInstance].photos.count;
     self.titleLabel.text = @"相册详情";
+    self.finishButton.hidden = NO;
     if (self.isSelectModel) {
-        self.finishButton.hidden = NO;
         [self.finishButton setTitle:@"选择" forState:UIControlStateNormal];
+    } else {
+        [self.finishButton setTitle:@"编辑" forState:UIControlStateNormal];
     }
     [self initDataSource];
     [self.bodyView addSubview:self.collectionView];
@@ -115,15 +117,34 @@ static CGSize AssetGridThumbnailSize;
 
 
 - (void)finishButtonClick {
-    NSMutableArray *ary = [[NSMutableArray alloc] initWithArray:[BTJournalController sharedInstance].photos];
-    [ary addObjectsFromArray:[self sortDictionaryByAsc:self.photoSource]];
-    [[BTJournalController sharedInstance] setPhotos:ary];
-    for (UIViewController *controller in self.navigationController.viewControllers) {
-        if ([controller isKindOfClass:[BTSelectPhotosViewController class]]) {
-            [self.navigationController popToViewController:controller animated:YES];
+    if (self.isSelectModel) {
+        NSMutableArray *ary = [[NSMutableArray alloc] initWithArray:[BTJournalController sharedInstance].photos];
+        [ary addObjectsFromArray:[self sortDictionaryByAsc:self.photoSource]];
+        [[BTJournalController sharedInstance] setPhotos:ary];
+        for (UIViewController *controller in self.navigationController.viewControllers) {
+            if ([controller isKindOfClass:[BTSelectPhotosViewController class]]) {
+                [self.navigationController popToViewController:controller animated:YES];
+            }
         }
     }
-
+    //delete album
+    else {
+        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+            if (!self.assetCollection) {
+                [PHAssetCollectionChangeRequest deleteAssetCollections:self.fetchResult];
+            } else {
+                NSArray *arry = @[self.assetCollection];
+                [PHAssetCollectionChangeRequest deleteAssetCollections:arry];
+            }
+        } completionHandler:^(BOOL success, NSError *error) {
+            if (success) {
+                //loading框
+                [self backButtonClick];
+            } else {
+                //删除失败
+            }
+        }];
+    }
 }
 
 - (void)initDataSource {

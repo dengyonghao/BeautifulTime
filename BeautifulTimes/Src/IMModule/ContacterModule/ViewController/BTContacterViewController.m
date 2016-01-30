@@ -102,6 +102,16 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 -(void)devideFriend
 {
     BTXMPPTool *xmppToll=[BTXMPPTool sharedInstance];
+    NSFetchedResultsController *res = [xmppToll fetchedGroupResultsController];
+    NSLog(@"%lu", [res fetchedObjects].count);
+    XMPPGroupCoreDataStorageObject *group = [[res fetchedObjects] objectAtIndex:0];
+    
+    for(XMPPUserCoreDataStorageObject *user in [group users]){
+        
+        BTContacterModel *friend = [[BTContacterModel alloc]init];
+        friend.jid = user.jid;
+    }
+    NSLog(@"%@", group);
     //获得好友的列表
     for(XMPPUserCoreDataStorageObject *user in _resultsContrl.fetchedObjects){
         
@@ -114,6 +124,11 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
         }else{
             friend.headIcon = [UIImage imageWithData: [xmppToll.avatar photoDataForJID:user.jid]];
         }
+        
+        if (!friend.headIcon) {
+            friend.headIcon = BT_LOADIMAGE(@"com_ic_defaultIcon");
+        }
+        
         friend.nickName = user.nickname;
 
 //        friend.vcClass = [ChatController class];

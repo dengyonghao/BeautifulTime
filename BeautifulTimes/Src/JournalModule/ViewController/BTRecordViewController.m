@@ -157,9 +157,9 @@ static CGFloat const recorderDuration = 600;
         NSString *filePath = [self.recordUrl absoluteString];
         NSData *data = [[NSData alloc] initWithContentsOfFile:filePath];
         
-        NSString *documentDirectory = [self getDocumentPath];
+        NSString *documentDirectory = [BTTool getDocumentDirectory];
         NSString *uid = [self getSaveFilePath];
-        NSString *savePath = [[self getDocumentPath] stringByAppendingPathComponent:uid];
+        NSString *savePath = [documentDirectory stringByAppendingPathComponent:uid];
         NSFileManager *fileManager = [NSFileManager defaultManager];
         while (true) {
             if (![fileManager fileExistsAtPath:savePath]) {
@@ -212,7 +212,7 @@ static CGFloat const recorderDuration = 600;
     if (self.recordUrl != nil){
         if (!player) {
             if (isEditModel) {
-                NSString *saveRecordPath = [[self getDocumentPath] stringByAppendingPathComponent:[BTJournalController sharedInstance].record];
+                NSString *saveRecordPath = [[BTTool getDocumentDirectory] stringByAppendingPathComponent:[BTJournalController sharedInstance].record];
                 NSData *recordData = [[NSData alloc] initWithContentsOfFile:saveRecordPath];
                 player = [[AVAudioPlayer alloc] initWithData:recordData error:nil];
             } else {
@@ -238,7 +238,7 @@ static CGFloat const recorderDuration = 600;
 - (void)deleteRecordFile {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (isEditModel) {
-        NSString *savePath = [[self getDocumentPath] stringByAppendingPathComponent:[BTJournalController sharedInstance].record];
+        NSString *savePath = [[BTTool getDocumentDirectory] stringByAppendingPathComponent:[BTJournalController sharedInstance].record];
         [BTJournalController sharedInstance].record = nil;
         if ([fileManager fileExistsAtPath:savePath]) {
             [fileManager removeItemAtPath:savePath error:nil];
@@ -249,12 +249,6 @@ static CGFloat const recorderDuration = 600;
             [fileManager removeItemAtPath:filePath error:nil];
         }
     }
-}
-
-- (NSString *)getDocumentPath {
-    NSArray *directoryPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectory = [directoryPaths objectAtIndex:0];
-    return documentDirectory;
 }
 
 - (NSString *)getSaveFilePath {

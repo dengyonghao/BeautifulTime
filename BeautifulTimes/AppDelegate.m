@@ -54,7 +54,6 @@ static AppDelegate *singleton = nil;
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    [[self cdh] saveContext];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -97,22 +96,18 @@ static AppDelegate *singleton = nil;
     }
 }
 
-
 //进入新手引导页
 - (void)enterGuidePage {
-    
     self.window.rootViewController = nil;
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     BTGuideViewController *guideVC = [[BTGuideViewController alloc] init];
     guideVC.hidesBottomBarWhenPushed = YES;
     self.window.rootViewController = guideVC;
     [self.window makeKeyAndVisible];
-    
 }
 
 //进入首页
 - (void)enterHomePage {
-    
     NSNumber *themeType = [[NSUserDefaults standardUserDefaults] objectForKey:@"BTThemeType"];
     if (themeType == nil) {
         themeType = [NSNumber numberWithInt:BTThemeType_BT_BLUE];

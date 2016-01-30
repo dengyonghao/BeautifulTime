@@ -9,6 +9,7 @@
 #import "BTRegisterAccountViewController.h"
 #import "BTTextField.h"
 #import "UIImage+Addition.h"
+#import "MBProgressHUD+MJ.h"
 
 #define margin 20
 #define textFieldHeight 30
@@ -59,26 +60,26 @@
 }
 
 #pragma mark 添加手势识别器
--(void)addGesture
+- (void)addGesture
 {
     UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
     tap.numberOfTapsRequired=1;
     [self.view addGestureRecognizer:tap];
 }
 #pragma mark 点击的方法
--(void)tapClick:(id)sender {
+- (void)tapClick:(id)sender {
     [self.view endEditing:YES];
 }
 
 #pragma mark 添加下划线的方法
--(void)addbottomLineWith:(CGRect)bounds {
+- (void)addbottomLineWith:(CGRect)bounds {
     UIImageView *line=[[UIImageView alloc]initWithFrame:bounds];
     line.backgroundColor=[[BTThemeManager getInstance] BTThemeColor:@"cl_line_a2_item"];
     [self.view addSubview:line];
 }
 
 
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if(self.username.text.length != 0 && self.password.text.length != 0){
         self.registerBtn.enabled=YES;
@@ -86,85 +87,58 @@
     if(textField.text.length <= 1) {
         self.registerBtn.enabled = NO;
     }
-    
     return YES;
 }
-#pragma mark 点击登陆的方法
--(void)registerClick
-{
-    //    NSString *uname=[self trim:self.username.text];
-    //    NSString *pass=[self trim:self.password.text];
-    //登陆的方法
-    //    UserOperation *user=[UserOperation shareduser];
-    //    user.uname=uname;
-    //    user.password=pass;
-    BTXMPPTool *xmppTool=[BTXMPPTool sharedInstance];
-    xmppTool.registerOperation=NO;  //注册的方法
+
+#pragma mark 点击注册的方法
+- (void)registerClick {
     
-    WS(weakSelf);
+    NSString *userName = [self.username.text trim];
+    NSString *password = [self.password.text trim];
     
-    //显示旋转矿
+    [[NSUserDefaults standardUserDefaults] setValue:userName forKey:userID];
+    [[NSUserDefaults standardUserDefaults] setValue:password forKey:userPassword];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    BTXMPPTool *xmppTool = [BTXMPPTool sharedInstance];
+    xmppTool.registerOperation = YES;
     [self.view endEditing:YES];
-    
-    [xmppTool login:^(XMPPResultType xmppType) {
+    WS(weakSelf);
+    [xmppTool regist:^(XMPPResultType xmppType) {
         [weakSelf handle:xmppType];
     }];
 }
-#pragma mark 用户登录验证的方法
--(void)handle:(XMPPResultType)xmppType {
-    //回到主线程
-    
+
+#pragma mark 用户注册验证的方法
+- (void)handle:(XMPPResultType)xmppType {
+    [MBProgressHUD hideHUDForView:self.view];
     dispatch_async(dispatch_get_main_queue(), ^{
         switch (xmppType) {
             case XMPPResultSuccess:
-            {
-                //                [BaseMethod showSuccess:@"登录成功" toView:self.view];;
-                [self enterHome];
-            }
+                [MBProgressHUD showSuccess:@"登录成功" toView:self.view];
                 break;
             case XMPPResultFaiture:
-            {
-                //                [BaseMethod showError:@"用户名或密码错误" toView:self.view];
-            }
+                [MBProgressHUD showError:@"用户名或密码错误" toView:self.view];
                 break;
             case XMPPResultNetworkErr:
-            {
-                //                [BaseMethod showError:@"网络不给力" toView:self.view];
-            }
+                [MBProgressHUD showError:@"网络不给力" toView:self.view];
+                break;
+            case XMPPResultRegisterSuccess:
+                [MBProgressHUD showError:@"注册成功" toView:self.view];
+                [self enterHome];
+                break;
+            case XMPPResultRegisterFailture:
+                [MBProgressHUD showError:@"注册失败" toView:self.view];
                 break;
         }
     });
-    
-}
-#pragma mark 登录成功后进入主界面
--(void)enterHome
-{
-    //    UserOperation *user=[UserOperation shareduser];
-    //    user.loginStatus=YES; //登录成功保存登录状态
-    //清空输入框里面的文字
-    self.username.text=nil;
-    self.password.text=nil;
-    
-    [self dismissViewControllerAnimated:NO completion:nil];
-    
-    //    MyTabBarController *tab=[[MyTabBarController alloc]init];
-    //    [self presentViewController:tab animated:NO completion:nil];
-    
-    
-}
-#pragma mark 注册按钮点击的方法
--(void)regisClick
-{
-    //    RegisterController *reg=[[RegisterController alloc]init];
-    //    [self.navigationController pushViewController:reg animated:YES];
-    //    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
-#pragma mark 截取字符串空格的方法
--(NSString*)trim:(NSString*)str
+#pragma mark 注册成功后进入主界面
+-(void)enterHome
 {
-    str=[str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    return [str lowercaseString]; //转成小写
+    
+    
 }
 
 - (UIButton *)registerBtn {

@@ -100,12 +100,6 @@
 #pragma mark 点击登陆的方法
 -(void)confirmClick
 {
-    //    NSString *uname=[self trim:self.username.text];
-    //    NSString *pass=[self trim:self.password.text];
-    //登陆的方法
-    //    UserOperation *user=[UserOperation shareduser];
-    //    user.uname=uname;
-    //    user.password=pass;
     BTXMPPTool *xmppTool=[BTXMPPTool sharedInstance];
     xmppTool.registerOperation=NO;  //注册的方法
     
@@ -147,25 +141,11 @@
 #pragma mark 登录成功后进入主界面
 -(void)enterHome
 {
-    //    UserOperation *user=[UserOperation shareduser];
-    //    user.loginStatus=YES; //登录成功保存登录状态
-    //清空输入框里面的文字
     self.oldPassword.text=nil;
     self.password.text=nil;
     
     [self dismissViewControllerAnimated:NO completion:nil];
     
-    //    MyTabBarController *tab=[[MyTabBarController alloc]init];
-    //    [self presentViewController:tab animated:NO completion:nil];
-    
-    
-}
-#pragma mark 注册按钮点击的方法
--(void)regisClick
-{
-    //    RegisterController *reg=[[RegisterController alloc]init];
-    //    [self.navigationController pushViewController:reg animated:YES];
-    //    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 #pragma mark 截取字符串空格的方法

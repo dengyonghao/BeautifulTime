@@ -60,6 +60,25 @@ static inline UIImage* naviimage_from_mainbundle(NSString* filename_and_type)
 //删除好友时发出的通知名
 #define DeleteFriend @"deleteFriend"
 
+//发送表情的按钮
+#define FaceSendButton @"faceSendButton"
+
+/** 表情相关 */
+// 表情的最大行数
+#define HMEmotionMaxRows 3
+// 表情的最大列数
+#define HMEmotionMaxCols 7
+// 每页最多显示多少个表情
+#define HMEmotionMaxCountPerPage (HMEmotionMaxRows * HMEmotionMaxCols - 1)
+
+// 表情选中的通知
+#define HMEmotionDidSelectedNotification @"HMEmotionDidSelectedNotification"
+// 点击删除按钮的通知
+#define HMEmotionDidDeletedNotification @"HMEmotionDidDeletedNotification"
+// 通知里面取出表情用的key
+#define HMSelectedEmotion @"HMSelectedEmotion"
+
+
 //服务器的ip地址
 #define ServerAddress @"119.29.115.132"
 

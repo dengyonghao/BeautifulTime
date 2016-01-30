@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class HMEmotion;
+
 @interface BTSendTextView : UITextView
 
 /**
  *  拼接表情
  */
-//- (void)appendEmotion:(HMEmotion *)emotion;
+- (void)appendEmotion:(HMEmotion *)emotion;
 
 /**
  *  具体的文字内容
