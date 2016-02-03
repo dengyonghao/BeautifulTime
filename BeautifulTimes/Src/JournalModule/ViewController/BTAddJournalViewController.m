@@ -145,7 +145,7 @@ static const CGFloat itemWidth = 70;
             errorString = @"发生未知错误";
             break;
     }
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
 //    [alert show];
 }
 

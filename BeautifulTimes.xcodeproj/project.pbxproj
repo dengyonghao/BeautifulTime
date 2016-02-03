@@ -2065,8 +2065,8 @@
 		65E2D3251BCFC965001E29A9 = {
 			isa = PBXGroup;
 			children = (
-				65F312E11C15A69F00EA926C /* Frameworks */,
 				65E2D3301BCFC965001E29A9 /* BeautifulTimes */,
+				65F312E11C15A69F00EA926C /* Frameworks */,
 				65E2D34D1BCFC966001E29A9 /* BeautifulTimesTests */,
 				65E2D32F1BCFC965001E29A9 /* Products */,
 			);
@@ -2714,7 +2714,6 @@
 				TargetAttributes = {
 					65E2D32D1BCFC965001E29A9 = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = WAU5CTT2Y9;
 					};
 					65E2D3491BCFC966001E29A9 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -3169,8 +3168,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: rd szlbs (KWNPF2348G)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: rd szlbs (KWNPF2348G)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BeautifulTimes/BeautifulTimes-Prefix.pch";
@@ -3197,8 +3196,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: rd szlbs (KWNPF2348G)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: rd szlbs (KWNPF2348G)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BeautifulTimes/BeautifulTimes-Prefix.pch";
