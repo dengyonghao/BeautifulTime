@@ -76,4 +76,11 @@ typedef  void (^XMPPResultBlock)(XMPPResultType xmppType);
  */
 - (void)sendMessage:(NSString *)msg type:(NSString *)type to:(XMPPJID *)toName;
 
+/**
+ *  修改密码
+ *
+ *  @param checkPassword 新密码
+ */
+- (void)changePassworduseWord:(NSString *)checkPassword;
+
 @end

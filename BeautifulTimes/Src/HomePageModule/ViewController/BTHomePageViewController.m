@@ -236,8 +236,8 @@ static const CGFloat BUTTONWIDTH = 48;
 //                 } progress:^(float progress) {
 //                     
 //                 }];
-    [self didClickUploadButtonAction];
-    
+//    [self didClickUploadButtonAction];
+    [[BTXMPPTool sharedInstance] changePassworduseWord:@"12345"];
 }
 
 - (void)downloadFileWithOption:(NSDictionary *)paramDic

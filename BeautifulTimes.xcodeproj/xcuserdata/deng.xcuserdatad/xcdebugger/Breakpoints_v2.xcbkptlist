@@ -211,16 +211,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BeautifulTimes/Src/AlbumModule/ViewControll/BTPhotoListViewController.m"
-            timestampString = "475846357.921302"
+            filePath = "BeautifulTimes/Src/HomePageModule/ViewController/BTHomePageViewController.m"
+            timestampString = "475862865.779617"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "-finishButtonClick"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
+            landmarkName = "-addTimelineClick"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -230,45 +230,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BeautifulTimes/Src/AlbumModule/ViewControll/BTMyAlbumViewController.m"
-            timestampString = "475856762.298291"
+            filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
+            timestampString = "476172515.62128"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "-photoLibraryDidChange:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BeautifulTimes/Src/AlbumModule/ViewControll/BTMyAlbumViewController.m"
-            timestampString = "475856762.298291"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "-photoLibraryDidChange:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BeautifulTimes/Src/AlbumModule/ViewControll/BTMyAlbumViewController.m"
-            timestampString = "475856762.298291"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "-photoLibraryDidChange:"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
+            landmarkName = "-changePassworduseWord:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

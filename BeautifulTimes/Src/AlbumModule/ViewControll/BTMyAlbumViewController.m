@@ -183,8 +183,6 @@ static CGFloat const iconHeight = 120.0f;
                                      
                                  }];
         }
-        
-        
     }
     else {
         
@@ -209,7 +207,6 @@ static CGFloat const iconHeight = 120.0f;
             else {
                 [cell bindData:collection.localizedTitle icon:nil];
             }
-
         }
     }
     return cell;

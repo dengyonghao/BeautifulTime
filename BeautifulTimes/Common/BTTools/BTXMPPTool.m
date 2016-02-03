@@ -230,6 +230,7 @@ static BTXMPPTool *xmppTool;
         _resultBlock(XMPPResultRegisterFailture);
     }
 }
+
 #pragma mark 接收到消息的事件
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message{
     NSDate *date = [self getDelayStampTime:message];
@@ -258,6 +259,28 @@ static BTXMPPTool *xmppTool;
         NSNotification *note = [[NSNotification alloc]initWithName:SendMsgName object:dict userInfo:nil];
         [[NSNotificationCenter defaultCenter] postNotification:note];
     }
+}
+
+#pragma mark 修改密码
+- (void)changePassworduseWord:(NSString *)checkPassword
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userId = [defaults stringForKey:userID];
+    
+    NSXMLElement *query = [NSXMLElement elementWithName:@"query" xmlns:@"jabber:iq:register"];
+    NSXMLElement *msgXml = [NSXMLElement elementWithName:@"iq"];
+    
+    [msgXml addAttributeWithName:@"type" stringValue:@"set"];
+    [msgXml addAttributeWithName:@"to" stringValue:ServerName];
+    [msgXml addAttributeWithName:@"id" stringValue:@"change1"];
+     
+     DDXMLNode *username=[DDXMLNode elementWithName:@"username" stringValue:userId];//不带@后缀
+     DDXMLNode *password=[DDXMLNode elementWithName:@"password" stringValue:checkPassword];//要改的密码
+     [query addChild:username];
+     [query addChild:password];
+     [msgXml addChild:query];
+     
+     [_xmppStream sendElement:msgXml];
 }
 
 #pragma mark 发送消息的函数
