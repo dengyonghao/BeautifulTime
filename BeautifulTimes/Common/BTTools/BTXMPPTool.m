@@ -291,6 +291,95 @@ static BTXMPPTool *xmppTool;
     }
 }
 
+#pragma mark 查找好友
+- (void)searchUserInfo:(NSString *)searchValue
+{
+    NSXMLElement *iq = [NSXMLElement elementWithName:@"iq"];
+    [iq addAttributeWithName:@"type" stringValue:@"set"];
+    XMPPJID *myJID = self.xmppStream.myJID;
+    [iq addAttributeWithName:@"from" stringValue:myJID.description];
+    [iq addAttributeWithName:@"to" stringValue:@"sh.m.tie1tie.com"];
+    [iq addAttributeWithName:@"id" stringValue:@"search2"];
+    
+    NSXMLElement *query = [NSXMLElement elementWithName:@"query" xmlns:@"jabber:iq:search"];
+    NSXMLElement *x = [NSXMLElement elementWithName:@"x" xmlns:@"jabber:x:data"];
+    [x addAttributeWithName:@"type" stringValue:@"submit"];
+    
+    NSXMLElement *field1 = [NSXMLElement elementWithName:@"field"];
+    [field1 addAttributeWithName:@"type" stringValue:@"hidden"];
+    [field1 addAttributeWithName:@"var" stringValue:@"FROM_TYPE"];
+    NSXMLElement *value1 = [NSXMLElement elementWithName:@"value" stringValue:@"jabber:iq:search"];
+    [field1 addChild:value1];
+    
+    NSXMLElement *field2 = [NSXMLElement elementWithName:@"field"];
+    [field2 addAttributeWithName:@"type" stringValue:@"text-single"];
+    [field2 addAttributeWithName:@"var" stringValue:@"search"];
+    NSXMLElement *value2 = [NSXMLElement elementWithName:@"value" stringValue:searchValue];
+    [field2 addChild:value2];
+    
+    NSXMLElement *field3 = [NSXMLElement elementWithName:@"field"];
+    [field3 addAttributeWithName:@"type" stringValue:@"boolean"];
+    [field3 addAttributeWithName:@"var" stringValue:@"Username"];
+    NSXMLElement *value3 = [NSXMLElement elementWithName:@"value" stringValue:@"1"];
+    [field3 addChild:value3];
+    
+    NSXMLElement *field4 = [NSXMLElement elementWithName:@"field"];
+    [field4 addAttributeWithName:@"type" stringValue:@"boolean"];
+    [field4 addAttributeWithName:@"var" stringValue:@"Name"];
+    NSXMLElement *value4 = [NSXMLElement elementWithName:@"value" stringValue:@"1"];
+    [field4 addChild:value4];
+    
+    NSXMLElement *field5 = [NSXMLElement elementWithName:@"field"];
+    [field5 addAttributeWithName:@"type" stringValue:@"boolean"];
+    [field5 addAttributeWithName:@"var" stringValue:@"Email"];
+    NSXMLElement *value5 = [NSXMLElement elementWithName:@"value" stringValue:@"1"];
+    [field5 addChild:value5];
+    
+    [x addChild:field1];
+    [x addChild:field2];
+    [x addChild:field3];
+    [x addChild:field4];
+    [x addChild:field5];
+    
+    [query addChild:x];
+    
+    [iq addChild:query];
+    
+    [self.xmppStream sendElement:iq];
+}
+
+
+- (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq {
+    //返回用户信息查询结果
+    if ([@"result" isEqualToString:iq.type] && [[iq attributeStringValueForName:@"id"] isEqualToString:@"search2"]) {
+        NSString *name;
+        XMPPJID *jid;
+        NSXMLElement *query = iq.childElement;
+        if ([@"query" isEqualToString:query.name]) {
+//            NSXMLElement *x = [self childElement:query];
+//            NSArray *elements = [x children];
+//            for (NSXMLElement *item in elements) {
+//                if ([item.name isEqualToString:@"item"]) {
+//                    NSArray *fields = [item children];
+//                    for (NSXMLElement *field in fields) {
+//                        if ([[field attributeStringValueForName:@"var"] isEqualToString:@"Name"]) {
+//                            name = [[[field elementsForName:@"value"] firstObject] stringValue];
+//                        }
+//                        if ([[field attributeStringValueForName:@"var"] isEqualToString:@"jid"]) {
+//                            NSString *jidStr = [[[field elementsForName:@"value"] firstObject] stringValue];
+//                            jid = [XMPPJID jidWithString:jidStr];
+//                        }
+//                    }
+//                }
+//            }
+        }
+//        [self handlePresence:jid name:name];
+        
+    }
+    return YES;
+}
+
+
 #pragma mark  当对象销毁的时候
 -(void)teardownXmpp
 {

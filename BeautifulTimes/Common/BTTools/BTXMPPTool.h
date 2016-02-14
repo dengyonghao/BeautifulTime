@@ -76,4 +76,11 @@ typedef  void (^XMPPResultBlock)(XMPPResultType xmppType);
  */
 - (void)sendMessage:(NSString *)msg type:(NSString *)type to:(XMPPJID *)toName;
 
+/**
+ *  查找好友
+ *
+ *  @param searchValue 查找内容
+ */
+- (void)searchUserInfo:(NSString *)searchValue;
+
 @end
