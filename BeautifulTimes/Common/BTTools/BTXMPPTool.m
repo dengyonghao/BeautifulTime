@@ -23,6 +23,7 @@ static BTXMPPTool *xmppTool;
 @end
 
 @implementation BTXMPPTool
+
 + (instancetype)sharedInstance
 {
     static dispatch_once_t onceToken;
@@ -33,14 +34,18 @@ static BTXMPPTool *xmppTool;
     return xmppTool;
 }
 
+-(void)dealloc
+{
+    [self teardownXmpp];
+}
 
 #pragma mark 初始化xmppstream
 -(void)setupXmppStream
 {
-    _xmppStream=[[XMPPStream alloc]init];
+    _xmppStream = [[XMPPStream alloc] init];
 #warning 每一个模块添加都要激活
     //1.添加自动连接模块
-    _reconnect=[[XMPPReconnect alloc]init];
+    _reconnect=[[XMPPReconnect alloc] init];
     [_reconnect activate:_xmppStream];
     //2.添加电子名片模块
     _vCardStorage=[XMPPvCardCoreDataStorage sharedInstance];
@@ -60,8 +65,8 @@ static BTXMPPTool *xmppTool;
     [_messageArching activate:_xmppStream];
     
     [_xmppStream addDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
-    
 }
+
 #pragma mark 连接到服务器
 -(void)connectToHost
 {
@@ -91,7 +96,6 @@ static BTXMPPTool *xmppTool;
     } else {
         [self sendPwdToHost];
     }
-    
 }
 
 #pragma mark 连接失败的方法
@@ -197,6 +201,7 @@ static BTXMPPTool *xmppTool;
     XMPPJID *myJid=[XMPPJID jidWithUser:friedJid domain:ServerName resource:nil];
     [_roster subscribePresenceToUser:myJid];
 }
+
 - (void)xmppRoster:(XMPPRoster *)sender didReceivePresenceSubscriptionRequest:(XMPPPresence *)presence
 {
     //取得好友状态
@@ -209,7 +214,6 @@ static BTXMPPTool *xmppTool;
     
     XMPPJID *jid = [XMPPJID jidWithString:presenceFromUser];
     [_roster acceptPresenceSubscriptionRequestFrom:jid andAddToRoster:YES];
-    
 }
 
 #pragma mark 调用注册的方法
@@ -218,13 +222,14 @@ static BTXMPPTool *xmppTool;
     [_xmppStream disconnect];
     [self connectToHost];
 }
-#pragma mark 注册成功
+
+#pragma mark 注册delegate
 -(void)xmppStreamDidRegister:(XMPPStream *)sender{
     if(_resultBlock){
         _resultBlock(XMPPResultRegisterSuccess);
     }
 }
-#pragma mark 注册失败
+
 -(void)xmppStream:(XMPPStream *)sender didNotRegister:(DDXMLElement *)error{
     if(_resultBlock){
         _resultBlock(XMPPResultRegisterFailture);
@@ -272,7 +277,7 @@ static BTXMPPTool *xmppTool;
     
     [msgXml addAttributeWithName:@"type" stringValue:@"set"];
     [msgXml addAttributeWithName:@"to" stringValue:ServerName];
-    [msgXml addAttributeWithName:@"id" stringValue:@"change1"];
+    [msgXml addAttributeWithName:@"id" stringValue:@"changePassword"];
      
      DDXMLNode *username=[DDXMLNode elementWithName:@"username" stringValue:userId];//不带@后缀
      DDXMLNode *password=[DDXMLNode elementWithName:@"password" stringValue:checkPassword];//要改的密码
@@ -314,6 +319,14 @@ static BTXMPPTool *xmppTool;
     }
 }
 
+- (void)xmppStream:(XMPPStream *)sender didFailToSendMessage:(XMPPMessage *)message error:(NSError *)error {
+    NSLog(@"567890");
+}
+
+- (void)xmppStream:(XMPPStream *)sender didFailToSendIQ:(XMPPIQ *)iq error:(NSError *)error {
+     NSLog(@"567890");
+}
+
 #pragma mark  当对象销毁的时候
 -(void)teardownXmpp
 {
@@ -331,11 +344,6 @@ static BTXMPPTool *xmppTool;
     _rosterStorage=nil;
     _roster=nil;
     _xmppStream=nil;
-}
-
--(void)dealloc
-{
-    [self teardownXmpp];
 }
 
 @end
