@@ -488,12 +488,12 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/BeautifulTimes/BeautifulTimes/Src/UserCenterModel/ViewControll/BTRegisterAccountViewController.m"
-                  timestampString = "475572165.947976"
+                  timestampString = "477138836.008095"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "115"
                   endingLineNumber = "115"
-                  offsetFromSymbolStart = "103">
+                  offsetFromSymbolStart = "120">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -503,12 +503,12 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/BeautifulTimes/BeautifulTimes/Src/UserCenterModel/ViewControll/BTRegisterAccountViewController.m"
-                  timestampString = "475572165.948541"
+                  timestampString = "477138836.008509"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "115"
                   endingLineNumber = "115"
-                  offsetFromSymbolStart = "15">
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -542,6 +542,102 @@
             startingLineNumber = "71"
             endingLineNumber = "71"
             landmarkName = "-createHistoryDBWithFriendId:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
+            timestampString = "477138817.707167"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "356"
+            endingLineNumber = "356"
+            landmarkName = "-xmppStream:didReceiveIQ:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
+            timestampString = "477138817.707167"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "361"
+            endingLineNumber = "361"
+            landmarkName = "-xmppStream:didReceiveIQ:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
+            timestampString = "477138817.707167"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "407"
+            endingLineNumber = "407"
+            landmarkName = "-dealloc"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
+            timestampString = "477138817.707167"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "360"
+            endingLineNumber = "360"
+            landmarkName = "-xmppStream:didReceiveIQ:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Src/IMModule/ContacterModule/ViewController/BTAddFriendViewController.m"
+            timestampString = "477129240.530809"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "-searchButtonClick"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
+            timestampString = "477138864.766198"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "349"
+            endingLineNumber = "349"
+            landmarkName = "-searchUserInfo:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

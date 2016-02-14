@@ -237,7 +237,9 @@ static const CGFloat BUTTONWIDTH = 48;
 //                     
 //                 }];
 //    [self didClickUploadButtonAction];
-    [[BTXMPPTool sharedInstance] changePassworduseWord:@""];
+//    [[BTXMPPTool sharedInstance] changePassworduseWord:@"23456"];
+    [[BTXMPPTool sharedInstance] searchUserInfo:@"int"];
+    
 }
 
 - (void)downloadFileWithOption:(NSDictionary *)paramDic

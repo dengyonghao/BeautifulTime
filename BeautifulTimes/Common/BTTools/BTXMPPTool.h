@@ -83,4 +83,11 @@ typedef  void (^XMPPResultBlock)(XMPPResultType xmppType);
  */
 - (void)changePassworduseWord:(NSString *)checkPassword;
 
+/**
+ *  查找好友
+ *
+ *  @param searchValue 查找内容
+ */
+- (void)searchUserInfo:(NSString *)searchValue;
+
 @end

@@ -288,6 +288,60 @@ static BTXMPPTool *xmppTool;
      [_xmppStream sendElement:msgXml];
 }
 
+#pragma mark 查找好友
+- (void)searchUserInfo:(NSString *)searchValue
+{
+    NSXMLElement *iq = [NSXMLElement elementWithName:@"iq"];
+    [iq addAttributeWithName:@"type" stringValue:@"set"];
+    [iq addAttributeWithName:@"from" stringValue:self.jid.description];
+    [iq addAttributeWithName:@"to" stringValue:[NSString stringWithFormat:@"search.%@",ServerName]];
+    [iq addAttributeWithName:@"id" stringValue:@"search2"];
+    
+    NSXMLElement *query = [NSXMLElement elementWithName:@"query" xmlns:@"jabber:iq:search"];
+    NSXMLElement *x = [NSXMLElement elementWithName:@"x" xmlns:@"jabber:x:data"];
+    [x addAttributeWithName:@"type" stringValue:@"submit"];
+    
+    NSXMLElement *field = [NSXMLElement elementWithName:@"field"];
+    [field addAttributeWithName:@"type" stringValue:@"hidden"];
+    [field addAttributeWithName:@"var" stringValue:@"FROM_TYPE"];
+    NSXMLElement *value = [NSXMLElement elementWithName:@"value" stringValue:@"jabber:iq:search"];
+    [field addChild:value];
+    [x addChild:field];
+    
+    NSXMLElement *searchValueField = [NSXMLElement elementWithName:@"field"];
+    [searchValueField addAttributeWithName:@"type" stringValue:@"text-single"];
+    [searchValueField addAttributeWithName:@"var" stringValue:@"search"];
+    NSXMLElement *searchvalue = [NSXMLElement elementWithName:@"value" stringValue:searchValue];
+    [searchValueField addChild:searchvalue];
+    [x addChild:searchValueField];
+    
+    NSXMLElement *userNameField = [NSXMLElement elementWithName:@"field"];
+    [userNameField addAttributeWithName:@"type" stringValue:@"boolean"];
+    [userNameField addAttributeWithName:@"var" stringValue:@"Username"];
+    NSXMLElement *userNameValue = [NSXMLElement elementWithName:@"value" stringValue:@"1"];
+    [userNameField addChild:userNameValue];
+    [x addChild:userNameField];
+    
+    NSXMLElement *nameField = [NSXMLElement elementWithName:@"field"];
+    [nameField addAttributeWithName:@"type" stringValue:@"boolean"];
+    [nameField addAttributeWithName:@"var" stringValue:@"Name"];
+    NSXMLElement *nameValue = [NSXMLElement elementWithName:@"value" stringValue:@"1"];
+    [nameField addChild:nameValue];
+    [x addChild:nameField];
+    
+    NSXMLElement *emailField = [NSXMLElement elementWithName:@"field"];
+    [emailField addAttributeWithName:@"type" stringValue:@"boolean"];
+    [emailField addAttributeWithName:@"var" stringValue:@"Email"];
+    NSXMLElement *emailValue = [NSXMLElement elementWithName:@"value" stringValue:@"1"];
+    [emailField addChild:emailValue];
+    [x addChild:emailField];
+    
+    [query addChild:x];
+    [iq addChild:query];
+    
+    [_xmppStream sendElement:iq];
+}
+
 #pragma mark 发送消息的函数
 - (void)sendMessage:(NSString *)msg type:(NSString *)type to:(XMPPJID *)toName{
     XMPPMessage *msssage = [XMPPMessage messageWithType:@"chat" to:toName];
@@ -319,12 +373,34 @@ static BTXMPPTool *xmppTool;
     }
 }
 
-- (void)xmppStream:(XMPPStream *)sender didFailToSendMessage:(XMPPMessage *)message error:(NSError *)error {
-    NSLog(@"567890");
-}
-
-- (void)xmppStream:(XMPPStream *)sender didFailToSendIQ:(XMPPIQ *)iq error:(NSError *)error {
-     NSLog(@"567890");
+- (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq {
+    //返回用户信息查询结果
+    if ([@"result" isEqualToString:iq.type] && [[iq attributeStringValueForName:@"id"] isEqualToString:@"search2"]) {
+        NSLog(@"search user success!!!");
+        NSString *name;
+        XMPPJID *jid;
+        NSXMLElement *query = iq.childElement;
+        if ([@"query" isEqualToString:query.name]) {
+//            NSXMLElement *x = [self childElement:query];
+//            NSArray *elements = [x children];
+//            for (NSXMLElement *item in elements) {
+//                if ([item.name isEqualToString:@"item"]) {
+//                    NSArray *fields = [item children];
+//                    for (NSXMLElement *field in fields) {
+//                        if ([[field attributeStringValueForName:@"var"] isEqualToString:@"Name"]) {
+//                            name = [[[field elementsForName:@"value"] firstObject] stringValue];
+//                        }
+//                        if ([[field attributeStringValueForName:@"var"] isEqualToString:@"jid"]) {
+//                            NSString *jidStr = [[[field elementsForName:@"value"] firstObject] stringValue];
+//                            jid = [XMPPJID jidWithString:jidStr];
+//                        }
+//                    }
+//                }
+//            }
+        }
+        
+    }
+    return YES;
 }
 
 #pragma mark  当对象销毁的时候
