@@ -236,7 +236,8 @@ static const CGFloat BUTTONWIDTH = 48;
 //                 } progress:^(float progress) {
 //                     
 //                 }];
-    [self didClickUploadButtonAction];
+//    [self didClickUploadButtonAction];
+    [[BTXMPPTool sharedInstance] searchUserInfo:@"deng"];
     
 }
 

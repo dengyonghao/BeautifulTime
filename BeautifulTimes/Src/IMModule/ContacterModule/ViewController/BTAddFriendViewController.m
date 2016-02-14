@@ -60,7 +60,7 @@
 #pragma -mark click event
 
 - (void)searchButtonClick {
-
+    [[BTXMPPTool sharedInstance] searchUserInfo:self.searchContent.text];
 }
 
 

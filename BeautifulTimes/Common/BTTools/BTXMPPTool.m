@@ -298,7 +298,7 @@ static BTXMPPTool *xmppTool;
     [iq addAttributeWithName:@"type" stringValue:@"set"];
     XMPPJID *myJID = self.xmppStream.myJID;
     [iq addAttributeWithName:@"from" stringValue:myJID.description];
-    [iq addAttributeWithName:@"to" stringValue:@"sh.m.tie1tie.com"];
+    [iq addAttributeWithName:@"to" stringValue:ServerName];
     [iq addAttributeWithName:@"id" stringValue:@"search2"];
     
     NSXMLElement *query = [NSXMLElement elementWithName:@"query" xmlns:@"jabber:iq:search"];
@@ -349,9 +349,11 @@ static BTXMPPTool *xmppTool;
 }
 
 
+
 - (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq {
     //返回用户信息查询结果
     if ([@"result" isEqualToString:iq.type] && [[iq attributeStringValueForName:@"id"] isEqualToString:@"search2"]) {
+        NSLog(@"234567890987654");
         NSString *name;
         XMPPJID *jid;
         NSXMLElement *query = iq.childElement;
