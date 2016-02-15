@@ -21,6 +21,8 @@ static BTXMPPTool *xmppTool;
 @interface BTXMPPTool ()<XMPPStreamDelegate>
 {
     XMPPResultBlock _resultBlock;
+    ArrayResponseBlock _searchDataBlock;
+    errorBlock _errorBlock;
     XMPPReconnect *_reconnect;
     //定义一个消息对象
     XMPPMessageArchiving *_messageArching;
@@ -297,8 +299,11 @@ static BTXMPPTool *xmppTool;
 }
 
 #pragma mark 查找好友
-- (void)searchUserInfo:(NSString *)searchValue
+- (void)searchUserInfo:(NSString *)searchValue  Success:(ArrayResponseBlock)success failure:(errorBlock)error
 {
+    _searchDataBlock = success;
+    _errorBlock = error;
+    
     NSXMLElement *iq = [NSXMLElement elementWithName:@"iq"];
     [iq addAttributeWithName:@"type" stringValue:@"set"];
     [iq addAttributeWithName:@"from" stringValue:self.jid.description];
@@ -354,7 +359,7 @@ static BTXMPPTool *xmppTool;
 - (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq {
     //返回用户信息查询结果
     if ([iq.type isEqualToString:@"result"] && [[iq attributeStringValueForName:@"id"] isEqualToString:kSearchUsersId]) {
-        [self analyticalSearchResult:iq];
+        _searchDataBlock([self analyticalSearchResult:iq]);
     }
     return YES;
 }
@@ -375,9 +380,9 @@ static BTXMPPTool *xmppTool;
                     
                     if ([field.name isEqualToString:@"item"]) {
                         NSArray *items = [field children];
+                        BTContacterModel *model = [[BTContacterModel alloc] init];
                         for (NSXMLElement *item in items) {
                             
-                            BTContacterModel *model = [[BTContacterModel alloc] init];
                             if ([[item attributeStringValueForName:@"var"] isEqualToString:@"Name"]) {
                                 model.nickName = [[[item elementsForName:@"value"] firstObject] stringValue];
                             }
@@ -391,8 +396,8 @@ static BTXMPPTool *xmppTool;
                                 model.jid = [XMPPJID jidWithString:jidStr];
                             }
                             
-                            [result addObject:model];
                         }
+                        [result addObject:model];
                     }
                 }
             }

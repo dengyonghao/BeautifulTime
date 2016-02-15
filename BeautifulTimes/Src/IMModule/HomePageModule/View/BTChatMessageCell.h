@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BTMessageListModel.h"
 
 @interface BTChatMessageCell : UITableViewCell
+
+- (void)bindData:(BTMessageListModel *)model;
 
 @end

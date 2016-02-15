@@ -24,28 +24,46 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self.contentView addSubview:self.headIcon];
+        [self.contentView addSubview:self.time];
         [self.contentView addSubview:self.title];
         [self.contentView addSubview:self.content];
-        [self.contentView addSubview:self.time];
         
         WS(weakSelf);
         [self.headIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-            
+            make.top.equalTo(weakSelf).offset(8);
+            make.left.equalTo(weakSelf).offset(8);
+            make.width.equalTo(@(48));
+            make.height.equalTo(@(48));
+        }];
+        
+        [self.time mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(weakSelf).offset(8);
+            make.right.equalTo(weakSelf).offset(-5);
+            make.width.equalTo(@(100));
+            make.height.equalTo(@(20));
         }];
         
         [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
-            
+            make.top.equalTo(weakSelf.headIcon);
+            make.left.equalTo(weakSelf.headIcon).offset(48 + 5);
+            make.height.equalTo(@(20));
+            make.right.equalTo(weakSelf.time).offset(-(100 + 5));
         }];
         
         [self.content mas_makeConstraints:^(MASConstraintMaker *make) {
-            
-        }];
-        
-        [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
-            
+            make.top.equalTo(weakSelf.title).offset(20 + 8);
+            make.left.equalTo(weakSelf.headIcon).offset(48 + 5);
+            make.height.equalTo(@(16));
+            make.right.equalTo(weakSelf).offset(-5);
         }];
     }
     return self;
+}
+
+- (void)bindData:(BTMessageListModel *)model {
+    self.headIcon.image = [[UIImage alloc] initWithData:model.headerIcon];
+    self.title.text = model.uname;
+    self.content.text = model.body;
 }
 
 - (void)awakeFromNib {

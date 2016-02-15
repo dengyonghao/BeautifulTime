@@ -7,6 +7,7 @@
 //
 
 #import "XMPPFramework.h"
+#import "BTBlockType.h"
 
 typedef enum{
     XMPPResultSuccess,   //登陆成功
@@ -58,7 +59,7 @@ typedef  void (^XMPPResultBlock)(XMPPResultType xmppType);
  *
  *  @param searchValue 查找内容
  */
-- (void)searchUserInfo:(NSString *)searchValue;
+- (void)searchUserInfo:(NSString *)searchValue Success:(ArrayResponseBlock)success failure:(errorBlock)error;
 
 /**
  *  添加好友

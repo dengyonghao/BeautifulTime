@@ -7,6 +7,7 @@
 //
 
 #import "BTAddFriendViewController.h"
+#import "BTSearchUserCell.h"
 
 @interface BTAddFriendViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -49,7 +50,6 @@
         make.left.equalTo(weakSelf.view);
         make.right.equalTo(weakSelf.view);
         make.bottom.equalTo(weakSelf.view);
-
     }];
 }
 
@@ -60,16 +60,26 @@
 #pragma -mark click event
 
 - (void)searchButtonClick {
-    [[BTXMPPTool sharedInstance] searchUserInfo:self.searchContent.text];
+    [[BTXMPPTool sharedInstance] searchUserInfo:self.searchContent.text Success:^(NSArray *resultArray) {
+        self.dataSource = resultArray;
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 
 #pragma -mark tableView delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.dataSource.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
+    BTSearchUserCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ksearchUserCellIndentifier"];
+    if (!cell) {
+        cell = [[BTSearchUserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ksearchUserCellIndentifier"];
+    }
+    BTContacterModel *contacter = self.dataSource[indexPath.row];
+    [cell bindData:contacter];
     return cell;
 }
 

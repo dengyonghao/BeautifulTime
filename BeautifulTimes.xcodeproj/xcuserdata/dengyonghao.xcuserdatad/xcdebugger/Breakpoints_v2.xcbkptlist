@@ -488,7 +488,7 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/BeautifulTimes/BeautifulTimes/Src/UserCenterModel/ViewControll/BTRegisterAccountViewController.m"
-                  timestampString = "477196006.68053"
+                  timestampString = "477219921.106285"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "115"
@@ -503,7 +503,7 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/BeautifulTimes/BeautifulTimes/Src/UserCenterModel/ViewControll/BTRegisterAccountViewController.m"
-                  timestampString = "477196006.680867"
+                  timestampString = "477219921.106736"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "115"
@@ -551,13 +551,61 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BeautifulTimes/Src/IMModule/ContacterModule/ViewController/BTAddFriendViewController.m"
-            timestampString = "477129240.530809"
+            filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
+            timestampString = "477200414.711923"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "-searchButtonClick"
+            startingLineNumber = "413"
+            endingLineNumber = "413"
+            landmarkName = "-sendMessage:type:to:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Src/HomePageModule/ViewController/BTHomePageViewController.m"
+            timestampString = "477200241.107081"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
+            landmarkName = "-addTimelineClick"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
+            timestampString = "477200666.508437"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "384"
+            endingLineNumber = "384"
+            landmarkName = "-analyticalSearchResult:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
+            timestampString = "477200580.120148"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "385"
+            endingLineNumber = "385"
+            landmarkName = "-analyticalSearchResult:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -567,13 +615,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
-            timestampString = "477138864.766198"
+            filePath = "BeautifulTimes/Src/IMModule/HomePageModule/ViewController/BTIMHomePageViewController.m"
+            timestampString = "477218703.904776"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "349"
-            endingLineNumber = "349"
-            landmarkName = "-sendMessage:type:to:"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "-updateMessage:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Src/IMModule/HomePageModule/ViewController/BTIMHomePageViewController.m"
+            timestampString = "477218836.85834"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "-updateMessage:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Src/IMModule/HomePageModule/ViewController/BTIMHomePageViewController.m"
+            timestampString = "477218907.511075"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "-updateMessage:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

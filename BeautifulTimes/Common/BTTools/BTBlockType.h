@@ -17,7 +17,7 @@ typedef void (^BOOLBlock)(BOOL bigBOOL);
 typedef BOOL (^BOOLReturnBlock)(BOOL bigBool);
 typedef void (^VoidBooLBlock)(BOOL bigBool);
 typedef BOOL (^BOOLVoidBlock)(void);
-typedef void (^ArrayResponseBlock)(NSArray *retArray);
+typedef void (^ArrayResponseBlock)(NSArray *resultArray);
 typedef void (^DictionaryResponseBlock)(NSDictionary *retDict);
 typedef void (^StringResponseBlock)(NSString* responseString);
 typedef void (^DataBlock)(NSData *data);
