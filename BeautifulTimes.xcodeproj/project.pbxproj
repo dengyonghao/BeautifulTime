@@ -534,6 +534,8 @@
 		B44579F21C140A0900CB10DC /* BTTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44579F11C140A0900CB10DC /* BTTimelineViewController.m */; };
 		B44579F51C140B1900CB10DC /* BTAddTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44579F41C140B1900CB10DC /* BTAddTimelineViewController.m */; };
 		B44579FC1C140FC300CB10DC /* BTSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44579FB1C140FC300CB10DC /* BTSettingViewController.m */; };
+		B44EDAC01C72367B00C9E12A /* BTSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44EDABF1C72367B00C9E12A /* BTSettingViewController.m */; settings = {ASSET_TAGS = (); }; };
+		B44EDAC71C7238F100C9E12A /* BTSettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B44EDAC61C7238F100C9E12A /* BTSettingModel.m */; settings = {ASSET_TAGS = (); }; };
 		B46AF5C71C00DCCF00916DEE /* BTJournalController.m in Sources */ = {isa = PBXBuildFile; fileRef = B46AF5C61C00DCCF00916DEE /* BTJournalController.m */; };
 		B4FABBCC1C018D4B00213AB7 /* BTLanguageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBCB1C018D4B00213AB7 /* BTLanguageUtil.m */; };
 		B4FABBD91C020E1500213AB7 /* BTSelectPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBD81C020E1500213AB7 /* BTSelectPhotosViewController.m */; };
@@ -1397,6 +1399,10 @@
 		B44579F41C140B1900CB10DC /* BTAddTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAddTimelineViewController.m; sourceTree = "<group>"; };
 		B44579FA1C140FC300CB10DC /* BTSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTSettingViewController.h; sourceTree = "<group>"; };
 		B44579FB1C140FC300CB10DC /* BTSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTSettingViewController.m; sourceTree = "<group>"; };
+		B44EDABE1C72367B00C9E12A /* BTSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTSettingViewController.h; sourceTree = "<group>"; };
+		B44EDABF1C72367B00C9E12A /* BTSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTSettingViewController.m; sourceTree = "<group>"; };
+		B44EDAC51C7238F100C9E12A /* BTSettingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTSettingModel.h; sourceTree = "<group>"; };
+		B44EDAC61C7238F100C9E12A /* BTSettingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTSettingModel.m; sourceTree = "<group>"; };
 		B46AF5C51C00DCCF00916DEE /* BTJournalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTJournalController.h; sourceTree = "<group>"; };
 		B46AF5C61C00DCCF00916DEE /* BTJournalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTJournalController.m; sourceTree = "<group>"; };
 		B4FABBCA1C018D4B00213AB7 /* BTLanguageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLanguageUtil.h; sourceTree = "<group>"; };
@@ -3214,18 +3220,11 @@
 		65F47DDC1C3E8F07008117BC /* AboutMeModule */ = {
 			isa = PBXGroup;
 			children = (
-				65F47DDD1C3E8F07008117BC /* Model */,
+				B44EDAC41C7238F100C9E12A /* Model */,
 				65F47DDE1C3E8F07008117BC /* View */,
 				65F47DDF1C3E8F07008117BC /* ViewController */,
 			);
 			path = AboutMeModule;
-			sourceTree = "<group>";
-		};
-		65F47DDD1C3E8F07008117BC /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		65F47DDE1C3E8F07008117BC /* View */ = {
@@ -3244,6 +3243,8 @@
 			children = (
 				65F47DE01C3E8F48008117BC /* BTIMAboutMeViewController.h */,
 				65F47DE11C3E8F48008117BC /* BTIMAboutMeViewController.m */,
+				B44EDABE1C72367B00C9E12A /* BTSettingViewController.h */,
+				B44EDABF1C72367B00C9E12A /* BTSettingViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -3600,6 +3601,15 @@
 				B44579FB1C140FC300CB10DC /* BTSettingViewController.m */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		B44EDAC41C7238F100C9E12A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B44EDAC51C7238F100C9E12A /* BTSettingModel.h */,
+				B44EDAC61C7238F100C9E12A /* BTSettingModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B46AF5C41C00DC9000916DEE /* JournalEdit */ = {
@@ -4189,6 +4199,7 @@
 				65A934621C02BBC300FA0185 /* BTLanguageManager.m in Sources */,
 				650022BE1C1A6E4F0037D32E /* BTAddressBook.m in Sources */,
 				65DBD0AF1BD77CE700784DAC /* NSString+DDXML.m in Sources */,
+				B44EDAC71C7238F100C9E12A /* BTSettingModel.m in Sources */,
 				65DBD0B51BD77CE700784DAC /* DDList.m in Sources */,
 				65DCFE4D1BD334F800DBD0DE /* BTUserCenterViewController.m in Sources */,
 				65DBD09F1BD77CE700784DAC /* DDAbstractDatabaseLogger.m in Sources */,
@@ -4260,6 +4271,7 @@
 				65DBD1DF1BD7A2A100784DAC /* XMPPCapabilitiesCoreDataStorage.m in Sources */,
 				6500E7521BEF395C007158BF /* UIAlertView+AFNetworking.m in Sources */,
 				65DBD1CA1BD7A2A100784DAC /* XMPPvCardTemp.m in Sources */,
+				B44EDAC01C72367B00C9E12A /* BTSettingViewController.m in Sources */,
 				65DBD1CD1BD7A2A100784DAC /* XMPPvCardTempBase.m in Sources */,
 				65DBD0991BD77CE700784DAC /* XMPPPlainAuthentication.m in Sources */,
 				65104E901C0D438800241323 /* BTAddAlbumViewController.m in Sources */,
