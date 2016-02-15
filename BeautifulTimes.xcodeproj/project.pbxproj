@@ -505,6 +505,7 @@
 		65F816F51C71BB3C00A607F7 /* BTMessageListDBTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F816F41C71BB3C00A607F7 /* BTMessageListDBTool.m */; };
 		65F816F81C71BD1000A607F7 /* BTMessageListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F816F71C71BD1000A607F7 /* BTMessageListModel.m */; };
 		65F816FB1C71BE0E00A607F7 /* NSDate+BTAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F816FA1C71BE0E00A607F7 /* NSDate+BTAddition.m */; };
+		65F817001C71D87600A607F7 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F816FE1C71D87600A607F7 /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		65F90A141C43C75300BAC2A2 /* BTChatMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F90A131C43C75300BAC2A2 /* BTChatMessageCell.m */; };
 		65F90A181C43CA2300BAC2A2 /* BTIMHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F90A171C43CA2300BAC2A2 /* BTIMHomePageViewController.m */; };
 		65F90A231C43D87A00BAC2A2 /* BTChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F90A221C43D87A00BAC2A2 /* BTChatViewController.m */; };
@@ -1334,6 +1335,9 @@
 		65F816F71C71BD1000A607F7 /* BTMessageListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTMessageListModel.m; sourceTree = "<group>"; };
 		65F816F91C71BE0E00A607F7 /* NSDate+BTAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+BTAddition.h"; sourceTree = "<group>"; };
 		65F816FA1C71BE0E00A607F7 /* NSDate+BTAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+BTAddition.m"; sourceTree = "<group>"; };
+		65F816FD1C71D87600A607F7 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		65F816FE1C71D87600A607F7 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		65F816FF1C71D87600A607F7 /* Base64Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Defines.h; sourceTree = "<group>"; };
 		65F90A121C43C75300BAC2A2 /* BTChatMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTChatMessageCell.h; sourceTree = "<group>"; };
 		65F90A131C43C75300BAC2A2 /* BTChatMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTChatMessageCell.m; sourceTree = "<group>"; };
 		65F90A161C43CA2300BAC2A2 /* BTIMHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTIMHomePageViewController.h; sourceTree = "<group>"; };
@@ -3253,6 +3257,16 @@
 			path = MessageListManager;
 			sourceTree = "<group>";
 		};
+		65F816FC1C71D87600A607F7 /* Base64 */ = {
+			isa = PBXGroup;
+			children = (
+				65F816FD1C71D87600A607F7 /* Base64.h */,
+				65F816FE1C71D87600A607F7 /* Base64.m */,
+				65F816FF1C71D87600A607F7 /* Base64Defines.h */,
+			);
+			path = Base64;
+			sourceTree = "<group>";
+		};
 		65F90A111C43C70700BAC2A2 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -3457,6 +3471,7 @@
 		B44506E81BCFFB9F008BD5AC /* 3rdparty */ = {
 			isa = PBXGroup;
 			children = (
+				65F816FC1C71D87600A607F7 /* Base64 */,
 				65F9F4731C51E0A1002C4A24 /* RegexKitLite */,
 				650ABD711C2BD8A9004FBC89 /* fmdb */,
 				6523EF581C27CC300016D63C /* MBProgressHUD */,
@@ -4145,6 +4160,7 @@
 				65F253CD1C1ECF0300E0F0CE /* JSONHTTPClient.m in Sources */,
 				65DBD1D81BD7A2A100784DAC /* XMPPMessage+XEP_0066.m in Sources */,
 				65DCFE4E1BD334F800DBD0DE /* BTUserLoginViewController.m in Sources */,
+				65F817001C71D87600A607F7 /* Base64.m in Sources */,
 				6500E7551BEF395C007158BF /* UIProgressView+AFNetworking.m in Sources */,
 				654A502C1BEF2CE20038CD47 /* BTShowWeatherViewController.m in Sources */,
 				65DBD1B21BD7A2A100784DAC /* XMPPIQ+JabberRPCResonse.m in Sources */,

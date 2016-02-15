@@ -12,6 +12,7 @@
 #import "BTAddJournalViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "BTJournalController.h"
+#import "Base64.h"
 
 static CGFloat const durationCircleSize = 112.0f;
 static CGFloat const recorderDuration = 600;
@@ -156,7 +157,8 @@ static CGFloat const recorderDuration = 600;
     if (self.recordUrl) {
         NSString *filePath = [self.recordUrl absoluteString];
         NSData *data = [[NSData alloc] initWithContentsOfFile:filePath];
-        
+        NSString *str = [Base64 stringByEncodingData:data];
+        NSLog(@"%@", str);
         NSString *documentDirectory = [BTTool getDocumentDirectory];
         NSString *uid = [self getSaveFilePath];
         NSString *savePath = [documentDirectory stringByAppendingPathComponent:uid];

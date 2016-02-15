@@ -10,6 +10,8 @@
 #import "BTChatMessageCell.h"
 #import "BTMessageListModel.h"
 #import "BTMessageListDBTool.h"
+#import "BTContacterModel.h"
+#import "BTChatViewController.h"
 
 static NSString *cellIdentifier = @"chatMessageListCell";
 
@@ -183,6 +185,21 @@ static NSString *cellIdentifier = @"chatMessageListCell";
     [cell bindData:self.dataSource[indexPath.row]];
     return cell;
 }
+
+#pragma mark 选中单元格的事件
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BTMessageListModel *model = self.dataSource[indexPath.row];
+    
+    BTContacterModel *contacter = [[BTContacterModel alloc] init];
+    contacter.jid = model.jid;
+    contacter.nickName = model.uname;
+    BTChatViewController *chatVc = [[BTChatViewController alloc] init];
+    chatVc.contacter = contacter;
+    chatVc.title = contacter.friendName;
+    [self.navigationController pushViewController:chatVc animated:YES];
+}
+
 
 #pragma -mark getter
 - (UITableView *)tableView {
