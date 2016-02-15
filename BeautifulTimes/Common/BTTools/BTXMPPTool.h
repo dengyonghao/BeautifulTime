@@ -21,7 +21,7 @@ typedef  void (^XMPPResultBlock)(XMPPResultType xmppType);
 @interface BTXMPPTool : NSObject
 @property (nonatomic,strong) XMPPStream *xmppStream;
 @property (nonatomic,strong) XMPPJID *jid;
-@property (nonatomic,assign,getter=isRegisterOperation) BOOL registerOperation;
+@property (nonatomic,assign,getter = isRegisterOperation) BOOL registerOperation;
 //添加花名册模块
 @property (nonatomic,strong,readonly) XMPPRoster *roster;
 @property (nonatomic,strong,readonly) XMPPRosterCoreDataStorage *rosterStorage;
@@ -54,11 +54,25 @@ typedef  void (^XMPPResultBlock)(XMPPResultType xmppType);
 - (void)regist:(XMPPResultBlock)xmppType;
 
 /**
+ *  查找用户
+ *
+ *  @param searchValue 查找内容
+ */
+- (void)searchUserInfo:(NSString *)searchValue;
+
+/**
  *  添加好友
  *
  *  @param friedJid 好友id
  */
 - (void)addFried:(XMPPJID *)friedJid;
+
+/**
+ *  删除好友
+ *
+ *  @param friedJid 好友id
+ */
+- (void)removeFried:(XMPPJID *)friedJid;
 
 /**
  *  好友分组
@@ -82,12 +96,5 @@ typedef  void (^XMPPResultBlock)(XMPPResultType xmppType);
  *  @param checkPassword 新密码
  */
 - (void)changePassworduseWord:(NSString *)checkPassword;
-
-/**
- *  查找好友
- *
- *  @param searchValue 查找内容
- */
-- (void)searchUserInfo:(NSString *)searchValue;
 
 @end

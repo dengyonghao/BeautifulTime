@@ -7,6 +7,14 @@
 //
 
 #import "BTXMPPTool.h"
+#import "BTContacterModel.h"
+
+#define kSearchNamespace           @"jabber:iq:search"
+#define kSearchXDataNamespace      @"jabber:x:data"
+#define kSearchUsersId             @"kSearchUsersId"
+
+#define kChangePasswordNamespace   @"jabber:iq:register"
+#define kChangePasswordId          @"kChangePasswordId"
 
 static BTXMPPTool *xmppTool;
 
@@ -272,12 +280,12 @@ static BTXMPPTool *xmppTool;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *userId = [defaults stringForKey:userID];
     
-    NSXMLElement *query = [NSXMLElement elementWithName:@"query" xmlns:@"jabber:iq:register"];
+    NSXMLElement *query = [NSXMLElement elementWithName:@"query" xmlns:kChangePasswordNamespace];
     NSXMLElement *msgXml = [NSXMLElement elementWithName:@"iq"];
     
     [msgXml addAttributeWithName:@"type" stringValue:@"set"];
     [msgXml addAttributeWithName:@"to" stringValue:ServerName];
-    [msgXml addAttributeWithName:@"id" stringValue:@"changePassword"];
+    [msgXml addAttributeWithName:@"id" stringValue:kChangePasswordId];
      
      DDXMLNode *username=[DDXMLNode elementWithName:@"username" stringValue:userId];//不带@后缀
      DDXMLNode *password=[DDXMLNode elementWithName:@"password" stringValue:checkPassword];//要改的密码
@@ -295,16 +303,16 @@ static BTXMPPTool *xmppTool;
     [iq addAttributeWithName:@"type" stringValue:@"set"];
     [iq addAttributeWithName:@"from" stringValue:self.jid.description];
     [iq addAttributeWithName:@"to" stringValue:[NSString stringWithFormat:@"search.%@",ServerName]];
-    [iq addAttributeWithName:@"id" stringValue:@"search2"];
+    [iq addAttributeWithName:@"id" stringValue:kSearchUsersId];
     
-    NSXMLElement *query = [NSXMLElement elementWithName:@"query" xmlns:@"jabber:iq:search"];
-    NSXMLElement *x = [NSXMLElement elementWithName:@"x" xmlns:@"jabber:x:data"];
+    NSXMLElement *query = [NSXMLElement elementWithName:@"query" xmlns:kSearchNamespace];
+    NSXMLElement *x = [NSXMLElement elementWithName:@"x" xmlns:kSearchXDataNamespace];
     [x addAttributeWithName:@"type" stringValue:@"submit"];
     
     NSXMLElement *field = [NSXMLElement elementWithName:@"field"];
     [field addAttributeWithName:@"type" stringValue:@"hidden"];
     [field addAttributeWithName:@"var" stringValue:@"FROM_TYPE"];
-    NSXMLElement *value = [NSXMLElement elementWithName:@"value" stringValue:@"jabber:iq:search"];
+    NSXMLElement *value = [NSXMLElement elementWithName:@"value" stringValue:kSearchNamespace];
     [field addChild:value];
     [x addChild:field];
     
@@ -342,6 +350,57 @@ static BTXMPPTool *xmppTool;
     [_xmppStream sendElement:iq];
 }
 
+#pragma mark iq信息发送成功delegate
+- (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq {
+    //返回用户信息查询结果
+    if ([iq.type isEqualToString:@"result"] && [[iq attributeStringValueForName:@"id"] isEqualToString:kSearchUsersId]) {
+        [self analyticalSearchResult:iq];
+    }
+    return YES;
+}
+
+#pragma mark 解析查找好友数据
+- (NSArray *)analyticalSearchResult:(XMPPIQ *)iq {
+    NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:1];
+    
+    NSXMLElement *query = [[iq elementsForName:@"query"] lastObject];
+    
+    if ([query.name isEqualToString:@"query"]) {
+        NSArray *elements = [query children];
+        for (NSXMLElement *element in elements) {
+            
+            if ([element.name isEqualToString:@"x"]) {
+                NSArray *fields = [element children];
+                for (NSXMLElement *field in fields) {
+                    
+                    if ([field.name isEqualToString:@"item"]) {
+                        NSArray *items = [field children];
+                        for (NSXMLElement *item in items) {
+                            
+                            BTContacterModel *model = [[BTContacterModel alloc] init];
+                            if ([[item attributeStringValueForName:@"var"] isEqualToString:@"Name"]) {
+                                model.nickName = [[[item elementsForName:@"value"] firstObject] stringValue];
+                            }
+                            
+                            if ([[item attributeStringValueForName:@"var"] isEqualToString:@"Username"]) {
+                                model.friendName = [[[item elementsForName:@"value"] firstObject] stringValue];
+                            }
+                            
+                            if ([[item attributeStringValueForName:@"var"] isEqualToString:@"jid"]) {
+                                NSString *jidStr = [[[item elementsForName:@"value"] firstObject] stringValue];
+                                model.jid = [XMPPJID jidWithString:jidStr];
+                            }
+                            
+                            [result addObject:model];
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return result;
+}
+
 #pragma mark 发送消息的函数
 - (void)sendMessage:(NSString *)msg type:(NSString *)type to:(XMPPJID *)toName{
     XMPPMessage *msssage = [XMPPMessage messageWithType:@"chat" to:toName];
@@ -373,35 +432,6 @@ static BTXMPPTool *xmppTool;
     }
 }
 
-- (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq {
-    //返回用户信息查询结果
-    if ([@"result" isEqualToString:iq.type] && [[iq attributeStringValueForName:@"id"] isEqualToString:@"search2"]) {
-        NSLog(@"search user success!!!");
-        NSString *name;
-        XMPPJID *jid;
-        NSXMLElement *query = iq.childElement;
-        if ([@"query" isEqualToString:query.name]) {
-//            NSXMLElement *x = [self childElement:query];
-//            NSArray *elements = [x children];
-//            for (NSXMLElement *item in elements) {
-//                if ([item.name isEqualToString:@"item"]) {
-//                    NSArray *fields = [item children];
-//                    for (NSXMLElement *field in fields) {
-//                        if ([[field attributeStringValueForName:@"var"] isEqualToString:@"Name"]) {
-//                            name = [[[field elementsForName:@"value"] firstObject] stringValue];
-//                        }
-//                        if ([[field attributeStringValueForName:@"var"] isEqualToString:@"jid"]) {
-//                            NSString *jidStr = [[[field elementsForName:@"value"] firstObject] stringValue];
-//                            jid = [XMPPJID jidWithString:jidStr];
-//                        }
-//                    }
-//                }
-//            }
-        }
-        
-    }
-    return YES;
-}
 
 #pragma mark  当对象销毁的时候
 -(void)teardownXmpp
@@ -421,5 +451,8 @@ static BTXMPPTool *xmppTool;
     _roster=nil;
     _xmppStream=nil;
 }
+
+#pragma mark XMPPStreamDelegate
+
 
 @end
