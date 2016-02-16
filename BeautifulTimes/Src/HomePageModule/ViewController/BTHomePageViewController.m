@@ -23,6 +23,7 @@
 #import "BTIMTabBarController.h"
 #import "AppDelegate.h"
 #import "AFNetworking.h"
+#import <objc/runtime.h>
 
 static const CGFloat BUTTONWIDTH = 48;
 
@@ -238,11 +239,11 @@ static const CGFloat BUTTONWIDTH = 48;
 //                 }];
 //    [self didClickUploadButtonAction];
 //    [[BTXMPPTool sharedInstance] changePassworduseWord:@"23456"];
-    [[BTXMPPTool sharedInstance] searchUserInfo:@"int" Success:^(NSArray *resultArray) {
-        NSLog(@"%@", resultArray);
-    } failure:^(NSError *error) {
-        
-    }];
+//    [[BTXMPPTool sharedInstance] searchUserInfo:@"int" Success:^(NSArray *resultArray) {
+//        NSLog(@"%@", resultArray);
+//    } failure:^(NSError *error) {
+//        
+//    }];
     
 }
 

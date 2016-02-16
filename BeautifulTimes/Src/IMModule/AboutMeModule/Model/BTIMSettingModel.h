@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BTSettingModel : NSObject
+@interface BTIMSettingModel : NSObject
 
 @property (nonatomic,copy) NSString *title;
 @property (nonatomic,copy) NSString *detailTitle;

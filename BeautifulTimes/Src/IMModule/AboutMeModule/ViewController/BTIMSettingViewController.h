@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BTSettingViewController : UITableViewController
+@interface BTIMSettingViewController : UITableViewController
 
 @end

@@ -320,6 +320,11 @@
 		655124331BFC2DA7001F1041 /* BTPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 655124321BFC2DA7001F1041 /* BTPhotoCollectionViewCell.m */; };
 		655124361BFC7F43001F1041 /* BTRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655124351BFC7F43001F1041 /* BTRecordViewController.m */; };
 		655124391BFC804C001F1041 /* BTCircularProgressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 655124381BFC804C001F1041 /* BTCircularProgressButton.m */; };
+		655C1F651C72FBEE00833CDC /* BTIMSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 655C1F641C72FBEE00833CDC /* BTIMSettingView.m */; };
+		655C1F681C73073100833CDC /* BTTableGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 655C1F671C73073100833CDC /* BTTableGroupModel.m */; };
+		655C1F6B1C73085300833CDC /* BTAboutMeCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 655C1F6A1C73085300833CDC /* BTAboutMeCellModel.m */; };
+		655C1F6E1C7309DB00833CDC /* BTAboutMeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 655C1F6D1C7309DB00833CDC /* BTAboutMeCell.m */; };
+		655C1F711C730ABB00833CDC /* BTAboutMeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 655C1F701C730ABB00833CDC /* BTAboutMeView.m */; };
 		6563A70E1C1FB92E00D8D1FA /* UIView+BTAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6563A70D1C1FB92E00D8D1FA /* UIView+BTAddition.m */; };
 		6563A7111C20009600D8D1FA /* BTJournalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6563A7101C20009500D8D1FA /* BTJournalManager.m */; };
 		658D5AF41C4DDA1E00CDE8F1 /* BTTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 658D5AF31C4DDA1E00CDE8F1 /* BTTool.m */; };
@@ -328,7 +333,7 @@
 		65AD973C1C4C7EA000DAB0A3 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 65AD973B1C4C7EA000DAB0A3 /* 1.png */; };
 		65AD973E1C4C86AA00DAB0A3 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 65AD973D1C4C86AA00DAB0A3 /* 2.png */; };
 		65AD97411C4D0CC400DAB0A3 /* BTMyInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AD97401C4D0CC400DAB0A3 /* BTMyInformationCell.m */; };
-		65AD97441C4D0EBE00DAB0A3 /* BTSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AD97431C4D0EBE00DAB0A3 /* BTSettingCell.m */; };
+		65AD97441C4D0EBE00DAB0A3 /* BTIMSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AD97431C4D0EBE00DAB0A3 /* BTIMSettingCell.m */; };
 		65DBCEFE1BD754D900784DAC /* BTAddJournalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBCEFD1BD754D900784DAC /* BTAddJournalViewController.m */; };
 		65DBCF011BD7552800784DAC /* BTEditJournalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBCF001BD7552800784DAC /* BTEditJournalViewController.m */; };
 		65DBCF041BD7554700784DAC /* BTJournalListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DBCF031BD7554700784DAC /* BTJournalListViewController.m */; };
@@ -534,8 +539,8 @@
 		B44579F21C140A0900CB10DC /* BTTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44579F11C140A0900CB10DC /* BTTimelineViewController.m */; };
 		B44579F51C140B1900CB10DC /* BTAddTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44579F41C140B1900CB10DC /* BTAddTimelineViewController.m */; };
 		B44579FC1C140FC300CB10DC /* BTSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44579FB1C140FC300CB10DC /* BTSettingViewController.m */; };
-		B44EDAC01C72367B00C9E12A /* BTSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44EDABF1C72367B00C9E12A /* BTSettingViewController.m */; settings = {ASSET_TAGS = (); }; };
-		B44EDAC71C7238F100C9E12A /* BTSettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B44EDAC61C7238F100C9E12A /* BTSettingModel.m */; settings = {ASSET_TAGS = (); }; };
+		B44EDAC01C72367B00C9E12A /* BTIMSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44EDABF1C72367B00C9E12A /* BTIMSettingViewController.m */; };
+		B44EDAC71C7238F100C9E12A /* BTIMSettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B44EDAC61C7238F100C9E12A /* BTIMSettingModel.m */; };
 		B46AF5C71C00DCCF00916DEE /* BTJournalController.m in Sources */ = {isa = PBXBuildFile; fileRef = B46AF5C61C00DCCF00916DEE /* BTJournalController.m */; };
 		B4FABBCC1C018D4B00213AB7 /* BTLanguageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBCB1C018D4B00213AB7 /* BTLanguageUtil.m */; };
 		B4FABBD91C020E1500213AB7 /* BTSelectPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBD81C020E1500213AB7 /* BTSelectPhotosViewController.m */; };
@@ -960,6 +965,16 @@
 		655124351BFC7F43001F1041 /* BTRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTRecordViewController.m; sourceTree = "<group>"; };
 		655124371BFC804C001F1041 /* BTCircularProgressButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCircularProgressButton.h; sourceTree = "<group>"; };
 		655124381BFC804C001F1041 /* BTCircularProgressButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCircularProgressButton.m; sourceTree = "<group>"; };
+		655C1F631C72FBEE00833CDC /* BTIMSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTIMSettingView.h; sourceTree = "<group>"; };
+		655C1F641C72FBEE00833CDC /* BTIMSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTIMSettingView.m; sourceTree = "<group>"; };
+		655C1F661C73073100833CDC /* BTTableGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTableGroupModel.h; sourceTree = "<group>"; };
+		655C1F671C73073100833CDC /* BTTableGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTableGroupModel.m; sourceTree = "<group>"; };
+		655C1F691C73085300833CDC /* BTAboutMeCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAboutMeCellModel.h; sourceTree = "<group>"; };
+		655C1F6A1C73085300833CDC /* BTAboutMeCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAboutMeCellModel.m; sourceTree = "<group>"; };
+		655C1F6C1C7309DB00833CDC /* BTAboutMeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAboutMeCell.h; sourceTree = "<group>"; };
+		655C1F6D1C7309DB00833CDC /* BTAboutMeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAboutMeCell.m; sourceTree = "<group>"; };
+		655C1F6F1C730ABB00833CDC /* BTAboutMeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAboutMeView.h; sourceTree = "<group>"; };
+		655C1F701C730ABB00833CDC /* BTAboutMeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAboutMeView.m; sourceTree = "<group>"; };
 		6563A70C1C1FB92E00D8D1FA /* UIView+BTAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BTAddition.h"; sourceTree = "<group>"; };
 		6563A70D1C1FB92E00D8D1FA /* UIView+BTAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BTAddition.m"; sourceTree = "<group>"; };
 		6563A70F1C20009500D8D1FA /* BTJournalManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTJournalManager.h; sourceTree = "<group>"; };
@@ -974,8 +989,8 @@
 		65AD973D1C4C86AA00DAB0A3 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		65AD973F1C4D0CC400DAB0A3 /* BTMyInformationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTMyInformationCell.h; sourceTree = "<group>"; };
 		65AD97401C4D0CC400DAB0A3 /* BTMyInformationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTMyInformationCell.m; sourceTree = "<group>"; };
-		65AD97421C4D0EBE00DAB0A3 /* BTSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTSettingCell.h; sourceTree = "<group>"; };
-		65AD97431C4D0EBE00DAB0A3 /* BTSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTSettingCell.m; sourceTree = "<group>"; };
+		65AD97421C4D0EBE00DAB0A3 /* BTIMSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTIMSettingCell.h; sourceTree = "<group>"; };
+		65AD97431C4D0EBE00DAB0A3 /* BTIMSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTIMSettingCell.m; sourceTree = "<group>"; };
 		65DBCEFC1BD754D900784DAC /* BTAddJournalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAddJournalViewController.h; sourceTree = "<group>"; };
 		65DBCEFD1BD754D900784DAC /* BTAddJournalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAddJournalViewController.m; sourceTree = "<group>"; };
 		65DBCEFF1BD7552800784DAC /* BTEditJournalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTEditJournalViewController.h; sourceTree = "<group>"; };
@@ -1399,10 +1414,10 @@
 		B44579F41C140B1900CB10DC /* BTAddTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAddTimelineViewController.m; sourceTree = "<group>"; };
 		B44579FA1C140FC300CB10DC /* BTSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTSettingViewController.h; sourceTree = "<group>"; };
 		B44579FB1C140FC300CB10DC /* BTSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTSettingViewController.m; sourceTree = "<group>"; };
-		B44EDABE1C72367B00C9E12A /* BTSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTSettingViewController.h; sourceTree = "<group>"; };
-		B44EDABF1C72367B00C9E12A /* BTSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTSettingViewController.m; sourceTree = "<group>"; };
-		B44EDAC51C7238F100C9E12A /* BTSettingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTSettingModel.h; sourceTree = "<group>"; };
-		B44EDAC61C7238F100C9E12A /* BTSettingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTSettingModel.m; sourceTree = "<group>"; };
+		B44EDABE1C72367B00C9E12A /* BTIMSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTIMSettingViewController.h; sourceTree = "<group>"; };
+		B44EDABF1C72367B00C9E12A /* BTIMSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTIMSettingViewController.m; sourceTree = "<group>"; };
+		B44EDAC51C7238F100C9E12A /* BTIMSettingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTIMSettingModel.h; sourceTree = "<group>"; };
+		B44EDAC61C7238F100C9E12A /* BTIMSettingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTIMSettingModel.m; sourceTree = "<group>"; };
 		B46AF5C51C00DCCF00916DEE /* BTJournalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTJournalController.h; sourceTree = "<group>"; };
 		B46AF5C61C00DCCF00916DEE /* BTJournalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTJournalController.m; sourceTree = "<group>"; };
 		B4FABBCA1C018D4B00213AB7 /* BTLanguageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLanguageUtil.h; sourceTree = "<group>"; };
@@ -3232,8 +3247,14 @@
 			children = (
 				65AD973F1C4D0CC400DAB0A3 /* BTMyInformationCell.h */,
 				65AD97401C4D0CC400DAB0A3 /* BTMyInformationCell.m */,
-				65AD97421C4D0EBE00DAB0A3 /* BTSettingCell.h */,
-				65AD97431C4D0EBE00DAB0A3 /* BTSettingCell.m */,
+				65AD97421C4D0EBE00DAB0A3 /* BTIMSettingCell.h */,
+				65AD97431C4D0EBE00DAB0A3 /* BTIMSettingCell.m */,
+				655C1F631C72FBEE00833CDC /* BTIMSettingView.h */,
+				655C1F641C72FBEE00833CDC /* BTIMSettingView.m */,
+				655C1F6C1C7309DB00833CDC /* BTAboutMeCell.h */,
+				655C1F6D1C7309DB00833CDC /* BTAboutMeCell.m */,
+				655C1F6F1C730ABB00833CDC /* BTAboutMeView.h */,
+				655C1F701C730ABB00833CDC /* BTAboutMeView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3243,8 +3264,8 @@
 			children = (
 				65F47DE01C3E8F48008117BC /* BTIMAboutMeViewController.h */,
 				65F47DE11C3E8F48008117BC /* BTIMAboutMeViewController.m */,
-				B44EDABE1C72367B00C9E12A /* BTSettingViewController.h */,
-				B44EDABF1C72367B00C9E12A /* BTSettingViewController.m */,
+				B44EDABE1C72367B00C9E12A /* BTIMSettingViewController.h */,
+				B44EDABF1C72367B00C9E12A /* BTIMSettingViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -3606,8 +3627,12 @@
 		B44EDAC41C7238F100C9E12A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B44EDAC51C7238F100C9E12A /* BTSettingModel.h */,
-				B44EDAC61C7238F100C9E12A /* BTSettingModel.m */,
+				B44EDAC51C7238F100C9E12A /* BTIMSettingModel.h */,
+				B44EDAC61C7238F100C9E12A /* BTIMSettingModel.m */,
+				655C1F661C73073100833CDC /* BTTableGroupModel.h */,
+				655C1F671C73073100833CDC /* BTTableGroupModel.m */,
+				655C1F691C73085300833CDC /* BTAboutMeCellModel.h */,
+				655C1F6A1C73085300833CDC /* BTAboutMeCellModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4027,6 +4052,7 @@
 				65E2D3371BCFC965001E29A9 /* AppDelegate.m in Sources */,
 				65F816FB1C71BE0E00A607F7 /* NSDate+BTAddition.m in Sources */,
 				65DBD1F61BD7A2A100784DAC /* XMPPMessage+XEP_0308.m in Sources */,
+				655C1F681C73073100833CDC /* BTTableGroupModel.m in Sources */,
 				B44507071BCFFB9F008BD5AC /* MASConstraintMaker.m in Sources */,
 				65F47DD51C3E82E8008117BC /* BTTabBarView.m in Sources */,
 				65DBD1D11BD7A2A100784DAC /* XMPPvCardTempTel.m in Sources */,
@@ -4040,6 +4066,7 @@
 				652336711C4F789600557D9F /* MJConst.m in Sources */,
 				65DBD1AD1BD7A2A100784DAC /* XMPPRosterMemoryStorage.m in Sources */,
 				B445070D1BCFFB9F008BD5AC /* View+MASAdditions.m in Sources */,
+				655C1F651C72FBEE00833CDC /* BTIMSettingView.m in Sources */,
 				65DBD1BC1BD7A2A100784DAC /* XMPPRoomHybridStorage.m in Sources */,
 				65DBD1C51BD7A2A100784DAC /* XMPPvCard.xcdatamodeld in Sources */,
 				6523365E1C4F773100557D9F /* BTMessageFrameModel.m in Sources */,
@@ -4081,7 +4108,7 @@
 				65DBD1C71BD7A2A100784DAC /* XMPPvCardCoreDataStorage.m in Sources */,
 				65FBFD071C4DD633008D9FA3 /* BTChattingHistory.m in Sources */,
 				65F253CE1C1ECF0300E0F0CE /* JSONModel+networking.m in Sources */,
-				65AD97441C4D0EBE00DAB0A3 /* BTSettingCell.m in Sources */,
+				65AD97441C4D0EBE00DAB0A3 /* BTIMSettingCell.m in Sources */,
 				65DBD0C71BD7A15E00784DAC /* BTXMPPTool.m in Sources */,
 				65F816F51C71BB3C00A607F7 /* BTMessageListDBTool.m in Sources */,
 				B4FABBFD1C020FE600213AB7 /* NSData+ImageContentType.m in Sources */,
@@ -4153,6 +4180,7 @@
 				65DCFE4A1BD334F800DBD0DE /* BTUserInfoView.m in Sources */,
 				6500E7471BEF395C007158BF /* AFHTTPRequestOperation.m in Sources */,
 				65DBD1B31BD7A2A100784DAC /* XMPPJabberRPCModule.m in Sources */,
+				655C1F711C730ABB00833CDC /* BTAboutMeView.m in Sources */,
 				65DBD0AA1BD77CE700784DAC /* XMPPMessage.m in Sources */,
 				65DBD1E31BD7A2A100784DAC /* XMPPMessageArchiving.xcdatamodeld in Sources */,
 				65F253CF1C1ECF0300E0F0CE /* JSONKeyMapper.m in Sources */,
@@ -4176,6 +4204,7 @@
 				65DBD1B21BD7A2A100784DAC /* XMPPIQ+JabberRPCResonse.m in Sources */,
 				65DBD1EE1BD7A2A100784DAC /* XMPPPing.m in Sources */,
 				65E2D3721BCFCEE4001E29A9 /* BTStyle.m in Sources */,
+				655C1F6B1C73085300833CDC /* BTAboutMeCellModel.m in Sources */,
 				65DBD0A71BD77CE700784DAC /* XMPPElement.m in Sources */,
 				6508D5061C08504700E77DAB /* BTPhotoDetailsViewController.m in Sources */,
 				65DBD1F11BD7A2A100784DAC /* NSXMLElement+XEP_0203.m in Sources */,
@@ -4199,7 +4228,7 @@
 				65A934621C02BBC300FA0185 /* BTLanguageManager.m in Sources */,
 				650022BE1C1A6E4F0037D32E /* BTAddressBook.m in Sources */,
 				65DBD0AF1BD77CE700784DAC /* NSString+DDXML.m in Sources */,
-				B44EDAC71C7238F100C9E12A /* BTSettingModel.m in Sources */,
+				B44EDAC71C7238F100C9E12A /* BTIMSettingModel.m in Sources */,
 				65DBD0B51BD77CE700784DAC /* DDList.m in Sources */,
 				65DCFE4D1BD334F800DBD0DE /* BTUserCenterViewController.m in Sources */,
 				65DBD09F1BD77CE700784DAC /* DDAbstractDatabaseLogger.m in Sources */,
@@ -4271,7 +4300,7 @@
 				65DBD1DF1BD7A2A100784DAC /* XMPPCapabilitiesCoreDataStorage.m in Sources */,
 				6500E7521BEF395C007158BF /* UIAlertView+AFNetworking.m in Sources */,
 				65DBD1CA1BD7A2A100784DAC /* XMPPvCardTemp.m in Sources */,
-				B44EDAC01C72367B00C9E12A /* BTSettingViewController.m in Sources */,
+				B44EDAC01C72367B00C9E12A /* BTIMSettingViewController.m in Sources */,
 				65DBD1CD1BD7A2A100784DAC /* XMPPvCardTempBase.m in Sources */,
 				65DBD0991BD77CE700784DAC /* XMPPPlainAuthentication.m in Sources */,
 				65104E901C0D438800241323 /* BTAddAlbumViewController.m in Sources */,
@@ -4289,6 +4318,7 @@
 				6500E74F1BEF395C007158BF /* AFURLSessionManager.m in Sources */,
 				B4FABC091C020FE600213AB7 /* UIImageView+HighlightedWebCache.m in Sources */,
 				65DBD1C01BD7A2A100784DAC /* XMPPRoomMessageMemoryStorageObject.m in Sources */,
+				655C1F6E1C7309DB00833CDC /* BTAboutMeCell.m in Sources */,
 				65F4262C1BD9F5F600295796 /* UIImage+Addition.m in Sources */,
 				65DBD0961BD77CE700784DAC /* XMPPDeprecatedDigestAuthentication.m in Sources */,
 				65DBD1B41BD7A2A100784DAC /* XMPPIQ+LastActivity.m in Sources */,

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BTIMSettingModel.h"
 
-@interface BTSettingCell : UITableViewCell
+@interface BTIMSettingCell : UITableViewCell
+
+@property (nonatomic,strong) BTIMSettingModel *settingModel;
 
 @end

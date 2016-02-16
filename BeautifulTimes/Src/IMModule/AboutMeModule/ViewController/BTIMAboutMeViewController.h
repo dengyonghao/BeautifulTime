@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BTIMAboutMeViewController : UIViewController
+@interface BTIMAboutMeViewController : UITableViewController
+
+@property (nonatomic,strong) NSMutableArray *datas;
 
 @end

@@ -6,16 +6,17 @@
 //  Copyright © 2016年 dengyonghao. All rights reserved.
 //
 
-#import "BTSettingViewController.h"
-#import "BTSettingModel.h"
+#import "BTIMSettingViewController.h"
+#import "BTIMSettingModel.h"
+#import "BTIMSettingCell.h"
 
-@interface BTSettingViewController ()
+@interface BTIMSettingViewController ()
 
 @property (nonatomic,strong) NSMutableArray *allArr;
 
 @end
 
-@implementation BTSettingViewController
+@implementation BTIMSettingViewController
 
 -(instancetype)init
 {
@@ -48,21 +49,21 @@
 -(void)loadDataModel
 {
     //1.
-    BTSettingModel *accountAndSafe=[BTSettingModel settingWithTitle:@"账号与安全" detailTitle:@"未保护"];
+    BTIMSettingModel *accountAndSafe=[BTIMSettingModel settingWithTitle:@"账号与安全" detailTitle:@"未保护"];
     NSArray *oneArr = @[accountAndSafe];
     [self.allArr addObject:oneArr];
     //2.
-    BTSettingModel *newMsg = [BTSettingModel settingWithTitle:@"新消息通知" detailTitle:nil];
-    BTSettingModel *conseal = [BTSettingModel settingWithTitle:@"隐私" detailTitle:nil];
-    BTSettingModel *common = [BTSettingModel settingWithTitle:@"通用" detailTitle:nil];
+    BTIMSettingModel *newMsg = [BTIMSettingModel settingWithTitle:@"新消息通知" detailTitle:nil];
+    BTIMSettingModel *conseal = [BTIMSettingModel settingWithTitle:@"隐私" detailTitle:nil];
+    BTIMSettingModel *common = [BTIMSettingModel settingWithTitle:@"通用" detailTitle:nil];
     NSArray *twoArr = @[newMsg, conseal, common];
     [self.allArr addObject:twoArr];
     //3.
-    BTSettingModel *abount = [BTSettingModel settingWithTitle:@"新消息通知" detailTitle:nil];
+    BTIMSettingModel *abount = [BTIMSettingModel settingWithTitle:@"新消息通知" detailTitle:nil];
     NSArray *threeArr = @[abount];
     [self.allArr addObject:threeArr];
     //4.
-    BTSettingModel *loginOut = [BTSettingModel settingWithTitle:@"退出登录" detailTitle:nil];
+    BTIMSettingModel *loginOut = [BTIMSettingModel settingWithTitle:@"退出登录" detailTitle:nil];
     loginOut.isLoginOut = YES;
     NSArray *fourArr = @[loginOut];
     [self.allArr addObject:fourArr];
@@ -83,11 +84,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    SettingViewCell *cell=[SettingViewCell cellWithTableView:tableView indentifier:@"settingCell"];
-//    NSArray *arr=self.allArr[indexPath.section];
-//    BTSettingModel *model=arr[indexPath.row];
-//    cell.settingModel=model;
-    return nil;
+    BTIMSettingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kSettingCell"];
+    if (!cell) {
+        cell = [[BTIMSettingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"kSettingCell"];
+    }
+    NSArray *arr = self.allArr[indexPath.section];
+    BTIMSettingModel *model = arr[indexPath.row];
+    cell.settingModel = model;
+    return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -98,7 +102,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSArray *arr=self.allArr[indexPath.section];
-    BTSettingModel *model = arr[indexPath.row];
+    BTIMSettingModel *model = arr[indexPath.row];
     //退出登录操作
 //    if(model.isLoginOut){
 //        XmppTools *app=[XmppTools sharedxmpp];

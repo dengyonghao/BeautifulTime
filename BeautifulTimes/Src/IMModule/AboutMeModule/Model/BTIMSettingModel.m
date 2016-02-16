@@ -6,13 +6,13 @@
 //  Copyright © 2016年 dengyonghao. All rights reserved.
 //
 
-#import "BTSettingModel.h"
+#import "BTIMSettingModel.h"
 
-@implementation BTSettingModel
+@implementation BTIMSettingModel
 
 + (instancetype)settingWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle
 {
-    BTSettingModel *setting = [[BTSettingModel alloc] init];
+    BTIMSettingModel *setting = [[BTIMSettingModel alloc] init];
     setting.title = title;
     setting.detailTitle = detailTitle;
     return setting;
