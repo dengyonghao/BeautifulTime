@@ -63,6 +63,9 @@ static inline UIImage* naviimage_from_mainbundle(NSString* filename_and_type)
 //发送表情的按钮
 #define FaceSendButton @"faceSendButton"
 
+//收到好友申请通知名
+#define AddFriendRequst @"kAddFriendRequst"
+
 /** 表情相关 */
 // 表情的最大行数
 #define HMEmotionMaxRows 3

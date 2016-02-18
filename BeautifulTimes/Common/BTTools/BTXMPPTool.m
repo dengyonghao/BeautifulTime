@@ -18,7 +18,7 @@
 
 static BTXMPPTool *xmppTool;
 
-@interface BTXMPPTool ()<XMPPStreamDelegate>
+@interface BTXMPPTool ()<XMPPStreamDelegate, XMPPRosterDelegate>
 {
     XMPPResultBlock _resultBlock;
     ArrayResponseBlock _searchDataBlock;
@@ -29,6 +29,8 @@ static BTXMPPTool *xmppTool;
     //电子名片存贮
     XMPPvCardCoreDataStorage *_vCardStorage;
 }
+
+@property (nonatomic, strong) XMPPJID *userJid;
 
 @end
 
@@ -68,6 +70,7 @@ static BTXMPPTool *xmppTool;
     //4.添加花名册模块
     _rosterStorage=[[XMPPRosterCoreDataStorage alloc]init];
     _roster=[[XMPPRoster alloc]initWithRosterStorage:_rosterStorage];
+    [_roster addDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
     [_roster activate:_xmppStream];  //激活
     //5.添加聊天模块    XMPPMessageArchivingCoreDataStorage
     _messageStroage=[[XMPPMessageArchivingCoreDataStorage alloc]init];
@@ -207,11 +210,11 @@ static BTXMPPTool *xmppTool;
     [_roster removeUser:friedJid];
 }
 
-- (void)addFried:(NSString *)friedJid {
-    XMPPJID *myJid=[XMPPJID jidWithUser:friedJid domain:ServerName resource:nil];
-    [_roster subscribePresenceToUser:myJid];
+- (void)addFried:(XMPPJID *)friedJid {
+    [_roster subscribePresenceToUser:friedJid];
 }
 
+//收到请求添加好友回调
 - (void)xmppRoster:(XMPPRoster *)sender didReceivePresenceSubscriptionRequest:(XMPPPresence *)presence
 {
     //取得好友状态
@@ -219,11 +222,31 @@ static BTXMPPTool *xmppTool;
     //请求的用户
     NSString *presenceFromUser =[NSString stringWithFormat:@"%@", [[presence from] user]];
     NSLog(@"presenceType:%@",presenceType);
-    
     NSLog(@"presence2:%@  sender2:%@",presence,sender);
-    
     XMPPJID *jid = [XMPPJID jidWithString:presenceFromUser];
-    [_roster acceptPresenceSubscriptionRequestFrom:jid andAddToRoster:YES];
+    self.userJid = jid;
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"%@请求添加你为好友", jid.description] delegate:self cancelButtonTitle:@"拒绝" otherButtonTitles:@"同意", nil];
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        [alertView show];
+    });
+}
+
+#pragma marks UIAlertViewDelegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [self handleAddFriendReqest:self.userJid result:NO];
+    } else {
+        [self handleAddFriendReqest:self.userJid result:YES];
+        NSNotification *note = [[NSNotification alloc]initWithName:AddFriendRequst object:nil userInfo:nil];
+        [[NSNotificationCenter defaultCenter] postNotification:note];
+    }
+}
+
+
+- (void)handleAddFriendReqest:(XMPPJID *)userJid result:(BOOL)result
+{
+    [_roster acceptPresenceSubscriptionRequestFrom:userJid andAddToRoster:result];
 }
 
 #pragma mark 调用注册的方法
@@ -345,7 +368,7 @@ static BTXMPPTool *xmppTool;
     NSXMLElement *emailField = [NSXMLElement elementWithName:@"field"];
     [emailField addAttributeWithName:@"type" stringValue:@"boolean"];
     [emailField addAttributeWithName:@"var" stringValue:@"Email"];
-    NSXMLElement *emailValue = [NSXMLElement elementWithName:@"value" stringValue:@"1"];
+    NSXMLElement *emailValue = [NSXMLElement elementWithName:@"value" stringValue:@"0"];
     [emailField addChild:emailValue];
     [x addChild:emailField];
     

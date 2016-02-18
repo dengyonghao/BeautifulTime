@@ -26,14 +26,17 @@
         
         WS(weakSelf);
         [self.userName mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(weakSelf);
+            make.top.equalTo(weakSelf).offset(5);
             make.left.equalTo(weakSelf).offset(10);
             make.right.equalTo(weakSelf).offset(-10);
             make.height.equalTo(@(20));
         }];
         
         [self.nickName mas_makeConstraints:^(MASConstraintMaker *make) {
-            
+            make.top.equalTo(weakSelf.userName).offset(20 + 5);
+            make.left.equalTo(weakSelf.userName);
+            make.right.equalTo(weakSelf.userName);
+            make.height.equalTo(@(17));
         }];
     }
     return self;

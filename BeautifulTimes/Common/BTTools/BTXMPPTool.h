@@ -69,6 +69,14 @@ typedef  void (^XMPPResultBlock)(XMPPResultType xmppType);
 - (void)addFried:(XMPPJID *)friedJid;
 
 /**
+ *  处理好友申请
+ *
+ *  @param userJid 用户jid
+ *  @param result  YES为同意， NO不拒绝
+ */
+- (void)handleAddFriendReqest:(XMPPJID *)userJid result:(BOOL)result;
+
+/**
  *  删除好友
  *
  *  @param friedJid 好友id

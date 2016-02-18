@@ -25,6 +25,15 @@ static NSString *cellIdentifier = @"kAboutMeCell";
 
 @implementation BTIMAboutMeViewController
 
+- (instancetype)init
+{
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    if(self){
+        
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.contentInset = UIEdgeInsetsMake(15, 0, 5, 0);
@@ -95,6 +104,7 @@ static NSString *cellIdentifier = @"kAboutMeCell";
     BTTableGroupModel *group=self.datas[section];
     return group.header;
 }
+
 #pragma mark 设置组的footer标题
 -(NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
@@ -134,7 +144,6 @@ static NSString *cellIdentifier = @"kAboutMeCell";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-
 -(NSMutableArray *)datas
 {
     if(!_datas){
@@ -142,6 +151,5 @@ static NSString *cellIdentifier = @"kAboutMeCell";
     }
     return _datas;
 }
-
 
 @end

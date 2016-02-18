@@ -55,7 +55,7 @@
 
     BTContacterViewController *contacter=[[BTContacterViewController alloc]init];
     self.contacter=contacter;
-    [self setupChildViewController:contacter title:@"通讯录" imageName:@"" selectedImageName:@""];
+    [self setupChildViewController:contacter title:@"通讯录" imageName:@"com_ic_contacter" selectedImageName:@"com_ic_contacter_h"];
 
     BTIMAboutMeViewController *aboutMe = [[BTIMAboutMeViewController alloc]init];
     self.aboutMe = aboutMe;

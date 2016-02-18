@@ -43,6 +43,7 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
     [self getFriendData];
     [self.view addSubview:self.tableview];
     [[BTXMPPTool sharedInstance] addFried:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateContacterList) name:FaceSendButton object:nil];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -56,6 +57,17 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)updateContacterList
+{
+    [self getFriendData];
+    [self.tableview reloadData];
 }
 
 -(void)setupRightButtun
@@ -93,25 +105,24 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 
     if(_resultsContrl.fetchedObjects.count){
         [self devideFriend];
-        self.isLoad=YES;
+        self.isLoad = YES;
     }
-    
-    
 }
+
 #pragma mark 朋友分区 （在NSFetchRequest里面调用这个方法）
 -(void)devideFriend
 {
     BTXMPPTool *xmppToll=[BTXMPPTool sharedInstance];
-    NSFetchedResultsController *res = [xmppToll fetchedGroupResultsController];
-    NSLog(@"%lu", [res fetchedObjects].count);
-    XMPPGroupCoreDataStorageObject *group = [[res fetchedObjects] objectAtIndex:0];
-    
-    for(XMPPUserCoreDataStorageObject *user in [group users]){
-        
-        BTContacterModel *friend = [[BTContacterModel alloc]init];
-        friend.jid = user.jid;
-    }
-    NSLog(@"%@", group);
+//    NSFetchedResultsController *res = [xmppToll fetchedGroupResultsController];
+//    NSLog(@"%lu", [res fetchedObjects].count);
+//    XMPPGroupCoreDataStorageObject *group = [[res fetchedObjects] objectAtIndex:0];
+//    
+//    for(XMPPUserCoreDataStorageObject *user in [group users]){
+//        
+//        BTContacterModel *friend = [[BTContacterModel alloc]init];
+//        friend.jid = user.jid;
+//    }
+//    NSLog(@"%@", group);
     //获得好友的列表
     for(XMPPUserCoreDataStorageObject *user in _resultsContrl.fetchedObjects){
         

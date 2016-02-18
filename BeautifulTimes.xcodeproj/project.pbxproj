@@ -3192,11 +3192,11 @@
 		65F4262D1BDA0F1400295796 /* IMModule */ = {
 			isa = PBXGroup;
 			children = (
+				654365191C280975003F8D89 /* MainModule */,
+				6523EF531C27AE1B0016D63C /* HomePageModule */,
 				65F9F4791C521F4F002C4A24 /* UserManagerModel */,
 				65F90A1D1C43D84F00BAC2A2 /* ChatModel */,
 				65F47DDC1C3E8F07008117BC /* AboutMeModule */,
-				654365191C280975003F8D89 /* MainModule */,
-				6523EF531C27AE1B0016D63C /* HomePageModule */,
 				65F4262E1BDA0F1400295796 /* ContacterModule */,
 			);
 			path = IMModule;

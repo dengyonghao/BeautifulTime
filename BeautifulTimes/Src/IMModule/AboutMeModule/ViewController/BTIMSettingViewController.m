@@ -9,6 +9,9 @@
 #import "BTIMSettingViewController.h"
 #import "BTIMSettingModel.h"
 #import "BTIMSettingCell.h"
+#import "BTHomePageViewController.h"
+#import "BTBaseNavigationController.h"
+#import "AppDelegate.h"
 
 @interface BTIMSettingViewController ()
 
@@ -18,7 +21,7 @@
 
 @implementation BTIMSettingViewController
 
--(instancetype)init
+- (instancetype)init
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if(self){
@@ -27,22 +30,12 @@
     return self;
 }
 
--(NSMutableArray *)allArr
-{
-    if(!_allArr){
-        _allArr = [NSMutableArray array];
-    }
-    return _allArr;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithRed:236/255.0 green:236/255.0 blue:244/255.0 alpha:1.0];
     self.tableView.contentInset = UIEdgeInsetsMake(15, 0, 5, 0);
     self.title=@"设置";
-    //1.添加数组模型
     [self loadDataModel];
-    
 }
 
 #pragma mark 加载数据模型
@@ -70,9 +63,7 @@
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
     return self.allArr.count;
 }
 
@@ -80,7 +71,6 @@
     NSArray *arr=self.allArr[section];
     return arr.count;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -98,23 +88,39 @@
 {
     return 2;
 }
+
 #pragma mark 单元格的点击事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *arr=self.allArr[indexPath.section];
+    NSArray *arr = self.allArr[indexPath.section];
     BTIMSettingModel *model = arr[indexPath.row];
-    //退出登录操作
-//    if(model.isLoginOut){
-//        XmppTools *app=[XmppTools sharedxmpp];
-//        [app xmppLoginOut]; //退出
-//        //跳转到登录窗口
-//        LoginViewController *login=[[LoginViewController alloc]init];
-//        MyNavController *nav=[[MyNavController alloc]initWithRootViewController:login];
-//        [self dismissViewControllerAnimated:NO completion:nil];
-//        [UIApplication sharedApplication].keyWindow.rootViewController=nav;
-//        
-//    }
-    return;
+    if(model.isLoginOut){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"是否退出当前账号？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alertView show];
+    }
+}
+
+#pragma marks UIAlertViewDelegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        BTXMPPTool *tool = [BTXMPPTool sharedInstance];
+        [tool xmppLoginOut];
+        [[NSUserDefaults standardUserDefaults] setValue:nil forKey:userID];
+        [[NSUserDefaults standardUserDefaults] setValue:nil forKey:userPassword];
+        BTHomePageViewController *homeViewController = [[BTHomePageViewController alloc] init];
+        BTBaseNavigationController *homeNavigationController = [[BTBaseNavigationController alloc] initWithRootViewController:homeViewController];
+        [AppDelegate getInstance].window.rootViewController = homeNavigationController;
+        [self removeFromParentViewController];
+    }
+}
+
+-(NSMutableArray *)allArr
+{
+    if(!_allArr){
+        _allArr = [NSMutableArray array];
+    }
+    return _allArr;
 }
 
 @end

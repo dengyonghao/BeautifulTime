@@ -13,6 +13,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "BTJournalController.h"
 #import "Base64.h"
+#import "BTXMPPTool.h"
 
 static CGFloat const durationCircleSize = 112.0f;
 static CGFloat const recorderDuration = 600;
@@ -158,7 +159,8 @@ static CGFloat const recorderDuration = 600;
         NSString *filePath = [self.recordUrl absoluteString];
         NSData *data = [[NSData alloc] initWithContentsOfFile:filePath];
         NSString *str = [Base64 stringByEncodingData:data];
-        NSLog(@"%@", str);
+//        NSLog(@"%@", str);
+        [[BTXMPPTool sharedInstance] sendMessage:str type:@"text" to:[XMPPJID jidWithString:@"admin@vm-40-145-ubuntu"]];
         NSString *documentDirectory = [BTTool getDocumentDirectory];
         NSString *uid = [self getSaveFilePath];
         NSString *savePath = [documentDirectory stringByAppendingPathComponent:uid];

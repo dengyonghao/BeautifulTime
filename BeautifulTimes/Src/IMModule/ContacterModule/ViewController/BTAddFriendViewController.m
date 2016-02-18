@@ -8,6 +8,7 @@
 
 #import "BTAddFriendViewController.h"
 #import "BTSearchUserCell.h"
+#import "MBProgressHUD+MJ.h"
 
 @interface BTAddFriendViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -15,6 +16,7 @@
 @property (nonatomic, strong) UIButton *searchButton;
 @property (nonatomic, strong) UITextField *searchContent;
 @property (nonatomic, strong) NSArray *dataSource;
+@property (nonatomic, strong) BTContacterModel *selectContacter;
 
 @end
 
@@ -60,11 +62,16 @@
 #pragma -mark click event
 
 - (void)searchButtonClick {
+    [MBProgressHUD showMessage:@"查找中..." toView:self.view];
+    WS(weakSelf);
     [[BTXMPPTool sharedInstance] searchUserInfo:self.searchContent.text Success:^(NSArray *resultArray) {
-        self.dataSource = resultArray;
-        [self.tableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            weakSelf.dataSource = resultArray;
+            [weakSelf.tableView reloadData];
+            [MBProgressHUD hideHUDForView:weakSelf.view];
+        });
     } failure:^(NSError *error) {
-        
+        [MBProgressHUD hideHUDForView:self.view];
     }];
 }
 
@@ -85,8 +92,24 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    self.selectContacter = self.dataSource[indexPath.row];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"是否添加该用户为好友？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
 }
+
+#pragma marks UIAlertViewDelegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        if (self.selectContacter) {
+            BTXMPPTool *tool = [BTXMPPTool sharedInstance];
+            [tool addFried:self.selectContacter.jid];
+        } else {
+            NSLog(@"添加好友失败");
+        }
+    }
+}
+
 
 #pragma  -mark getter
 - (UITableView *)tableView {
