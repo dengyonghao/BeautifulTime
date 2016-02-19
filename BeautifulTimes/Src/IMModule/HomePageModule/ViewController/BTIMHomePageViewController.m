@@ -80,8 +80,8 @@ static NSString *cellIdentifier = @"chatMessageListCell";
     XMPPJID *jid =[dict objectForKey:@"jid"];
     NSString *time=[dict objectForKey:@"time"];
     NSString *user=[dict objectForKey:@"user"];
-    
-    
+
+
     //如果用户在本地数据库中已存在 就直接更新聊天数据
     if([BTMessageListDBTool selectUname:uname]){
         // NSLog(@"更新");
@@ -91,12 +91,12 @@ static NSString *cellIdentifier = @"chatMessageListCell";
             //如果是同一个用户名
             
             if([model.uname isEqualToString:uname]){
-                model.body=body;
-                model.time=time;
+                model.body = body;
+                model.time = time;
                 //如果是正在和我聊天的用户 才设置badgeValue
                 if([user isEqualToString:@"other"]){
-                    int currentV=[model.badgeValue intValue]+1;
-                    model.badgeValue=[NSString stringWithFormat:@"%d",currentV];
+                    int currentV = [model.badgeValue intValue]+1;
+                    model.badgeValue = [NSString stringWithFormat:@"%d",currentV];
                 }
                 
                 [self.tableView reloadData];
@@ -104,7 +104,6 @@ static NSString *cellIdentifier = @"chatMessageListCell";
                 //更新数据库里面的值
                 [BTMessageListDBTool updateWithName:uname detailName:body time:time badge:model.badgeValue];
             }
-            
         }
     }else{  //没有的话  添加数据
         BTMessageListModel *model = [[BTMessageListModel alloc]init];
@@ -148,7 +147,7 @@ static NSString *cellIdentifier = @"chatMessageListCell";
 -(void)setupSearchBar
 {
     UISearchBar *search=[[UISearchBar alloc]init];
-    search.frame = CGRectMake(10, 5, BT_SCREEN_WIDTH - 20, 25);
+    search.frame = CGRectMake(0, 0, BT_SCREEN_WIDTH, 36);
     search.barStyle = UIBarStyleDefault;
     search.backgroundColor = [UIColor whiteColor];
     //取消首字母吧大写
@@ -158,7 +157,7 @@ static NSString *cellIdentifier = @"chatMessageListCell";
     search.placeholder = @"搜索";
     search.layer.borderWidth = 0;
     
-    UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, BT_SCREEN_WIDTH, 35)];
+    UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, BT_SCREEN_WIDTH, 36)];
     searchView.backgroundColor = [[UIColor alloc] initWithRed:189 green:189 blue:195 alpha:0.7f];
     [searchView addSubview:search];
     // search.delegate=self;
@@ -190,7 +189,6 @@ static NSString *cellIdentifier = @"chatMessageListCell";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BTMessageListModel *model = self.dataSource[indexPath.row];
-    
     BTContacterModel *contacter = [[BTContacterModel alloc] init];
     contacter.jid = model.jid;
     contacter.nickName = model.uname;
@@ -218,6 +216,5 @@ static NSString *cellIdentifier = @"chatMessageListCell";
     }
     return _dataSource;
 }
-
 
 @end

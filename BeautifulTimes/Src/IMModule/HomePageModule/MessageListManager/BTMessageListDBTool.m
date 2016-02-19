@@ -106,6 +106,7 @@ static FMDatabaseQueue *_queue;
         [db executeUpdate:@"update message set badge='' where uname=?",uname];
     }];
 }
+
 #pragma mark 删除聊天数据的方法
 +(void)deleteWithName:(NSString *)uname
 {

@@ -24,15 +24,12 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 @property (strong,nonatomic)NSMutableDictionary *data;
 //定义好友的键
 @property (nonatomic,strong) NSMutableArray *otherKey;
-//定义一个判断值 (好友列表在程序开启的时候只从网上加载一次)
-@property (nonatomic,assign) BOOL isLoad;
 //删除好友时用到的NSIndexPath
 @property (nonatomic,strong) NSIndexPath *indexPath;
 
 @property (nonatomic, strong) UITableView *tableview;
 
 @end
-
 
 @implementation BTContacterViewController
 
@@ -42,8 +39,10 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
     [self setupSearchBar];
     [self getFriendData];
     [self.view addSubview:self.tableview];
+    self.tableview.sectionIndexColor = [UIColor grayColor];
+    self.tableview.sectionIndexBackgroundColor = [UIColor clearColor];
     [[BTXMPPTool sharedInstance] addFried:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateContacterList) name:FaceSendButton object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateContacterList) name:UpdateContacterList object:nil];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -66,8 +65,10 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 
 - (void)updateContacterList
 {
-    [self getFriendData];
-    [self.tableview reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self getFriendData];
+        [self.tableview reloadData];
+    });
 }
 
 -(void)setupRightButtun
@@ -75,6 +76,7 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:BT_LOADIMAGE(@"com_ic_nav_addfriend") style:UIBarButtonItemStylePlain target:self action:@selector(navRightClic)] ;
     
 }
+
 -(void)navRightClic
 {
     BTAddFriendViewController *vc = [[BTAddFriendViewController alloc] init];
@@ -85,7 +87,6 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 #pragma mark 获得好朋友
 -(void)getFriendData
 {
-    
     BTXMPPTool *xmppTool=[BTXMPPTool sharedInstance];
     NSManagedObjectContext *context = xmppTool.rosterStorage.mainThreadManagedObjectContext;
     
@@ -95,7 +96,7 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
     fetch.sortDescriptors = @[sort];
     
     _resultsContrl = [[NSFetchedResultsController alloc]initWithFetchRequest:fetch managedObjectContext:context sectionNameKeyPath:nil cacheName:nil];
-    _resultsContrl.delegate=self;
+    _resultsContrl.delegate = self;
 
     NSError *error = nil;
     [_resultsContrl performFetch:&error];
@@ -105,13 +106,15 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 
     if(_resultsContrl.fetchedObjects.count){
         [self devideFriend];
-        self.isLoad = YES;
     }
 }
 
 #pragma mark 朋友分区 （在NSFetchRequest里面调用这个方法）
 -(void)devideFriend
 {
+    [self.data removeAllObjects];
+    [self.keys removeAllObjects];
+    [self.otherKey removeAllObjects];
     BTXMPPTool *xmppToll=[BTXMPPTool sharedInstance];
 //    NSFetchedResultsController *res = [xmppToll fetchedGroupResultsController];
 //    NSLog(@"%lu", [res fetchedObjects].count);
@@ -141,27 +144,24 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
         }
         
         friend.nickName = user.nickname;
-
-//        friend.vcClass = [ChatController class];
         
         //把用户名转成拼音
         if (friend.nickName == nil) {
-            friend.nickName = [@"" stringByAppendingFormat:@"%@",friend.jid];
+            friend.nickName = [self cutStr:friend.jid.description];
         }
         friend.friendNamePinyin=[friend.nickName stringToPinyin];
         
-        //取出拼音首字母x
-        NSString *firstName=[friend.friendNamePinyin substringToIndex:1];
-        firstName = [firstName uppercaseString]; //转成大写
+        NSString *firstName = [friend.friendNamePinyin substringToIndex:1];
+        firstName = [firstName uppercaseString];
         
         //获得key所对应的数据(数组)
-        NSArray *arr=[self.data objectForKey:firstName];
+        NSArray *arr = [self.data objectForKey:firstName];
         NSMutableArray *contacter; //临时数据
         //如果没有值
-        if(arr==nil){
-            contacter=[NSMutableArray arrayWithObject:friend];
+        if(arr == nil){
+            contacter = [NSMutableArray arrayWithObject:friend];
         }else{
-            contacter=[NSMutableArray arrayWithArray:arr];
+            contacter = [NSMutableArray arrayWithArray:arr];
             [contacter addObject:friend];
         }
         //设置字典的键和值
@@ -169,7 +169,7 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
         
     }
     //获得所有的键
-    NSArray *key=[self.data allKeys];
+    NSArray *key = [self.data allKeys];
     for(NSString *str in key){
         if(![str isEqualToString:@"🔍"]){
             [self.otherKey addObject:str];
@@ -177,10 +177,7 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
     }
     
     NSArray *k = [self.otherKey sortedArrayUsingSelector:@selector(compare:)];
-    
     [self.keys addObjectsFromArray:k];
-    
-    
 }
 
 
@@ -188,21 +185,21 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 -(void)setupSearchBar
 {
     UISearchBar *search = [[UISearchBar alloc]init];
-    search.frame = CGRectMake(0, 5, BT_SCREEN_WIDTH , 25);
+    search.frame = CGRectMake(0, 0, BT_SCREEN_WIDTH , 36);
     search.barStyle = UIBarStyleDefault;
-    search.backgroundColor = [UIColor whiteColor];
+    search.backgroundColor = [UIColor clearColor];
     //取消首字母大写
     search.autocapitalizationType = UITextAutocapitalizationTypeNone;
     search.autocorrectionType = UITextAutocorrectionTypeNo;
     search.placeholder = @"搜索";
     search.layer.borderWidth = 0;
     
-    UIView *searchV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, BT_SCREEN_WIDTH , 35)];
-    searchV.backgroundColor = [UIColor grayColor];
+    UIView *searchV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, BT_SCREEN_WIDTH , 36)];
+    searchV.backgroundColor = [UIColor colorWithRed:189/255.0 green:189/255.0 blue:195/255.0 alpha:0.7];
     [searchV addSubview:search];
     search.delegate = self;
     
-    self.tableview.tableHeaderView=searchV;
+    self.tableview.tableHeaderView = searchV;
 }
 
 #pragma  mark 去掉@符号
@@ -212,25 +209,28 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 }
 
 #pragma mark - tableview delegate
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return self.keys.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {    
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     NSString *key=self.keys[section];
     NSArray *arr=[self.data objectForKey:key];
     return arr.count;
 }
+
 #pragma mark 设置每个区的标题
 -(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *title=self.keys[section];
     return title;
 }
+
 #pragma mark 表单元的设置
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     BTContacterCell *cell = [tableView dequeueReusableCellWithIdentifier:kcellContacterIndentifier];
     if (!cell) {
         cell = [[BTContacterCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kcellContacterIndentifier];
@@ -257,37 +257,69 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 #pragma mark 返回分区头的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if (section == 0) {
+        return 25;
+    }
     return 10;
 }
+
 #pragma mark 返回标示图的索引
 -(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
     return self.keys;
 }
+
 #pragma mark 滑动删除单元格
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return UITableViewCellEditingStyleDelete;
 }
+
 #pragma mark 改变删除单元格按钮的文字
 -(NSString*)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return @"删除";
 }
+
 #pragma mark 单元格删除的点击事件
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(editingStyle == UITableViewCellEditingStyleDelete){
         self.indexPath=indexPath;
-        //弹出提醒框
-//        [self alert];
-        
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"友情提示" message:@"你确定要删除此好友吗?" delegate:self cancelButtonTitle:@"删除" otherButtonTitles:@"取消", nil];
+        [alert show];
     }
 }
 
+#pragma mark alertView的代理方法
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 0){
+        NSString *key = self.keys[_indexPath.section];
+        NSMutableArray *arr = [self.data objectForKey:key];
+        BTContacterModel *friend = arr[_indexPath.row];
+        NSString *uname = friend.friendName;
+        
+        if(arr.count <= 1){
+            [self.keys removeObjectAtIndex:_indexPath.section];
+        }
+        [arr removeObjectAtIndex:_indexPath.row];
+        
+        BTXMPPTool *tool = [BTXMPPTool sharedInstance];
+        [tool.roster removeUser:friend.jid];
+
+        NSNotification *note=[[NSNotification alloc]initWithName:DeleteFriend object:uname userInfo:nil];
+        [[NSNotificationCenter defaultCenter] postNotification:note];
+        
+        [self.tableview reloadData];
+    }
+}
+
+
+#pragma mark setter
 - (UITableView *)tableview {
     if (!_tableview) {
-        _tableview = [[UITableView alloc] init];
+        _tableview = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         _tableview.delegate = self;
         _tableview.dataSource =self;
     }
@@ -303,8 +335,8 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 }
 -(NSMutableDictionary *)data
 {
-    if(_data==nil){
-        _data=[NSMutableDictionary dictionary];
+    if(!_data){
+        _data = [NSMutableDictionary dictionary];
     }
     return _data;
 }

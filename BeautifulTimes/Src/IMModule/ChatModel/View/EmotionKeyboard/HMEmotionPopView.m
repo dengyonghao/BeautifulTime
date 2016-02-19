@@ -51,6 +51,6 @@
  */
 - (void)drawRect:(CGRect)rect
 {
-    [[UIImage resizedImage:BT_LOADIMAGE(@"emoticon_keyboard_magnifier")] drawInRect:rect];
+    [BT_LOADIMAGE(@"emoticon_keyboard_magnifier") drawInRect:rect];
 }
 @end

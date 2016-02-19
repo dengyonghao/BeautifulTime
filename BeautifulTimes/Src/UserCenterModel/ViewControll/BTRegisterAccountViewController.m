@@ -10,6 +10,8 @@
 #import "BTTextField.h"
 #import "UIImage+Addition.h"
 #import "MBProgressHUD+MJ.h"
+#import "BTIMTabBarController.h"
+#import "AppDelegate.h"
 
 #define margin 20
 #define textFieldHeight 30
@@ -78,7 +80,6 @@
     [self.view addSubview:line];
 }
 
-
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if(self.username.text.length != 0 && self.password.text.length != 0){
@@ -128,7 +129,10 @@
                 [self enterHome];
                 break;
             case XMPPResultRegisterFailture:
-                [MBProgressHUD showError:@"注册失败" toView:self.view];
+                [MBProgressHUD showError:@"注册失败,用户名重复。" toView:self.view];
+                [[NSUserDefaults standardUserDefaults] setValue:nil forKey:userID];
+                [[NSUserDefaults standardUserDefaults] setValue:nil forKey:userPassword];
+                [[NSUserDefaults standardUserDefaults] synchronize];
                 break;
         }
     });
@@ -137,8 +141,11 @@
 #pragma mark 注册成功后进入主界面
 -(void)enterHome
 {
-    
-    
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:userID] && [[NSUserDefaults standardUserDefaults] valueForKey:userPassword]) {
+        [[BTXMPPTool sharedInstance] login:nil];
+        BTIMTabBarController *tab = [[BTIMTabBarController alloc]init];
+        [AppDelegate getInstance].window.rootViewController = tab;
+    }
 }
 
 - (UIButton *)registerBtn {

@@ -214,7 +214,7 @@ static BTXMPPTool *xmppTool;
     [_roster subscribePresenceToUser:friedJid];
 }
 
-//收到请求添加好友回调
+#pragma mark 收到请求添加好友回调
 - (void)xmppRoster:(XMPPRoster *)sender didReceivePresenceSubscriptionRequest:(XMPPPresence *)presence
 {
     //取得好友状态
@@ -224,11 +224,21 @@ static BTXMPPTool *xmppTool;
     NSLog(@"presenceType:%@",presenceType);
     NSLog(@"presence2:%@  sender2:%@",presence,sender);
     XMPPJID *jid = [XMPPJID jidWithString:presenceFromUser];
-    self.userJid = jid;
+    self.userJid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@", jid, ServerName]];
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"%@请求添加你为好友", jid.description] delegate:self cancelButtonTitle:@"拒绝" otherButtonTitles:@"同意", nil];
     dispatch_async(dispatch_get_main_queue(), ^(void){
         [alertView show];
     });
+}
+
+- (void)xmppRoster:(XMPPRoster *)sender didRecieveRosterItem:(DDXMLElement *)item
+{
+    NSString *subscription = [item attributeStringValueForName:@"subscription"];
+    if ([subscription isEqualToString:@"both"]) {
+        NSLog(@"双方已经互为好友");
+        NSNotification *note = [[NSNotification alloc]initWithName:UpdateContacterList object:nil userInfo:nil];
+        [[NSNotificationCenter defaultCenter] postNotification:note];
+    }
 }
 
 #pragma marks UIAlertViewDelegate
@@ -246,7 +256,12 @@ static BTXMPPTool *xmppTool;
 
 - (void)handleAddFriendReqest:(XMPPJID *)userJid result:(BOOL)result
 {
-    [_roster acceptPresenceSubscriptionRequestFrom:userJid andAddToRoster:result];
+    if (result) {
+        [_roster acceptPresenceSubscriptionRequestFrom:userJid andAddToRoster:YES];
+    } else {
+        [_roster rejectPresenceSubscriptionRequestFrom:userJid];
+    }
+    
 }
 
 #pragma mark 调用注册的方法
@@ -312,13 +327,13 @@ static BTXMPPTool *xmppTool;
     [msgXml addAttributeWithName:@"to" stringValue:ServerName];
     [msgXml addAttributeWithName:@"id" stringValue:kChangePasswordId];
      
-     DDXMLNode *username=[DDXMLNode elementWithName:@"username" stringValue:userId];//不带@后缀
-     DDXMLNode *password=[DDXMLNode elementWithName:@"password" stringValue:checkPassword];//要改的密码
-     [query addChild:username];
-     [query addChild:password];
-     [msgXml addChild:query];
+    DDXMLNode *username=[DDXMLNode elementWithName:@"username" stringValue:userId];//不带@后缀
+    DDXMLNode *password=[DDXMLNode elementWithName:@"password" stringValue:checkPassword];//要改的密码
+    [query addChild:username];
+    [query addChild:password];
+    [msgXml addChild:query];
      
-     [_xmppStream sendElement:msgXml];
+    [_xmppStream sendElement:msgXml];
 }
 
 #pragma mark 查找好友
@@ -385,6 +400,10 @@ static BTXMPPTool *xmppTool;
         _searchDataBlock([self analyticalSearchResult:iq]);
     }
     return YES;
+}
+
+- (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence {
+    NSLog(@"%@", presence);
 }
 
 #pragma mark 解析查找好友数据

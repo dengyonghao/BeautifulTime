@@ -61,7 +61,11 @@
 }
 
 - (void)bindData:(BTMessageListModel *)model {
-    self.headIcon.image = [[UIImage alloc] initWithData:model.headerIcon];
+        UIImage *image = [[UIImage alloc] initWithData:[[BTXMPPTool sharedInstance].avatar photoDataForJID:model.jid]];
+    if (!image) {
+        image = BT_LOADIMAGE(@"com_ic_defaultIcon");
+    }
+    self.headIcon.image = image;
     self.title.text = model.uname;
     self.content.text = model.body;
 }

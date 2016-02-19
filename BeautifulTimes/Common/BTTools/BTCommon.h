@@ -66,6 +66,9 @@ static inline UIImage* naviimage_from_mainbundle(NSString* filename_and_type)
 //收到好友申请通知名
 #define AddFriendRequst @"kAddFriendRequst"
 
+//更新好友列表通知名
+#define UpdateContacterList @"kUpdateContacterList"
+
 /** 表情相关 */
 // 表情的最大行数
 #define HMEmotionMaxRows 3
