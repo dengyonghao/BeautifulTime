@@ -52,22 +52,9 @@ static NSString *cellIdentifier = @"kAboutMeCell";
     group1.items=@[userSetting];
     [self.datas addObject:group1];
     self.userSetting=userSetting;
-    //2.第二个组
-    BTTableGroupModel *group2=[[BTTableGroupModel alloc]init];
-    BTAboutMeCellModel *photos=[BTAboutMeCellModel itemWithIcon:@"MoreMyAlbum" title:@"相册" detailTitle:@"" vcClass:nil];
-    BTAboutMeCellModel *favar=[BTAboutMeCellModel itemWithIcon:@"MoreMyFavorites" title:@"收藏" detailTitle:@"" vcClass:nil];
-    BTAboutMeCellModel *money=[BTAboutMeCellModel itemWithIcon:@"MoreMyBankCard" title:@"钱包" detailTitle:@"" vcClass:nil];
-    group2.items=@[photos,favar,money];
-    [self.datas addObject:group2];
     
-    //3.第三个组
-    BTTableGroupModel *group3=[[BTTableGroupModel alloc]init];
-    BTAboutMeCellModel *face=[BTAboutMeCellModel itemWithIcon:@"MoreExpressionShops" title:@"表情" detailTitle:@"" vcClass:nil];
-    group3.items=@[face];
-    [self.datas addObject:group3];
-    //4.第四个组
     BTTableGroupModel *group4=[[BTTableGroupModel alloc]init];
-    BTAboutMeCellModel *setting=[BTAboutMeCellModel itemWithIcon:@"MoreSetting" title:@"设置" detailTitle:@"账号未保护" vcClass:[BTIMSettingViewController class]];
+    BTAboutMeCellModel *setting=[BTAboutMeCellModel itemWithIcon:@"com_im_setting" title:@"设置" detailTitle:@"" vcClass:[BTIMSettingViewController class]];
     group4.items=@[setting];
     [self.datas addObject:group4];
 }

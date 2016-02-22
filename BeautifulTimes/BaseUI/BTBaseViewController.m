@@ -15,6 +15,7 @@
 @interface BTBaseViewController ()<BTThemeListenerProtocol>
 
 @property (nonatomic, assign) BOOL themeInit;
+@property (nonatomic, strong) UIImageView *headViewImage;
 
 @end
 
@@ -38,10 +39,10 @@
     
     self.view.frame = CGRectMake(0, self.statusHeight, BT_SCREEN_WIDTH, BT_SCREEN_HEIGHT);
     
-    
     self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, self.statusHeight, BT_SCREEN_WIDTH, baseHeaderViewHeight)];
     self.headerView.backgroundColor = BT_CLEARCOLOR;
-    
+    self.headViewImage.frame = CGRectMake(0, 0, BT_SCREEN_WIDTH, baseHeaderViewHeight);
+    [self.headerView addSubview:self.headViewImage];
     [self.headerView addObserver:self forKeyPath:@"hidden" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     
     [self.view addSubview:self.headerView];
@@ -51,7 +52,6 @@
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.font = BT_FONTSIZE(22);
     [self.headerView addSubview:self.titleLabel];
-    
     
     self.finishButton = [[UIButton alloc] initWithFrame:CGRectMake(BT_SCREEN_WIDTH - BACKBUTTONWIDTH - 10, 0, BACKBUTTONWIDTH, BACKBUTTONWIDTH)];
     self.finishButton.exclusiveTouch = YES;
@@ -65,9 +65,6 @@
     
     self.bodyView = [[UIView alloc] initWithFrame:CGRectMake(0, baseHeaderViewHeight + self.statusHeight, BT_SCREEN_WIDTH, BT_SCREEN_HEIGHT-baseHeaderViewHeight-self.statusHeight)];
     [self.view addSubview:self.bodyView];
-    
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -80,7 +77,6 @@
     }
     
     [self setNeedsStatusBarAppearanceUpdate];
-    
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -94,12 +90,9 @@
     [super viewDidDisappear:animated];
 }
 
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)dealloc
@@ -124,11 +117,8 @@
 #pragma mark 主题改变回调
 - (void) BTThemeDidNeedUpdateStyle
 {
-    UIColor *bgColor = [[BTThemeManager getInstance] BTThemeColor:@"cl_bg_c_main"];
-    self.view.backgroundColor = bgColor;
-    
-    self.bodyView.backgroundColor = bgColor;
-    
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.headViewImage.image = [UIImage resizedImage:BT_LOADIMAGE(@"com_bg_nav")];
     self.titleLabel.textColor = [[BTThemeManager getInstance] BTThemeColor:@"cl_text_a4_title"];
     
     [[BTThemeManager getInstance] BTThemeImage:@"com_ic_back" completionHandler:^(UIImage *image) {
@@ -173,6 +163,13 @@
 - (BOOL)prefersStatusBarHidden
 {
     return YES; //返回NO表示要显示，返回YES将hiden    默认隐藏
+}
+
+- (UIImageView *)headViewImage {
+    if (!_headViewImage) {
+        _headViewImage = [[UIImageView alloc] init];
+    }
+    return _headViewImage;
 }
 
 @end

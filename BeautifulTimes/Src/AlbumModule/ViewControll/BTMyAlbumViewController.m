@@ -46,7 +46,7 @@ static CGFloat const iconHeight = 120.0f;
     WS(weakSelf);
     
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(weakSelf.bodyView).insets(UIEdgeInsetsMake(0, 0, 0, 0));
+        make.edges.equalTo(weakSelf.bodyView).insets(UIEdgeInsetsMake(10, 0, 0, 0));
     }];
 }
 

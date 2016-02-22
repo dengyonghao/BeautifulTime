@@ -28,11 +28,11 @@ static NSInteger cacheNumber = 10;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.titleLabel.text = @"照片详情";
     self.finishButton.hidden = NO;
     [self.finishButton setTitle:@"编辑" forState:UIControlStateNormal];
     [self.view addSubview:self.scrollView];
     headIndex = tailIndex = self.index;
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

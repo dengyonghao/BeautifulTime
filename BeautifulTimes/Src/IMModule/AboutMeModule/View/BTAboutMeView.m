@@ -65,7 +65,7 @@
     CGFloat arrowX=BT_SCREEN_WIDTH-arrowW-marginLeft;
     arrow.frame=CGRectMake(arrowX, arrowY, arrowW, arrowH);
     arrow.userInteractionEnabled=NO;
-    [arrow setImage:[UIImage resizedImage:BT_UIIMAGE(@"pay_arrowright")] forState:UIControlStateNormal];
+    [arrow setImage:BT_LOADIMAGE(@"pay_arrowright") forState:UIControlStateNormal];
     [self addSubview:arrow];
     self.arrow=arrow;
 }
@@ -73,30 +73,26 @@
 //设置模型
 -(void)setItem:(BTAboutMeCellModel *)item
 {
-    _item=item;
-    //1.设置头像
+    _item = item;
     if(item.image){
-        //fts_default_headimage
         self.head.layer.cornerRadius = 5;
         self.head.layer.borderWidth = 0.5;
         self.head.layer.borderColor = [UIColor grayColor].CGColor;
         self.head.image = [UIImage imageWithData:item.image];
     }else{
-        self.head.image = BT_UIIMAGE(item.icon);
+        self.head.image = BT_LOADIMAGE(item.icon);
     }
     
-    //2.设置title
-    self.name.text=item.title;
-    //3.设置详细标题
+    self.name.text = item.title;
     if(item.detailTitle){
-        self.detailTitle.hidden=NO;
-        CGSize detailS=[item.detailTitle sizeWithAttributes:@{NSFontAttributeName:BT_FONTSIZE(15)}];
-        CGFloat detailW=detailS.width;
-        CGFloat detailH=detailS.height;
-        CGFloat detailY=(self.height-detailH)*0.5;
-        CGFloat detailX=BT_SCREEN_WIDTH-detailW-self.arrow.width-marginLeft;
-        self.detailTitle.frame=CGRectMake(detailX, detailY, detailW, detailH);
-        self.detailTitle.text=item.detailTitle;
+        self.detailTitle.hidden = NO;
+        CGSize detailS = [item.detailTitle sizeWithAttributes:@{NSFontAttributeName:BT_FONTSIZE(15)}];
+        CGFloat detailW = detailS.width;
+        CGFloat detailH = detailS.height;
+        CGFloat detailY = (self.height - detailH) * 0.5;
+        CGFloat detailX = BT_SCREEN_WIDTH - detailW - self.arrow.width - marginLeft;
+        self.detailTitle.frame = CGRectMake(detailX, detailY, detailW, detailH);
+        self.detailTitle.text = item.detailTitle;
     }
 }
 

@@ -40,6 +40,7 @@ static inline UIImage* naviimage_from_mainbundle(NSString* filename_and_type)
 #define currentCity               @"btCurrentCity"
 #define userID                   @"btUserID"
 #define userPassword             @"btPassword"
+#define isLogin                  @"kIsLogin"
 
 // 弱引用
 #define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;

@@ -12,11 +12,11 @@
 
 +(instancetype)itemWithIcon:(NSString *)icon title:(NSString *)title detailTitle:(NSString *)detailTitle vcClass:(Class)vcClass
 {
-    BTAboutMeCellModel *item=[[BTAboutMeCellModel alloc]init];
-    item.title=title;
-    item.detailTitle=detailTitle;
-    item.icon=icon;
-    item.vcClass=vcClass;
+    BTAboutMeCellModel *item = [[BTAboutMeCellModel alloc] init];
+    item.title = title;
+    item.detailTitle = detailTitle;
+    item.icon = icon;
+    item.vcClass = vcClass;
     return item;
 }
 

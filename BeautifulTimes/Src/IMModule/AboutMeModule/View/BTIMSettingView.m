@@ -53,7 +53,7 @@
     CGFloat arrowX = BT_SCREEN_WIDTH-arrowW-marginLeft;
     arrow.frame = CGRectMake(arrowX, arrowY, arrowW, arrowH);
     arrow.userInteractionEnabled= NO;
-    [arrow setImage:[UIImage resizedImage:BT_LOADIMAGE(@"pay_arrowright")] forState:UIControlStateNormal];
+    [arrow setImage:BT_LOADIMAGE(@"pay_arrowright") forState:UIControlStateNormal];
     [self addSubview:arrow];
     self.arrow = arrow;
 }

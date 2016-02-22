@@ -41,21 +41,16 @@
 #pragma mark 加载数据模型
 -(void)loadDataModel
 {
-    //1.
-    BTIMSettingModel *accountAndSafe=[BTIMSettingModel settingWithTitle:@"账号与安全" detailTitle:@"未保护"];
-    NSArray *oneArr = @[accountAndSafe];
-    [self.allArr addObject:oneArr];
-    //2.
     BTIMSettingModel *newMsg = [BTIMSettingModel settingWithTitle:@"新消息通知" detailTitle:nil];
     BTIMSettingModel *conseal = [BTIMSettingModel settingWithTitle:@"隐私" detailTitle:nil];
     BTIMSettingModel *common = [BTIMSettingModel settingWithTitle:@"通用" detailTitle:nil];
     NSArray *twoArr = @[newMsg, conseal, common];
     [self.allArr addObject:twoArr];
-    //3.
-    BTIMSettingModel *abount = [BTIMSettingModel settingWithTitle:@"新消息通知" detailTitle:nil];
+
+    BTIMSettingModel *abount = [BTIMSettingModel settingWithTitle:@"关于私语" detailTitle:nil];
     NSArray *threeArr = @[abount];
     [self.allArr addObject:threeArr];
-    //4.
+
     BTIMSettingModel *loginOut = [BTIMSettingModel settingWithTitle:@"退出登录" detailTitle:nil];
     loginOut.isLoginOut = YES;
     NSArray *fourArr = @[loginOut];

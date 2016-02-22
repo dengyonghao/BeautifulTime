@@ -37,8 +37,8 @@
 //设置模型
 -(void)setItem:(BTAboutMeCellModel *)item
 {
-    _item=item;
-    self.aboutMeView.item=item;
+    _item = item;
+    self.aboutMeView.item = item;
 }
 
 @end

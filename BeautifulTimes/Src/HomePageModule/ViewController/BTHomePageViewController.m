@@ -182,20 +182,30 @@ static const CGFloat BUTTONWIDTH = 48;
 //    [[BTThemeManager getInstance] BTThemeImage:@"ic_bg_main_640x960" completionHandler:^(UIImage *image) {
 //        [weakSelf.album setImage:image forState:UIControlStateHighlighted];
 //    }];
-    [[BTThemeManager getInstance] BTThemeImage:@"ic_journal" completionHandler:^(UIImage *image) {
+    [[BTThemeManager getInstance] BTThemeImage:@"com_bl_timeline" completionHandler:^(UIImage *image) {
+        [weakSelf.timeline setImage:image forState:UIControlStateNormal];
+    }];
+    [[BTThemeManager getInstance] BTThemeImage:@"com_bl_timeline_press" completionHandler:^(UIImage *image) {
+        [weakSelf.timeline setImage:image forState:UIControlStateHighlighted];
+    }];
+    [[BTThemeManager getInstance] BTThemeImage:@"com_bl_journal" completionHandler:^(UIImage *image) {
         [weakSelf.journals setImage:image forState:UIControlStateNormal];
     }];
-    [[BTThemeManager getInstance] BTThemeImage:@"ic_journal_press" completionHandler:^(UIImage *image) {
+    [[BTThemeManager getInstance] BTThemeImage:@"com_bl_journal_press" completionHandler:^(UIImage *image) {
         [weakSelf.journals setImage:image forState:UIControlStateHighlighted];
     }];
-    [[BTThemeManager getInstance] BTThemeImage:@"ic_chat" completionHandler:^(UIImage *image) {
+    [[BTThemeManager getInstance] BTThemeImage:@"com_bl_chat" completionHandler:^(UIImage *image) {
         [weakSelf.chat setImage:image forState:UIControlStateNormal];
     }];
-    [[BTThemeManager getInstance] BTThemeImage:@"ic_chat_press" completionHandler:^(UIImage *image) {
+    [[BTThemeManager getInstance] BTThemeImage:@"com_bl_chat_press" completionHandler:^(UIImage *image) {
         [weakSelf.chat setImage:image forState:UIControlStateHighlighted];
     }];
-
-
+    [[BTThemeManager getInstance] BTThemeImage:@"com_bl_album" completionHandler:^(UIImage *image) {
+        [weakSelf.album setImage:image forState:UIControlStateNormal];
+    }];
+    [[BTThemeManager getInstance] BTThemeImage:@"com_bl_album_press" completionHandler:^(UIImage *image) {
+        [weakSelf.album setImage:image forState:UIControlStateHighlighted];
+    }];
     
 }
 
@@ -370,8 +380,6 @@ static const CGFloat BUTTONWIDTH = 48;
 - (UIButton *)timeline {
     if (!_timeline) {
         _timeline = [[UIButton alloc] init];
-        [_timeline setTitleColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_other_d"] forState:UIControlStateNormal];
-        [_timeline setTitle:@"时光轴" forState:UIControlStateNormal];
         [_timeline addTarget:self action:@selector(timelineClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _timeline;
@@ -380,8 +388,6 @@ static const CGFloat BUTTONWIDTH = 48;
 - (UIButton *)album {
     if (!_album) {
         _album = [[UIButton alloc] init];
-        [_album setTitleColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_other_d"] forState:UIControlStateNormal];
-        [_album setTitle:@"相册" forState:UIControlStateNormal];
         [_album addTarget:self action:@selector(albumClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _album;
