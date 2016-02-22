@@ -42,7 +42,7 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
-    
+    self.title = self.contacter.nickName;
     [self setupTableView];
     [self loadChatData];
     [self setupBottomView];
@@ -100,7 +100,17 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
     for(XMPPMessageArchiving_Message_CoreDataObject *msg in _resultController.fetchedObjects){
         BTChatMessageModel *msgModel=[[BTChatMessageModel alloc] init];
         [msgModel bindData:msg];
-        msgModel.friendHeadIcon = self.contacter.headIcon;
+        
+        if(self.contacter.headIcon){
+            msgModel.friendHeadIcon = self.contacter.headIcon;
+        } else {
+            msgModel.friendHeadIcon = [UIImage imageWithData: [[BTXMPPTool sharedInstance].avatar photoDataForJID:self.contacter.jid]];
+        }
+        
+        if (!msgModel.friendHeadIcon) {
+            msgModel.friendHeadIcon = BT_LOADIMAGE(@"com_ic_defaultIcon");
+        }
+
         msgModel.ownHeadIcon = self.headImage;
         msgModel.hiddenTime = YES;
 
@@ -143,7 +153,7 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
         [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         NSString *strDate = [formatter stringFromDate:msg.timestamp];
         
-        NSDictionary *dict = @{@"uname":uname,@"time":strDate,@"body":msg.body,@"jid":msg.bareJid,@"user":@"this"};
+        NSDictionary *dict = @{@"uname":uname,@"time":msg.timestamp,@"body":msg.body,@"jid":msg.bareJid,@"user":@"this"};
         
         NSNotification *note = [[NSNotification alloc] initWithName:SendMsgName object:dict userInfo:nil];
         [[NSNotificationCenter defaultCenter] postNotification:note];

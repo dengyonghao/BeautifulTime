@@ -20,7 +20,7 @@ static FMDatabaseQueue *_queue;
     _queue=[FMDatabaseQueue databaseQueueWithPath:path];
     //创建表
     [_queue inDatabase:^(FMDatabase *db) {
-        BOOL b=[db executeUpdate:@"create table if not exists message(ID integer primary key autoincrement,head blob,uname text,detailname text,time text,badge text,jid blob)"];
+        BOOL b=[db executeUpdate:@"create table if not exists message(ID integer primary key autoincrement,head blob,uname text,detailname text,time date,badge text,jid blob)"];
         if(!b){
             NSLog(@"创建表失败");
         }
@@ -29,7 +29,7 @@ static FMDatabaseQueue *_queue;
 }
 
 //数据库添加数据
-+(BOOL)addHead:(NSData *)head uname:(NSString *)uname detailName:(NSString *)detailName time:(NSString *)time badge:(NSString *)badge xmppjid:(XMPPJID *)jid
++(BOOL)addHead:(NSData *)head uname:(NSString *)uname detailName:(NSString *)detailName time:(NSDate *)time badge:(NSString *)badge xmppjid:(XMPPJID *)jid
 {
     __block  BOOL b;
     [_queue inDatabase:^(FMDatabase *db) {
@@ -56,7 +56,7 @@ static FMDatabaseQueue *_queue;
 }
 
 //更新数据
-+(BOOL)updateWithName:(NSString *)uname detailName:(NSString *)detailName time:(NSString *)time badge:(NSString *)badge
++(BOOL)updateWithName:(NSString *)uname detailName:(NSString *)detailName time:(NSDate *)time badge:(NSString *)badge
 {
     __block BOOL b;
     
@@ -85,7 +85,7 @@ static FMDatabaseQueue *_queue;
                 BTMessageListModel *model=[[BTMessageListModel alloc]init];
                 model.uname=[result stringForColumn:@"uname"];
                 model.body=[result stringForColumn:@"detailname"];
-                model.time=[result stringForColumn:@"time"];
+                model.time=[result dateForColumn:@"time"];
                 model.badgeValue=[result stringForColumn:@"badge"];
                 model.headerIcon=[result dataForColumn:@"head"];
                 //获得XmppJid

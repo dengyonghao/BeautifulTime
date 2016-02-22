@@ -51,7 +51,7 @@ static NSString *cellIdentifier = @"chatMessageListCell";
 #pragma mark   从本地数据库中读取正在聊天的好友数据
 -(void)readChatData
 {
-    NSArray *arr=[BTMessageListDBTool selectAllData];
+    NSArray *arr = [BTMessageListDBTool selectAllData];
     self.dataSource = [arr mutableCopy];
     //如果有未读消息的话 在标签栏下面显示未读消息
     for(BTMessageListModel *model in arr){
@@ -74,54 +74,51 @@ static NSString *cellIdentifier = @"chatMessageListCell";
 
 #pragma mark 收到新消息时更新状态
 - (void)updateMessage:(NSNotification*)note {
-    NSDictionary *dict=[note object];
-    NSString *uname=[dict objectForKey:@"uname"]; //获得用户名
-    NSString *body=[dict objectForKey:@"body"];
-    XMPPJID *jid =[dict objectForKey:@"jid"];
-    NSString *time=[dict objectForKey:@"time"];
-    NSString *user=[dict objectForKey:@"user"];
+    NSDictionary *dict = [note object];
+    NSString *uname = [dict objectForKey:@"uname"];
+    NSString *body = [dict objectForKey:@"body"];
+    XMPPJID *jid = [dict objectForKey:@"jid"];
+    NSDate *time = [dict objectForKey:@"time"];
+    NSString *user = [dict objectForKey:@"user"];
 
-
-    //如果用户在本地数据库中已存在 就直接更新聊天数据
     if([BTMessageListDBTool selectUname:uname]){
-        // NSLog(@"更新");
-        //回到主线程  执行这些方法
-        //修改模型数据
-        for(BTMessageListModel *model in self.dataSource){
-            //如果是同一个用户名
-            
-            if([model.uname isEqualToString:uname]){
-                model.body = body;
-                model.time = time;
-                //如果是正在和我聊天的用户 才设置badgeValue
-                if([user isEqualToString:@"other"]){
-                    int currentV = [model.badgeValue intValue]+1;
-                    model.badgeValue = [NSString stringWithFormat:@"%d",currentV];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            for(int i = 0; i < self.dataSource.count; i++){
+                BTMessageListModel *model = self.dataSource[i];
+                if([model.uname isEqualToString:uname]){
+                    model.body = body;
+                    model.time = time;
+                    //如果是正在和我聊天的用户 才设置badgeValue
+                    if([user isEqualToString:@"other"]){
+                        int currentV = [model.badgeValue intValue]+1;
+                        model.badgeValue = [NSString stringWithFormat:@"%d",currentV];
+                    }
+                    [self.dataSource removeObjectAtIndex:i];
+                    [self.dataSource insertObject:model atIndex:0];
+                    [self.tableView reloadData];
+                    [BTMessageListDBTool updateWithName:uname detailName:body time:time badge:model.badgeValue];
+                    break;
                 }
-                
-                [self.tableView reloadData];
-                
-                //更新数据库里面的值
-                [BTMessageListDBTool updateWithName:uname detailName:body time:time badge:model.badgeValue];
             }
-        }
-    }else{  //没有的话  添加数据
-        BTMessageListModel *model = [[BTMessageListModel alloc]init];
-        model.uname=uname;
-        model.body=body;
-        model.jid=jid;
-        model.time=time;
-        if([user isEqualToString:@"other"]){
-            model.badgeValue=@"1";
-        }else{
-            model.badgeValue=nil;
-        }
-        
-        [self.dataSource addObject:model];
-        //重新加载标示图
-        [self.tableView reloadData];
-        
-        [BTMessageListDBTool addHead:nil uname:uname detailName:body time:time badge:model.badgeValue xmppjid:jid];
+        });
+
+    }else{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            BTMessageListModel *model = [[BTMessageListModel alloc]init];
+            model.uname=uname;
+            model.body=body;
+            model.jid=jid;
+            model.time=time;
+            if([user isEqualToString:@"other"]){
+                model.badgeValue=@"1";
+            }else{
+                model.badgeValue=nil;
+            }
+            
+            [self.dataSource insertObject:model atIndex:0];
+            [self.tableView reloadData];
+            [BTMessageListDBTool addHead:nil uname:uname detailName:body time:time badge:model.badgeValue xmppjid:jid];
+        });
     }
 }
 
@@ -153,7 +150,6 @@ static NSString *cellIdentifier = @"chatMessageListCell";
     //取消首字母吧大写
     search.autocapitalizationType = UITextAutocapitalizationTypeNone;
     search.autocorrectionType = UITextAutocorrectionTypeNo;
-    //代理
     search.placeholder = @"搜索";
     search.layer.borderWidth = 0;
     

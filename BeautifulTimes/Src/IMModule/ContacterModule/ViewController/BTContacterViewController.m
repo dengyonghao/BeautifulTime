@@ -115,8 +115,8 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
     [self.data removeAllObjects];
     [self.keys removeAllObjects];
     [self.otherKey removeAllObjects];
-    BTXMPPTool *xmppToll=[BTXMPPTool sharedInstance];
-//    NSFetchedResultsController *res = [xmppToll fetchedGroupResultsController];
+    BTXMPPTool *xmppTool=[BTXMPPTool sharedInstance];
+//    NSFetchedResultsController *res = [xmppTool fetchedGroupResultsController];
 //    NSLog(@"%lu", [res fetchedObjects].count);
 //    XMPPGroupCoreDataStorageObject *group = [[res fetchedObjects] objectAtIndex:0];
 //    
@@ -136,13 +136,13 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
         if(user.photo){
             friend.headIcon = user.photo;
         }else{
-            friend.headIcon = [UIImage imageWithData: [xmppToll.avatar photoDataForJID:user.jid]];
+            friend.headIcon = [UIImage imageWithData: [xmppTool.avatar photoDataForJID:user.jid]];
         }
         
         if (!friend.headIcon) {
             friend.headIcon = BT_LOADIMAGE(@"com_ic_defaultIcon");
         }
-        
+
         friend.nickName = user.nickname;
         
         //把用户名转成拼音

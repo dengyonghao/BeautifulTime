@@ -15,13 +15,13 @@
  */
 
 //添加数据
-+(BOOL)addHead:(NSData*)head uname:(NSString*)uname detailName:(NSString*)detailName time:(NSString*)time badge:(NSString*)badge xmppjid:(XMPPJID*)jid ;
++(BOOL)addHead:(NSData*)head uname:(NSString*)uname detailName:(NSString*)detailName time:(NSDate*)time badge:(NSString*)badge xmppjid:(XMPPJID*)jid ;
 
 //查询判断数据有没有存在
 +(BOOL)selectUname:(NSString*)uname;
 
 //更新数据库里面的东西
-+(BOOL)updateWithName:(NSString*)uname detailName:(NSString*)detailName time:(NSString*)time badge:(NSString*)badge;
++(BOOL)updateWithName:(NSString*)uname detailName:(NSString*)detailName time:(NSDate*)time badge:(NSString*)badge;
 
 //查询所有的数据
 +(NSArray*)selectAllData;

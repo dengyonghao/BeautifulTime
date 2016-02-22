@@ -37,10 +37,8 @@ static const CGFloat BUTTONWIDTH = 48;
 @property (nonatomic, strong) UIButton *chat;
 @property (nonatomic, strong) UIButton *addJournal;
 @property (nonatomic, strong) UIButton *addTimeline;
-@property (nonatomic, strong) UIButton *reminiscence;
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 
-@property (nonatomic, strong) UIButton *userCenter;
 @property (nonatomic, strong) UIButton *setting;
 
 @end
@@ -57,8 +55,6 @@ static const CGFloat BUTTONWIDTH = 48;
     [self.view addSubview:self.chat];
     [self.view addSubview:self.addJournal];
     [self.view addSubview:self.addTimeline];
-    [self.view addSubview:self.reminiscence];
-    [self.view addSubview:self.userCenter];
     [self.view addSubview:self.setting];
 }
 
@@ -75,12 +71,6 @@ static const CGFloat BUTTONWIDTH = 48;
     
     CGFloat OFFSET = (BT_SCREEN_WIDTH - BUTTONWIDTH * 4) / 5;
 
-    [self.userCenter mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(weakSelf.view).offset(10);
-        make.width.mas_equalTo(@(48));
-        make.height.equalTo(@(48));
-        make.top.equalTo(weakSelf.view).offset(10);
-    }];
     [self.setting mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(weakSelf.view).offset(-10);
         make.width.mas_equalTo(@(48));
@@ -132,10 +122,6 @@ static const CGFloat BUTTONWIDTH = 48;
         make.centerY.equalTo(weakSelf.addJournal).offset(70);
         make.height.equalTo(@(70));
         make.width.equalTo(@(70));
-    }];
-    
-    [self.reminiscence mas_makeConstraints:^(MASConstraintMaker *make) {
-        
     }];
 
 }
@@ -357,16 +343,6 @@ static const CGFloat BUTTONWIDTH = 48;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (UIButton *)userCenter {
-    if (!_userCenter) {
-        _userCenter = [[UIButton alloc] init];
-        [_userCenter setTitle:@"我的" forState:UIControlStateNormal];
-        [_userCenter setTitleColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_other_d"] forState:UIControlStateNormal];
-        [_userCenter addTarget:self action:@selector(userCenterClick) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _userCenter;
-}
-
 - (UIButton *)setting {
     if (!_setting) {
         _setting = [[UIButton alloc] init];
@@ -433,19 +409,11 @@ static const CGFloat BUTTONWIDTH = 48;
     return _addTimeline;
 }
 
-- (UIButton *)reminiscence {
-    if (!_reminiscence) {
-        _reminiscence = [[UIButton alloc] init];
-    }
-    return _reminiscence;
-}
-
 - (UIImageView *)backgroundImageView {
     if (!_backgroundImageView) {
         _backgroundImageView = [[UIImageView alloc] init];
     }
     return _backgroundImageView;
 }
-
 
 @end

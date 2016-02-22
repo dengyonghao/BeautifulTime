@@ -17,7 +17,7 @@
 //子标题
 @property (nonatomic,copy) NSString *body;
 //时间
-@property (nonatomic,copy) NSString  *time;
+@property (nonatomic,copy) NSDate  *time;
 //jid
 @property (nonatomic,strong) XMPPJID *jid; //聊天用户的jid
 //数字提醒按钮

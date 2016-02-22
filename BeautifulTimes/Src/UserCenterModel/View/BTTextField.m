@@ -19,7 +19,7 @@
     self=[super init];
     if(self){
         self.font = [UIFont systemFontOfSize:13];
-        self.textColor = [[BTThemeManager getInstance] BTThemeColor:@"cl_text_a4_content"];
+//        self.textColor = [[BTThemeManager getInstance] BTThemeColor:@"cl_text_a4_content"];
     }
     return self;
 }

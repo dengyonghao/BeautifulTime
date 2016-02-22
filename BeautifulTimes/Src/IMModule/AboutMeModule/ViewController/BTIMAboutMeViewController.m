@@ -14,6 +14,7 @@
 #import "BTAboutMeCellModel.h"
 #import "BTIMSettingViewController.h"
 #import "BTXMPPTool.h"
+#import "BTIMMyInfoViewController.h"
 
 static NSString *cellIdentifier = @"kAboutMeCell";
 
@@ -43,10 +44,9 @@ static NSString *cellIdentifier = @"kAboutMeCell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeHead:) name:@"changeHeadIcon" object:nil];
     BTXMPPTool *tool = [BTXMPPTool sharedInstance];
     XMPPvCardTemp *temp = tool.vCard.myvCardTemp;
-    
     //1.第一个组
     BTTableGroupModel *group1=[[BTTableGroupModel alloc]init];
-    BTAboutMeCellModel *userSetting= [BTAboutMeCellModel itemWithIcon:@"fts_default_headimage" title:@"用户" detailTitle:@"" vcClass:nil];
+    BTAboutMeCellModel *userSetting= [BTAboutMeCellModel itemWithIcon:@"com_ic_defaultIcon" title:@"用户" detailTitle:@"" vcClass:[BTIMMyInfoViewController class]];
     //获得用户的头像
     userSetting.image=temp.photo;
     group1.items=@[userSetting];

@@ -151,11 +151,13 @@ static NSInteger cacheNumber = 10;
                                     contentMode:PHImageContentModeAspectFit
                                         options:self.options
                                   resultHandler:^(UIImage *result, NSDictionary *info) {
-                                      [self.dataSource setObject:result forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
-                                      imgView.image = result;
+                                      //为空的时候会crash
+                                      if (result) {
+                                          [self.dataSource setObject:result forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
+                                          imgView.image = result;
+                                      }
                                   }];
     });
-    
 }
 
 - (void)finishButtonClick {
