@@ -12,6 +12,7 @@
 #import "BTMessageListDBTool.h"
 #import "BTContacterModel.h"
 #import "BTChatViewController.h"
+#import "BTMessageListDBTool.h"
 
 static NSString *cellIdentifier = @"chatMessageListCell";
 
@@ -19,6 +20,7 @@ static NSString *cellIdentifier = @"chatMessageListCell";
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
+@property (nonatomic,assign)int messageCount;
 
 @end
 
@@ -53,28 +55,39 @@ static NSString *cellIdentifier = @"chatMessageListCell";
 {
     NSArray *arr = [BTMessageListDBTool selectAllData];
     self.dataSource = [arr mutableCopy];
-    //如果有未读消息的话 在标签栏下面显示未读消息
     for(BTMessageListModel *model in arr){
         if(model.badgeValue.length > 0 && ![model.badgeValue isEqualToString:@""]){
             int currentV = [model.badgeValue intValue];
-//            self.messageCount+=currentV;
+            self.messageCount += currentV;
         }
     }
-//    //如果消息数大于0
-//    if(self.messageCount>0){
-//        //如果消息总数大于99
-//        if(self.messageCount>=99){
-//            self.tabBarItem.badgeValue=@"99+";
-//        }else{
-//            self.tabBarItem.badgeValue=[NSString stringWithFormat:@"%d",self.messageCount];
-//        }
-//        
-//    }
+    //如果消息数大于0
+    if(self.messageCount>0){
+        //如果消息总数大于99
+        if(self.messageCount >= 99){
+            self.tabBarItem.badgeValue = @"99+";
+        }else{
+            self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d",self.messageCount];
+        }
+        
+    }
 }
 
 #pragma mark 收到新消息时更新状态
 - (void)updateMessage:(NSNotification*)note {
     NSDictionary *dict = [note object];
+    
+    if([dict[@"user"] isEqualToString:@"other"]){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.messageCount++;
+            if(self.messageCount >= 99){
+                self.tabBarItem.badgeValue = @"99+";
+            }else{
+                self.tabBarItem.badgeValue=[NSString stringWithFormat:@"%d",self.messageCount];
+            }
+        });
+    }
+    
     NSString *uname = [dict objectForKey:@"uname"];
     NSString *body = [dict objectForKey:@"body"];
     XMPPJID *jid = [dict objectForKey:@"jid"];
@@ -90,7 +103,7 @@ static NSString *cellIdentifier = @"chatMessageListCell";
                     model.time = time;
                     //如果是正在和我聊天的用户 才设置badgeValue
                     if([user isEqualToString:@"other"]){
-                        int currentV = [model.badgeValue intValue]+1;
+                        int currentV = [model.badgeValue intValue] + 1;
                         model.badgeValue = [NSString stringWithFormat:@"%d",currentV];
                     }
                     [self.dataSource removeObjectAtIndex:i];
@@ -129,11 +142,8 @@ static NSString *cellIdentifier = @"chatMessageListCell";
     NSInteger index=0;
     for(BTMessageListModel *model in self.dataSource){
         if([model.uname isEqualToString:uname]){
-            NSLog(@"%@     %@",model.uname, uname);
             [self.dataSource removeObjectAtIndex:index];
-            //从本地数据库清除
             [BTMessageListDBTool deleteWithName:uname];
-            //重新刷新标示图
             [self.tableView reloadData];
         }
         index++;
@@ -185,6 +195,17 @@ static NSString *cellIdentifier = @"chatMessageListCell";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BTMessageListModel *model = self.dataSource[indexPath.row];
+    
+    self.messageCount = self.messageCount - [model.badgeValue intValue];
+    if(self.messageCount > 0){
+        self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d",self.messageCount];
+    }else{
+        self.tabBarItem.badgeValue = nil;
+    }
+    model.badgeValue = nil;
+    [self.tableView reloadData];
+    [BTMessageListDBTool clearRedPointwithName:model.uname];
+    
     BTContacterModel *contacter = [[BTContacterModel alloc] init];
     contacter.jid = model.jid;
     contacter.nickName = model.uname;
@@ -192,6 +213,41 @@ static NSString *cellIdentifier = @"chatMessageListCell";
     chatVc.contacter = contacter;
     chatVc.title = contacter.friendName;
     [self.navigationController pushViewController:chatVc animated:YES];
+}
+
+
+#pragma mark 滑动删除单元格
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+#pragma mark 改变删除单元格按钮的文字
+-(NSString*)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
+#pragma mark 单元格删除的点击事件
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BTMessageListModel *model = self.dataSource[indexPath.row];
+    NSString *name = model.uname;
+    //当点击删除按钮的时候执行
+    if(editingStyle==UITableViewCellEditingStyleDelete){
+        //删除对应的红色提醒按钮
+        int badge=[model.badgeValue intValue];
+        if(badge>0){
+            _messageCount=_messageCount-badge;
+            self.tabBarItem.badgeValue=[NSString stringWithFormat:@"%d",_messageCount];
+        }
+        
+//        [BTMessageListDBTool deleteChatData:[NSString stringWithFormat:@"%@@ios268",model.uname]];
+
+        NSInteger count=indexPath.row;
+        //删除模型
+        [self.dataSource removeObjectAtIndex:count];
+        [self.tableView reloadData];
+        [BTMessageListDBTool deleteWithName:name];
+    }
 }
 
 

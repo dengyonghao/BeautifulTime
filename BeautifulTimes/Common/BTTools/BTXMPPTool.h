@@ -8,6 +8,8 @@
 
 #import "XMPPFramework.h"
 #import "BTBlockType.h"
+//#import "XMPPStreamManagementMemoryStorage.h"
+//#import "XMPPIncomingFileTransfer.h"
 
 typedef enum{
     XMPPResultSuccess,   //登陆成功
@@ -23,7 +25,11 @@ typedef  void (^XMPPResultBlock)(XMPPResultType xmppType);
 @property (nonatomic,strong) XMPPStream *xmppStream;
 @property (nonatomic,strong) XMPPJID *jid;
 @property (nonatomic,assign,getter = isRegisterOperation) BOOL registerOperation;
-//添加花名册模块
+
+//@property(nonatomic,strong)XMPPStreamManagementMemoryStorage *storage;
+//@property(nonatomic,strong)XMPPStreamManagement *xmppStreamManagement;
+//@property (nonatomic, strong) XMPPIncomingFileTransfer *xmppIncomingFileTransfer;
+
 @property (nonatomic,strong,readonly) XMPPRoster *roster;
 @property (nonatomic,strong,readonly) XMPPRosterCoreDataStorage *rosterStorage;
 //聊天模块

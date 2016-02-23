@@ -7,6 +7,7 @@
 //
 
 #import "BTChatMessageCell.h"
+#import "BTBadgeButton.h"
 
 @interface BTChatMessageCell ()
 
@@ -14,6 +15,7 @@
 @property (nonatomic, strong) UILabel *title;
 @property (nonatomic, strong) UILabel *content;
 @property (nonatomic, strong) UILabel *time;
+@property (nonatomic, strong) BTBadgeButton *badgeButton;
 
 @end
 
@@ -27,6 +29,7 @@
         [self.contentView addSubview:self.time];
         [self.contentView addSubview:self.title];
         [self.contentView addSubview:self.content];
+        [self.contentView addSubview:self.badgeButton];
         
         WS(weakSelf);
         [self.headIcon mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -34,6 +37,11 @@
             make.left.equalTo(weakSelf).offset(8);
             make.width.equalTo(@(48));
             make.height.equalTo(@(48));
+        }];
+        
+        [self.badgeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(weakSelf.headIcon);
+            make.right.equalTo(weakSelf.headIcon);
         }];
         
         [self.time mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -68,6 +76,7 @@
     self.headIcon.image = image;
     self.title.text = model.uname;
     self.content.text = model.body;
+    self.badgeButton.badgeValue = model.badgeValue;
 }
 
 - (void)awakeFromNib {
@@ -104,6 +113,13 @@
         _time = [[UILabel alloc] init];
     }
     return _time;
+}
+
+- (BTBadgeButton *)badgeButton {
+    if (!_badgeButton) {
+        _badgeButton = [[BTBadgeButton alloc] init];
+    }
+    return _badgeButton;
 }
 
 @end

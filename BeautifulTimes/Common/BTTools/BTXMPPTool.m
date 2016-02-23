@@ -46,6 +46,16 @@ static BTXMPPTool *xmppTool;
     return xmppTool;
 }
 
+//- (instancetype)init
+//{
+//    self = [super init];
+//    if (self) {
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate) name:UIApplicationWillTerminateNotification object:nil];
+//    }
+//    return self;
+//}
+
+
 -(void)dealloc
 {
     [self teardownXmpp];
@@ -54,24 +64,39 @@ static BTXMPPTool *xmppTool;
 #pragma mark 初始化xmppstream
 -(void)setupXmppStream
 {
-    _xmppStream = [[XMPPStream alloc] init];
-#warning 每一个模块添加都要激活
-    //1.添加自动连接模块
-    _reconnect=[[XMPPReconnect alloc] init];
-    [_reconnect activate:_xmppStream];
-    //2.添加电子名片模块
+    self.xmppStream = [[XMPPStream alloc] init];
+    [self.xmppStream setKeepAliveInterval:30]; //心跳包时间
+    //允许xmpp在后台运行
+    self.xmppStream.enableBackgroundingOnSocket = YES;
+    
+    //添加自动连接模块
+    _reconnect = [[XMPPReconnect alloc] init];
+    [_reconnect setAutoReconnect:YES];
+    [_reconnect activate:self.xmppStream];
+    
+//    //接入流管理模块
+//    _storage = [XMPPStreamManagementMemoryStorage new];
+//    _xmppStreamManagement = [[XMPPStreamManagement alloc] initWithStorage:_storage];
+//    _xmppStreamManagement.autoResume = YES;
+//    [_xmppStreamManagement addDelegate:self delegateQueue:dispatch_get_main_queue()];
+//    [_xmppStreamManagement activate:self.xmppStream];
+
+    
+    //添加电子名片模块
     _vCardStorage=[XMPPvCardCoreDataStorage sharedInstance];
     _vCard=[[XMPPvCardTempModule alloc]initWithvCardStorage:_vCardStorage];
-    [_vCard activate:_xmppStream];  //激活
+    [_vCard activate:_xmppStream];
     
-    //3.添加头像模块
+    //添加头像模块
     _avatar=[[XMPPvCardAvatarModule alloc]initWithvCardTempModule:_vCard];
     [_avatar activate:_xmppStream];
-    //4.添加花名册模块
+    
+    //添加花名册模块
     _rosterStorage=[[XMPPRosterCoreDataStorage alloc]init];
     _roster=[[XMPPRoster alloc]initWithRosterStorage:_rosterStorage];
     [_roster addDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
     [_roster activate:_xmppStream];  //激活
+    
     //5.添加聊天模块    XMPPMessageArchivingCoreDataStorage
     _messageStroage=[[XMPPMessageArchivingCoreDataStorage alloc]init];
     _messageArching=[[XMPPMessageArchiving alloc]initWithMessageArchivingStorage:_messageStroage];
@@ -135,7 +160,12 @@ static BTXMPPTool *xmppTool;
 -(void)xmppStreamDidAuthenticate:(XMPPStream *)sender
 {
     NSLog(@"验证成功");
+    //发送在线通知给服务器，服务器才会将离线消息推送过来
     [self sendOnlineMessage];
+    
+    //启用流管理
+//    [_xmppStreamManagement enableStreamManagementWithResumption:YES maxTimeout:0];
+    
     if(_resultBlock){
         _resultBlock(XMPPResultSuccess);
     }
@@ -479,18 +509,57 @@ static BTXMPPTool *xmppTool;
     }
 }
 
+//#pragma mark ===== 文件接收=======
+//
+////是否同意对方发文件
+//- (void)xmppIncomingFileTransfer:(XMPPIncomingFileTransfer *)sender didReceiveSIOffer:(XMPPIQ *)offer
+//{
+//    NSLog(@"%s",__FUNCTION__);
+//    [self.xmppIncomingFileTransfer acceptSIOffer:offer];
+//}
+//
+////存储文件 音频为amr格式  图片为jpg格式
+//- (void)xmppIncomingFileTransfer:(XMPPIncomingFileTransfer *)sender didSucceedWithData:(NSData *)data named:(NSString *)name
+//{
+//    XMPPJID *jid = [sender.senderJID copy];
+//    NSString *subject;
+//    NSString *extension = [name pathExtension];
+//    if ([@"amr" isEqualToString:extension]) {
+//        subject = @"voice";
+//    }else if([@"jpg" isEqualToString:extension]){
+//        subject = @"picture";
+//    }
+//    
+//    XMPPMessage *message = [XMPPMessage messageWithType:@"chat" to:jid];
+//    
+//    [message addAttributeWithName:@"from" stringValue:sender.senderJID.bare];
+//    [message addSubject:subject];
+//    
+//    NSString *path =  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+//    path = [path stringByAppendingPathComponent:[XMPPStream generateUUID]];
+//    path = [path stringByAppendingPathExtension:extension];
+//    [data writeToFile:path atomically:YES];
+//    
+//    [message addBody:path.lastPathComponent];
+//    
+//    [self.messageStroage archiveMessage:message outgoing:NO xmppStream:self.xmppStream];
+//}
+
 
 #pragma mark  当对象销毁的时候
 -(void)teardownXmpp
 {
     [_xmppStream removeDelegate:self];
     [_reconnect deactivate];
+//    [_xmppStreamManagement deactivate];
     [_vCard deactivate];
     [_avatar deactivate];
     [_reconnect deactivate];
     [_roster deactivate];
     [_xmppStream disconnect];
     _reconnect=nil;
+//    _xmppStreamManagement = nil;
+//    _storage = nil;
     _vCard=nil;
     _vCardStorage=nil;
     _avatar=nil;
@@ -499,7 +568,25 @@ static BTXMPPTool *xmppTool;
     _xmppStream=nil;
 }
 
-#pragma mark XMPPStreamDelegate
-
+//#pragma mark -- terminate
+///**
+// *  申请后台时间来清理下线的任务
+// */
+//-(void)applicationWillTerminate
+//{
+//    UIApplication *app=[UIApplication sharedApplication];
+//    UIBackgroundTaskIdentifier taskId;
+//    
+//    taskId=[app beginBackgroundTaskWithExpirationHandler:^(void){
+//        [app endBackgroundTask:taskId];
+//    }];
+//    
+//    if(taskId==UIBackgroundTaskInvalid){
+//        return;
+//    }
+//    
+//    //只能在主线层执行
+//    [self.xmppStream disconnectAfterSending];
+//}
 
 @end
