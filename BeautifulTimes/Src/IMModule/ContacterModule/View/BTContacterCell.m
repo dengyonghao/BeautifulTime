@@ -53,7 +53,7 @@ static CGFloat const ICONHEIGHT = 30.0f;
     if (model.nickName != nil) {
         self.friendName.text = model.nickName;
     } else {
-        self.friendName.text = model.friendName;
+        self.friendName.text = model.friendName ;
     }
     
 }

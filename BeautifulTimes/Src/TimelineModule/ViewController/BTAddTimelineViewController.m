@@ -23,22 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.titleLabel.text = @"记点滴";
-    [self.bodyView addSubview:self.addressBook];
-    BTCalendarView *view = [[BTCalendarView alloc] initWithFrame:CGRectMake(10, 100, 70, 70)];
-    view.delegate = self;
-    NSDate *date = [NSDate date];
-    [view bindData:date];
-    
-    BTWeatherStatusVeiw *wview = [[BTWeatherStatusVeiw alloc] initWithFrame:CGRectMake(20 + 100, 100, 70, 70)];
-    BTWeatherModel *model = [[BTWeatherModel alloc] init];
-    model.city = @"深圳";
-    model.dayWeatherIcon = @"多云";
-    model.minTemperature = @"14";
-    model.maxTemperature = @"18";
-    model.pm25 = @"100";
-    [wview bindData:model];
-    [self.bodyView addSubview:wview];
-    [self.bodyView addSubview:view];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -58,7 +42,7 @@
 #pragma mark BTCalendarViewViewDelegate
 
 - (void)tapCalendarView {
-    NSLog(@"1234567890-=234567890");
+
 }
 
 - (void)addressBookClick {

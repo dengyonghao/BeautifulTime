@@ -35,6 +35,12 @@ static const CGFloat BUTTONWIDTH = 48;
 @property (nonatomic, strong) UIButton *journals;
 @property (nonatomic, strong) UIButton *album;
 @property (nonatomic, strong) UIButton *chat;
+
+@property (nonatomic, strong) UILabel *timelineLabel;
+@property (nonatomic, strong) UILabel *journalsLabel;
+@property (nonatomic, strong) UILabel *albumLabel;
+@property (nonatomic, strong) UILabel *chatLabel;
+
 @property (nonatomic, strong) UIButton *addJournal;
 @property (nonatomic, strong) UIButton *addTimeline;
 @property (nonatomic, strong) UIImageView *backgroundImageView;
@@ -56,6 +62,11 @@ static const CGFloat BUTTONWIDTH = 48;
     [self.view addSubview:self.addJournal];
     [self.view addSubview:self.addTimeline];
     [self.view addSubview:self.setting];
+    
+    [self.view addSubview:self.timelineLabel];
+    [self.view addSubview:self.albumLabel];
+    [self.view addSubview:self.journalsLabel];
+    [self.view addSubview:self.chatLabel];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -83,8 +94,16 @@ static const CGFloat BUTTONWIDTH = 48;
         make.right.mas_equalTo(weakSelf.album.mas_left).offset(-OFFSET);
         make.width.mas_equalTo(weakSelf.album);
         make.height.equalTo(@(48));
-        make.bottom.equalTo(weakSelf.view).offset(-15);
+        make.bottom.equalTo(weakSelf.view).offset(-20);
     }];
+    
+    [self.timelineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.timeline);
+        make.right.equalTo(weakSelf.timeline);
+        make.top.equalTo(weakSelf.timeline).offset(48 - 5);
+        make.height.equalTo(@(15));
+    }];
+    
     [self.album mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(weakSelf.timeline.mas_right).offset(OFFSET);
         make.right.mas_equalTo(weakSelf.journals.mas_left).offset(-OFFSET);
@@ -93,6 +112,14 @@ static const CGFloat BUTTONWIDTH = 48;
         make.bottom.equalTo(weakSelf.timeline);
 
     }];
+    
+    [self.albumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.album);
+        make.right.equalTo(weakSelf.album);
+        make.top.equalTo(weakSelf.album).offset(48 - 5);
+        make.height.equalTo(@(15));
+    }];
+    
     [self.journals mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(weakSelf.album.mas_right).offset(OFFSET);
         make.right.mas_equalTo(weakSelf.chat.mas_left).offset(-OFFSET);
@@ -101,6 +128,14 @@ static const CGFloat BUTTONWIDTH = 48;
         make.bottom.equalTo(weakSelf.album);
 
     }];
+    
+    [self.journalsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.journals);
+        make.right.equalTo(weakSelf.journals);
+        make.top.equalTo(weakSelf.journals).offset(48 - 5);
+        make.height.equalTo(@(15));
+    }];
+    
     [self.chat mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(weakSelf.journals.mas_right).offset(OFFSET);
         make.right.mas_equalTo(weakSelf.view).offset(-OFFSET);
@@ -108,6 +143,13 @@ static const CGFloat BUTTONWIDTH = 48;
         make.height.equalTo(weakSelf.journals);
         make.bottom.equalTo(weakSelf.journals);
 
+    }];
+    
+    [self.chatLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.chat);
+        make.right.equalTo(weakSelf.chat);
+        make.top.equalTo(weakSelf.chat).offset(48 - 5);
+        make.height.equalTo(@(15));
     }];
     
     [self.addJournal mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -197,7 +239,6 @@ static const CGFloat BUTTONWIDTH = 48;
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)addJournalClick {
@@ -216,8 +257,8 @@ static const CGFloat BUTTONWIDTH = 48;
 }
 
 - (void)addTimelineClick {
-//    BTAddTimelineViewController *vc = [[BTAddTimelineViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
+    BTAddTimelineViewController *vc = [[BTAddTimelineViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 //    NSString *savedPath = [NSHomeDirectory() stringByAppendingString:@"/Documents/4.ai"];
 //    NSMutableDictionary *infoDic = [[NSMutableDictionary alloc] init];
 //    
@@ -383,6 +424,50 @@ static const CGFloat BUTTONWIDTH = 48;
         [_chat addTarget:self action:@selector(chatClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _chat;
+}
+
+- (UILabel *)timelineLabel {
+    if (!_timelineLabel) {
+        _timelineLabel = [[UILabel alloc] init];
+        _timelineLabel.text = @"时光轴";
+        [_timelineLabel setTextColor:[UIColor blueColor]];
+        _timelineLabel.textAlignment = NSTextAlignmentCenter;
+        _timelineLabel.font = BT_FONTSIZE(12);
+    }
+    return _timelineLabel;
+}
+
+- (UILabel *)chatLabel {
+    if (!_chatLabel) {
+        _chatLabel = [[UILabel alloc] init];
+        _chatLabel.text = @"私语";
+        [_chatLabel setTextColor:[UIColor blueColor]];
+        _chatLabel.textAlignment = NSTextAlignmentCenter;
+        _chatLabel.font = BT_FONTSIZE(12);
+    }
+    return _chatLabel;
+}
+
+- (UILabel *)albumLabel {
+    if (!_albumLabel) {
+        _albumLabel = [[UILabel alloc] init];
+        _albumLabel.text = @"相册";
+        [_albumLabel setTextColor:[UIColor blueColor]];
+        _albumLabel.textAlignment = NSTextAlignmentCenter;
+        _albumLabel.font = BT_FONTSIZE(12);
+    }
+    return _albumLabel;
+}
+
+- (UILabel *)journalsLabel {
+    if (!_journalsLabel) {
+        _journalsLabel = [[UILabel alloc] init];
+        _journalsLabel.text = @"时光轴";
+        [_journalsLabel setTextColor:[UIColor blueColor]];
+        _journalsLabel.textAlignment = NSTextAlignmentCenter;
+        _journalsLabel.font = BT_FONTSIZE(12);
+    }
+    return _journalsLabel;
 }
 
 - (UIButton *)addJournal {

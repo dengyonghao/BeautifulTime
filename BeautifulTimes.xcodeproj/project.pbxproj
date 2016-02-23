@@ -546,6 +546,7 @@
 		B44579FC1C140FC300CB10DC /* BTSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44579FB1C140FC300CB10DC /* BTSettingViewController.m */; };
 		B44EDAC01C72367B00C9E12A /* BTIMSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44EDABF1C72367B00C9E12A /* BTIMSettingViewController.m */; };
 		B44EDAC71C7238F100C9E12A /* BTIMSettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B44EDAC61C7238F100C9E12A /* BTIMSettingModel.m */; };
+		B45040E71C7B521D00E3DEEB /* BTAdressBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B45040E61C7B521D00E3DEEB /* BTAdressBookCell.m */; settings = {ASSET_TAGS = (); }; };
 		B46AF5C71C00DCCF00916DEE /* BTJournalController.m in Sources */ = {isa = PBXBuildFile; fileRef = B46AF5C61C00DCCF00916DEE /* BTJournalController.m */; };
 		B4FABBCC1C018D4B00213AB7 /* BTLanguageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBCB1C018D4B00213AB7 /* BTLanguageUtil.m */; };
 		B4FABBD91C020E1500213AB7 /* BTSelectPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBD81C020E1500213AB7 /* BTSelectPhotosViewController.m */; };
@@ -1433,6 +1434,8 @@
 		B44EDABF1C72367B00C9E12A /* BTIMSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTIMSettingViewController.m; sourceTree = "<group>"; };
 		B44EDAC51C7238F100C9E12A /* BTIMSettingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTIMSettingModel.h; sourceTree = "<group>"; };
 		B44EDAC61C7238F100C9E12A /* BTIMSettingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTIMSettingModel.m; sourceTree = "<group>"; };
+		B45040E51C7B521D00E3DEEB /* BTAdressBookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAdressBookCell.h; sourceTree = "<group>"; };
+		B45040E61C7B521D00E3DEEB /* BTAdressBookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAdressBookCell.m; sourceTree = "<group>"; };
 		B46AF5C51C00DCCF00916DEE /* BTJournalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTJournalController.h; sourceTree = "<group>"; };
 		B46AF5C61C00DCCF00916DEE /* BTJournalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTJournalController.m; sourceTree = "<group>"; };
 		B4FABBCA1C018D4B00213AB7 /* BTLanguageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLanguageUtil.h; sourceTree = "<group>"; };
@@ -1505,6 +1508,8 @@
 			children = (
 				650022C01C1A6E9D0037D32E /* BTAddressBookTableViewCell.h */,
 				650022C11C1A6E9D0037D32E /* BTAddressBookTableViewCell.m */,
+				B45040E51C7B521D00E3DEEB /* BTAdressBookCell.h */,
+				B45040E61C7B521D00E3DEEB /* BTAdressBookCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4105,6 +4110,7 @@
 				65DBD1B71BD7A2A100784DAC /* XMPPRoom.xcdatamodeld in Sources */,
 				650ABD801C2BD8A9004FBC89 /* FMDatabaseQueue.m in Sources */,
 				65DBD1E81BD7A2A100784DAC /* XMPPvCardAvatarModule.m in Sources */,
+				B45040E71C7B521D00E3DEEB /* BTAdressBookCell.m in Sources */,
 				65DBD0951BD77CE700784DAC /* XMPPAnonymousAuthentication.m in Sources */,
 				65DBD1C31BD7A2A100784DAC /* XMPPMUC.m in Sources */,
 				650498971BFAD50B0072AE47 /* BTAlbumCollectionViewCell.m in Sources */,
