@@ -38,7 +38,8 @@
     self.themeInit = YES;
     
     self.view.frame = CGRectMake(0, self.statusHeight, BT_SCREEN_WIDTH, BT_SCREEN_HEIGHT);
-    
+    self.bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [self.view addSubview:self.bgImageView];
     self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, self.statusHeight, BT_SCREEN_WIDTH, baseHeaderViewHeight)];
     self.headerView.backgroundColor = BT_CLEARCOLOR;
     self.headViewImage.frame = CGRectMake(0, 0, BT_SCREEN_WIDTH, baseHeaderViewHeight);
@@ -154,7 +155,7 @@
  */
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-    return UIStatusBarStyleLightContent;
+    return UIStatusBarStyleDefault;
     //UIStatusBarStyleDefault = 0 黑色文字，浅色背景时使用
     //UIStatusBarStyleLightContent = 1 白色文字，深色背景时使用
 }

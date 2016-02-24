@@ -32,6 +32,7 @@
 
 @property (nonatomic, strong) UIButton *finishButton;
 
+@property (nonatomic, strong) UIImageView *bgImageView;
 
 @property (nonatomic, assign) CGFloat     statusHeight;
 

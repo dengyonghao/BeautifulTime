@@ -22,12 +22,11 @@ static BTXMPPTool *xmppTool;
 {
     XMPPResultBlock _resultBlock;
     ArrayResponseBlock _searchDataBlock;
+    BOOLBlock _successBlock;
     errorBlock _errorBlock;
     XMPPReconnect *_reconnect;
-    //定义一个消息对象
-    XMPPMessageArchiving *_messageArching;
-    //电子名片存贮
-    XMPPvCardCoreDataStorage *_vCardStorage;
+    XMPPMessageArchiving *_messageArching; //定义一个消息对象
+    XMPPvCardCoreDataStorage *_vCardStorage; //电子名片存贮
 }
 
 @property (nonatomic, strong) XMPPJID *userJid;
@@ -55,16 +54,12 @@ static BTXMPPTool *xmppTool;
     return self;
 }
 
-
--(void)dealloc
-{
-    [self teardownXmpp];
-}
-
 #pragma mark 初始化xmppstream
 -(void)setupXmppStream
 {
     self.xmppStream = [[XMPPStream alloc] init];
+    self.xmppStream.hostName = ServerAddress;
+    self.xmppStream.hostPort = ServerPort;
     [self.xmppStream setKeepAliveInterval:30]; //心跳包时间
     //允许xmpp在后台运行
     self.xmppStream.enableBackgroundingOnSocket = YES;
@@ -85,7 +80,7 @@ static BTXMPPTool *xmppTool;
     _xmppIncomingFileTransfer = [[XMPPIncomingFileTransfer alloc] initWithDispatchQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)];
     [_xmppIncomingFileTransfer activate:self.xmppStream];
     [_xmppIncomingFileTransfer addDelegate:self delegateQueue:dispatch_get_main_queue()];
-    //设置为自动接收文件，当然也可以在代理方法中弹出一个alertView来让用户选择是否接收
+    //设置为自动接收文件
     [_xmppIncomingFileTransfer setAutoAcceptFileTransfers:YES];
     
     //文件发送
@@ -114,7 +109,6 @@ static BTXMPPTool *xmppTool;
     _messageStroage=[[XMPPMessageArchivingCoreDataStorage alloc]init];
     _messageArching=[[XMPPMessageArchiving alloc]initWithMessageArchivingStorage:_messageStroage];
     [_messageArching activate:_xmppStream];
-    
     [_xmppStream addDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
 }
 
@@ -128,9 +122,6 @@ static BTXMPPTool *xmppTool;
     XMPPJID *myJid = [XMPPJID jidWithUser:user domain:ServerName resource:nil];
     self.jid = myJid;
     _xmppStream.myJID = myJid;
-    _xmppStream.hostName = ServerAddress;
-    _xmppStream.hostPort = ServerPort;
-    
     NSError *error = nil;
     if(![_xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:&error]){
         NSLog(@"%@",error);
@@ -177,7 +168,7 @@ static BTXMPPTool *xmppTool;
     [self sendOnlineMessage];
     
     //启用流管理
-//    [_xmppStreamManagement enableStreamManagementWithResumption:YES maxTimeout:0];
+    [_xmppStreamManagement enableStreamManagementWithResumption:YES maxTimeout:0];
     
     if(_resultBlock){
         _resultBlock(XMPPResultSuccess);
@@ -197,10 +188,9 @@ static BTXMPPTool *xmppTool;
 -(void)sendOnlineMessage
 {
     XMPPPresence *presence=[XMPPPresence presence];
-    NSLog(@"%@",presence);
-    //把在线情况发送给服务器
     [_xmppStream sendElement:presence];
 }
+
 //离线消息
 - (void)goOffline
 {
@@ -522,6 +512,16 @@ static BTXMPPTool *xmppTool;
     }
 }
 
+- (void)sendDate:(NSData *)data name:(NSString *)filename to:(XMPPJID *)jid Success:(BOOLBlock)success failure:(errorBlock)error {
+    _successBlock = success;
+    _errorBlock = error;
+    NSError *err;
+    [self.xmppOutgoingFileTransfer sendData:data named:filename toRecipient:jid description:nil error:&err];
+    if (err) {
+        _errorBlock(err);
+    }
+}
+
 #pragma mark ===== 文件接收=======
 
 //是否同意对方发文件
@@ -625,6 +625,11 @@ static BTXMPPTool *xmppTool;
     
     //只能在主线层执行
     [self.xmppStream disconnectAfterSending];
+}
+
+-(void)dealloc
+{
+    [self teardownXmpp];
 }
 
 @end

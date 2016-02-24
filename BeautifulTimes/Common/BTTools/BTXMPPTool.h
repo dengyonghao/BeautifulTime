@@ -117,4 +117,15 @@ typedef  void (^XMPPResultBlock)(XMPPResultType xmppType);
  */
 - (void)changePassworduseWord:(NSString *)checkPassword;
 
+/**
+ *  发送文件
+ *
+ *  @param data     文件data
+ *  @param filename 文件名
+ *  @param jid      接收方jid
+ *  @param success  成功回调
+ *  @param error    失败回调
+ */
+- (void)sendDate:(NSData *)data name:(NSString *)filename to:(XMPPJID *)jid Success:(BOOLBlock)success failure:(errorBlock)error;
+
 @end
