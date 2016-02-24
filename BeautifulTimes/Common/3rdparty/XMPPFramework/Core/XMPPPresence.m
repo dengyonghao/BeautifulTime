@@ -11,6 +11,8 @@
 
 @implementation XMPPPresence
 
+#if DEBUG
+
 + (void)initialize
 {
 	// We use the object_setClass method below to dynamically change the class from a standard NSXMLElement.
@@ -32,6 +34,8 @@
 		exit(15);
 	}
 }
+
+#endif
 
 + (XMPPPresence *)presenceFromElement:(NSXMLElement *)element
 {
@@ -74,7 +78,7 @@
 			[self addAttributeWithName:@"type" stringValue:type];
 		
 		if (to)
-			[self addAttributeWithName:@"to" stringValue:[to description]];
+			[self addAttributeWithName:@"to" stringValue:[to full]];
 	}
 	return self;
 }
@@ -85,6 +89,12 @@
 		self = [XMPPPresence presenceFromElement:self];
 	}	
 	return self;
+}
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    NSXMLElement *element = [super copyWithZone:zone];
+    return [XMPPPresence presenceFromElement:element];
 }
 
 - (NSString *)type
@@ -131,6 +141,5 @@
 {
 	return [[self type] isEqualToString:@"error"];
 }
-
 
 @end

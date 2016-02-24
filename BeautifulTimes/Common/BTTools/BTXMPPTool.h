@@ -8,8 +8,9 @@
 
 #import "XMPPFramework.h"
 #import "BTBlockType.h"
-//#import "XMPPStreamManagementMemoryStorage.h"
-//#import "XMPPIncomingFileTransfer.h"
+#import "XMPPStreamManagementMemoryStorage.h"
+#import "XMPPIncomingFileTransfer.h"
+#import "XMPPOutgoingFileTransfer.h"
 
 typedef enum{
     XMPPResultSuccess,   //登陆成功
@@ -22,23 +23,27 @@ typedef enum{
 typedef  void (^XMPPResultBlock)(XMPPResultType xmppType);
 
 @interface BTXMPPTool : NSObject
-@property (nonatomic,strong) XMPPStream *xmppStream;
-@property (nonatomic,strong) XMPPJID *jid;
-@property (nonatomic,assign,getter = isRegisterOperation) BOOL registerOperation;
 
-//@property(nonatomic,strong)XMPPStreamManagementMemoryStorage *storage;
-//@property(nonatomic,strong)XMPPStreamManagement *xmppStreamManagement;
-//@property (nonatomic, strong) XMPPIncomingFileTransfer *xmppIncomingFileTransfer;
+@property (nonatomic, strong) XMPPStream *xmppStream;
+@property (nonatomic, strong) XMPPJID *jid;
+
+@property (nonatomic, strong) XMPPStreamManagementMemoryStorage *storage;
+@property (nonatomic, strong) XMPPStreamManagement *xmppStreamManagement;
+@property (nonatomic, strong) XMPPIncomingFileTransfer *xmppIncomingFileTransfer;
+@property (nonatomic, strong) XMPPOutgoingFileTransfer *xmppOutgoingFileTransfer;
 
 @property (nonatomic,strong,readonly) XMPPRoster *roster;
 @property (nonatomic,strong,readonly) XMPPRosterCoreDataStorage *rosterStorage;
-//聊天模块
-@property (nonatomic,strong,readonly) XMPPMessageArchivingCoreDataStorage *messageStroage;
-//电子名片
-@property (nonatomic,strong,readonly) XMPPvCardTempModule *vCard;
-//头像模块
-@property (nonatomic,strong,readonly) XMPPvCardAvatarModule  *avatar;
+@property (nonatomic,strong,readonly) XMPPMessageArchivingCoreDataStorage *messageStroage;//聊天内容模块
+@property (nonatomic,strong,readonly) XMPPvCardTempModule *vCard; //电子名片
+@property (nonatomic,strong,readonly) XMPPvCardAvatarModule *avatar; //头像模块
+@property (nonatomic, assign,getter = isRegisterOperation) BOOL registerOperation;
 
+/**
+ *  单例
+ *
+ *  @return self
+ */
 + (instancetype)sharedInstance;
 
 /**

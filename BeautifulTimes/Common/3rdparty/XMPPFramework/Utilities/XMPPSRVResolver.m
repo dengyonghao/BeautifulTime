@@ -8,8 +8,13 @@
 #import "XMPPSRVResolver.h"
 #import "XMPPLogging.h"
 
+//#warning Fix "dns.h" issue without resorting to this ugly hack.
+// This is a hack to prevent OnionKit's clobbering of the actual system's <dns.h>
+//#include "/usr/include/dns.h"
+
 #include <dns_util.h>
 #include <stdlib.h>
+#import <dns_sd.h>
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -40,6 +45,29 @@ NSString *const XMPPSRVResolverErrorDomain = @"XMPPSRVResolverErrorDomain";
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface XMPPSRVResolver ()
+{
+    __unsafe_unretained id delegate;
+    dispatch_queue_t delegateQueue;
+    
+    dispatch_queue_t resolverQueue;
+    void *resolverQueueTag;
+    
+    __strong NSString *srvName;
+    NSTimeInterval timeout;
+    
+    BOOL resolveInProgress;
+    
+    NSMutableArray *results;
+    DNSServiceRef sdRef;
+    
+    int sdFd;
+    dispatch_source_t sdReadSource;
+    dispatch_source_t timeoutTimer;
+}
+
+@end
 
 @implementation XMPPSRVResolver
 
@@ -168,7 +196,7 @@ NSString *const XMPPSRVResolverErrorDomain = @"XMPPSRVResolverErrorDomain";
 		
 		if (srvResultsCount == 1)
 		{
-			XMPPSRVRecord *srvRecord = [results objectAtIndex:0];
+			XMPPSRVRecord *srvRecord = results[0];
 			
 			[sortedResults addObject:srvRecord];
 			[results removeObjectAtIndex:0];
@@ -188,7 +216,7 @@ NSString *const XMPPSRVResolverErrorDomain = @"XMPPSRVResolverErrorDomain";
 			NSUInteger runningSum = 0;
 			NSMutableArray *samePriorityRecords = [NSMutableArray arrayWithCapacity:srvResultsCount];
 			
-			XMPPSRVRecord *srvRecord = [results objectAtIndex:0];
+			XMPPSRVRecord *srvRecord = results[0];
 			
 			NSUInteger initialPriority = srvRecord.priority;
 			NSUInteger index = 0;
@@ -216,7 +244,7 @@ NSString *const XMPPSRVResolverErrorDomain = @"XMPPSRVResolverErrorDomain";
 				
 				if (++index < srvResultsCount)
 				{
-					srvRecord = [results objectAtIndex:index];
+					srvRecord = results[index];
 				}
 				else
 				{
@@ -273,11 +301,11 @@ NSString *const XMPPSRVResolverErrorDomain = @"XMPPSRVResolverErrorDomain";
 	
 	dispatch_async(delegateQueue, ^{ @autoreleasepool {
 		
-		SEL selector = @selector(srvResolver:didResolveRecords:);
+		SEL selector = @selector(xmppSRVResolver:didResolveRecords:);
 		
 		if ([theDelegate respondsToSelector:selector])
 		{
-			[theDelegate srvResolver:self didResolveRecords:records];
+			[theDelegate xmppSRVResolver:self didResolveRecords:records];
 		}
 		else
 		{
@@ -301,11 +329,11 @@ NSString *const XMPPSRVResolverErrorDomain = @"XMPPSRVResolverErrorDomain";
 	{
 		dispatch_async(delegateQueue, ^{ @autoreleasepool {
 			
-			SEL selector = @selector(srvResolver:didNotResolveDueToError:);
+			SEL selector = @selector(xmppSRVResolver:didNotResolveDueToError:);
 			
 			if ([theDelegate respondsToSelector:selector])
 			{
-				[theDelegate srvResolver:self didNotResolveDueToError:error];
+				[theDelegate xmppSRVResolver:self didNotResolveDueToError:error];
 			}
 			else
 			{
@@ -540,7 +568,7 @@ static void QueryRecordCallback(DNSServiceRef       sdRef,
 			dispatch_source_set_event_handler(timeoutTimer, ^{ @autoreleasepool {
 				
 				NSString *errMsg = @"Operation timed out";
-				NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+				NSDictionary *userInfo = @{NSLocalizedDescriptionKey : errMsg};
 				
 				NSError *err = [NSError errorWithDomain:XMPPSRVResolverErrorDomain code:0 userInfo:userInfo];
 				

@@ -6,31 +6,11 @@
 //  
 
 #import <Foundation/Foundation.h>
-#import <dns_sd.h>
 
 extern NSString *const XMPPSRVResolverErrorDomain;
 
 
 @interface XMPPSRVResolver : NSObject
-{
-	__unsafe_unretained id delegate;
-	dispatch_queue_t delegateQueue;
-	
-	dispatch_queue_t resolverQueue;
-	void *resolverQueueTag;
-	
-	__strong NSString *srvName;
-	NSTimeInterval timeout;
-	
-    BOOL resolveInProgress;
-	
-    NSMutableArray *results;
-    DNSServiceRef sdRef;
-	
-	int sdFd;
-	dispatch_source_t sdReadSource;
-	dispatch_source_t timeoutTimer;
-}
 
 /**
  * The delegate & delegateQueue are mandatory.
@@ -54,8 +34,8 @@ extern NSString *const XMPPSRVResolverErrorDomain;
 
 @protocol XMPPSRVResolverDelegate
 
-- (void)srvResolver:(XMPPSRVResolver *)sender didResolveRecords:(NSArray *)records;
-- (void)srvResolver:(XMPPSRVResolver *)sender didNotResolveDueToError:(NSError *)error;
+- (void)xmppSRVResolver:(XMPPSRVResolver *)sender didResolveRecords:(NSArray *)records;
+- (void)xmppSRVResolver:(XMPPSRVResolver *)sender didNotResolveDueToError:(NSError *)error;
 
 @end
 

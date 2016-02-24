@@ -472,11 +472,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
-            timestampString = "477917546.063642"
+            timestampString = "477997966.978795"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "456"
-            endingLineNumber = "456"
+            startingLineNumber = "469"
+            endingLineNumber = "469"
             landmarkName = "-analyticalSearchResult:"
             landmarkType = "5">
          </BreakpointContent>
@@ -488,11 +488,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
-            timestampString = "477917546.063642"
+            timestampString = "477997966.978795"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "457"
-            endingLineNumber = "457"
+            startingLineNumber = "470"
+            endingLineNumber = "470"
             landmarkName = "-analyticalSearchResult:"
             landmarkType = "5">
          </BreakpointContent>
@@ -536,11 +536,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
-            timestampString = "477917546.063642"
+            timestampString = "477997966.978795"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
             landmarkName = "-xmppRoster:didRecieveRosterItem:"
             landmarkType = "5">
          </BreakpointContent>
@@ -552,11 +552,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
-            timestampString = "477917546.063642"
+            timestampString = "477997966.978795"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "267"
-            endingLineNumber = "267"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
             landmarkName = "-xmppRoster:didRecieveRosterItem:"
             landmarkType = "5">
          </BreakpointContent>
@@ -568,11 +568,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
-            timestampString = "477917546.063642"
+            timestampString = "477997966.978795"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
             landmarkName = "-xmppRoster:didReceivePresenceSubscriptionRequest:"
             landmarkType = "5">
          </BreakpointContent>
@@ -584,11 +584,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
-            timestampString = "477917546.063642"
+            timestampString = "477997966.978795"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "436"
-            endingLineNumber = "436"
+            startingLineNumber = "449"
+            endingLineNumber = "449"
             landmarkName = "-xmppStream:didReceivePresence:"
             landmarkType = "5">
          </BreakpointContent>
@@ -600,11 +600,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
-            timestampString = "477917546.063642"
+            timestampString = "477997966.978795"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "429"
-            endingLineNumber = "429"
+            startingLineNumber = "442"
+            endingLineNumber = "442"
             landmarkName = "-xmppStream:didReceiveIQ:"
             landmarkType = "5">
          </BreakpointContent>
