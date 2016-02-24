@@ -30,6 +30,7 @@ static NSString *kAddressBookIndentifier = @"kAddressBookIndentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.tableview];
+    [self devideContacter];
     self.tableview.sectionIndexColor = [UIColor grayColor];
     self.tableview.sectionIndexBackgroundColor = [UIColor clearColor];
 }

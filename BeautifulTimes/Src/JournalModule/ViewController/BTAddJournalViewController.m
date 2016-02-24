@@ -20,6 +20,8 @@
 #import "UIView+BTAddition.h"
 #import "BTSelectPhotosViewController.h"
 
+#define WeatherRootKey @"HeWeather data service 3.0"
+
 static const CGFloat itemWidth = 70;
 
 @interface BTAddJournalViewController ()<UITextViewDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
@@ -161,13 +163,13 @@ static const CGFloat itemWidth = 70;
             NSString * city = [info objectForKey:@"City"];
             [[NSUserDefaults standardUserDefaults] setObject:[self cutStr:city] forKey:currentCity];
             [BTNetManager netManagerReqeustWeatherInfo:[self cutStr:city] successCallback:^(NSDictionary *retDict) {
-                self.model.city = retDict[@"HeWeather data service 3.0"][0][@"basic"][@"city"];
-                self.model.pm25 = retDict[@"HeWeather data service 3.0"][0][@"aqi"][@"city"][@"pm25"];
-                self.model.updateTime = retDict[@"HeWeather data service 3.0"][0][@"basic"][@"update"][@"loc"];
-                self.model.maxTemperature = retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"tmp"][@"max"];
-                self.model.minTemperature = retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"tmp"][@"min"];
-                self.model.dayWeatherIcon = retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"cond"][@"txt_d"];
-                self.model.nightWeatherIcon = retDict[@"HeWeather data service 3.0"][0][@"daily_forecast"][0][@"cond"][@"txt_n"];
+                self.model.city = retDict[WeatherRootKey][0][@"basic"][@"city"];
+                self.model.pm25 = retDict[WeatherRootKey][0][@"aqi"][@"city"][@"pm25"];
+                self.model.updateTime = retDict[WeatherRootKey][0][@"basic"][@"update"][@"loc"];
+                self.model.maxTemperature = retDict[WeatherRootKey][0][@"daily_forecast"][0][@"tmp"][@"max"];
+                self.model.minTemperature = retDict[WeatherRootKey][0][@"daily_forecast"][0][@"tmp"][@"min"];
+                self.model.dayWeatherIcon = retDict[WeatherRootKey][0][@"daily_forecast"][0][@"cond"][@"txt_d"];
+                self.model.nightWeatherIcon = retDict[WeatherRootKey][0][@"daily_forecast"][0][@"cond"][@"txt_n"];
                 [self.weatherStatusView bindData:self.model];
                 
             } failCallback:^(NSError *error) {

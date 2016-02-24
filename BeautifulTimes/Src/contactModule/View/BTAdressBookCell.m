@@ -23,12 +23,18 @@
         [self.contentView addSubview:self.name];
         
         WS(weakSelf);
+        [self.name mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(weakSelf.contentView);
+            make.left.equalTo(weakSelf.contentView).offset(20);
+            make.right.equalTo(weakSelf.contentView).offset(-20);
+            make.height.equalTo(@(20));
+        }];
     }
     return self;
 }
 
 - (void)bindData:(BTAddressBook *)addressBook {
-
+    self.name.text = addressBook.name;
 }
 
 - (UILabel *)name {

@@ -1,0 +1,32 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "51E35232457D4AD6D50DFEEFCED3EA00ABC6B28F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "eccd39b4-39d4-47ab-bb89-e81f4763b8b8++3220" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "eccd39b4-39d4-47ab-bb89-e81f4763b8b8++3220" : 0,
+    "51E35232457D4AD6D50DFEEFCED3EA00ABC6B28F" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D6883096-DEC4-48C6-8966-334D48373339",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "eccd39b4-39d4-47ab-bb89-e81f4763b8b8++3220" : "BeautifulTimes\/BeautifulTimes\/Common\/3rdparty\/XMPPFramework\/VoiceLib\/VoiceConvert\/",
+    "51E35232457D4AD6D50DFEEFCED3EA00ABC6B28F" : "BeautifulTimes\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "BeautifulTimes",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "BeautifulTimes.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/dengyonghao\/BeautifulTime.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "51E35232457D4AD6D50DFEEFCED3EA00ABC6B28F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn:\/\/192.168.0.240\/repository",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "eccd39b4-39d4-47ab-bb89-e81f4763b8b8++3220"
+    }
+  ]
+}

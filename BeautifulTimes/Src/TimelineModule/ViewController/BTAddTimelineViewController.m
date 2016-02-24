@@ -23,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.titleLabel.text = @"记点滴";
+    [self.finishButton setTitle:@"保存" forState:UIControlStateNormal];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -39,11 +40,12 @@
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark BTCalendarViewViewDelegate
-
-- (void)tapCalendarView {
+- (void)finishButtonClick {
 
 }
+
+#pragma mark BTCalendarViewViewDelegate
+
 
 - (void)addressBookClick {
     BTAddressBookViewController *vc = [[BTAddressBookViewController alloc] init];

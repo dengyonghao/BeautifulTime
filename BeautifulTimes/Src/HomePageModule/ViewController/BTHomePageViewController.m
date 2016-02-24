@@ -23,7 +23,6 @@
 #import "BTIMTabBarController.h"
 #import "AppDelegate.h"
 #import "AFNetworking.h"
-#import <objc/runtime.h>
 
 static const CGFloat BUTTONWIDTH = 48;
 
@@ -83,10 +82,10 @@ static const CGFloat BUTTONWIDTH = 48;
     CGFloat OFFSET = (BT_SCREEN_WIDTH - BUTTONWIDTH * 4) / 5;
 
     [self.setting mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(weakSelf.view).offset(-10);
+        make.right.mas_equalTo(weakSelf.view);
         make.width.mas_equalTo(@(48));
         make.height.equalTo(@(48));
-        make.top.equalTo(weakSelf.view).offset(10);
+        make.top.equalTo(weakSelf.view).offset(5);
     }];
     
     [self.timeline mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -234,7 +233,10 @@ static const CGFloat BUTTONWIDTH = 48;
     [[BTThemeManager getInstance] BTThemeImage:@"com_bl_album_press" completionHandler:^(UIImage *image) {
         [weakSelf.album setImage:image forState:UIControlStateHighlighted];
     }];
-    
+    [[BTThemeManager getInstance] BTThemeImage:@"com_bl_home_setting" completionHandler:^(UIImage *image) {
+        [weakSelf.setting setImage:image forState:UIControlStateNormal];
+    }];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -387,8 +389,6 @@ static const CGFloat BUTTONWIDTH = 48;
 - (UIButton *)setting {
     if (!_setting) {
         _setting = [[UIButton alloc] init];
-        [_setting setTitle:@"设置" forState:UIControlStateNormal];
-        [_setting setTitleColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_other_d"] forState:UIControlStateNormal];
         [_setting addTarget:self action:@selector(settingClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _setting;
@@ -462,7 +462,7 @@ static const CGFloat BUTTONWIDTH = 48;
 - (UILabel *)journalsLabel {
     if (!_journalsLabel) {
         _journalsLabel = [[UILabel alloc] init];
-        _journalsLabel.text = @"时光轴";
+        _journalsLabel.text = @"日记集";
         [_journalsLabel setTextColor:[UIColor blueColor]];
         _journalsLabel.textAlignment = NSTextAlignmentCenter;
         _journalsLabel.font = BT_FONTSIZE(12);
