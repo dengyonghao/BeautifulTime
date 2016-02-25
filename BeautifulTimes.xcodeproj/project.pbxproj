@@ -548,6 +548,9 @@
 		65F47DE21C3E8F48008117BC /* BTIMAboutMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F47DE11C3E8F48008117BC /* BTIMAboutMeViewController.m */; };
 		65F52A5B1BFDB4AA00351941 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F52A5A1BFDB4AA00351941 /* AVFoundation.framework */; };
 		65F52A5F1BFDC88700351941 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65F52A611BFDC88700351941 /* Localizable.strings */; };
+		65F6B4831C7EF9F800E112FE /* BTTimelineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F6B4821C7EF9F800E112FE /* BTTimelineModel.m */; };
+		65F6B4861C7EFA2700E112FE /* BTTimelineDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F6B4851C7EFA2700E112FE /* BTTimelineDB.m */; };
+		65F6B4891C7EFA6000E112FE /* BTTimelineDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F6B4881C7EFA6000E112FE /* BTTimelineDBManager.m */; };
 		65F816F01C71820C00A607F7 /* BTSearchUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F816EF1C71820B00A607F7 /* BTSearchUserCell.m */; };
 		65F816F51C71BB3C00A607F7 /* BTMessageListDBTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F816F41C71BB3C00A607F7 /* BTMessageListDBTool.m */; };
 		65F816F81C71BD1000A607F7 /* BTMessageListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F816F71C71BD1000A607F7 /* BTMessageListModel.m */; };
@@ -1462,6 +1465,12 @@
 		65F52A5C1BFDC76E00351941 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		65F52A601BFDC88700351941 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		65F52A621BFDC8AB00351941 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		65F6B4811C7EF9F800E112FE /* BTTimelineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTimelineModel.h; sourceTree = "<group>"; };
+		65F6B4821C7EF9F800E112FE /* BTTimelineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTimelineModel.m; sourceTree = "<group>"; };
+		65F6B4841C7EFA2700E112FE /* BTTimelineDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTimelineDB.h; sourceTree = "<group>"; };
+		65F6B4851C7EFA2700E112FE /* BTTimelineDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTimelineDB.m; sourceTree = "<group>"; };
+		65F6B4871C7EFA6000E112FE /* BTTimelineDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTimelineDBManager.h; sourceTree = "<group>"; };
+		65F6B4881C7EFA6000E112FE /* BTTimelineDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTimelineDBManager.m; sourceTree = "<group>"; };
 		65F816EE1C71820B00A607F7 /* BTSearchUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTSearchUserCell.h; sourceTree = "<group>"; };
 		65F816EF1C71820B00A607F7 /* BTSearchUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTSearchUserCell.m; sourceTree = "<group>"; };
 		65F816F31C71BB3C00A607F7 /* BTMessageListDBTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTMessageListDBTool.h; sourceTree = "<group>"; };
@@ -3562,6 +3571,33 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		65F6B47E1C7EF9CE00E112FE /* DBManager */ = {
+			isa = PBXGroup;
+			children = (
+				65F6B4811C7EF9F800E112FE /* BTTimelineModel.h */,
+				65F6B4821C7EF9F800E112FE /* BTTimelineModel.m */,
+				65F6B4841C7EFA2700E112FE /* BTTimelineDB.h */,
+				65F6B4851C7EFA2700E112FE /* BTTimelineDB.m */,
+				65F6B4871C7EFA6000E112FE /* BTTimelineDBManager.h */,
+				65F6B4881C7EFA6000E112FE /* BTTimelineDBManager.m */,
+			);
+			path = DBManager;
+			sourceTree = "<group>";
+		};
+		65F6B47F1C7EF9CE00E112FE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		65F6B4801C7EF9CE00E112FE /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		65F816F21C71BAF500A607F7 /* MessageListManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -3798,25 +3834,12 @@
 		B44579EC1C1409EF00CB10DC /* TimelineModule */ = {
 			isa = PBXGroup;
 			children = (
-				B44579ED1C1409EF00CB10DC /* Model */,
-				B44579EE1C1409EF00CB10DC /* View */,
+				65F6B47E1C7EF9CE00E112FE /* DBManager */,
+				65F6B47F1C7EF9CE00E112FE /* Model */,
+				65F6B4801C7EF9CE00E112FE /* View */,
 				B44579EF1C1409EF00CB10DC /* ViewController */,
 			);
 			path = TimelineModule;
-			sourceTree = "<group>";
-		};
-		B44579ED1C1409EF00CB10DC /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		B44579EE1C1409EF00CB10DC /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		B44579EF1C1409EF00CB10DC /* ViewController */ = {
@@ -4407,6 +4430,7 @@
 				65AE5A741C7D876B00A84158 /* DDList.m in Sources */,
 				65DBCF041BD7554700784DAC /* BTJournalListViewController.m in Sources */,
 				65AE5AB61C7D89E000A84158 /* DDLog.m in Sources */,
+				65F6B4861C7EFA2700E112FE /* BTTimelineDB.m in Sources */,
 				65E234191BD3BAB60041E719 /* BTBaseViewController.m in Sources */,
 				65AE5A261C7D876B00A84158 /* XMPPPrivacy.m in Sources */,
 				65E2D3341BCFC965001E29A9 /* main.m in Sources */,
@@ -4527,6 +4551,7 @@
 				6563A7111C20009600D8D1FA /* BTJournalManager.m in Sources */,
 				65AE5A301C7D876B00A84158 /* XMPPRoomMessageMemoryStorageObject.m in Sources */,
 				65AE5AB21C7D89E000A84158 /* GCDAsyncSocket.m in Sources */,
+				65F6B4891C7EFA6000E112FE /* BTTimelineDBManager.m in Sources */,
 				65FBFD0A1C4DD699008D9FA3 /* BTChattingHistoryDB.m in Sources */,
 				65AE5A3A1C7D876B00A84158 /* XMPPvCardTemp.m in Sources */,
 				65F47DE21C3E8F48008117BC /* BTIMAboutMeViewController.m in Sources */,
@@ -4578,6 +4603,7 @@
 				65AE5A031C7D876B00A84158 /* NSData+XMPP.m in Sources */,
 				B44579FC1C140FC300CB10DC /* BTSettingViewController.m in Sources */,
 				65AE5AB91C7D89E000A84158 /* DDDispatchQueueLogFormatter.m in Sources */,
+				65F6B4831C7EF9F800E112FE /* BTTimelineModel.m in Sources */,
 				65AE5AB81C7D89E000A84158 /* DDContextFilterLogFormatter.m in Sources */,
 				B4FABBCC1C018D4B00213AB7 /* BTLanguageUtil.m in Sources */,
 				65A93BAF1C7C84B700068F94 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,

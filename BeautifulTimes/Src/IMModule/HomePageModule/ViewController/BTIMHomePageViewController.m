@@ -16,11 +16,13 @@
 
 static NSString *cellIdentifier = @"chatMessageListCell";
 
-@interface BTIMHomePageViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface BTIMHomePageViewController () <UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
-@property (nonatomic,assign)int messageCount;
+@property (nonatomic, assign) int messageCount;
+@property (nonatomic, strong) UISearchController *searchController;
+@property (nonatomic, strong) NSMutableArray *searchList;
 
 @end
 
@@ -118,14 +120,14 @@ static NSString *cellIdentifier = @"chatMessageListCell";
     }else{
         dispatch_async(dispatch_get_main_queue(), ^{
             BTMessageListModel *model = [[BTMessageListModel alloc]init];
-            model.uname=uname;
-            model.body=body;
-            model.jid=jid;
-            model.time=time;
+            model.uname = uname;
+            model.body = body;
+            model.jid = jid;
+            model.time = time;
             if([user isEqualToString:@"other"]){
-                model.badgeValue=@"1";
+                model.badgeValue = @"1";
             }else{
-                model.badgeValue=nil;
+                model.badgeValue = nil;
             }
             
             [self.dataSource insertObject:model atIndex:0];
@@ -139,7 +141,7 @@ static NSString *cellIdentifier = @"chatMessageListCell";
 - (void)deleteFriendHandle:(NSNotification*)note {
     NSString *uname = [note object];
     //初始化模型的索引
-    NSInteger index=0;
+    NSInteger index = 0;
     for(BTMessageListModel *model in self.dataSource){
         if([model.uname isEqualToString:uname]){
             [self.dataSource removeObjectAtIndex:index];
@@ -153,27 +155,29 @@ static NSString *cellIdentifier = @"chatMessageListCell";
 #pragma mark 添加搜索栏
 -(void)setupSearchBar
 {
-    UISearchBar *search=[[UISearchBar alloc]init];
-    search.frame = CGRectMake(0, 0, BT_SCREEN_WIDTH, 36);
-    search.barStyle = UIBarStyleDefault;
-    search.backgroundColor = [UIColor whiteColor];
+    self.searchController.searchBar.frame = CGRectMake(0, 0, BT_SCREEN_WIDTH, 36);
+    self.searchController.searchBar.barStyle = UIBarStyleDefault;
+    self.searchController.searchBar.backgroundColor = [UIColor whiteColor];
     //取消首字母吧大写
-    search.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    search.autocorrectionType = UITextAutocorrectionTypeNo;
-    search.placeholder = @"搜索";
-    search.layer.borderWidth = 0;
+    self.searchController.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    self.searchController.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+    self.searchController.searchBar.placeholder = @"搜索";
+    self.searchController.searchBar.layer.borderWidth = 0;
     
     UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, BT_SCREEN_WIDTH, 36)];
     searchView.backgroundColor = [[UIColor alloc] initWithRed:189 green:189 blue:195 alpha:0.7f];
-    [searchView addSubview:search];
-    // search.delegate=self;
+    [searchView addSubview:self.searchController.searchBar];
     self.tableView.tableHeaderView = searchView;
 }
 
 #pragma mark - UITableView delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataSource.count;
+    if (self.searchController.active) {
+        return [self.searchList count];
+    }else{
+        return [self.dataSource count];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -187,7 +191,12 @@ static NSString *cellIdentifier = @"chatMessageListCell";
     if (!cell) {
         cell = [[BTChatMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    [cell bindData:self.dataSource[indexPath.row]];
+    if (self.searchController.active) {
+        [cell bindData:self.searchList[indexPath.row]];
+    }
+    else{
+        [cell bindData:self.dataSource[indexPath.row]];
+    }
     return cell;
 }
 
@@ -250,6 +259,16 @@ static NSString *cellIdentifier = @"chatMessageListCell";
     }
 }
 
+-(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    NSString *searchString = [self.searchController.searchBar text];
+    NSPredicate *preicate = [NSPredicate predicateWithFormat:@"uname CONTAINS[cd] %@", searchString];
+    if (self.searchList!= nil) {
+        [self.searchList removeAllObjects];
+    }
+    self.searchList = [NSMutableArray arrayWithArray:[self.dataSource filteredArrayUsingPredicate:preicate]];
+    [self.tableView reloadData];
+}
+
 
 #pragma -mark getter
 - (UITableView *)tableView {
@@ -267,6 +286,24 @@ static NSString *cellIdentifier = @"chatMessageListCell";
         _dataSource = [[NSMutableArray alloc] init];
     }
     return _dataSource;
+}
+
+- (UISearchController *)searchController {
+    if (!_searchController) {
+        _searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+        _searchController.searchResultsUpdater = self;
+        _searchController.dimsBackgroundDuringPresentation = NO;
+        _searchController.hidesNavigationBarDuringPresentation = NO;
+    }
+    return _searchController;
+}
+
+- (NSMutableArray *)searchList
+{
+    if (!_searchList) {
+        _searchList = [[NSMutableArray alloc] init];
+    }
+    return _searchList;
 }
 
 @end

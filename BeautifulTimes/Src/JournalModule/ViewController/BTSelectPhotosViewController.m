@@ -50,17 +50,17 @@ static CGFloat const OFFSET = 15.0f;
     }];
     
     [self.usePhoto mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(weakSelf.bodyView);
+        make.height.equalTo(@(48));
         make.centerY.equalTo(weakSelf.bodyView).offset(44);
-        make.width.equalTo(@(120));
-        make.height.equalTo(@(44));
+        make.left.equalTo(weakSelf.bodyView).offset(20);
+        make.right.equalTo(weakSelf.bodyView).offset(-20);
     }];
     
     [self.useCamera mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(weakSelf.bodyView);
+        make.height.equalTo(weakSelf.usePhoto);
         make.centerY.equalTo(weakSelf.usePhoto).offset(44 + 22);
-        make.width.equalTo(@(120));
-        make.height.equalTo(@(44));
+        make.left.equalTo(weakSelf.bodyView).offset(20);
+        make.right.equalTo(weakSelf.bodyView).offset(-20);
     }];
 }
 
@@ -262,6 +262,8 @@ static CGFloat const OFFSET = 15.0f;
     if (!_usePhoto) {
         _usePhoto = [[UIButton alloc] init];
         [_usePhoto setTitle:@"从相册中选择" forState:UIControlStateNormal];
+        _usePhoto.backgroundColor = [[BTThemeManager getInstance] BTThemeColor:@"cl_btn_b"];
+        [_usePhoto setBorderWithWidth:0 color:nil cornerRadius:5];
         [_usePhoto addTarget:self action:@selector(usePhotoClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _usePhoto;
@@ -271,6 +273,8 @@ static CGFloat const OFFSET = 15.0f;
     if (!_useCamera) {
         _useCamera = [[UIButton alloc] init];
         [_useCamera setTitle:@"拍照" forState:UIControlStateNormal];
+        _useCamera.backgroundColor = [[BTThemeManager getInstance] BTThemeColor:@"cl_btn_b"];
+        [_useCamera setBorderWithWidth:0 color:nil cornerRadius:5];
         [_useCamera addTarget:self action:@selector(useCameraClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _useCamera;

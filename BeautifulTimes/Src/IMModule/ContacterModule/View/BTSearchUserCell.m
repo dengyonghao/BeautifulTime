@@ -36,7 +36,7 @@
             make.top.equalTo(weakSelf.userName).offset(20 + 5);
             make.left.equalTo(weakSelf.userName);
             make.right.equalTo(weakSelf.userName);
-            make.height.equalTo(@(17));
+            make.height.equalTo(@(20));
         }];
     }
     return self;

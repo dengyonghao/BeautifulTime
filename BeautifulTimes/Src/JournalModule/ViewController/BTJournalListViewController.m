@@ -16,7 +16,8 @@ static NSString *kJournalCellIdentifier = @"kJournalCellIdentifier";
 
 @interface BTJournalListViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) NSArray *dataSource;
+@property (nonatomic,strong) NSMutableArray *keys;
+@property (nonatomic, strong) NSMutableDictionary *dataSource;
 
 @end
 
@@ -42,17 +43,60 @@ static NSString *kJournalCellIdentifier = @"kJournalCellIdentifier";
 }
 
 - (void)initDataSource {
-    NSMutableArray *arry = [[NSMutableArray alloc] init];
+    [self.dataSource removeAllObjects];
+    [self.keys removeAllObjects];
+    
     [[[BTJournalManager shareInstance] getAllJournalData] enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [arry addObject:obj];
+        Journal *journal = obj;
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy-MM"];
+        NSString *key = [formatter stringFromDate:journal.journalDate];
+        
+        NSArray *arr = [self.dataSource objectForKey:key];
+        NSMutableArray *journals;
+        //如果没有值
+        if(!arr){
+            journals = [NSMutableArray arrayWithObject:journal];
+        }else{
+            journals = [NSMutableArray arrayWithArray:arr];
+            [journals addObject:journal];
+        }
+        [self.dataSource setObject:journals forKey:key];
     }];
-    self.dataSource = arry;
+    
+    NSArray *key = [self.dataSource allKeys];
+    
+    NSArray *k = [key sortedArrayUsingSelector:@selector(compare:)];
+    [self.keys addObjectsFromArray:k];
 }
 
 #pragma mark - UITableView delegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.keys.count;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.dataSource count];
+    NSString *key = self.keys[section];
+    NSArray *arr = [self.dataSource objectForKey:key];
+    return arr.count;
+}
+
+#pragma mark 设置每个区的标题
+-(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *title = self.keys[section];
+    return title;
+}
+
+#pragma mark 返回分区头的高度
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return 25;
+    }
+    return 10;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -61,14 +105,18 @@ static NSString *kJournalCellIdentifier = @"kJournalCellIdentifier";
     if (!cell) {
         cell = [[BTJournalListItem alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kJournalCellIdentifier];
     }
-    [cell bindDate:self.dataSource[indexPath.row]];
+    NSString *key = self.keys[indexPath.section];
+    NSArray *arr = [self.dataSource objectForKey:key];
+    [cell bindDate:arr[indexPath.row]];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BTEditJournalViewController *vc = [[BTEditJournalViewController alloc] init];
-    vc.journal = self.dataSource[indexPath.row];
+    NSString *key = self.keys[indexPath.section];
+    NSArray *arr = [self.dataSource objectForKey:key];
+    vc.journal = arr[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -79,20 +127,28 @@ static NSString *kJournalCellIdentifier = @"kJournalCellIdentifier";
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] init];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         _tableView.dataSource = self;
         _tableView.delegate = self;
     }
     return _tableView;
 }
 
-- (NSArray *)dataSource
+- (NSMutableDictionary *)dataSource
 {
     if (!_dataSource) {
-        _dataSource = [[NSArray alloc] init];
+        _dataSource = [[NSMutableDictionary alloc] init];
     }
     
     return _dataSource;
+}
+
+- (NSMutableArray *)keys
+{
+    if(!_keys) {
+        _keys = [[NSMutableArray alloc] init];
+    }
+    return _keys;
 }
 
 @end

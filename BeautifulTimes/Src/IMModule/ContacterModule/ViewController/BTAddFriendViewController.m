@@ -10,7 +10,7 @@
 #import "BTSearchUserCell.h"
 #import "MBProgressHUD+MJ.h"
 
-@interface BTAddFriendViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface BTAddFriendViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIButton *searchButton;
@@ -48,7 +48,7 @@
     }];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.searchContent).offset(44.0f);
+        make.top.equalTo(weakSelf.searchContent).offset(44.0f + 5);
         make.left.equalTo(weakSelf.view);
         make.right.equalTo(weakSelf.view);
         make.bottom.equalTo(weakSelf.view);
@@ -97,6 +97,10 @@
     [alertView show];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 60;
+}
+
 #pragma marks UIAlertViewDelegate
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -110,11 +114,10 @@
     }
 }
 
-
 #pragma  -mark getter
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] init];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }
@@ -125,8 +128,8 @@
     if (!_searchContent) {
         _searchContent = [[UITextField alloc] init];
         _searchContent.backgroundColor = [UIColor whiteColor];
-        _searchContent.placeholder = @"请输入要查寻的账号";
-        [_searchContent setBorderWithWidth:1 color:[[BTThemeManager getInstance] BTThemeColor:@"cl_line_b_leftbar"] cornerRadius:4];
+        _searchContent.placeholder = @"  请输入要查寻的账号";
+        [_searchContent setBorderWithWidth:0.5 color:[[BTThemeManager getInstance] BTThemeColor:@"cl_line_b_leftbar"] cornerRadius:3];
     }
     return _searchContent;
 }

@@ -158,9 +158,6 @@ static CGFloat const recorderDuration = 600;
     if (self.recordUrl) {
         NSString *filePath = [self.recordUrl absoluteString];
         NSData *data = [[NSData alloc] initWithContentsOfFile:filePath];
-        NSString *str = [Base64 stringByEncodingData:data];
-//        NSLog(@"%@", str);
-        [[BTXMPPTool sharedInstance] sendMessage:str type:@"text" to:[XMPPJID jidWithString:@"admin@vm-40-145-ubuntu"]];
         NSString *documentDirectory = [BTTool getDocumentDirectory];
         NSString *uid = [self getSaveFilePath];
         NSString *savePath = [documentDirectory stringByAppendingPathComponent:uid];

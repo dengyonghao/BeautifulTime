@@ -430,7 +430,7 @@ static const CGFloat BUTTONWIDTH = 48;
     if (!_timelineLabel) {
         _timelineLabel = [[UILabel alloc] init];
         _timelineLabel.text = @"时光轴";
-        [_timelineLabel setTextColor:[UIColor blueColor]];
+        [_timelineLabel setTextColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_btn_b"]];
         _timelineLabel.textAlignment = NSTextAlignmentCenter;
         _timelineLabel.font = BT_FONTSIZE(12);
     }
@@ -441,7 +441,7 @@ static const CGFloat BUTTONWIDTH = 48;
     if (!_chatLabel) {
         _chatLabel = [[UILabel alloc] init];
         _chatLabel.text = @"私语";
-        [_chatLabel setTextColor:[UIColor blueColor]];
+        [_chatLabel setTextColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_btn_b"]];
         _chatLabel.textAlignment = NSTextAlignmentCenter;
         _chatLabel.font = BT_FONTSIZE(12);
     }
@@ -452,7 +452,7 @@ static const CGFloat BUTTONWIDTH = 48;
     if (!_albumLabel) {
         _albumLabel = [[UILabel alloc] init];
         _albumLabel.text = @"相册";
-        [_albumLabel setTextColor:[UIColor blueColor]];
+        [_albumLabel setTextColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_btn_b"]];
         _albumLabel.textAlignment = NSTextAlignmentCenter;
         _albumLabel.font = BT_FONTSIZE(12);
     }
@@ -463,7 +463,7 @@ static const CGFloat BUTTONWIDTH = 48;
     if (!_journalsLabel) {
         _journalsLabel = [[UILabel alloc] init];
         _journalsLabel.text = @"日记集";
-        [_journalsLabel setTextColor:[UIColor blueColor]];
+        [_journalsLabel setTextColor:[[BTThemeManager getInstance] BTThemeColor:@"cl_btn_b"]];
         _journalsLabel.textAlignment = NSTextAlignmentCenter;
         _journalsLabel.font = BT_FONTSIZE(12);
     }
