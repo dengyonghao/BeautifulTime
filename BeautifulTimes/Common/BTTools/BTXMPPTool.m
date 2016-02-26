@@ -82,11 +82,15 @@ static BTXMPPTool *xmppTool;
     [_xmppIncomingFileTransfer addDelegate:self delegateQueue:dispatch_get_main_queue()];
     //设置为自动接收文件
     [_xmppIncomingFileTransfer setAutoAcceptFileTransfers:YES];
+//    _xmppIncomingFileTransfer.disableIBB = YES;
+    _xmppIncomingFileTransfer.disableSOCKS5 = YES;
     
     //文件发送
-    _xmppOutgoingFileTransfer = [[XMPPOutgoingFileTransfer alloc] initWithDispatchQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)];
+    _xmppOutgoingFileTransfer = [[XMPPOutgoingFileTransfer alloc] initWithDispatchQueue:dispatch_get_main_queue()];
     [_xmppOutgoingFileTransfer activate:_xmppStream];
-    [_xmppOutgoingFileTransfer addDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)];
+    [_xmppOutgoingFileTransfer addDelegate:self delegateQueue:dispatch_get_main_queue()];
+//    _xmppOutgoingFileTransfer.disableIBB = YES;
+    _xmppOutgoingFileTransfer.disableSOCKS5 = YES;
     
     //添加电子名片模块
     _vCardStorage=[XMPPvCardCoreDataStorage sharedInstance];
@@ -119,7 +123,7 @@ static BTXMPPTool *xmppTool;
         [self setupXmppStream];
     }
     NSString *user = [[NSUserDefaults standardUserDefaults] valueForKey:userID];
-    XMPPJID *myJid = [XMPPJID jidWithUser:user domain:ServerName resource:nil];
+    XMPPJID *myJid = [XMPPJID jidWithUser:user domain:ServerName resource:@"bttime"];
     self.jid = myJid;
     _xmppStream.myJID = myJid;
     NSError *error = nil;
@@ -516,10 +520,12 @@ static BTXMPPTool *xmppTool;
     _successBlock = success;
     _errorBlock = error;
     NSError *err;
+    [jid jidWithNewResource:filename];
     [self.xmppOutgoingFileTransfer sendData:data named:filename toRecipient:jid description:nil error:&err];
     if (err) {
         _errorBlock(err);
     }
+    
 }
 
 #pragma mark ===== 文件接收=======

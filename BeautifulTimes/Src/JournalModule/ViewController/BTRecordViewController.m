@@ -158,6 +158,16 @@ static CGFloat const recorderDuration = 600;
     if (self.recordUrl) {
         NSString *filePath = [self.recordUrl absoluteString];
         NSData *data = [[NSData alloc] initWithContentsOfFile:filePath];
+        
+        //test xmpp send file
+        
+        XMPPJID *jid = [XMPPJID jidWithString:@"admin@vm-40-145-ubuntu" resource:@"bttime"];
+        [[BTXMPPTool sharedInstance] sendDate:data name:@"file01" to:jid Success:^(BOOL bigBOOL) {
+            
+        } failure:^(NSError *error) {
+            
+        }];
+        
         NSString *documentDirectory = [BTTool getDocumentDirectory];
         NSString *uid = [self getSaveFilePath];
         NSString *savePath = [documentDirectory stringByAppendingPathComponent:uid];
@@ -386,6 +396,7 @@ static CGFloat const recorderDuration = 600;
         [_recordButton addTarget:self action:@selector(recordButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [_recordButton setTitle:@"开始录音" forState:UIControlStateNormal];
         [_recordButton setTitle:@"停止录音" forState:UIControlStateSelected];
+        _recordButton.backgroundColor = [[BTThemeManager getInstance] BTThemeColor:@"cl_btn_b"];
     }
     return _recordButton;
 }
@@ -395,6 +406,7 @@ static CGFloat const recorderDuration = 600;
         _playButton = [[UIButton alloc] init];
         [_playButton setTitle:@"开始播放" forState:UIControlStateNormal];
         [_playButton setTitle:@"停止播放" forState:UIControlStateSelected];
+        _playButton.backgroundColor = [[BTThemeManager getInstance] BTThemeColor:@"cl_btn_b"];
         [_playButton addTarget:self action:@selector(playButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _playButton;
@@ -405,6 +417,7 @@ static CGFloat const recorderDuration = 600;
         _saveButton = [[UIButton alloc] init];
         [_saveButton setTitle:@"保存" forState:UIControlStateNormal];
         [_saveButton addTarget:self action:@selector(saveButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        _saveButton.backgroundColor = [[BTThemeManager getInstance] BTThemeColor:@"cl_btn_b"];
     }
     return _saveButton;
 }
@@ -414,6 +427,7 @@ static CGFloat const recorderDuration = 600;
         _resetButton = [[UIButton alloc] init];
         [_resetButton setTitle:@"重置" forState:UIControlStateNormal];
         [_resetButton addTarget:self action:@selector(resetButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        _resetButton.backgroundColor = [[BTThemeManager getInstance] BTThemeColor:@"cl_btn_b"];
     }
     return _resetButton;
 }

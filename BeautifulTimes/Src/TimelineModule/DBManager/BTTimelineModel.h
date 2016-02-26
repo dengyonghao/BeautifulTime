@@ -12,7 +12,7 @@
 
 @property (nullable, nonatomic, retain) NSNumber *timelineId;
 @property (nullable, nonatomic, retain) NSData *timelineContent;
-@property (nullable, nonatomic, retain) NSDate *journalDate;
+@property (nullable, nonatomic, retain) NSDate *timelineDate;
 @property (nullable, nonatomic, retain) NSData *weather;
 @property (nullable, nonatomic, retain) NSString *site;
 @property (nullable, nonatomic, retain) NSString *photos;

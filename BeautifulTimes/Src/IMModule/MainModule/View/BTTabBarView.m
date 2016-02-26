@@ -11,19 +11,18 @@
 
 @interface BTTabBarView ()
 
-@property (nonatomic,strong) NSMutableArray *buttons;
-@property (nonatomic,weak) BTTabBarButton *tabButton;
+@property (nonatomic, strong) NSMutableArray *buttons;
+@property (nonatomic, weak) BTTabBarButton *tabButton;
 
 @end
 
-
 @implementation BTTabBarView
 
--(instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
 {
-    self=[super initWithFrame:frame];
-    if(self){
-        //self.backgroundColor=[UIColor redColor];
+    self = [super initWithFrame:frame];
+    if(self) {
+
     }
     return self;
 }
@@ -31,16 +30,13 @@
 #pragma mark  添加按钮的方法
 -(void)addTabBarButtonItem:(UITabBarItem *)item
 {
-    
-    //1.添加按钮
     BTTabBarButton *tabButton = [[BTTabBarButton alloc]init];
     [self addSubview:tabButton];
     [self.buttons addObject:tabButton];
     
-    tabButton.item = item;  //属性传给自定义的按钮
+    tabButton.item = item;
     [tabButton addTarget:self action:@selector(tabButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    //2.如果是第一个的话  默认选中
     if(self.buttons.count == 1){
         [self tabButtonClick:tabButton];
     }
@@ -49,15 +45,13 @@
 #pragma mark 按钮点击的方法
 -(void)tabButtonClick:(BTTabBarButton*)sender
 {
-    //调用代理方法
     if([self.delegate respondsToSelector:@selector(tabBar:didSelectedButtonFrom:to:)]){
         [self.delegate tabBar:self didSelectedButtonFrom:self.tabButton.tag to:sender.tag];
     }
     
-    self.tabButton.selected=NO;  //当前选中的按钮取消选中状态
-    sender.selected=YES; //被点击的按钮选中
-    self.tabButton=sender;
-    
+    self.tabButton.selected = NO;
+    sender.selected = YES;
+    self.tabButton = sender;
 }
 
 -(void)layoutSubviews

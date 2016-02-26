@@ -33,19 +33,19 @@
         
         WS(weakSelf);
         [self.headIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf).offset(8);
+            make.top.equalTo(weakSelf).offset(10);
             make.left.equalTo(weakSelf).offset(8);
-            make.width.equalTo(@(48));
-            make.height.equalTo(@(48));
+            make.width.equalTo(@(44));
+            make.height.equalTo(@(44));
         }];
         
         [self.badgeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf.headIcon);
-            make.right.equalTo(weakSelf.headIcon);
+            make.top.equalTo(weakSelf.headIcon).offset(-10);
+            make.right.equalTo(weakSelf.headIcon).offset(10);
         }];
         
         [self.time mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf).offset(8);
+            make.top.equalTo(weakSelf).offset(10);
             make.right.equalTo(weakSelf).offset(-5);
             make.width.equalTo(@(100));
             make.height.equalTo(@(20));
@@ -53,14 +53,14 @@
         
         [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(weakSelf.headIcon);
-            make.left.equalTo(weakSelf.headIcon).offset(48 + 5);
+            make.left.equalTo(weakSelf.headIcon).offset(44 + 10);
             make.height.equalTo(@(20));
             make.right.equalTo(weakSelf.time).offset(-(100 + 5));
         }];
         
         [self.content mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(weakSelf.title).offset(20 + 8);
-            make.left.equalTo(weakSelf.headIcon).offset(48 + 5);
+            make.left.equalTo(weakSelf.headIcon).offset(44 + 10);
             make.height.equalTo(@(16));
             make.right.equalTo(weakSelf).offset(-5);
         }];
@@ -90,6 +90,7 @@
 - (UIImageView *)headIcon {
     if (!_headIcon) {
         _headIcon = [[UIImageView alloc] init];
+        [_headIcon setBorderWithWidth:0 color:nil cornerRadius:4];
     }
     return _headIcon;
 }
@@ -97,6 +98,7 @@
 - (UILabel *)title {
     if (!_title) {
         _title = [[UILabel alloc] init];
+        _title.font = BT_FONTSIZE(17);
     }
     return _title;
 }
@@ -104,6 +106,8 @@
 - (UILabel *)content {
     if (!_content) {
         _content = [[UILabel alloc] init];
+        _content.font = BT_FONTSIZE(13);
+        _content.textColor = [[BTThemeManager getInstance] BTThemeColor:@"cl_text_c"];
     }
     return _content;
 }
