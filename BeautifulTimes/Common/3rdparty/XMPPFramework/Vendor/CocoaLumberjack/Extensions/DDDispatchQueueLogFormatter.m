@@ -100,7 +100,7 @@
             [threadUnsafeDateFormatter setDateFormat:dateFormatString];
         }
         
-        [threadUnsafeDateFormatter setCalendar:[[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian]];
+        [threadUnsafeDateFormatter setCalendar:[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar]];
         return [threadUnsafeDateFormatter stringFromDate:date];
     }
     else
@@ -122,7 +122,7 @@
             threadDictionary[key] = dateFormatter;
         }
         
-        [dateFormatter setCalendar:[[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian]];
+        [dateFormatter setCalendar:[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar]];
         return [dateFormatter stringFromDate:date];
     }
 }

@@ -3,6 +3,7 @@
 #import "DDXML.h"
 #endif
 
+
 @class XMPPStream;
 
 

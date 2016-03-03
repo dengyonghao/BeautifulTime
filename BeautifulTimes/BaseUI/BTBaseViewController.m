@@ -119,8 +119,8 @@
 - (void) BTThemeDidNeedUpdateStyle
 {
     self.view.backgroundColor = [UIColor whiteColor];
-    self.headViewImage.image = [UIImage resizedImage:BT_LOADIMAGE(@"com_bg_nav")];
-    self.titleLabel.textColor = [[BTThemeManager getInstance] BTThemeColor:@"cl_text_a4_title"];
+    self.headViewImage.image = [UIImage resizedImage:BT_LOADIMAGE(@"com_bl_navi_bg")];
+    self.titleLabel.textColor = [[BTThemeManager getInstance] BTThemeColor:@"cl_text_a5_title"];
     
     [[BTThemeManager getInstance] BTThemeImage:@"com_ic_back" completionHandler:^(UIImage *image) {
         [self.backButton setImage:image forState:UIControlStateNormal];

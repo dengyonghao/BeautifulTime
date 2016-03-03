@@ -5,6 +5,7 @@
 #import "DDXML.h"
 #endif
 
+
 #define _XMPP_PRIVACY_H
 
 @class XMPPIQ;

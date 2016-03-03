@@ -245,7 +245,7 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
     BTChatToolView *bottom = [[BTChatToolView alloc] init];
     bottom.toolInputView.delegate = self;
     bottom.delegate = self;
-    bottom.x= 0;
+    bottom.x= 0; 
     bottom.y= self.view.height - 64 - bottom.height;
     [self.view addSubview:bottom];
     self.chatBottom = bottom;

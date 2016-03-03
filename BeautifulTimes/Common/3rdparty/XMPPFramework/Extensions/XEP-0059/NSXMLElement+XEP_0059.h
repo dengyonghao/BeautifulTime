@@ -4,6 +4,7 @@
 #import "DDXML.h"
 #endif
 
+
 @class XMPPResultSet;
 
 

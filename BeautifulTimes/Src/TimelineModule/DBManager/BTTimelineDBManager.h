@@ -7,7 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BTTimelineModel.h"
 
 @interface BTTimelineDBManager : NSObject
+
++ (BTTimelineDBManager *)sharedInstance;
+
+/**
+ *  添加 timeline message
+ *
+ *  @param timeline message
+ */
+- (void)addTimelineMessage:(BTTimelineModel *)message;
 
 @end

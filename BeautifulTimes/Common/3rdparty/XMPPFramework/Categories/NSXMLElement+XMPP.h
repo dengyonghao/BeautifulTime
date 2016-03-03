@@ -5,6 +5,7 @@
 #endif
 
 
+
 @interface NSXMLElement (XMPP)
 
 /**

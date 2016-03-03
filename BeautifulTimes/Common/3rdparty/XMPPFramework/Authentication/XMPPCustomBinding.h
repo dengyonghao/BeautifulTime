@@ -3,6 +3,7 @@
 #import "DDXML.h"
 #endif
 
+
 typedef NS_ENUM(NSInteger, XMPPBindResult) {
 	
 	XMPP_BIND_CONTINUE,      // The custom binding process is still ongoing.

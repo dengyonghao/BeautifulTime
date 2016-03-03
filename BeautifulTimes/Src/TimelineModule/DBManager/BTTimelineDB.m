@@ -34,18 +34,18 @@ static BTTimelineDB * timelineDB = nil;
     return self;
 }
 
-- (NSString *)getDBPathWithFriendId:(NSString *)friendId {
+- (NSString *)getDBPath {
     
     NSString *currentUser = [[NSUserDefaults standardUserDefaults] valueForKey:userID];
     
-    if (!friendId) {
+    if (!currentUser) {
         return nil;
     }
     NSString *path = [BTTool getLibraryDirectory];
     NSString *userSavePath = [NSString stringWithFormat:@"BTCaches/%@", currentUser];
     path = [path stringByAppendingPathComponent:userSavePath];
     if ([BTTool createDirectory:path]) {
-        path = [path stringByAppendingPathComponent:friendId];
+        path = [path stringByAppendingPathComponent:currentUser];
         if ([BTTool createDirectory:path]) {
             path = [path stringByAppendingPathComponent:@"BTTimeline"];
             return path;
@@ -60,9 +60,9 @@ static BTTimelineDB * timelineDB = nil;
     return nil;
 }
 
-- (void) createHistoryDBWithFriendId:(NSString *)friendId {
+- (void) createHistoryDB {
     
-    NSString * path = [self getDBPathWithFriendId:friendId];
+    NSString * path = [self getDBPath];
     
     self.queue = [FMDatabaseQueue databaseQueueWithPath:path];
     

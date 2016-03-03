@@ -161,7 +161,7 @@ static CGFloat const recorderDuration = 600;
         
         //test xmpp send file
         
-        XMPPJID *jid = [XMPPJID jidWithString:@"admin@vm-40-145-ubuntu" resource:@"bttime"];
+        XMPPJID *jid = [XMPPJID jidWithString:@"ifyoulove@vm-40-145-ubuntu" resource:@"bttime"];
         [[BTXMPPTool sharedInstance] sendDate:data name:@"file01" to:jid Success:^(BOOL bigBOOL) {
             
         } failure:^(NSError *error) {

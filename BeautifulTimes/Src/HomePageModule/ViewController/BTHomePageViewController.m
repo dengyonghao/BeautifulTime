@@ -23,10 +23,11 @@
 #import "BTIMTabBarController.h"
 #import "AppDelegate.h"
 #import "AFNetworking.h"
+//#import "XMPPSIFileTransfer.h"
 
 static const CGFloat BUTTONWIDTH = 48;
 
-@interface BTHomePageViewController ()<BTThemeListenerProtocol>
+@interface BTHomePageViewController ()<BTThemeListenerProtocol, XMPPOutgoingFileTransferDelegate>
 
 @property (nonatomic, assign) BOOL themeInit;
 
@@ -45,6 +46,9 @@ static const CGFloat BUTTONWIDTH = 48;
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 
 @property (nonatomic, strong) UIButton *setting;
+
+@property (nonatomic, strong) XMPPOutgoingFileTransfer *fileTransfer;
+//@property (nonatomic, strong) XMPPSIFileTransfer *siFileTransfer;
 
 @end
 
@@ -284,6 +288,71 @@ static const CGFloat BUTTONWIDTH = 48;
 //        
 //    }];
     
+    
+//    NSURL *filePath = [[NSBundle mainBundle] URLForResource:@"1" withExtension:@"png"];
+//    NSData *data = [NSData dataWithContentsOfURL:filePath];
+//    XMPPJID *jid = [XMPPJID jidWithString:@"admin@vm-40-145-ubuntu/bttime"];
+//    
+//    if (!_fileTransfer) {
+//        _fileTransfer = [[XMPPOutgoingFileTransfer alloc]
+//                         initWithDispatchQueue:dispatch_get_main_queue()];
+//        [_fileTransfer activate:[BTXMPPTool sharedInstance].xmppStream];
+//        [_fileTransfer addDelegate:self delegateQueue:dispatch_get_main_queue()];
+////        _fileTransfer.disableIBB = YES;
+////        _fileTransfer.disableSOCKS5 = NO;
+//    }
+//    
+//    NSError *err;
+//    if (![_fileTransfer sendData:data
+//                           named:@"1.png"
+//                     toRecipient:jid
+//                     description:@"Baal's Soulstone, obviously."
+//                           error:&err]) {
+//    }
+    
+    
+    
+//    if (!_siFileTransfer) {
+//        NSString *sessionId = [[BTXMPPTool sharedInstance].xmppStream generateUUID];
+//        _siFileTransfer = [[XMPPSIFileTransfer alloc] initWithDispatchQueue:dispatch_get_main_queue()];
+//        [_siFileTransfer activate:[BTXMPPTool sharedInstance].xmppStream];
+//        _siFileTransfer.sid = sessionId;
+//        [_siFileTransfer addDelegate:self delegateQueue:dispatch_get_main_queue()];
+//    }
+//    
+//    [_siFileTransfer initiateFileTransferTo:jid withData:data];
+    
+}
+
+- (void)receivedImage:(NSData*)image from:(XMPPJID*)from {
+    NSLog(@"%@", from);
+}
+
+#pragma mark - XMPPOutgoingFileTransferDelegate Methods
+
+- (void)xmppOutgoingFileTransfer:(XMPPOutgoingFileTransfer *)sender
+                didFailWithError:(NSError *)error
+{
+//    DDLogInfo(@"Outgoing file transfer failed with error: %@", error);
+    NSLog(@"%@", error);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                    message:@"There was an error sending your file. See the logs."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+- (void)xmppOutgoingFileTransferDidSucceed:(XMPPOutgoingFileTransfer *)sender
+{
+//    DDLogVerbose(@"File transfer successful.");
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
+                                                    message:@"Your file was sent successfully."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)downloadFileWithOption:(NSDictionary *)paramDic

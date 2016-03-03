@@ -8,6 +8,7 @@
 
 #import "BTXMPPTool.h"
 #import "BTContacterModel.h"
+#import "DDLog.h"
 
 #define kSearchNamespace           @"jabber:iq:search"
 #define kSearchXDataNamespace      @"jabber:x:data"
@@ -49,7 +50,7 @@ static BTXMPPTool *xmppTool;
 {
     self = [super init];
     if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate) name:UIApplicationWillTerminateNotification object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate) name:UIApplicationWillTerminateNotification object:nil];
     }
     return self;
 }
@@ -60,7 +61,7 @@ static BTXMPPTool *xmppTool;
     self.xmppStream = [[XMPPStream alloc] init];
     self.xmppStream.hostName = ServerAddress;
     self.xmppStream.hostPort = ServerPort;
-    [self.xmppStream setKeepAliveInterval:30]; //心跳包时间
+    [self.xmppStream setKeepAliveInterval:200]; //心跳包时间
     //允许xmpp在后台运行
     self.xmppStream.enableBackgroundingOnSocket = YES;
     
@@ -77,20 +78,18 @@ static BTXMPPTool *xmppTool;
     [_xmppStreamManagement activate:self.xmppStream];
 
     //文件接收
-    _xmppIncomingFileTransfer = [[XMPPIncomingFileTransfer alloc] initWithDispatchQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)];
+    _xmppIncomingFileTransfer = [[XMPPIncomingFileTransfer alloc] initWithDispatchQueue:dispatch_get_main_queue()];
     [_xmppIncomingFileTransfer activate:self.xmppStream];
     [_xmppIncomingFileTransfer addDelegate:self delegateQueue:dispatch_get_main_queue()];
     //设置为自动接收文件
     [_xmppIncomingFileTransfer setAutoAcceptFileTransfers:YES];
-//    _xmppIncomingFileTransfer.disableIBB = YES;
-    _xmppIncomingFileTransfer.disableSOCKS5 = YES;
+//    _xmppIncomingFileTransfer.disableIBB = NO;
+//    _xmppIncomingFileTransfer.disableSOCKS5 = NO;
     
     //文件发送
-    _xmppOutgoingFileTransfer = [[XMPPOutgoingFileTransfer alloc] initWithDispatchQueue:dispatch_get_main_queue()];
-    [_xmppOutgoingFileTransfer activate:_xmppStream];
-    [_xmppOutgoingFileTransfer addDelegate:self delegateQueue:dispatch_get_main_queue()];
-//    _xmppOutgoingFileTransfer.disableIBB = YES;
-    _xmppOutgoingFileTransfer.disableSOCKS5 = YES;
+    _xmppIncomingFileTransfer = [XMPPIncomingFileTransfer new];
+    [_xmppIncomingFileTransfer activate:_xmppStream];
+    [_xmppIncomingFileTransfer addDelegate:self delegateQueue:dispatch_get_main_queue()];
     
     //添加电子名片模块
     _vCardStorage=[XMPPvCardCoreDataStorage sharedInstance];
@@ -530,38 +529,30 @@ static BTXMPPTool *xmppTool;
 
 #pragma mark ===== 文件接收=======
 
-//是否同意对方发文件
-- (void)xmppIncomingFileTransfer:(XMPPIncomingFileTransfer *)sender didReceiveSIOffer:(XMPPIQ *)offer
+- (void)xmppIncomingFileTransfer:(XMPPIncomingFileTransfer *)sender
+                didFailWithError:(NSError *)error
 {
-    NSLog(@"%s",__FUNCTION__);
-    [self.xmppIncomingFileTransfer acceptSIOffer:offer];
+    NSLog(@"%@", error);
 }
 
-//存储文件 音频为amr格式  图片为jpg格式
-- (void)xmppIncomingFileTransfer:(XMPPIncomingFileTransfer *)sender didSucceedWithData:(NSData *)data named:(NSString *)name
+- (void)xmppIncomingFileTransfer:(XMPPIncomingFileTransfer *)sender
+               didReceiveSIOffer:(XMPPIQ *)offer
 {
-    XMPPJID *jid = [sender.senderJID copy];
-    NSString *subject;
-    NSString *extension = [name pathExtension];
-    if ([@"amr" isEqualToString:extension]) {
-        subject = @"voice";
-    }else if([@"jpg" isEqualToString:extension]){
-        subject = @"picture";
-    }
+    [sender acceptSIOffer:offer];
+}
+
+- (void)xmppIncomingFileTransfer:(XMPPIncomingFileTransfer *)sender
+              didSucceedWithData:(NSData *)data
+                           named:(NSString *)name
+{
     
-    XMPPMessage *message = [XMPPMessage messageWithType:@"chat" to:jid];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask,
+                                                         YES);
+    NSString *fullPath = [[paths lastObject] stringByAppendingPathComponent:name];
+    NSLog(@"%@", fullPath);
+    [data writeToFile:fullPath options:0 error:nil];
     
-    [message addAttributeWithName:@"from" stringValue:sender.senderJID.bare];
-    [message addSubject:subject];
-    
-    NSString *path =  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    path = [path stringByAppendingPathComponent:[XMPPStream generateUUID]];
-    path = [path stringByAppendingPathExtension:extension];
-    [data writeToFile:path atomically:YES];
-    
-    [message addBody:path.lastPathComponent];
-    
-    [self.messageStroage archiveMessage:message outgoing:NO xmppStream:self.xmppStream];
 }
 
 #pragma mark - 文件发送代理
@@ -612,26 +603,26 @@ static BTXMPPTool *xmppTool;
     _xmppStream=nil;
 }
 
-#pragma mark -- terminate
-/**
- *  申请后台时间来清理下线的任务
- */
--(void)applicationWillTerminate
-{
-    UIApplication *app=[UIApplication sharedApplication];
-    UIBackgroundTaskIdentifier taskId;
-    
-    taskId=[app beginBackgroundTaskWithExpirationHandler:^(void){
-        [app endBackgroundTask:taskId];
-    }];
-    
-    if(taskId==UIBackgroundTaskInvalid){
-        return;
-    }
-    
-    //只能在主线层执行
-    [self.xmppStream disconnectAfterSending];
-}
+//#pragma mark -- terminate
+///**
+// *  申请后台时间来清理下线的任务
+// */
+//-(void)applicationWillTerminate
+//{
+//    UIApplication *app=[UIApplication sharedApplication];
+//    UIBackgroundTaskIdentifier taskId;
+//    
+//    taskId=[app beginBackgroundTaskWithExpirationHandler:^(void){
+//        [app endBackgroundTask:taskId];
+//    }];
+//    
+//    if(taskId==UIBackgroundTaskInvalid){
+//        return;
+//    }
+//    
+//    //只能在主线层执行
+//    [self.xmppStream disconnectAfterSending];
+//}
 
 -(void)dealloc
 {

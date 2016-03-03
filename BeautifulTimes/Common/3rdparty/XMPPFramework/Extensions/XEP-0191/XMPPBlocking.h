@@ -5,6 +5,7 @@
 #import "DDXML.h"
 #endif
 
+
 #define _XMPP_BLOCKING_H
 
 @class XMPPIQ;

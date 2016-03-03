@@ -4,6 +4,7 @@
 #import "DDXML.h"
 #endif
 
+
 /**
  * The XMPPResultSet class represents an <set xmlns='http://jabber.org/protocol/rsm'> element form XEP-0059.
  * It extends NSXMLElement.

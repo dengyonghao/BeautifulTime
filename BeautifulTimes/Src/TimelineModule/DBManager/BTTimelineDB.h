@@ -23,12 +23,12 @@
  *
  *  @return 数据库路径
  */
-- (NSString *) getDBPathWithFriendId:(NSString *)friendId;
+- (NSString *) getDBPath;
 
 /**
  *  创建数据库
  */
-- (void) createHistoryDBWithFriendId:(NSString *)friendId;
+- (void) createHistoryDB;
 
 /**
  *  添加一条记录
