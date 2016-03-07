@@ -37,4 +37,40 @@
  */
 - (void)addHistory:(BTTimelineModel *)message;
 
+/**
+ *  得到指定点滴
+ *
+ *  @param timelineID timelineId
+ *
+ *  @return 指定记录
+ */
+- (BTTimelineModel *) getTimelineByID:(NSInteger)timelineID;
+
+/**
+ *  更新记录
+ *
+ *  @param history    更新内容
+ *  @param timelineID timelineId
+ */
+- (void)updateHistory:(BTTimelineModel *)history ByTimelineID:(NSInteger)timelineID;
+
+/**
+ *  删除指定点滴
+ *
+ *  @param timelineID timelineId
+ */
+- (void)deleteHistoryByTimelineID:(NSInteger)timelineID;
+
+/**
+ *  删除所有点滴
+ */
+- (void)deleteAllHistory;
+
+/**
+ *  获得所有点滴
+ *
+ *  @return 点滴的arrary
+ */
+- (NSArray *)getAllHistory;
+
 @end

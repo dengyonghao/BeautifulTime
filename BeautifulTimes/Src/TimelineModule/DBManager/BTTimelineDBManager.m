@@ -7,7 +7,7 @@
 //
 
 #import "BTTimelineDBManager.h"
-#import "BTTimelineDB.m"
+#import "BTTimelineDB.h"
 
 static BTTimelineDBManager * timelineDBManager = nil;
 
@@ -30,8 +30,12 @@ static BTTimelineDBManager * timelineDBManager = nil;
 
 - (void)addTimelineMessage:(BTTimelineModel *)message {
     BTTimelineDB *db = [BTTimelineDB sharedInstance];
-    [db createHistoryDB];
     [db addHistory:message];
+}
+
+- (NSArray *)getAllTimelineMessage {
+    NSArray *array = [[BTTimelineDB sharedInstance] getAllHistory];
+    return array;
 }
 
 @end

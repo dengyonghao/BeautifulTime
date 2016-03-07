@@ -55,22 +55,23 @@ static const CGFloat itemWidth = 70.0f;
     [self.bodyScrollView addSubview:self.content];
     _audioSession = [AVAudioSession sharedInstance];
     isEditModel = NO;
+    self.bgImageView.image = BT_LOADIMAGE(@"com_bg_journal01_1242x2208");
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
     CGFloat OFFSET = 10.0f;
-    CGFloat BUTTONWIDTH = (BT_SCREEN_WIDTH - 2 * OFFSET) / 4;
     
     WS(weakSelf);
     
     [self.toolsView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.bodyView);
+        make.top.equalTo(weakSelf.bodyView).offset(5);
         make.left.equalTo(weakSelf.bodyView).offset(10);
         make.right.equalTo(weakSelf.bodyView).offset(-10);
         make.height.equalTo(@(80));
     }];
+    
     CGFloat offset = (BT_SCREEN_WIDTH - 20 - itemWidth * 4) / 5;
     [self.calendarView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(weakSelf.toolsView).offset(5);
@@ -114,14 +115,14 @@ static const CGFloat itemWidth = 70.0f;
     }];
     
     [self.bodyScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.toolsView).offset(BUTTONWIDTH + OFFSET);
+        make.top.equalTo(weakSelf.toolsView).offset(80 + OFFSET / 2);
         make.left.equalTo(weakSelf.bodyView).offset(OFFSET);
         make.right.equalTo(weakSelf.bodyView).offset(-OFFSET);
         make.bottom.equalTo(weakSelf.bodyView).offset(-OFFSET);
     }];
     
     [self.content mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.bodyView).offset(BUTTONWIDTH + OFFSET);
+        make.top.equalTo(weakSelf.bodyView).offset(80 + OFFSET / 2);
         make.left.equalTo(weakSelf.bodyView).offset(OFFSET);
         make.right.equalTo(weakSelf.bodyView).offset(-OFFSET);
         make.bottom.equalTo(weakSelf.bodyView).offset(-OFFSET);
@@ -333,7 +334,7 @@ static const CGFloat itemWidth = 70.0f;
     if (!_bodyScrollView) {
         _bodyScrollView = [[UIScrollView alloc] init];
         _bodyScrollView.contentSize = CGSizeMake(BT_SCREEN_WIDTH - 20, BT_SCREEN_HEIGHT);
-        [_content setBorderWithWidth:1 color:nil cornerRadius:6];
+        _bodyScrollView.backgroundColor = [UIColor clearColor];
     }
     return _bodyScrollView;
 }
@@ -344,7 +345,7 @@ static const CGFloat itemWidth = 70.0f;
         _content.delegate = self;
         _content.editable = NO;
         [_content setFont:BT_FONTSIZE(18)];
-        [_content setBorderWithWidth:1 color:nil cornerRadius:6];
+        _content.backgroundColor = [UIColor clearColor];
         if (self.journal.journalContent) {
             NSString *content = [[NSString alloc] initWithData:self.journal.journalContent encoding:NSUTF8StringEncoding];
             _content.text = content;

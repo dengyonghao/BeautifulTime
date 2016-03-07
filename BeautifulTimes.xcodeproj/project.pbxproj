@@ -13,10 +13,15 @@
 		6500E71E1BEF3935007158BF /* BTNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6500E71D1BEF3935007158BF /* BTNetManager.m */; };
 		650498941BFAD3F70072AE47 /* BTMyAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 650498931BFAD3F70072AE47 /* BTMyAlbumViewController.m */; };
 		650498971BFAD50B0072AE47 /* BTAlbumCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 650498961BFAD50B0072AE47 /* BTAlbumCollectionViewCell.m */; };
+		6506721E1C896C9300C64AA4 /* build-libidn.sh in Resources */ = {isa = PBXBuildFile; fileRef = 6506721A1C896C9300C64AA4 /* build-libidn.sh */; };
+		6506721F1C896C9300C64AA4 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6506721C1C896C9300C64AA4 /* libidn.a */; };
 		650687611C44961C008AC4DF /* BTAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 650687601C44961C008AC4DF /* BTAddFriendViewController.m */; };
 		650687641C452956008AC4DF /* BTSendTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 650687631C452956008AC4DF /* BTSendTextView.m */; };
 		650687671C452C8A008AC4DF /* BTChatToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 650687661C452C8A008AC4DF /* BTChatToolView.m */; };
 		6506876D1C452E3B008AC4DF /* BTMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6506876C1C452E3B008AC4DF /* BTMessageCell.m */; };
+		650759B81C897596003B835F /* BTTimelineDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 650759B51C897596003B835F /* BTTimelineDB.m */; };
+		650759B91C897596003B835F /* BTTimelineDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 650759B71C897596003B835F /* BTTimelineDBManager.m */; };
+		650759BC1C898250003B835F /* BTTimelineListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 650759BB1C898250003B835F /* BTTimelineListItem.m */; };
 		6508D5061C08504700E77DAB /* BTPhotoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508D5051C08504600E77DAB /* BTPhotoDetailsViewController.m */; };
 		650ABD831C2BD9EF004FBC89 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 650ABD821C2BD9EF004FBC89 /* libsqlite3.tbd */; };
 		65104E901C0D438800241323 /* BTAddAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65104E8F1C0D438800241323 /* BTAddAlbumViewController.m */; };
@@ -148,8 +153,6 @@
 		651453561C86ED900053A3E5 /* XMPPSRVResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 651452CD1C86ED900053A3E5 /* XMPPSRVResolver.m */; };
 		651453571C86ED900053A3E5 /* XMPPStringPrep.m in Sources */ = {isa = PBXBuildFile; fileRef = 651452CF1C86ED900053A3E5 /* XMPPStringPrep.m */; };
 		651453581C86ED900053A3E5 /* XMPPTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 651452D11C86ED900053A3E5 /* XMPPTimer.m */; };
-		651453591C86ED900053A3E5 /* build-libidn.sh in Resources */ = {isa = PBXBuildFile; fileRef = 651452D51C86ED900053A3E5 /* build-libidn.sh */; };
-		6514535A1C86ED900053A3E5 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 651452D71C86ED900053A3E5 /* libidn.a */; };
 		6514537F1C86EFC60053A3E5 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6514535D1C86EFC60053A3E5 /* GCDAsyncSocket.m */; };
 		651453801C86EFC60053A3E5 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 651453601C86EFC60053A3E5 /* DDAbstractDatabaseLogger.m */; };
 		651453811C86EFC60053A3E5 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 651453621C86EFC60053A3E5 /* DDASLLogger.m */; };
@@ -550,8 +553,6 @@
 		65F52A5B1BFDB4AA00351941 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F52A5A1BFDB4AA00351941 /* AVFoundation.framework */; };
 		65F52A5F1BFDC88700351941 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65F52A611BFDC88700351941 /* Localizable.strings */; };
 		65F6B4831C7EF9F800E112FE /* BTTimelineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F6B4821C7EF9F800E112FE /* BTTimelineModel.m */; };
-		65F6B4861C7EFA2700E112FE /* BTTimelineDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F6B4851C7EFA2700E112FE /* BTTimelineDB.m */; };
-		65F6B4891C7EFA6000E112FE /* BTTimelineDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F6B4881C7EFA6000E112FE /* BTTimelineDBManager.m */; };
 		65F816F01C71820C00A607F7 /* BTSearchUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F816EF1C71820B00A607F7 /* BTSearchUserCell.m */; };
 		65F816F51C71BB3C00A607F7 /* BTMessageListDBTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F816F41C71BB3C00A607F7 /* BTMessageListDBTool.m */; };
 		65F816F81C71BD1000A607F7 /* BTMessageListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F816F71C71BD1000A607F7 /* BTMessageListModel.m */; };
@@ -618,6 +619,10 @@
 		650498931BFAD3F70072AE47 /* BTMyAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTMyAlbumViewController.m; sourceTree = "<group>"; };
 		650498951BFAD50B0072AE47 /* BTAlbumCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAlbumCollectionViewCell.h; sourceTree = "<group>"; };
 		650498961BFAD50B0072AE47 /* BTAlbumCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAlbumCollectionViewCell.m; sourceTree = "<group>"; };
+		6506721A1C896C9300C64AA4 /* build-libidn.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "build-libidn.sh"; sourceTree = "<group>"; };
+		6506721B1C896C9300C64AA4 /* idn-int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "idn-int.h"; sourceTree = "<group>"; };
+		6506721C1C896C9300C64AA4 /* libidn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libidn.a; sourceTree = "<group>"; };
+		6506721D1C896C9300C64AA4 /* stringprep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringprep.h; sourceTree = "<group>"; };
 		6506875F1C44961C008AC4DF /* BTAddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAddFriendViewController.h; sourceTree = "<group>"; };
 		650687601C44961C008AC4DF /* BTAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAddFriendViewController.m; sourceTree = "<group>"; };
 		650687621C452955008AC4DF /* BTSendTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTSendTextView.h; sourceTree = "<group>"; };
@@ -626,6 +631,12 @@
 		650687661C452C8A008AC4DF /* BTChatToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTChatToolView.m; sourceTree = "<group>"; };
 		6506876B1C452E3B008AC4DF /* BTMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTMessageCell.h; sourceTree = "<group>"; };
 		6506876C1C452E3B008AC4DF /* BTMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTMessageCell.m; sourceTree = "<group>"; };
+		650759B41C897596003B835F /* BTTimelineDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTimelineDB.h; sourceTree = "<group>"; };
+		650759B51C897596003B835F /* BTTimelineDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTimelineDB.m; sourceTree = "<group>"; };
+		650759B61C897596003B835F /* BTTimelineDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTimelineDBManager.h; sourceTree = "<group>"; };
+		650759B71C897596003B835F /* BTTimelineDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTimelineDBManager.m; sourceTree = "<group>"; };
+		650759BA1C898250003B835F /* BTTimelineListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTimelineListItem.h; sourceTree = "<group>"; };
+		650759BB1C898250003B835F /* BTTimelineListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTimelineListItem.m; sourceTree = "<group>"; };
 		6508D5041C08504600E77DAB /* BTPhotoDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTPhotoDetailsViewController.h; sourceTree = "<group>"; };
 		6508D5051C08504600E77DAB /* BTPhotoDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTPhotoDetailsViewController.m; sourceTree = "<group>"; };
 		650ABD821C2BD9EF004FBC89 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -896,10 +907,6 @@
 		651452CF1C86ED900053A3E5 /* XMPPStringPrep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPStringPrep.m; sourceTree = "<group>"; };
 		651452D01C86ED900053A3E5 /* XMPPTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPTimer.h; sourceTree = "<group>"; };
 		651452D11C86ED900053A3E5 /* XMPPTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPTimer.m; sourceTree = "<group>"; };
-		651452D51C86ED900053A3E5 /* build-libidn.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "build-libidn.sh"; sourceTree = "<group>"; };
-		651452D61C86ED900053A3E5 /* idn-int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "idn-int.h"; sourceTree = "<group>"; };
-		651452D71C86ED900053A3E5 /* libidn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libidn.a; sourceTree = "<group>"; };
-		651452D81C86ED900053A3E5 /* stringprep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringprep.h; sourceTree = "<group>"; };
 		6514535C1C86EFC60053A3E5 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		6514535D1C86EFC60053A3E5 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		6514535F1C86EFC60053A3E5 /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
@@ -1472,10 +1479,6 @@
 		65F52A621BFDC8AB00351941 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		65F6B4811C7EF9F800E112FE /* BTTimelineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTimelineModel.h; sourceTree = "<group>"; };
 		65F6B4821C7EF9F800E112FE /* BTTimelineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTimelineModel.m; sourceTree = "<group>"; };
-		65F6B4841C7EFA2700E112FE /* BTTimelineDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTimelineDB.h; sourceTree = "<group>"; };
-		65F6B4851C7EFA2700E112FE /* BTTimelineDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTimelineDB.m; sourceTree = "<group>"; };
-		65F6B4871C7EFA6000E112FE /* BTTimelineDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTimelineDBManager.h; sourceTree = "<group>"; };
-		65F6B4881C7EFA6000E112FE /* BTTimelineDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTimelineDBManager.m; sourceTree = "<group>"; };
 		65F816EE1C71820B00A607F7 /* BTSearchUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTSearchUserCell.h; sourceTree = "<group>"; };
 		65F816EF1C71820B00A607F7 /* BTSearchUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTSearchUserCell.m; sourceTree = "<group>"; };
 		65F816F31C71BB3C00A607F7 /* BTMessageListDBTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTMessageListDBTool.h; sourceTree = "<group>"; };
@@ -1561,9 +1564,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6514535A1C86ED900053A3E5 /* libidn.a in Frameworks */,
-				65F9F4781C51E26A002C4A24 /* libicucore.tbd in Frameworks */,
 				650ABD831C2BD9EF004FBC89 /* libsqlite3.tbd in Frameworks */,
+				6506721F1C896C9300C64AA4 /* libidn.a in Frameworks */,
+				65F9F4781C51E26A002C4A24 /* libicucore.tbd in Frameworks */,
 				B4FABC0D1C02115500213AB7 /* libresolv.tbd in Frameworks */,
 				65F52A5B1BFDB4AA00351941 /* AVFoundation.framework in Frameworks */,
 				65DBD0C01BD77D1F00784DAC /* Security.framework in Frameworks */,
@@ -1651,6 +1654,17 @@
 				65104E8F1C0D438800241323 /* BTAddAlbumViewController.m */,
 			);
 			path = ViewControll;
+			sourceTree = "<group>";
+		};
+		650672191C896C9300C64AA4 /* libidn */ = {
+			isa = PBXGroup;
+			children = (
+				6506721A1C896C9300C64AA4 /* build-libidn.sh */,
+				6506721B1C896C9300C64AA4 /* idn-int.h */,
+				6506721C1C896C9300C64AA4 /* libidn.a */,
+				6506721D1C896C9300C64AA4 /* stringprep.h */,
+			);
+			path = libidn;
 			sourceTree = "<group>";
 		};
 		651451841C86ED8F0053A3E5 /* Authentication */ = {
@@ -2443,11 +2457,11 @@
 		651452D21C86ED900053A3E5 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				650672191C896C9300C64AA4 /* libidn */,
 				6514535B1C86EFC60053A3E5 /* CocoaAsyncSocket */,
 				6514535E1C86EFC60053A3E5 /* CocoaLumberjack */,
 				651453721C86EFC60053A3E5 /* KissXML */,
 				651452D31C86ED900053A3E5 /* facebook-ios-sdk */,
-				651452D41C86ED900053A3E5 /* libidn */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -2457,17 +2471,6 @@
 			children = (
 			);
 			path = "facebook-ios-sdk";
-			sourceTree = "<group>";
-		};
-		651452D41C86ED900053A3E5 /* libidn */ = {
-			isa = PBXGroup;
-			children = (
-				651452D51C86ED900053A3E5 /* build-libidn.sh */,
-				651452D61C86ED900053A3E5 /* idn-int.h */,
-				651452D71C86ED900053A3E5 /* libidn.a */,
-				651452D81C86ED900053A3E5 /* stringprep.h */,
-			);
-			path = libidn;
 			sourceTree = "<group>";
 		};
 		6514535B1C86EFC60053A3E5 /* CocoaAsyncSocket */ = {
@@ -3579,12 +3582,12 @@
 		65F6B47E1C7EF9CE00E112FE /* DBManager */ = {
 			isa = PBXGroup;
 			children = (
+				650759B41C897596003B835F /* BTTimelineDB.h */,
+				650759B51C897596003B835F /* BTTimelineDB.m */,
+				650759B61C897596003B835F /* BTTimelineDBManager.h */,
+				650759B71C897596003B835F /* BTTimelineDBManager.m */,
 				65F6B4811C7EF9F800E112FE /* BTTimelineModel.h */,
 				65F6B4821C7EF9F800E112FE /* BTTimelineModel.m */,
-				65F6B4841C7EFA2700E112FE /* BTTimelineDB.h */,
-				65F6B4851C7EFA2700E112FE /* BTTimelineDB.m */,
-				65F6B4871C7EFA6000E112FE /* BTTimelineDBManager.h */,
-				65F6B4881C7EFA6000E112FE /* BTTimelineDBManager.m */,
 			);
 			path = DBManager;
 			sourceTree = "<group>";
@@ -3601,6 +3604,8 @@
 			children = (
 				6520FBD71C87EA7D00939D4E /* BTTimelineToolView.h */,
 				6520FBD81C87EA7D00939D4E /* BTTimelineToolView.m */,
+				650759BA1C898250003B835F /* BTTimelineListItem.h */,
+				650759BB1C898250003B835F /* BTTimelineListItem.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4174,7 +4179,6 @@
 				6517B4861C50B4B00033B6A4 /* lxh_xianghumobai.gif in Resources */,
 				6517B3C81C50B4AF0033B6A4 /* d_beishang@2x.png in Resources */,
 				6517B3F01C50B4AF0033B6A4 /* d_touxiao@2x.png in Resources */,
-				651453591C86ED900053A3E5 /* build-libidn.sh in Resources */,
 				6517B4591C50B4B00033B6A4 /* lxh_juhan@2x.png in Resources */,
 				6517B4951C50B4B00033B6A4 /* lxh_youyali.gif in Resources */,
 				6517B4321C50B4B00033B6A4 /* lxh_bengkui@2x.png in Resources */,
@@ -4200,6 +4204,7 @@
 				6517B3D11C50B4AF0033B6A4 /* d_feizao@2x.png in Resources */,
 				6517B3CF1C50B4AF0033B6A4 /* d_ding@2x.png in Resources */,
 				6517B4201C50B4B00033B6A4 /* o_zhaoxiangji@2x.png in Resources */,
+				6506721E1C896C9300C64AA4 /* build-libidn.sh in Resources */,
 				6517B4451C50B4B00033B6A4 /* lxh_haobang.gif in Resources */,
 				6517B4851C50B4B00033B6A4 /* lxh_tuijian@2x.png in Resources */,
 				6517B4A31C50B4B00033B6A4 /* lxh_zhuanfa@2x.png in Resources */,
@@ -4357,6 +4362,7 @@
 				65F47DD51C3E82E8008117BC /* BTTabBarView.m in Sources */,
 				65DCFE521BD348F400DBD0DE /* BTBaseNavigationController.m in Sources */,
 				652336711C4F789600557D9F /* MJConst.m in Sources */,
+				650759B81C897596003B835F /* BTTimelineDB.m in Sources */,
 				65A93BC01C7C84B700068F94 /* UIImageView+HighlightedWebCache.m in Sources */,
 				651453191C86ED900053A3E5 /* XMPPvCardTempAdr.m in Sources */,
 				6540EB351C7AB89F00F2CF4C /* BTUserInfoModel.m in Sources */,
@@ -4431,6 +4437,7 @@
 				651453541C86ED900053A3E5 /* RFImageToDataTransformer.m in Sources */,
 				65A11DDD1C7AE63B00738DF0 /* BTEditUserInfoCell.m in Sources */,
 				65A93BBD1C7C84B700068F94 /* UIImage+GIF.m in Sources */,
+				650759BC1C898250003B835F /* BTTimelineListItem.m in Sources */,
 				654A502F1BEF2D6A0038CD47 /* BTSelectSiteViewController.m in Sources */,
 				B44623671C7CA7F600D44A62 /* MBProgressHUD+MJ.m in Sources */,
 				651452DC1C86ED900053A3E5 /* XMPPDigestMD5Authentication.m in Sources */,
@@ -4440,7 +4447,6 @@
 				65A93B8A1C7C84B700068F94 /* AFURLResponseSerialization.m in Sources */,
 				6514538C1C86EFC60053A3E5 /* DDXMLNode.m in Sources */,
 				65DBCF041BD7554700784DAC /* BTJournalListViewController.m in Sources */,
-				65F6B4861C7EFA2700E112FE /* BTTimelineDB.m in Sources */,
 				651453161C86ED900053A3E5 /* XMPPvCardCoreDataStorageObject.m in Sources */,
 				651453101C86ED900053A3E5 /* XMPPMessage+XEP0045.m in Sources */,
 				65E234191BD3BAB60041E719 /* BTBaseViewController.m in Sources */,
@@ -4505,6 +4511,7 @@
 				651453201C86ED900053A3E5 /* NSXMLElement+XEP_0059.m in Sources */,
 				655C1F6B1C73085300833CDC /* BTAboutMeCellModel.m in Sources */,
 				6508D5061C08504700E77DAB /* BTPhotoDetailsViewController.m in Sources */,
+				650759B91C897596003B835F /* BTTimelineDBManager.m in Sources */,
 				651453841C86EFC60053A3E5 /* DDTTYLogger.m in Sources */,
 				6514530C1C86ED900053A3E5 /* XMPPRoomOccupantHybridMemoryStorageObject.m in Sources */,
 				6514530E1C86ED900053A3E5 /* XMPPRoomMessageMemoryStorageObject.m in Sources */,
@@ -4569,7 +4576,6 @@
 				651452F31C86ED900053A3E5 /* XMPPProcessOne.m in Sources */,
 				6563A7111C20009600D8D1FA /* BTJournalManager.m in Sources */,
 				651452E31C86ED900053A3E5 /* NSXMLElement+XMPP.m in Sources */,
-				65F6B4891C7EFA6000E112FE /* BTTimelineDBManager.m in Sources */,
 				65FBFD0A1C4DD699008D9FA3 /* BTChattingHistoryDB.m in Sources */,
 				651452E21C86ED900053A3E5 /* NSNumber+XMPP.m in Sources */,
 				65F47DE21C3E8F48008117BC /* BTIMAboutMeViewController.m in Sources */,
@@ -4811,10 +4817,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/BeautifulTimes/Common/3rdparty/XMPPFramework/libidn",
-					"$(PROJECT_DIR)/BeautifulTimes/Common/3rdparty/XMPPFramework/VoiceLib/VoiceConvert/lib",
 					"$(PROJECT_DIR)/BeautifulTimes/Common/3rdparty/XMPPFramework/Vendor/libidn",
-					"$(PROJECT_DIR)/BeautifulTimes/Common/3rdparty/VoiceLib/VoiceConvert/lib",
 				);
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_BUNDLE_IDENTIFIER = "DYH.$(PRODUCT_NAME:rfc1034identifier)";
@@ -4844,10 +4847,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/BeautifulTimes/Common/3rdparty/XMPPFramework/libidn",
-					"$(PROJECT_DIR)/BeautifulTimes/Common/3rdparty/XMPPFramework/VoiceLib/VoiceConvert/lib",
 					"$(PROJECT_DIR)/BeautifulTimes/Common/3rdparty/XMPPFramework/Vendor/libidn",
-					"$(PROJECT_DIR)/BeautifulTimes/Common/3rdparty/VoiceLib/VoiceConvert/lib",
 				);
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_BUNDLE_IDENTIFIER = "DYH.$(PRODUCT_NAME:rfc1034identifier)";

@@ -22,7 +22,7 @@ static BTTimelineDB * timelineDB = nil;
 + (BTTimelineDB *) sharedInstance {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        timelineDB = [[BTTimelineDB alloc]init];
+        timelineDB = [[BTTimelineDB alloc] init];
     });
     return timelineDB;
 }
@@ -30,24 +30,24 @@ static BTTimelineDB * timelineDB = nil;
 - (BTTimelineDB *) init
 {
     if (self = [super init]) {
+        [self createHistoryDB];
     }
     return self;
 }
 
 - (NSString *)getDBPath {
     
-    NSString *currentUser = [[NSUserDefaults standardUserDefaults] valueForKey:userID];
-    
-    if (!currentUser) {
-        return nil;
-    }
-    NSString *path = [BTTool getLibraryDirectory];
-    NSString *userSavePath = [NSString stringWithFormat:@"BTCaches/%@", currentUser];
+//    NSString *currentUser = [[NSUserDefaults standardUserDefaults] valueForKey:userID];
+//    
+//    if (!currentUser) {
+//        return nil;
+//    }
+    NSString *path = [BTTool getDocumentDirectory];
+    NSString *userSavePath = [NSString stringWithFormat:@"BTCaches/BTTimeline"];
     path = [path stringByAppendingPathComponent:userSavePath];
     if ([BTTool createDirectory:path]) {
-        path = [path stringByAppendingPathComponent:currentUser];
         if ([BTTool createDirectory:path]) {
-            path = [path stringByAppendingPathComponent:@"BTTimeline"];
+            path = [path stringByAppendingPathComponent:@"bttimeline.db"];
             return path;
         }
         else {
@@ -67,7 +67,7 @@ static BTTimelineDB * timelineDB = nil;
     self.queue = [FMDatabaseQueue databaseQueueWithPath:path];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:path]) {
+    if ([fileManager fileExistsAtPath:[path stringByAppendingPathComponent:@"bttimeline.db"]]) {
         return;
     }
     
@@ -87,6 +87,73 @@ static BTTimelineDB * timelineDB = nil;
         NSString *sql = @"insert into bttimeline (timelineContent, timelineDate, weather, site, photos, record, friends) values (?, ?, ?, ?, ?, ?, ?)";
         [db executeUpdate:sql, message.timelineContent, message.timelineDate, message.weather, message.site, message.photos, message.record, message.friends];
     }];
+}
+
+- (BTTimelineModel *) getTimelineByID:(NSInteger)timelineID{
+    __block BTTimelineModel * history = nil;
+    [self.queue inDatabase:^(FMDatabase *db) {
+        
+        FMResultSet *rs = [db executeQuery:@"SELECT * FROM bttimeline WHERE timelineId = ?",[NSNumber numberWithInteger:timelineID]];
+        while ([rs next]) {
+            history = [self rsToModel:rs];
+            break;
+        }
+        [rs close];
+    }];
+    
+    return history;
+}
+
+
+- (void)updateHistory:(BTTimelineModel *)history ByTimelineID:(NSInteger)timelineID {
+    [self.queue inDatabase:^(FMDatabase *db) {
+        [db executeUpdate:@"UPDATE bttimeline SET timelineContent = ?, timelineDate = ?, weather = ?, site = ?, photos = ?, record = ?, friends = ? WHERE timelineId = ?", history.timelineContent, history.timelineDate, history.weather, history.site, history.photos, history.record, history.friends ,[NSNumber numberWithInteger:timelineID]];
+    }];
+}
+
+- (void)deleteHistoryByTimelineID:(NSInteger)timelineID {
+    [self.queue inDatabase:^(FMDatabase *db) {
+        [db executeUpdate:@"DELETE FROM bttimeline WHERE timelineId = ?",[NSNumber numberWithInteger:timelineID]];
+    }];
+}
+
+/**
+ *  删除所有搜索记录
+ */
+- (void)deleteAllHistory
+{
+    [self.queue inDatabase:^(FMDatabase *db) {
+        [db executeUpdate:@"DELETE FROM bttimeline"];
+    }];
+}
+
+- (NSArray *)getAllHistory
+{
+    __block NSMutableArray *historys = [[NSMutableArray alloc] init];
+    [self.queue inDatabase:^(FMDatabase *db) {
+        NSLog(@"start to get all history");
+        FMResultSet *rs = [db executeQuery:@"SELECT * FROM bttimeline"];
+        while ([rs next]) {
+            [historys addObject:[self rsToModel:rs]];
+        }
+        [rs close];
+    }];
+    NSLog(@"end to get all history");
+    return historys;
+}
+
+- (BTTimelineModel *)rsToModel:(FMResultSet*)rs
+{
+    BTTimelineModel * model = [[BTTimelineModel alloc] init];
+    model.timelineId = [NSNumber numberWithInt:[rs intForColumn:@"timelineId"]];
+    model.timelineContent = [rs dataForColumn:@"timelineContent"];
+    model.timelineDate = [rs dateForColumn:@"timelineDate"];
+    model.weather = [rs dataForColumn:@"weather"];
+    model.site = [rs stringForColumn:@"site"];
+    model.photos = [rs stringForColumn:@"photos"];
+    model.record = [rs stringForColumn:@"record"];
+    model.friends = [rs stringForColumn:@"friends"];
+    return model;
 }
 
 - (void) dealloc {

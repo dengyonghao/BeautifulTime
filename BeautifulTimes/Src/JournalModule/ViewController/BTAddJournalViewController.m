@@ -67,7 +67,6 @@ static const CGFloat itemWidth = 70;
     [super viewDidLayoutSubviews];
     
     CGFloat OFFSET = 10.0f;
-    CGFloat BUTTONWIDTH = (BT_SCREEN_WIDTH - 2 * OFFSET) / 4;
     
     WS(weakSelf);
     

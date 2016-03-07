@@ -20,4 +20,11 @@
  */
 - (void)addTimelineMessage:(BTTimelineModel *)message;
 
+/**
+ *  得到所以有记录
+ *
+ *  @return 所有记录的array
+ */
+- (NSArray *)getAllTimelineMessage;
+
 @end

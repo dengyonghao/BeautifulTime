@@ -41,7 +41,7 @@ static BTChattingHistoryDB * historyDB = nil;
     if (!friendId) {
         return nil;
     }
-    NSString *path = [BTTool getLibraryDirectory];
+    NSString *path = [BTTool getDocumentDirectory];
     NSString *userSavePath = [NSString stringWithFormat:@"BTCaches/%@", currentUser];
     path = [path stringByAppendingPathComponent:userSavePath];
     if ([BTTool createDirectory:path]) {

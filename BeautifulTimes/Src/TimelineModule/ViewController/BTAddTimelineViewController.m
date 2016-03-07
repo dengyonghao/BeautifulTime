@@ -9,6 +9,9 @@
 #import "BTAddTimelineViewController.h"
 #import "BTAddressBookViewController.h"
 #import "BTTimelineToolView.h"
+#import "BTTimelineModel.h"
+#import "BTTimelineDBManager.h"
+#import "BTHomePageViewController.h"
 
 @interface BTAddTimelineViewController ()
 
@@ -91,7 +94,16 @@
 
 
 - (void)finishButtonClick {
-
+    BTTimelineModel *model = [[BTTimelineModel alloc] init];
+    model.timelineContent = [self.contentTextView.text dataUsingEncoding:NSUTF8StringEncoding];
+    model.timelineDate = [NSDate date];
+    [[BTTimelineDBManager sharedInstance] addTimelineMessage:model];
+    
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[BTHomePageViewController class]]) {
+            [self.navigationController popToViewController:controller animated:YES];
+        }
+    }
 }
 
 - (BTTimelineToolView *)toolView {
