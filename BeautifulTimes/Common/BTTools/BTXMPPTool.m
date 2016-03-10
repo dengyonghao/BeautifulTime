@@ -167,6 +167,7 @@ static BTXMPPTool *xmppTool;
 -(void)xmppStreamDidAuthenticate:(XMPPStream *)sender
 {
     NSLog(@"验证成功");
+    LogInfo(@"验证成功");
     //发送在线通知给服务器，服务器才会将离线消息推送过来
     [self sendOnlineMessage];
     

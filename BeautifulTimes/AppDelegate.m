@@ -14,6 +14,9 @@
 #import "BTBaseNavigationController.h"
 #import "BTHomePageViewController.h"
 #import "Journal.h"
+#import "DDRemoteLogger.h"
+#import "DDLog.h"
+#import "DDTTYLogger.h"
 
 static AppDelegate *singleton = nil;
 
@@ -36,6 +39,20 @@ static AppDelegate *singleton = nil;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    // 开启日志文件记录，主要用于调试，默认关闭
+    if (1)
+    {
+        [DDTTYLogger sharedInstance].colorsEnabled = YES;
+        [DDLog addLogger:[DDTTYLogger sharedInstance]]; // TTY = Xcode console
+        //DDFileLogger *fileLogger = [[DDFileLogger alloc] init]; // File Logger
+        //fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
+        //fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
+        //[DDLog addLogger:fileLogger];
+        DDRemoteLogger *remoteLogger = [[DDRemoteLogger alloc] init]; // Remote Logger
+        [DDLog addLogger:remoteLogger];
+    }
+    
     singleton = self;
     if (![[NSUserDefaults standardUserDefaults] boolForKey:firstLaunch]) {
         [self enterGuidePage];

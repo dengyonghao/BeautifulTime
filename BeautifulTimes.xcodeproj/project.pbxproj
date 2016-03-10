@@ -154,15 +154,6 @@
 		651453571C86ED900053A3E5 /* XMPPStringPrep.m in Sources */ = {isa = PBXBuildFile; fileRef = 651452CF1C86ED900053A3E5 /* XMPPStringPrep.m */; };
 		651453581C86ED900053A3E5 /* XMPPTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 651452D11C86ED900053A3E5 /* XMPPTimer.m */; };
 		6514537F1C86EFC60053A3E5 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6514535D1C86EFC60053A3E5 /* GCDAsyncSocket.m */; };
-		651453801C86EFC60053A3E5 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 651453601C86EFC60053A3E5 /* DDAbstractDatabaseLogger.m */; };
-		651453811C86EFC60053A3E5 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 651453621C86EFC60053A3E5 /* DDASLLogger.m */; };
-		651453821C86EFC60053A3E5 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 651453641C86EFC60053A3E5 /* DDFileLogger.m */; };
-		651453831C86EFC60053A3E5 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 651453671C86EFC60053A3E5 /* DDLog.m */; };
-		651453841C86EFC60053A3E5 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 651453691C86EFC60053A3E5 /* DDTTYLogger.m */; };
-		651453851C86EFC60053A3E5 /* DDContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6514536C1C86EFC60053A3E5 /* DDContextFilterLogFormatter.m */; };
-		651453861C86EFC60053A3E5 /* DDDispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6514536E1C86EFC60053A3E5 /* DDDispatchQueueLogFormatter.m */; };
-		651453871C86EFC60053A3E5 /* DDMultiFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 651453701C86EFC60053A3E5 /* DDMultiFormatter.m */; };
-		651453881C86EFC60053A3E5 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 651453711C86EFC60053A3E5 /* README.txt */; };
 		651453891C86EFC60053A3E5 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 651453751C86EFC60053A3E5 /* NSString+DDXML.m */; };
 		6514538A1C86EFC60053A3E5 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 651453781C86EFC60053A3E5 /* DDXMLDocument.m */; };
 		6514538B1C86EFC60053A3E5 /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6514537A1C86EFC60053A3E5 /* DDXMLElement.m */; };
@@ -432,6 +423,19 @@
 		652608531C04604D00370630 /* BTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 652608521C04604D00370630 /* BTAttributedLabel.m */; };
 		652608591C0464CC00370630 /* NSMutableAttributedString+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 652608581C0464CC00370630 /* NSMutableAttributedString+Addition.m */; };
 		6533DF4F1C5754060074A15E /* BTChatMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6533DF4E1C5754060074A15E /* BTChatMessageModel.m */; };
+		653FB6CA1C917BF90028086F /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 653FB6C81C917BF90028086F /* GCDAsyncUdpSocket.m */; };
+		653FB6F21C9199580028086F /* CLIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 653FB6D21C9199580028086F /* CLIColor.m */; };
+		653FB6F41C9199580028086F /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 653FB6D61C9199580028086F /* DDAbstractDatabaseLogger.m */; };
+		653FB6F51C9199580028086F /* DDASLLogCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 653FB6D81C9199580028086F /* DDASLLogCapture.m */; };
+		653FB6F61C9199580028086F /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 653FB6DA1C9199580028086F /* DDASLLogger.m */; };
+		653FB6F71C9199580028086F /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 653FB6DD1C9199580028086F /* DDFileLogger.m */; };
+		653FB6F81C9199580028086F /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 653FB6E11C9199580028086F /* DDLog.m */; };
+		653FB6F91C9199580028086F /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 653FB6E41C9199580028086F /* DDTTYLogger.m */; };
+		653FB6FA1C9199580028086F /* DDContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 653FB6E71C9199580028086F /* DDContextFilterLogFormatter.m */; };
+		653FB6FB1C9199580028086F /* DDDispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 653FB6E91C9199580028086F /* DDDispatchQueueLogFormatter.m */; };
+		653FB6FC1C9199580028086F /* DDMultiFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 653FB6EB1C9199580028086F /* DDMultiFormatter.m */; };
+		653FB6FD1C9199580028086F /* CLMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 653FB6EE1C9199580028086F /* CLMessage.m */; };
+		653FB6FE1C9199580028086F /* DDRemoteLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 653FB6F11C9199580028086F /* DDRemoteLogger.m */; };
 		6540EB321C7AB77400F2CF4C /* BTIMMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6540EB311C7AB77400F2CF4C /* BTIMMyInfoViewController.m */; };
 		6540EB351C7AB89F00F2CF4C /* BTUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6540EB341C7AB89F00F2CF4C /* BTUserInfoModel.m */; };
 		6543651F1C280A08003F8D89 /* BTIMTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6543651E1C280A08003F8D89 /* BTIMTabBarController.m */; };
@@ -909,24 +913,6 @@
 		651452D11C86ED900053A3E5 /* XMPPTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPTimer.m; sourceTree = "<group>"; };
 		6514535C1C86EFC60053A3E5 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		6514535D1C86EFC60053A3E5 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
-		6514535F1C86EFC60053A3E5 /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
-		651453601C86EFC60053A3E5 /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAbstractDatabaseLogger.m; sourceTree = "<group>"; };
-		651453611C86EFC60053A3E5 /* DDASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDASLLogger.h; sourceTree = "<group>"; };
-		651453621C86EFC60053A3E5 /* DDASLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDASLLogger.m; sourceTree = "<group>"; };
-		651453631C86EFC60053A3E5 /* DDFileLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDFileLogger.h; sourceTree = "<group>"; };
-		651453641C86EFC60053A3E5 /* DDFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDFileLogger.m; sourceTree = "<group>"; };
-		651453651C86EFC60053A3E5 /* DDLog+LOGV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DDLog+LOGV.h"; sourceTree = "<group>"; };
-		651453661C86EFC60053A3E5 /* DDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLog.h; sourceTree = "<group>"; };
-		651453671C86EFC60053A3E5 /* DDLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLog.m; sourceTree = "<group>"; };
-		651453681C86EFC60053A3E5 /* DDTTYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDTTYLogger.h; sourceTree = "<group>"; };
-		651453691C86EFC60053A3E5 /* DDTTYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDTTYLogger.m; sourceTree = "<group>"; };
-		6514536B1C86EFC60053A3E5 /* DDContextFilterLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDContextFilterLogFormatter.h; sourceTree = "<group>"; };
-		6514536C1C86EFC60053A3E5 /* DDContextFilterLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDContextFilterLogFormatter.m; sourceTree = "<group>"; };
-		6514536D1C86EFC60053A3E5 /* DDDispatchQueueLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDDispatchQueueLogFormatter.h; sourceTree = "<group>"; };
-		6514536E1C86EFC60053A3E5 /* DDDispatchQueueLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDDispatchQueueLogFormatter.m; sourceTree = "<group>"; };
-		6514536F1C86EFC60053A3E5 /* DDMultiFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDMultiFormatter.h; sourceTree = "<group>"; };
-		651453701C86EFC60053A3E5 /* DDMultiFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMultiFormatter.m; sourceTree = "<group>"; };
-		651453711C86EFC60053A3E5 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		651453741C86EFC60053A3E5 /* NSString+DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DDXML.h"; sourceTree = "<group>"; };
 		651453751C86EFC60053A3E5 /* NSString+DDXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DDXML.m"; sourceTree = "<group>"; };
 		651453761C86EFC60053A3E5 /* DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXML.h; sourceTree = "<group>"; };
@@ -1229,6 +1215,38 @@
 		652608581C0464CC00370630 /* NSMutableAttributedString+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+Addition.m"; sourceTree = "<group>"; };
 		6533DF4D1C5754060074A15E /* BTChatMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTChatMessageModel.h; sourceTree = "<group>"; };
 		6533DF4E1C5754060074A15E /* BTChatMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTChatMessageModel.m; sourceTree = "<group>"; };
+		653FB6C71C917BF90028086F /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		653FB6C81C917BF90028086F /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
+		653FB6D11C9199580028086F /* CLIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLIColor.h; sourceTree = "<group>"; };
+		653FB6D21C9199580028086F /* CLIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLIColor.m; sourceTree = "<group>"; };
+		653FB6D31C9199580028086F /* CocoaLumberjack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaLumberjack.h; sourceTree = "<group>"; };
+		653FB6D51C9199580028086F /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
+		653FB6D61C9199580028086F /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAbstractDatabaseLogger.m; sourceTree = "<group>"; };
+		653FB6D71C9199580028086F /* DDASLLogCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDASLLogCapture.h; sourceTree = "<group>"; };
+		653FB6D81C9199580028086F /* DDASLLogCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDASLLogCapture.m; sourceTree = "<group>"; };
+		653FB6D91C9199580028086F /* DDASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDASLLogger.h; sourceTree = "<group>"; };
+		653FB6DA1C9199580028086F /* DDASLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDASLLogger.m; sourceTree = "<group>"; };
+		653FB6DB1C9199580028086F /* DDAssertMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAssertMacros.h; sourceTree = "<group>"; };
+		653FB6DC1C9199580028086F /* DDFileLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDFileLogger.h; sourceTree = "<group>"; };
+		653FB6DD1C9199580028086F /* DDFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDFileLogger.m; sourceTree = "<group>"; };
+		653FB6DE1C9199580028086F /* DDLegacyMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLegacyMacros.h; sourceTree = "<group>"; };
+		653FB6DF1C9199580028086F /* DDLog+LOGV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DDLog+LOGV.h"; sourceTree = "<group>"; };
+		653FB6E01C9199580028086F /* DDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLog.h; sourceTree = "<group>"; };
+		653FB6E11C9199580028086F /* DDLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLog.m; sourceTree = "<group>"; };
+		653FB6E21C9199580028086F /* DDLogMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLogMacros.h; sourceTree = "<group>"; };
+		653FB6E31C9199580028086F /* DDTTYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDTTYLogger.h; sourceTree = "<group>"; };
+		653FB6E41C9199580028086F /* DDTTYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDTTYLogger.m; sourceTree = "<group>"; };
+		653FB6E61C9199580028086F /* DDContextFilterLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDContextFilterLogFormatter.h; sourceTree = "<group>"; };
+		653FB6E71C9199580028086F /* DDContextFilterLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDContextFilterLogFormatter.m; sourceTree = "<group>"; };
+		653FB6E81C9199580028086F /* DDDispatchQueueLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDDispatchQueueLogFormatter.h; sourceTree = "<group>"; };
+		653FB6E91C9199580028086F /* DDDispatchQueueLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDDispatchQueueLogFormatter.m; sourceTree = "<group>"; };
+		653FB6EA1C9199580028086F /* DDMultiFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDMultiFormatter.h; sourceTree = "<group>"; };
+		653FB6EB1C9199580028086F /* DDMultiFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMultiFormatter.m; sourceTree = "<group>"; };
+		653FB6ED1C9199580028086F /* CLMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLMessage.h; sourceTree = "<group>"; };
+		653FB6EE1C9199580028086F /* CLMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLMessage.m; sourceTree = "<group>"; };
+		653FB6EF1C9199580028086F /* CLMessageDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLMessageDefine.h; sourceTree = "<group>"; };
+		653FB6F01C9199580028086F /* DDRemoteLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDRemoteLogger.h; sourceTree = "<group>"; };
+		653FB6F11C9199580028086F /* DDRemoteLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDRemoteLogger.m; sourceTree = "<group>"; };
 		6540EB301C7AB77400F2CF4C /* BTIMMyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTIMMyInfoViewController.h; sourceTree = "<group>"; };
 		6540EB311C7AB77400F2CF4C /* BTIMMyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTIMMyInfoViewController.m; sourceTree = "<group>"; };
 		6540EB331C7AB89F00F2CF4C /* BTUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTUserInfoModel.h; sourceTree = "<group>"; };
@@ -2457,9 +2475,9 @@
 		651452D21C86ED900053A3E5 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				653FB6CF1C9199580028086F /* Lumberjack */,
 				650672191C896C9300C64AA4 /* libidn */,
 				6514535B1C86EFC60053A3E5 /* CocoaAsyncSocket */,
-				6514535E1C86EFC60053A3E5 /* CocoaLumberjack */,
 				651453721C86EFC60053A3E5 /* KissXML */,
 				651452D31C86ED900053A3E5 /* facebook-ios-sdk */,
 			);
@@ -2480,39 +2498,6 @@
 				6514535D1C86EFC60053A3E5 /* GCDAsyncSocket.m */,
 			);
 			path = CocoaAsyncSocket;
-			sourceTree = "<group>";
-		};
-		6514535E1C86EFC60053A3E5 /* CocoaLumberjack */ = {
-			isa = PBXGroup;
-			children = (
-				6514535F1C86EFC60053A3E5 /* DDAbstractDatabaseLogger.h */,
-				651453601C86EFC60053A3E5 /* DDAbstractDatabaseLogger.m */,
-				651453611C86EFC60053A3E5 /* DDASLLogger.h */,
-				651453621C86EFC60053A3E5 /* DDASLLogger.m */,
-				651453631C86EFC60053A3E5 /* DDFileLogger.h */,
-				651453641C86EFC60053A3E5 /* DDFileLogger.m */,
-				651453651C86EFC60053A3E5 /* DDLog+LOGV.h */,
-				651453661C86EFC60053A3E5 /* DDLog.h */,
-				651453671C86EFC60053A3E5 /* DDLog.m */,
-				651453681C86EFC60053A3E5 /* DDTTYLogger.h */,
-				651453691C86EFC60053A3E5 /* DDTTYLogger.m */,
-				6514536A1C86EFC60053A3E5 /* Extensions */,
-			);
-			path = CocoaLumberjack;
-			sourceTree = "<group>";
-		};
-		6514536A1C86EFC60053A3E5 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				6514536B1C86EFC60053A3E5 /* DDContextFilterLogFormatter.h */,
-				6514536C1C86EFC60053A3E5 /* DDContextFilterLogFormatter.m */,
-				6514536D1C86EFC60053A3E5 /* DDDispatchQueueLogFormatter.h */,
-				6514536E1C86EFC60053A3E5 /* DDDispatchQueueLogFormatter.m */,
-				6514536F1C86EFC60053A3E5 /* DDMultiFormatter.h */,
-				651453701C86EFC60053A3E5 /* DDMultiFormatter.m */,
-				651453711C86EFC60053A3E5 /* README.txt */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		651453721C86EFC60053A3E5 /* KissXML */ = {
@@ -2930,6 +2915,76 @@
 				652608521C04604D00370630 /* BTAttributedLabel.m */,
 			);
 			path = BTAttributedLabel;
+			sourceTree = "<group>";
+		};
+		653FB6C41C917BF90028086F /* GCD */ = {
+			isa = PBXGroup;
+			children = (
+				653FB6C71C917BF90028086F /* GCDAsyncUdpSocket.h */,
+				653FB6C81C917BF90028086F /* GCDAsyncUdpSocket.m */,
+			);
+			path = GCD;
+			sourceTree = "<group>";
+		};
+		653FB6CF1C9199580028086F /* Lumberjack */ = {
+			isa = PBXGroup;
+			children = (
+				653FB6D01C9199580028086F /* CLI */,
+				653FB6D31C9199580028086F /* CocoaLumberjack.h */,
+				653FB6D51C9199580028086F /* DDAbstractDatabaseLogger.h */,
+				653FB6D61C9199580028086F /* DDAbstractDatabaseLogger.m */,
+				653FB6D71C9199580028086F /* DDASLLogCapture.h */,
+				653FB6D81C9199580028086F /* DDASLLogCapture.m */,
+				653FB6D91C9199580028086F /* DDASLLogger.h */,
+				653FB6DA1C9199580028086F /* DDASLLogger.m */,
+				653FB6DB1C9199580028086F /* DDAssertMacros.h */,
+				653FB6DC1C9199580028086F /* DDFileLogger.h */,
+				653FB6DD1C9199580028086F /* DDFileLogger.m */,
+				653FB6DE1C9199580028086F /* DDLegacyMacros.h */,
+				653FB6DF1C9199580028086F /* DDLog+LOGV.h */,
+				653FB6E01C9199580028086F /* DDLog.h */,
+				653FB6E11C9199580028086F /* DDLog.m */,
+				653FB6E21C9199580028086F /* DDLogMacros.h */,
+				653FB6E31C9199580028086F /* DDTTYLogger.h */,
+				653FB6E41C9199580028086F /* DDTTYLogger.m */,
+				653FB6E51C9199580028086F /* Extensions */,
+				653FB6EC1C9199580028086F /* LogTool */,
+			);
+			path = Lumberjack;
+			sourceTree = "<group>";
+		};
+		653FB6D01C9199580028086F /* CLI */ = {
+			isa = PBXGroup;
+			children = (
+				653FB6D11C9199580028086F /* CLIColor.h */,
+				653FB6D21C9199580028086F /* CLIColor.m */,
+			);
+			path = CLI;
+			sourceTree = "<group>";
+		};
+		653FB6E51C9199580028086F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				653FB6E61C9199580028086F /* DDContextFilterLogFormatter.h */,
+				653FB6E71C9199580028086F /* DDContextFilterLogFormatter.m */,
+				653FB6E81C9199580028086F /* DDDispatchQueueLogFormatter.h */,
+				653FB6E91C9199580028086F /* DDDispatchQueueLogFormatter.m */,
+				653FB6EA1C9199580028086F /* DDMultiFormatter.h */,
+				653FB6EB1C9199580028086F /* DDMultiFormatter.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		653FB6EC1C9199580028086F /* LogTool */ = {
+			isa = PBXGroup;
+			children = (
+				653FB6ED1C9199580028086F /* CLMessage.h */,
+				653FB6EE1C9199580028086F /* CLMessage.m */,
+				653FB6EF1C9199580028086F /* CLMessageDefine.h */,
+				653FB6F01C9199580028086F /* DDRemoteLogger.h */,
+				653FB6F11C9199580028086F /* DDRemoteLogger.m */,
+			);
+			path = LogTool;
 			sourceTree = "<group>";
 		};
 		654365191C280975003F8D89 /* MainModule */ = {
@@ -3814,6 +3869,7 @@
 		B44506E81BCFFB9F008BD5AC /* 3rdparty */ = {
 			isa = PBXGroup;
 			children = (
+				653FB6C41C917BF90028086F /* GCD */,
 				B446233D1C7CA7F600D44A62 /* JSONModel */,
 				65A939601C7C84B600068F94 /* AFNetworking */,
 				65A939881C7C84B600068F94 /* Base64 */,
@@ -4283,7 +4339,6 @@
 				6517B3D21C50B4AF0033B6A4 /* d_ganmao@2x.png in Resources */,
 				6517B43B1C50B4B00033B6A4 /* lxh_buxiangshangban@2x.png in Resources */,
 				6517B4331C50B4B00033B6A4 /* lxh_biefanwo.gif in Resources */,
-				651453881C86EFC60053A3E5 /* README.txt in Resources */,
 				6517B4721C50B4B00033B6A4 /* lxh_qiaoqiao.png in Resources */,
 				6517B4651C50B4B00033B6A4 /* lxh_leiliumanmian@2x.png in Resources */,
 				B44623681C7CA7F600D44A62 /* MBProgressHUD.bundle in Resources */,
@@ -4378,6 +4433,7 @@
 				6514533F1C86ED900053A3E5 /* XMPPStreamManagementMemoryStorage.m in Sources */,
 				6514530B1C86ED900053A3E5 /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
 				65A93B851C7C84B700068F94 /* AFHTTPSessionManager.m in Sources */,
+				653FB6CA1C917BF90028086F /* GCDAsyncUdpSocket.m in Sources */,
 				65F9E2561C17CA8F0038774D /* BTJournalListItem.m in Sources */,
 				B4FABBD91C020E1500213AB7 /* BTSelectPhotosViewController.m in Sources */,
 				654B269E1C19A75E002E965C /* BTNetManager+BTAddJournal.m in Sources */,
@@ -4401,6 +4457,7 @@
 				65A93B951C7C84B700068F94 /* FMDatabase.m in Sources */,
 				65A93B8D1C7C84B700068F94 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				655124391BFC804C001F1041 /* BTCircularProgressButton.m in Sources */,
+				653FB6F81C9199580028086F /* DDLog.m in Sources */,
 				65FBFD071C4DD633008D9FA3 /* BTChattingHistory.m in Sources */,
 				65AD97441C4D0EBE00DAB0A3 /* BTIMSettingCell.m in Sources */,
 				651452EC1C86ED900053A3E5 /* XMPPStream.m in Sources */,
@@ -4423,6 +4480,7 @@
 				65A93B871C7C84B700068F94 /* AFSecurityPolicy.m in Sources */,
 				6514533D1C86ED900053A3E5 /* XMPPMessageDeliveryReceipts.m in Sources */,
 				65A93BB91C7C84B700068F94 /* SDWebImageDownloaderOperation.m in Sources */,
+				653FB6FB1C9199580028086F /* DDDispatchQueueLogFormatter.m in Sources */,
 				651453371C86ED900053A3E5 /* XMPPMessageArchiving.m in Sources */,
 				651452DF1C86ED900053A3E5 /* XMPPXFacebookPlatformAuthentication.m in Sources */,
 				B44579F21C140A0900CB10DC /* BTTimelineViewController.m in Sources */,
@@ -4447,6 +4505,7 @@
 				65A93B8A1C7C84B700068F94 /* AFURLResponseSerialization.m in Sources */,
 				6514538C1C86EFC60053A3E5 /* DDXMLNode.m in Sources */,
 				65DBCF041BD7554700784DAC /* BTJournalListViewController.m in Sources */,
+				653FB6FD1C9199580028086F /* CLMessage.m in Sources */,
 				651453161C86ED900053A3E5 /* XMPPvCardCoreDataStorageObject.m in Sources */,
 				651453101C86ED900053A3E5 /* XMPPMessage+XEP0045.m in Sources */,
 				65E234191BD3BAB60041E719 /* BTBaseViewController.m in Sources */,
@@ -4455,6 +4514,7 @@
 				6514534B1C86ED900053A3E5 /* XMPPMessageCarbons.m in Sources */,
 				651452EB1C86ED900053A3E5 /* XMPPPresence.m in Sources */,
 				651453171C86ED900053A3E5 /* XMPPvCardTempCoreDataStorageObject.m in Sources */,
+				653FB6F41C9199580028086F /* DDAbstractDatabaseLogger.m in Sources */,
 				6523365B1C4F706B00557D9F /* HMEmotionTool.m in Sources */,
 				65F90A181C43CA2300BAC2A2 /* BTIMHomePageViewController.m in Sources */,
 				651452EF1C86ED900053A3E5 /* XMPPFileTransfer.m in Sources */,
@@ -4483,10 +4543,10 @@
 				6520FBD91C87EA7D00939D4E /* BTTimelineToolView.m in Sources */,
 				651453581C86ED900053A3E5 /* XMPPTimer.m in Sources */,
 				6500E71E1BEF3935007158BF /* BTNetManager.m in Sources */,
+				653FB6F71C9199580028086F /* DDFileLogger.m in Sources */,
 				651452E41C86ED900053A3E5 /* XMPPConstants.m in Sources */,
 				652336561C4F6E2D00557D9F /* HMEmotionAttachment.m in Sources */,
 				651452F71C86ED900053A3E5 /* XMPPRoster.xcdatamodel in Sources */,
-				651453831C86EFC60053A3E5 /* DDLog.m in Sources */,
 				652334861C4F6C3600557D9F /* HMEmotionPopView.m in Sources */,
 				65DCFE4A1BD334F800DBD0DE /* BTUserInfoView.m in Sources */,
 				655C1F711C730ABB00833CDC /* BTAboutMeView.m in Sources */,
@@ -4496,7 +4556,6 @@
 				65A9317E1C7C010900068F94 /* BTBadgeButton.m in Sources */,
 				651452DB1C86ED900053A3E5 /* XMPPDeprecatedPlainAuthentication.m in Sources */,
 				65DBCF0E1BD755E500784DAC /* UIViewController+PopupViewController.m in Sources */,
-				651453801C86EFC60053A3E5 /* DDAbstractDatabaseLogger.m in Sources */,
 				652336721C4F789600557D9F /* MJFoundation.m in Sources */,
 				65E2D33A1BCFC966001E29A9 /* BeautifulTimes.xcdatamodeld in Sources */,
 				65DCFE4E1BD334F800DBD0DE /* BTUserLoginViewController.m in Sources */,
@@ -4512,7 +4571,6 @@
 				655C1F6B1C73085300833CDC /* BTAboutMeCellModel.m in Sources */,
 				6508D5061C08504700E77DAB /* BTPhotoDetailsViewController.m in Sources */,
 				650759B91C897596003B835F /* BTTimelineDBManager.m in Sources */,
-				651453841C86EFC60053A3E5 /* DDTTYLogger.m in Sources */,
 				6514530C1C86ED900053A3E5 /* XMPPRoomOccupantHybridMemoryStorageObject.m in Sources */,
 				6514530E1C86ED900053A3E5 /* XMPPRoomMessageMemoryStorageObject.m in Sources */,
 				6514532A1C86ED900053A3E5 /* XMPPMessage+XEP_0085.m in Sources */,
@@ -4524,7 +4582,6 @@
 				65F47DDB1C3E87F9008117BC /* BTIMNavViewController.m in Sources */,
 				651453031C86ED900053A3E5 /* XMPPLastActivity.m in Sources */,
 				65E1FC7C1C33B53B001D5942 /* BTChoosePhotosItem.m in Sources */,
-				651453851C86EFC60053A3E5 /* DDContextFilterLogFormatter.m in Sources */,
 				652334881C4F6C3600557D9F /* HMEmotionToolbar.m in Sources */,
 				652336551C4F6E2D00557D9F /* HMEmotion.m in Sources */,
 				6514537F1C86EFC60053A3E5 /* GCDAsyncSocket.m in Sources */,
@@ -4532,7 +4589,9 @@
 				65A93B931C7C84B700068F94 /* UIWebView+AFNetworking.m in Sources */,
 				651452EE1C86ED900053A3E5 /* XMPPCoreDataStorage.m in Sources */,
 				65A93B831C7C84B700068F94 /* AFHTTPRequestOperation.m in Sources */,
+				653FB6F91C9199580028086F /* DDTTYLogger.m in Sources */,
 				B446235F1C7CA7F600D44A62 /* JSONModelClassProperty.m in Sources */,
+				653FB6F21C9199580028086F /* CLIColor.m in Sources */,
 				651452E81C86ED900053A3E5 /* XMPPMessage.m in Sources */,
 				65DE129A1BD0CA8500D01BCA /* KFObjectExtension.mm in Sources */,
 				65A934621C02BBC300FA0185 /* BTLanguageManager.m in Sources */,
@@ -4549,13 +4608,13 @@
 				651453181C86ED900053A3E5 /* XMPPvCardTemp.m in Sources */,
 				65A93BB51C7C84B700068F94 /* SDImageCache.m in Sources */,
 				651452E71C86ED900053A3E5 /* XMPPJID.m in Sources */,
-				651453821C86EFC60053A3E5 /* DDFileLogger.m in Sources */,
 				651452FD1C86ED900053A3E5 /* XMPPRoster.m in Sources */,
-				651453871C86EFC60053A3E5 /* DDMultiFormatter.m in Sources */,
 				651453301C86ED900053A3E5 /* XMPPCapsCoreDataStorageObject.m in Sources */,
 				651452EA1C86ED900053A3E5 /* XMPPParser.m in Sources */,
 				65A93BA91C7C84B700068F94 /* MASConstraint.m in Sources */,
+				653FB6FA1C9199580028086F /* DDContextFilterLogFormatter.m in Sources */,
 				6514533C1C86ED900053A3E5 /* XMPPMessage+XEP_0184.m in Sources */,
+				653FB6FC1C9199580028086F /* DDMultiFormatter.m in Sources */,
 				65A93B971C7C84B700068F94 /* FMDatabasePool.m in Sources */,
 				65A93B841C7C84B700068F94 /* AFHTTPRequestOperationManager.m in Sources */,
 				651453451C86ED900053A3E5 /* XMPPTime.m in Sources */,
@@ -4591,7 +4650,9 @@
 				651453421C86ED900053A3E5 /* XMPPAutoPing.m in Sources */,
 				651453001C86ED900053A3E5 /* XMPPIQ+JabberRPCResonse.m in Sources */,
 				652334891C4F6C3600557D9F /* HMEmotionView.m in Sources */,
+				653FB6F51C9199580028086F /* DDASLLogCapture.m in Sources */,
 				65AD97411C4D0CC400DAB0A3 /* BTMyInformationCell.m in Sources */,
+				653FB6FE1C9199580028086F /* DDRemoteLogger.m in Sources */,
 				651453481C86ED900053A3E5 /* XMPPAttentionModule.m in Sources */,
 				651453561C86ED900053A3E5 /* XMPPSRVResolver.m in Sources */,
 				65F90A231C43D87A00BAC2A2 /* BTChatViewController.m in Sources */,
@@ -4619,7 +4680,6 @@
 				B4404F8C1BE7B32000226334 /* Journal+CoreDataProperties.m in Sources */,
 				65F816F81C71BD1000A607F7 /* BTMessageListModel.m in Sources */,
 				651452FC1C86ED900053A3E5 /* XMPPUserMemoryStorageObject.m in Sources */,
-				651453811C86EFC60053A3E5 /* DDASLLogger.m in Sources */,
 				652336751C4F789600557D9F /* NSObject+MJCoding.m in Sources */,
 				651452F61C86ED900053A3E5 /* XMPPResourceCoreDataStorageObject.m in Sources */,
 				65A93BB61C7C84B700068F94 /* SDWebImageCompat.m in Sources */,
@@ -4632,6 +4692,7 @@
 				B44579FC1C140FC300CB10DC /* BTSettingViewController.m in Sources */,
 				65F6B4831C7EF9F800E112FE /* BTTimelineModel.m in Sources */,
 				B4FABBCC1C018D4B00213AB7 /* BTLanguageUtil.m in Sources */,
+				653FB6F61C9199580028086F /* DDASLLogger.m in Sources */,
 				65A93BAF1C7C84B700068F94 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				6514533A1C86ED900053A3E5 /* XMPPMessage+XEP_0172.m in Sources */,
 				651452D91C86ED900053A3E5 /* XMPPAnonymousAuthentication.m in Sources */,
@@ -4660,7 +4721,6 @@
 				651452FE1C86ED900053A3E5 /* XMPPSystemInputActivityMonitor.m in Sources */,
 				65A93BB71C7C84B700068F94 /* SDWebImageDecoder.m in Sources */,
 				B44623611C7CA7F600D44A62 /* NSArray+JSONModel.m in Sources */,
-				651453861C86EFC60053A3E5 /* DDDispatchQueueLogFormatter.m in Sources */,
 				655124331BFC2DA7001F1041 /* BTPhotoCollectionViewCell.m in Sources */,
 				6514534F1C86ED900053A3E5 /* NSXMLElement+XEP_0335.m in Sources */,
 				65A93BB81C7C84B700068F94 /* SDWebImageDownloader.m in Sources */,

@@ -11,6 +11,29 @@
 #ifndef BTCommon_h
 #define BTCommon_h
 
+#if 1
+
+#import "DDLog.h"
+static const int logLevel = LOG_LEVEL_VERBOSE;
+#define LogAsync   YES
+#define LogContext 65535
+#define LogObjc(flg, frmt, ...) LOG_OBJC_MAYBE(LogAsync, logLevel, flg, LogContext, frmt, ##__VA_ARGS__)
+#define LogError(frmt, ...)     LogObjc(LOG_FLAG_ERROR,   (@"%@: " frmt), THIS_FILE, ##__VA_ARGS__)
+#define LogWarn(frmt, ...)      LogObjc(LOG_FLAG_WARN,    (@"%@: " frmt), THIS_FILE, ##__VA_ARGS__)
+#define LogInfo(frmt, ...)      LogObjc(LOG_FLAG_INFO,    (@"%@: " frmt), THIS_FILE, ##__VA_ARGS__)
+#define LogVerbose(frmt, ...)   LogObjc(LOG_FLAG_VERBOSE, (@"%@: " frmt), THIS_FILE, ##__VA_ARGS__)
+#define LogTrace()              LogObjc(LOG_FLAG_VERBOSE, @"%@: %@", THIS_FILE, THIS_METHOD)
+
+#else
+
+#define LogError(frmt, ...)     {}
+#define LogWarn(frmt, ...)      {}
+#define LogInfo(frmt, ...)      {}
+#define LogVerbose(frmt, ...)   {}
+#define LogTrace()              {}
+
+#endif
+
 #pragma mark -- inline function
 //静态内联函数，修改BNAVI_UIIMAGE宏定义，不添加缓存
 static inline UIImage* naviimage_from_mainbundle(NSString* filename_and_type)
