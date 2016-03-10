@@ -1,0 +1,337 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		790C7FB31C3B907E00A13645 /* DDFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 790C7FB21C3B907E00A13645 /* DDFileReader.m */; };
+		79A2B4441C213A7E0022EB56 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A2B4431C213A7E0022EB56 /* AppDelegate.m */; };
+		79A2B4471C213A7E0022EB56 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A2B4461C213A7E0022EB56 /* main.m */; };
+		79A2B44A1C213A7E0022EB56 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A2B4491C213A7E0022EB56 /* ViewController.m */; };
+		79A2B44C1C213A7E0022EB56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79A2B44B1C213A7E0022EB56 /* Assets.xcassets */; };
+		79A2B44F1C213A7E0022EB56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79A2B44D1C213A7E0022EB56 /* Main.storyboard */; };
+		79A2B45D1C213CAC0022EB56 /* GCDAsyncSocket.h.txt in Resources */ = {isa = PBXBuildFile; fileRef = 79A2B4581C213CAC0022EB56 /* GCDAsyncSocket.h.txt */; };
+		79A2B45E1C213CAC0022EB56 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A2B4591C213CAC0022EB56 /* GCDAsyncSocket.m */; };
+		79A2B45F1C213CAC0022EB56 /* GCDAsyncSocket.m.txt in Resources */ = {isa = PBXBuildFile; fileRef = 79A2B45A1C213CAC0022EB56 /* GCDAsyncSocket.m.txt */; };
+		79A2B4601C213CAC0022EB56 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A2B45C1C213CAC0022EB56 /* GCDAsyncUdpSocket.m */; };
+		79AA9E831C3A625A00FF7B51 /* RemoteLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AA9E821C3A625A00FF7B51 /* RemoteLog.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		790C7FB11C3B907E00A13645 /* DDFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDFileReader.h; sourceTree = "<group>"; };
+		790C7FB21C3B907E00A13645 /* DDFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDFileReader.m; sourceTree = "<group>"; };
+		79A2B43F1C213A7E0022EB56 /* RemoteLogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RemoteLogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		79A2B4421C213A7E0022EB56 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		79A2B4431C213A7E0022EB56 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		79A2B4461C213A7E0022EB56 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		79A2B4481C213A7E0022EB56 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		79A2B4491C213A7E0022EB56 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		79A2B44B1C213A7E0022EB56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		79A2B44E1C213A7E0022EB56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		79A2B4501C213A7E0022EB56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79A2B4571C213CAC0022EB56 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		79A2B4581C213CAC0022EB56 /* GCDAsyncSocket.h.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GCDAsyncSocket.h.txt; sourceTree = "<group>"; };
+		79A2B4591C213CAC0022EB56 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		79A2B45A1C213CAC0022EB56 /* GCDAsyncSocket.m.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GCDAsyncSocket.m.txt; sourceTree = "<group>"; };
+		79A2B45B1C213CAC0022EB56 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		79A2B45C1C213CAC0022EB56 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
+		79AA9E811C3A625A00FF7B51 /* RemoteLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteLog.h; sourceTree = "<group>"; };
+		79AA9E821C3A625A00FF7B51 /* RemoteLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteLog.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		79A2B43C1C213A7E0022EB56 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		79A2B4361C213A7E0022EB56 = {
+			isa = PBXGroup;
+			children = (
+				79A2B4411C213A7E0022EB56 /* RemoteLogger */,
+				79A2B4401C213A7E0022EB56 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		79A2B4401C213A7E0022EB56 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				79A2B43F1C213A7E0022EB56 /* RemoteLogger.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		79A2B4411C213A7E0022EB56 /* RemoteLogger */ = {
+			isa = PBXGroup;
+			children = (
+				79A2B4561C213CAC0022EB56 /* GCD */,
+				79A2B4421C213A7E0022EB56 /* AppDelegate.h */,
+				79A2B4431C213A7E0022EB56 /* AppDelegate.m */,
+				79A2B4481C213A7E0022EB56 /* ViewController.h */,
+				79A2B4491C213A7E0022EB56 /* ViewController.m */,
+				79A2B44B1C213A7E0022EB56 /* Assets.xcassets */,
+				79A2B44D1C213A7E0022EB56 /* Main.storyboard */,
+				79A2B4501C213A7E0022EB56 /* Info.plist */,
+				79A2B4451C213A7E0022EB56 /* Supporting Files */,
+				79AA9E811C3A625A00FF7B51 /* RemoteLog.h */,
+				79AA9E821C3A625A00FF7B51 /* RemoteLog.m */,
+				790C7FB11C3B907E00A13645 /* DDFileReader.h */,
+				790C7FB21C3B907E00A13645 /* DDFileReader.m */,
+			);
+			path = RemoteLogger;
+			sourceTree = "<group>";
+		};
+		79A2B4451C213A7E0022EB56 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				79A2B4461C213A7E0022EB56 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		79A2B4561C213CAC0022EB56 /* GCD */ = {
+			isa = PBXGroup;
+			children = (
+				79A2B4571C213CAC0022EB56 /* GCDAsyncSocket.h */,
+				79A2B4581C213CAC0022EB56 /* GCDAsyncSocket.h.txt */,
+				79A2B4591C213CAC0022EB56 /* GCDAsyncSocket.m */,
+				79A2B45A1C213CAC0022EB56 /* GCDAsyncSocket.m.txt */,
+				79A2B45B1C213CAC0022EB56 /* GCDAsyncUdpSocket.h */,
+				79A2B45C1C213CAC0022EB56 /* GCDAsyncUdpSocket.m */,
+			);
+			path = GCD;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		79A2B43E1C213A7E0022EB56 /* RemoteLogger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79A2B4531C213A7E0022EB56 /* Build configuration list for PBXNativeTarget "RemoteLogger" */;
+			buildPhases = (
+				79A2B43B1C213A7E0022EB56 /* Sources */,
+				79A2B43C1C213A7E0022EB56 /* Frameworks */,
+				79A2B43D1C213A7E0022EB56 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RemoteLogger;
+			productName = RemoteLogger;
+			productReference = 79A2B43F1C213A7E0022EB56 /* RemoteLogger.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		79A2B4371C213A7E0022EB56 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Baidu;
+				TargetAttributes = {
+					79A2B43E1C213A7E0022EB56 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = 79A2B43A1C213A7E0022EB56 /* Build configuration list for PBXProject "RemoteLogger" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 79A2B4361C213A7E0022EB56;
+			productRefGroup = 79A2B4401C213A7E0022EB56 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				79A2B43E1C213A7E0022EB56 /* RemoteLogger */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		79A2B43D1C213A7E0022EB56 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79A2B44C1C213A7E0022EB56 /* Assets.xcassets in Resources */,
+				79A2B44F1C213A7E0022EB56 /* Main.storyboard in Resources */,
+				79A2B45F1C213CAC0022EB56 /* GCDAsyncSocket.m.txt in Resources */,
+				79A2B45D1C213CAC0022EB56 /* GCDAsyncSocket.h.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		79A2B43B1C213A7E0022EB56 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79A2B45E1C213CAC0022EB56 /* GCDAsyncSocket.m in Sources */,
+				79A2B4601C213CAC0022EB56 /* GCDAsyncUdpSocket.m in Sources */,
+				790C7FB31C3B907E00A13645 /* DDFileReader.m in Sources */,
+				79AA9E831C3A625A00FF7B51 /* RemoteLog.m in Sources */,
+				79A2B44A1C213A7E0022EB56 /* ViewController.m in Sources */,
+				79A2B4471C213A7E0022EB56 /* main.m in Sources */,
+				79A2B4441C213A7E0022EB56 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		79A2B44D1C213A7E0022EB56 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79A2B44E1C213A7E0022EB56 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		79A2B4511C213A7E0022EB56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		79A2B4521C213A7E0022EB56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		79A2B4541C213A7E0022EB56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = RemoteLogger/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_BUNDLE_IDENTIFIER = baidu.RemoteLogger;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		79A2B4551C213A7E0022EB56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = RemoteLogger/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_BUNDLE_IDENTIFIER = baidu.RemoteLogger;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		79A2B43A1C213A7E0022EB56 /* Build configuration list for PBXProject "RemoteLogger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79A2B4511C213A7E0022EB56 /* Debug */,
+				79A2B4521C213A7E0022EB56 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		79A2B4531C213A7E0022EB56 /* Build configuration list for PBXNativeTarget "RemoteLogger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79A2B4541C213A7E0022EB56 /* Debug */,
+				79A2B4551C213A7E0022EB56 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 79A2B4371C213A7E0022EB56 /* Project object */;
+}
