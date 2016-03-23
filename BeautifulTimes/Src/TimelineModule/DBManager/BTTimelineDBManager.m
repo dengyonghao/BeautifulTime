@@ -11,6 +11,13 @@
 
 static BTTimelineDBManager * timelineDBManager = nil;
 
+@interface BTTimelineDBManager ()
+{
+    BTTimelineDB *_timelineDB;
+}
+
+@end
+
 @implementation BTTimelineDBManager
 
 + (BTTimelineDBManager *)sharedInstance {
@@ -23,19 +30,31 @@ static BTTimelineDBManager * timelineDBManager = nil;
 
 - (instancetype)init {
     if (self = [super init]) {
-        
+        _timelineDB = [BTTimelineDB sharedInstance];
     }
     return self;
 }
 
 - (void)addTimelineMessage:(BTTimelineModel *)message {
-    BTTimelineDB *db = [BTTimelineDB sharedInstance];
-    [db addHistory:message];
+    [_timelineDB addHistory:message];
 }
 
 - (NSArray *)getAllTimelineMessage {
-    NSArray *array = [[BTTimelineDB sharedInstance] getAllHistory];
+    NSArray *array = [_timelineDB getAllHistory];
     return array;
+}
+
+- (BTTimelineModel *)getTimelineWithId:(NSInteger)Id {
+    BTTimelineModel *timeline = [_timelineDB getTimelineByID:Id];
+    return timeline;
+}
+
+- (void)deleteTimelineWithId:(NSInteger)timelineId {
+    [_timelineDB deleteHistoryByTimelineID:timelineId];
+}
+
+- (void)updateTimeline:(BTTimelineModel *)history {
+    [_timelineDB updateHistory:history];
 }
 
 @end

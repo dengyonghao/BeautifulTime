@@ -76,23 +76,28 @@ static CGFloat const BUTTONWIDTH = 38;
 }
 
 - (void)addressBookButtonClick {
-    
+    if (_delegate && [_delegate respondsToSelector:@selector(timelineToolViewDidSelectAtAddressBook)]) {
+        [_delegate timelineToolViewDidSelectAtAddressBook];
+    }
 }
 
 - (void)selectPhotosButtonClick {
-    
+    if (_delegate && [_delegate respondsToSelector:@selector(timelineToolViewDidSelectAtSelectPhotos)]) {
+        [_delegate timelineToolViewDidSelectAtSelectPhotos];
+    }
 }
 
 - (void)currentSiteButtonClick {
-    
+    if (_delegate && [_delegate respondsToSelector:@selector(timelineToolViewDidSelectAtCurrentSite)]) {
+        [_delegate timelineToolViewDidSelectAtCurrentSite];
+    }
 }
 
 - (UIButton *)addressBook {
     if (!_addressBook) {
         _addressBook = [[UIButton alloc] init];
-        [_addressBook setTitle:@"联系人" forState:UIControlStateNormal];
+        [_addressBook setImage:BT_LOADIMAGE(@"com_blue_contact") forState:UIControlStateNormal];
         [_addressBook addTarget:self action:@selector(addressBookButtonClick) forControlEvents:UIControlEventTouchUpInside];
-        [_addressBook setBackgroundColor:[UIColor blueColor]];
     }
     return _addressBook;
 }
@@ -100,9 +105,8 @@ static CGFloat const BUTTONWIDTH = 38;
 - (UIButton *)selectPhotos {
     if (!_selectPhotos) {
         _selectPhotos = [[UIButton alloc] init];
-        [_selectPhotos setTitle:@"照片" forState:UIControlStateNormal];
+        [_selectPhotos setImage:BT_LOADIMAGE(@"com_blue_camera") forState:UIControlStateNormal];
         [_selectPhotos addTarget:self action:@selector(selectPhotosButtonClick) forControlEvents:UIControlEventTouchUpInside];
-        [_selectPhotos setBackgroundColor:[UIColor blueColor]];
     }
     return _selectPhotos;
 }
@@ -111,9 +115,8 @@ static CGFloat const BUTTONWIDTH = 38;
 - (UIButton *)currentSite {
     if (!_currentSite) {
         _currentSite = [[UIButton alloc] init];
-        [_currentSite setTitle:@"定位" forState:UIControlStateNormal];
+        [_currentSite setImage:BT_LOADIMAGE(@"com_blue_position") forState:UIControlStateNormal];
         [_currentSite addTarget:self action:@selector(currentSiteButtonClick) forControlEvents:UIControlEventTouchUpInside];
-        [_currentSite setBackgroundColor:[UIColor blueColor]];
     }
     return _currentSite;
 }

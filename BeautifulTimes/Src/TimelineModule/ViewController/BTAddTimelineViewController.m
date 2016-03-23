@@ -12,8 +12,10 @@
 #import "BTTimelineModel.h"
 #import "BTTimelineDBManager.h"
 #import "BTHomePageViewController.h"
+#import "BTSelectPhotosViewController.h"
+#import "BTAddressBookViewController.h"
 
-@interface BTAddTimelineViewController ()
+@interface BTAddTimelineViewController () <BTTimelineToolViewDelegate>
 
 @property (nonatomic, strong) BTTimelineToolView *toolView;
 @property (nonatomic, strong) UITextView *contentTextView;
@@ -52,6 +54,22 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma timelineToolView delegate
+- (void)timelineToolViewDidSelectAtCurrentSite {
+
+}
+
+- (void)timelineToolViewDidSelectAtSelectPhotos {
+    BTSelectPhotosViewController *vc = [[BTSelectPhotosViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)timelineToolViewDidSelectAtAddressBook {
+    BTAddressBookViewController *vc = [[BTAddressBookViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark keyboard delegate
 - (void) keyboardWasShown:(NSNotification *) notif{
     
     NSDictionary *info = [notif userInfo];
@@ -109,6 +127,7 @@
 - (BTTimelineToolView *)toolView {
     if (!_toolView) {
         _toolView = [[BTTimelineToolView alloc] init];
+        _toolView.delegate = self;
     }
     return _toolView;
 }

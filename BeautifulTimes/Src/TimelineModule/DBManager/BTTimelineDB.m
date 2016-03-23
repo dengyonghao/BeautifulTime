@@ -105,9 +105,9 @@ static BTTimelineDB * timelineDB = nil;
 }
 
 
-- (void)updateHistory:(BTTimelineModel *)history ByTimelineID:(NSInteger)timelineID {
+- (void)updateHistory:(BTTimelineModel *)history{
     [self.queue inDatabase:^(FMDatabase *db) {
-        [db executeUpdate:@"UPDATE bttimeline SET timelineContent = ?, timelineDate = ?, weather = ?, site = ?, photos = ?, record = ?, friends = ? WHERE timelineId = ?", history.timelineContent, history.timelineDate, history.weather, history.site, history.photos, history.record, history.friends ,[NSNumber numberWithInteger:timelineID]];
+        [db executeUpdate:@"UPDATE bttimeline SET timelineContent = ?, timelineDate = ?, weather = ?, site = ?, photos = ?, record = ?, friends = ? WHERE timelineId = ?", history.timelineContent, history.timelineDate, history.weather, history.site, history.photos, history.record, history.friends ,[NSNumber numberWithInteger:history.timelineId]];
     }];
 }
 

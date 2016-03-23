@@ -17,6 +17,7 @@
 #include <net/if.h>
 #import <mach/mach.h>
 #import <sys/sysctl.h>
+
 #define IOS_CELLULAR    @"pdp_ip0"
 #define IOS_WIFI        @"en0"
 #define IOS_ETH         @"en"
@@ -24,7 +25,8 @@
 #define IP_ADDR_IPv4    @"ipv4"
 #define IP_ADDR_IPv6    @"ipv6"
 
-#define LOGHEADLENGTH 4
+#define LOGHEADLENGTH   4
+#define SERVICEPORT     10086
 
 @interface DDRemoteLogger()<GCDAsyncUdpSocketDelegate, GCDAsyncSocketDelegate>
 @end
@@ -51,7 +53,7 @@
                               NSCalendarUnitSecond);
         _udpSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_global_queue(0, DISPATCH_QUEUE_PRIORITY_DEFAULT)];
         NSError *error;
-        if (![_udpSocket bindToPort:10086 error:&error]) {
+        if (![_udpSocket bindToPort:SERVICEPORT error:&error]) {
             NSLog(@"_udpSocket bindToPort Failed: %@", error);
         }
         [_udpSocket setPreferIPv4];
@@ -62,7 +64,6 @@
         _buffers = [NSMutableArray array];
         _sendTime = 0;
     }
-    
     return self;
 }
 
@@ -71,14 +72,15 @@
         NSArray *keys = [addresses allKeys];
         for (NSString *key in keys) {
             NSString *ip = [addresses objectForKey:key];
+            //局域网不可用时IP地址是169.254开头，可用时IP地址是192.168开头
             if ([key rangeOfString:@"broadcast"].location != NSNotFound && ![ip hasPrefix:@"169.254"]) {
-                [_udpSocket sendData:[@"DDRemoteLogger" dataUsingEncoding:NSUTF8StringEncoding] toHost:ip port:10086 withTimeout:-1 tag:0];
+                [_udpSocket sendData:[@"DDRemoteLogger" dataUsingEncoding:NSUTF8StringEncoding] toHost:ip port:SERVICEPORT withTimeout:-1 tag:0];
             }
         }
     if (_socket == nil) {
         _socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_global_queue(0, DISPATCH_QUEUE_PRIORITY_DEFAULT)];
         NSError *error;
-        if (![_socket acceptOnPort:10086 error:&error]) {
+        if (![_socket acceptOnPort:SERVICEPORT error:&error]) {
             NSLog(@"_socket acceptOnPort Failed:%@", error);
             _socket = nil;
         }
