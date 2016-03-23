@@ -125,13 +125,17 @@
     WS(weakSelf);
     [self.view endEditing:YES];
     [xmppTool login:^(XMPPResultType xmppType) {
+        if (xmppType != XMPPResultSuccess) {
+            [[NSUserDefaults standardUserDefaults] setValue:nil forKey:userID];
+            [[NSUserDefaults standardUserDefaults] setValue:nil forKey:userPassword];
+        }
         [weakSelf handle:xmppType];
     }];
 }
 #pragma mark 用户登录验证的方法
 -(void)handle:(XMPPResultType)xmppType {
-    [MBProgressHUD hideHUDForView:self.view];
     dispatch_async(dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideHUDForView:self.view];
         switch (xmppType) {
             case XMPPResultSuccess:
                 [MBProgressHUD showSuccess:@"登录成功" toView:self.view];

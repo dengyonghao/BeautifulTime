@@ -344,6 +344,9 @@ static BTXMPPTool *xmppTool;
     local.timeZone = [NSTimeZone defaultTimeZone];
     //开启通知
     [[UIApplication sharedApplication] scheduleLocalNotification:local];
+    if (![jid user]) {
+        return;
+    }
     if(body){
         NSDictionary *dict = @{@"uname":[jid user],@"time":strDate,@"body":body,@"jid":jid,@"user":@"other"};
         NSNotification *note = [[NSNotification alloc]initWithName:SendMsgName object:dict userInfo:nil];

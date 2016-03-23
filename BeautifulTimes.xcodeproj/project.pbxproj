@@ -459,6 +459,7 @@
 		65A11DDA1C7AE40100738DF0 /* BTIMEditUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A11DD91C7AE40100738DF0 /* BTIMEditUserInfoViewController.m */; };
 		65A11DDD1C7AE63B00738DF0 /* BTEditUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A11DDC1C7AE63B00738DF0 /* BTEditUserInfoCell.m */; };
 		65A11DE01C7AE6E000738DF0 /* BTEditUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A11DDF1C7AE6E000738DF0 /* BTEditUserInfoView.m */; };
+		65A759941CA2B16D00CC48C5 /* BTTimelineEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A759931CA2B16D00CC48C5 /* BTTimelineEditViewController.m */; };
 		65A9317E1C7C010900068F94 /* BTBadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A9317D1C7C010900068F94 /* BTBadgeButton.m */; };
 		65A934621C02BBC300FA0185 /* BTLanguageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A934611C02BBC300FA0185 /* BTLanguageManager.m */; };
 		65A93B831C7C84B700068F94 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A939631C7C84B600068F94 /* AFHTTPRequestOperation.m */; };
@@ -1294,6 +1295,8 @@
 		65A11DDC1C7AE63B00738DF0 /* BTEditUserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTEditUserInfoCell.m; sourceTree = "<group>"; };
 		65A11DDE1C7AE6E000738DF0 /* BTEditUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTEditUserInfoView.h; sourceTree = "<group>"; };
 		65A11DDF1C7AE6E000738DF0 /* BTEditUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTEditUserInfoView.m; sourceTree = "<group>"; };
+		65A759921CA2B16D00CC48C5 /* BTTimelineEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTimelineEditViewController.h; sourceTree = "<group>"; };
+		65A759931CA2B16D00CC48C5 /* BTTimelineEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTimelineEditViewController.m; sourceTree = "<group>"; };
 		65A9317C1C7C010900068F94 /* BTBadgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBadgeButton.h; sourceTree = "<group>"; };
 		65A9317D1C7C010900068F94 /* BTBadgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBadgeButton.m; sourceTree = "<group>"; };
 		65A934601C02BBC300FA0185 /* BTLanguageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLanguageManager.h; sourceTree = "<group>"; };
@@ -3917,6 +3920,8 @@
 				B44579F11C140A0900CB10DC /* BTTimelineViewController.m */,
 				B44579F31C140B1900CB10DC /* BTAddTimelineViewController.h */,
 				B44579F41C140B1900CB10DC /* BTAddTimelineViewController.m */,
+				65A759921CA2B16D00CC48C5 /* BTTimelineEditViewController.h */,
+				65A759931CA2B16D00CC48C5 /* BTTimelineEditViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -4728,6 +4733,7 @@
 				65A93BAD1C7C84B700068F94 /* MASViewConstraint.m in Sources */,
 				651453351C86ED900053A3E5 /* XMPPMessageArchiving_Message_CoreDataObject.m in Sources */,
 				655C1F6E1C7309DB00833CDC /* BTAboutMeCell.m in Sources */,
+				65A759941CA2B16D00CC48C5 /* BTTimelineEditViewController.m in Sources */,
 				65F4262C1BD9F5F600295796 /* UIImage+Addition.m in Sources */,
 				65F47DD81C3E8323008117BC /* BTTabBarButton.m in Sources */,
 				650687671C452C8A008AC4DF /* BTChatToolView.m in Sources */,

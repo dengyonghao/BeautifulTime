@@ -536,11 +536,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
-            timestampString = "479295093.421828"
+            timestampString = "480419960.784893"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "443"
-            endingLineNumber = "443"
+            startingLineNumber = "446"
+            endingLineNumber = "446"
             landmarkName = "-xmppStream:didReceivePresence:"
             landmarkType = "5">
          </BreakpointContent>
@@ -552,11 +552,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
-            timestampString = "479295093.421828"
+            timestampString = "480419960.784893"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "436"
-            endingLineNumber = "436"
+            startingLineNumber = "439"
+            endingLineNumber = "439"
             landmarkName = "-xmppStream:didReceiveIQ:"
             landmarkType = "5">
          </BreakpointContent>
@@ -568,11 +568,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
-            timestampString = "479295093.421828"
+            timestampString = "480419960.784893"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "563"
-            endingLineNumber = "563"
+            startingLineNumber = "566"
+            endingLineNumber = "566"
             landmarkName = "-xmppOutgoingFileTransfer:didFailWithError:"
             landmarkType = "5">
          </BreakpointContent>
@@ -584,11 +584,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
-            timestampString = "479295093.421828"
+            timestampString = "480419960.784893"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "568"
-            endingLineNumber = "568"
+            startingLineNumber = "571"
+            endingLineNumber = "571"
             landmarkName = "-xmppOutgoingFileTransferDidSucceed:"
             landmarkType = "5">
          </BreakpointContent>
@@ -616,11 +616,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
-            timestampString = "479295093.421828"
+            timestampString = "480419960.784893"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "555"
-            endingLineNumber = "555"
+            startingLineNumber = "558"
+            endingLineNumber = "558"
             landmarkName = "-xmppIncomingFileTransfer:didSucceedWithData:named:"
             landmarkType = "5">
          </BreakpointContent>
@@ -855,13 +855,13 @@
                   symbolName = "-[TURNSocket processRequestResponse:]"
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dengyonghao/Desktop/BeautifulTimes/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "478774946.409745"
+                  urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
+                  timestampString = "480425773.144758"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "740"
                   endingLineNumber = "740"
-                  offsetFromSymbolStart = "564">
+                  offsetFromSymbolStart = "510">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -870,13 +870,13 @@
                   symbolName = "-[TURNSocket processRequestResponse:]"
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dengyonghao/Desktop/BeautifulTimes/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "478774946.409931"
+                  urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
+                  timestampString = "480425773.144876"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "740"
                   endingLineNumber = "740"
-                  offsetFromSymbolStart = "648">
+                  offsetFromSymbolStart = "566">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -919,13 +919,13 @@
                   symbolName = "-[TURNSocket cleanup]"
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dengyonghao/Desktop/BeautifulTimes/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "478774946.412413"
+                  urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
+                  timestampString = "480425773.147137"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1503"
                   endingLineNumber = "1503"
-                  offsetFromSymbolStart = "32">
+                  offsetFromSymbolStart = "26">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -934,13 +934,13 @@
                   symbolName = "-[TURNSocket cleanup]"
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dengyonghao/Desktop/BeautifulTimes/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "478774946.412654"
+                  urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
+                  timestampString = "480425773.147274"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1503"
                   endingLineNumber = "1503"
-                  offsetFromSymbolStart = "76">
+                  offsetFromSymbolStart = "59">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1111,13 +1111,13 @@
                   symbolName = "-[TURNSocket setupDiscoTimer:]"
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dengyonghao/Desktop/BeautifulTimes/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "478774946.422388"
+                  urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
+                  timestampString = "480425773.1536"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1323"
                   endingLineNumber = "1323"
-                  offsetFromSymbolStart = "36">
+                  offsetFromSymbolStart = "28">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1126,13 +1126,13 @@
                   symbolName = "-[TURNSocket setupDiscoTimer:]"
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dengyonghao/Desktop/BeautifulTimes/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "478774946.422603"
+                  urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
+                  timestampString = "480425773.1537"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1323"
                   endingLineNumber = "1323"
-                  offsetFromSymbolStart = "80">
+                  offsetFromSymbolStart = "61">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1175,13 +1175,13 @@
                   symbolName = "-[TURNSocket succeed]"
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dengyonghao/Desktop/BeautifulTimes/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "478774946.424939"
+                  urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
+                  timestampString = "480425773.155045"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1455"
                   endingLineNumber = "1455"
-                  offsetFromSymbolStart = "32">
+                  offsetFromSymbolStart = "26">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1190,13 +1190,13 @@
                   symbolName = "-[TURNSocket succeed]"
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dengyonghao/Desktop/BeautifulTimes/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "478774946.425193"
+                  urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
+                  timestampString = "480425773.155149"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1455"
                   endingLineNumber = "1455"
-                  offsetFromSymbolStart = "76">
+                  offsetFromSymbolStart = "59">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1256,28 +1256,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
-            timestampString = "479295093.421828"
+            timestampString = "480419960.784893"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "542"
-            endingLineNumber = "542"
+            startingLineNumber = "545"
+            endingLineNumber = "545"
             landmarkName = "-xmppIncomingFileTransfer:didReceiveSIOffer:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BeautifulTimes/Src/TimelineModule/DBManager/BTTimelineDBManager.m"
-            timestampString = "478774704.154481"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "-getAllTimelineMessage"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
