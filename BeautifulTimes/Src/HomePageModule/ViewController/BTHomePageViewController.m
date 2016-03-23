@@ -441,7 +441,6 @@ static const CGFloat BUTTONWIDTH = 48;
 
 - (void)chatClick {
     if ([[NSUserDefaults standardUserDefaults] valueForKey:userID] && [[NSUserDefaults standardUserDefaults] valueForKey:userPassword]) {
-        [[BTXMPPTool sharedInstance] login:nil];
         BTIMTabBarController *tab = [[BTIMTabBarController alloc]init];
         [AppDelegate getInstance].window.rootViewController = tab;
     } else {

@@ -50,9 +50,8 @@
  *  更新记录
  *
  *  @param history    更新内容
- *  @param timelineID timelineId
  */
-- (void)updateHistory:(BTTimelineModel *)history ByTimelineID:(NSInteger)timelineID;
+- (void)updateHistory:(BTTimelineModel *)history;
 
 /**
  *  删除指定点滴

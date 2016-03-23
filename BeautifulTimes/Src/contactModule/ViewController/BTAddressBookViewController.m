@@ -29,7 +29,8 @@ static NSString *kAddressBookIndentifier = @"kAddressBookIndentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view addSubview:self.tableview];
+    [self.bodyView addSubview:self.tableview];
+    self.titleLabel.text = @"选择联系人";
     [self devideContacter];
     self.tableview.sectionIndexColor = [UIColor grayColor];
     self.tableview.sectionIndexBackgroundColor = [UIColor clearColor];
@@ -39,7 +40,7 @@ static NSString *kAddressBookIndentifier = @"kAddressBookIndentifier";
     [super viewDidLayoutSubviews];
     WS(weakSelf);
     [self.tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(weakSelf.view).insets(UIEdgeInsetsMake(0, 0, 0, 0));
+        make.edges.equalTo(weakSelf.bodyView).insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
 }
 

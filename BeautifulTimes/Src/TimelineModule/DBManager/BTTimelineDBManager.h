@@ -27,4 +27,27 @@
  */
 - (NSArray *)getAllTimelineMessage;
 
+/**
+ *  查找指定记录
+ *
+ *  @param Id timeline id
+ *
+ *  @return timelineModel
+ */
+- (BTTimelineModel *)getTimelineWithId:(NSInteger)Id;
+
+/**
+ *  删除指定点滴
+ *
+ *  @param timelineID timelineId
+ */
+- (void)deleteTimelineWithId:(NSInteger)timelineId;
+
+/**
+ *  更新记录
+ *
+ *  @param history    更新model
+ */
+- (void)updateTimeline:(BTTimelineModel *)history;
+
 @end

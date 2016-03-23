@@ -17,6 +17,7 @@
 #import "DDRemoteLogger.h"
 #import "DDLog.h"
 #import "DDTTYLogger.h"
+#import "BTIMTabBarController.h"
 
 static AppDelegate *singleton = nil;
 
@@ -51,6 +52,13 @@ static AppDelegate *singleton = nil;
         //[DDLog addLogger:fileLogger];
         DDRemoteLogger *remoteLogger = [[DDRemoteLogger alloc] init]; // Remote Logger
         [DDLog addLogger:remoteLogger];
+    }
+    
+    //login user
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:userID] && [[NSUserDefaults standardUserDefaults] valueForKey:userPassword]) {
+        [[BTXMPPTool sharedInstance] login:nil];
+        BTIMTabBarController *tab = [[BTIMTabBarController alloc]init];
+        [AppDelegate getInstance].window.rootViewController = tab;
     }
     
     singleton = self;

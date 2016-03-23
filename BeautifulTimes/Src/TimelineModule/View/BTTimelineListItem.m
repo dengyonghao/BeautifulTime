@@ -10,7 +10,12 @@
 
 @interface BTTimelineListItem ()
 
-@property (nonatomic, strong) UILabel *content;
+@property (nonatomic, strong) UILabel *contentLabel;
+@property (nonatomic, strong) UILabel *dateLabel;
+@property (nonatomic, strong) UILabel *siteLabel;
+@property (nonatomic, strong) UIImageView *photoView;
+@property (nonatomic, strong) UIButton *playButton;
+@property (nonatomic, strong) UILabel *friendsLabel;
 
 @end
 
@@ -20,7 +25,13 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self.contentView addSubview:self.content];
+
+        [self.contentView addSubview:self.contentLabel];
+        [self.contentView addSubview:self.dateLabel];
+        [self.contentView addSubview:self.siteLabel];
+        [self.contentView addSubview:self.photoView];
+        [self.contentView addSubview:self.playButton];
+        [self.contentView addSubview:self.friendsLabel];
         
         [self setupSubview];
     }
@@ -30,36 +41,89 @@
 - (void)setupSubview {
     WS(weakSelf);
     
-    [self.content mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(weakSelf.contentView);
         make.centerY.equalTo(weakSelf.contentView);
         make.height.equalTo(@(30));
         make.width.equalTo(weakSelf.contentView);
     }];
+    
+    [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+    }];
+    
+    [self.siteLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+    }];
+    
+    [self.photoView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+    }];
+    
+    [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+    }];
+    
+    [self.friendsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+    }];
 }
 
 - (void)awakeFromNib {
-    // Initialization code
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
 }
 
 - (void)bindDate:(BTTimelineModel *)model {
-    self.content.text = [[NSString alloc] initWithData:model.timelineContent encoding:NSUTF8StringEncoding];
+    self.contentLabel.text = [[NSString alloc] initWithData:model.timelineContent encoding:NSUTF8StringEncoding];
 }
 
 #pragma mark getting && setting
-- (UILabel *)content {
-    if (!_content) {
-        _content = [[UILabel alloc] init];
-        _content.font = BT_FONTSIZE(20);
-        _content.textAlignment = NSTextAlignmentLeft;
+- (UILabel *)contentLabel {
+    if (!_contentLabel) {
+        _contentLabel = [[UILabel alloc] init];
     }
-    return _content;
+    return _contentLabel;
+}
+
+- (UILabel *)dateLabel {
+    if (!_dateLabel) {
+        _dateLabel = [[UILabel alloc] init];
+    }
+    return _dateLabel;
+}
+
+- (UILabel *)siteLabel {
+    if (!_siteLabel) {
+        _siteLabel = [[UILabel alloc] init];
+    }
+    return _siteLabel;
+}
+
+- (UIImageView *)photoView {
+    if (!_photoView) {
+        _photoView = [[UIImageView alloc] init];
+    }
+    
+    return _photoView;
+}
+
+- (UIButton *)playButton {
+    if (!_playButton) {
+        _playButton = [[UIButton alloc] init];
+    }
+    return _playButton;
+}
+
+- (UILabel *)friendsLabel {
+    if (!_friendsLabel) {
+        _friendsLabel = [[UILabel alloc] init];
+    }
+    return _friendsLabel;
 }
 
 @end

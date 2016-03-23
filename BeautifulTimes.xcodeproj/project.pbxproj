@@ -4106,7 +4106,6 @@
 				TargetAttributes = {
 					65E2D32D1BCFC965001E29A9 = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = WAU5CTT2Y9;
 					};
 					65E2D3491BCFC966001E29A9 = {
 						CreatedOnToolsVersion = 6.3.2;
