@@ -856,12 +856,12 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "480426201.379433"
+                  timestampString = "480511363.785112"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "740"
                   endingLineNumber = "740"
-                  offsetFromSymbolStart = "510">
+                  offsetFromSymbolStart = "564">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -871,12 +871,12 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "480426201.37953"
+                  timestampString = "480511363.785205"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "740"
                   endingLineNumber = "740"
-                  offsetFromSymbolStart = "566">
+                  offsetFromSymbolStart = "648">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -920,12 +920,12 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "480426201.380997"
+                  timestampString = "480511363.78679"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1503"
                   endingLineNumber = "1503"
-                  offsetFromSymbolStart = "26">
+                  offsetFromSymbolStart = "32">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -935,12 +935,12 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "480426201.381106"
+                  timestampString = "480511363.786889"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1503"
                   endingLineNumber = "1503"
-                  offsetFromSymbolStart = "59">
+                  offsetFromSymbolStart = "76">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1112,12 +1112,12 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "480426201.386661"
+                  timestampString = "480511363.794673"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1323"
                   endingLineNumber = "1323"
-                  offsetFromSymbolStart = "28">
+                  offsetFromSymbolStart = "36">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1127,12 +1127,12 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "480426201.386758"
+                  timestampString = "480511363.794908"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1323"
                   endingLineNumber = "1323"
-                  offsetFromSymbolStart = "61">
+                  offsetFromSymbolStart = "80">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1176,12 +1176,12 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "480426201.388006"
+                  timestampString = "480511363.797638"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1455"
                   endingLineNumber = "1455"
-                  offsetFromSymbolStart = "26">
+                  offsetFromSymbolStart = "32">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1191,12 +1191,12 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "480426201.388109"
+                  timestampString = "480511363.797766"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1455"
                   endingLineNumber = "1455"
-                  offsetFromSymbolStart = "59">
+                  offsetFromSymbolStart = "76">
                </Location>
             </Locations>
          </BreakpointContent>

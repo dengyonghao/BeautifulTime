@@ -422,6 +422,27 @@
 		652338641C4F81E600557D9F /* blueTheme.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 652337761C4F81E600557D9F /* blueTheme.bundle */; };
 		652608531C04604D00370630 /* BTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 652608521C04604D00370630 /* BTAttributedLabel.m */; };
 		652608591C0464CC00370630 /* NSMutableAttributedString+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 652608581C0464CC00370630 /* NSMutableAttributedString+Addition.m */; };
+		652CE93A1CA3D34700C92041 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A939651C7C84B600068F94 /* AFHTTPRequestOperationManager.m */; };
+		652CE93B1CA3D39D00C92041 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A939631C7C84B600068F94 /* AFHTTPRequestOperation.m */; };
+		652CE93C1CA3D39D00C92041 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A939671C7C84B600068F94 /* AFHTTPSessionManager.m */; };
+		652CE93D1CA3D39D00C92041 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A9396A1C7C84B600068F94 /* AFNetworkReachabilityManager.m */; };
+		652CE93E1CA3D39D00C92041 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A9396C1C7C84B600068F94 /* AFSecurityPolicy.m */; };
+		652CE93F1CA3D39D00C92041 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A9396E1C7C84B600068F94 /* AFURLConnectionOperation.m */; };
+		652CE9401CA3D39D00C92041 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A939701C7C84B600068F94 /* AFURLRequestSerialization.m */; };
+		652CE9411CA3D39D00C92041 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A939721C7C84B600068F94 /* AFURLResponseSerialization.m */; };
+		652CE9421CA3D39D00C92041 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A939741C7C84B600068F94 /* AFURLSessionManager.m */; };
+		652CE9431CA3D39D00C92041 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A939771C7C84B600068F94 /* AFNetworkActivityIndicatorManager.m */; };
+		652CE9441CA3D39D00C92041 /* UIActivityIndicatorView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A939791C7C84B600068F94 /* UIActivityIndicatorView+AFNetworking.m */; };
+		652CE9451CA3D39D00C92041 /* UIAlertView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A9397B1C7C84B600068F94 /* UIAlertView+AFNetworking.m */; };
+		652CE9461CA3D39D00C92041 /* UIButton+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A9397D1C7C84B600068F94 /* UIButton+AFNetworking.m */; };
+		652CE9471CA3D39D00C92041 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A939801C7C84B600068F94 /* UIImageView+AFNetworking.m */; };
+		652CE9481CA3D39D00C92041 /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A939831C7C84B600068F94 /* UIProgressView+AFNetworking.m */; };
+		652CE9491CA3D39D00C92041 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A939851C7C84B600068F94 /* UIRefreshControl+AFNetworking.m */; };
+		652CE94A1CA3D39D00C92041 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A939871C7C84B600068F94 /* UIWebView+AFNetworking.m */; };
+		652CE94B1CA3D4DD00C92041 /* BeautifulTimesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D3501BCFC966001E29A9 /* BeautifulTimesTests.m */; };
+		652CE94C1CA3DBC800C92041 /* BTNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6500E71D1BEF3935007158BF /* BTNetManager.m */; };
+		652CE94D1CA3DBC800C92041 /* BTNetManager+BTAddJournal.m in Sources */ = {isa = PBXBuildFile; fileRef = 654B269D1C19A75E002E965C /* BTNetManager+BTAddJournal.m */; };
+		652CE9501CA4080E00C92041 /* BTTimelineDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 652CE94F1CA4080E00C92041 /* BTTimelineDetailViewController.m */; };
 		6533DF4F1C5754060074A15E /* BTChatMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6533DF4E1C5754060074A15E /* BTChatMessageModel.m */; };
 		653FB6CA1C917BF90028086F /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 653FB6C81C917BF90028086F /* GCDAsyncUdpSocket.m */; };
 		653FB6F21C9199580028086F /* CLIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 653FB6D21C9199580028086F /* CLIColor.m */; };
@@ -542,7 +563,6 @@
 		65E2D3371BCFC965001E29A9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D3361BCFC965001E29A9 /* AppDelegate.m */; };
 		65E2D33A1BCFC966001E29A9 /* BeautifulTimes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D3381BCFC966001E29A9 /* BeautifulTimes.xcdatamodeld */; };
 		65E2D3401BCFC966001E29A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65E2D33E1BCFC966001E29A9 /* Main.storyboard */; };
-		65E2D3511BCFC966001E29A9 /* BeautifulTimesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D3501BCFC966001E29A9 /* BeautifulTimesTests.m */; };
 		65E2D3721BCFCEE4001E29A9 /* BTStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D3711BCFCEE4001E29A9 /* BTStyle.m */; };
 		65E2D37B1BCFCF76001E29A9 /* BTThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E2D37A1BCFCF76001E29A9 /* BTThemeManager.m */; };
 		65E468231BDB8D6B0065D10B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65E468221BDB8D6B0065D10B /* Images.xcassets */; };
@@ -1214,6 +1234,8 @@
 		652608521C04604D00370630 /* BTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAttributedLabel.m; sourceTree = "<group>"; };
 		652608571C0464CC00370630 /* NSMutableAttributedString+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+Addition.h"; sourceTree = "<group>"; };
 		652608581C0464CC00370630 /* NSMutableAttributedString+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+Addition.m"; sourceTree = "<group>"; };
+		652CE94E1CA4080E00C92041 /* BTTimelineDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTimelineDetailViewController.h; sourceTree = "<group>"; };
+		652CE94F1CA4080E00C92041 /* BTTimelineDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTimelineDetailViewController.m; sourceTree = "<group>"; };
 		6533DF4D1C5754060074A15E /* BTChatMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTChatMessageModel.h; sourceTree = "<group>"; };
 		6533DF4E1C5754060074A15E /* BTChatMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTChatMessageModel.m; sourceTree = "<group>"; };
 		653FB6C71C917BF90028086F /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
@@ -3922,6 +3944,8 @@
 				B44579F41C140B1900CB10DC /* BTAddTimelineViewController.m */,
 				65A759921CA2B16D00CC48C5 /* BTTimelineEditViewController.h */,
 				65A759931CA2B16D00CC48C5 /* BTTimelineEditViewController.m */,
+				652CE94E1CA4080E00C92041 /* BTTimelineDetailViewController.h */,
+				652CE94F1CA4080E00C92041 /* BTTimelineDetailViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -4661,6 +4685,7 @@
 				651453561C86ED900053A3E5 /* XMPPSRVResolver.m in Sources */,
 				65F90A231C43D87A00BAC2A2 /* BTChatViewController.m in Sources */,
 				651453331C86ED900053A3E5 /* XMPPMessageArchiving.xcdatamodeld in Sources */,
+				652CE9501CA4080E00C92041 /* BTTimelineDetailViewController.m in Sources */,
 				651452FB1C86ED900053A3E5 /* XMPPRosterMemoryStorage.m in Sources */,
 				65DCFE4B1BD334F800DBD0DE /* BTRegisterAccountViewController.m in Sources */,
 				B44623691C7CA7F600D44A62 /* MBProgressHUD.m in Sources */,
@@ -4744,7 +4769,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65E2D3511BCFC966001E29A9 /* BeautifulTimesTests.m in Sources */,
+				652CE94C1CA3DBC800C92041 /* BTNetManager.m in Sources */,
+				652CE94D1CA3DBC800C92041 /* BTNetManager+BTAddJournal.m in Sources */,
+				652CE94B1CA3D4DD00C92041 /* BeautifulTimesTests.m in Sources */,
+				652CE93B1CA3D39D00C92041 /* AFHTTPRequestOperation.m in Sources */,
+				652CE93C1CA3D39D00C92041 /* AFHTTPSessionManager.m in Sources */,
+				652CE93D1CA3D39D00C92041 /* AFNetworkReachabilityManager.m in Sources */,
+				652CE93E1CA3D39D00C92041 /* AFSecurityPolicy.m in Sources */,
+				652CE93F1CA3D39D00C92041 /* AFURLConnectionOperation.m in Sources */,
+				652CE9401CA3D39D00C92041 /* AFURLRequestSerialization.m in Sources */,
+				652CE9411CA3D39D00C92041 /* AFURLResponseSerialization.m in Sources */,
+				652CE9421CA3D39D00C92041 /* AFURLSessionManager.m in Sources */,
+				652CE9431CA3D39D00C92041 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				652CE9441CA3D39D00C92041 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				652CE9451CA3D39D00C92041 /* UIAlertView+AFNetworking.m in Sources */,
+				652CE9461CA3D39D00C92041 /* UIButton+AFNetworking.m in Sources */,
+				652CE9471CA3D39D00C92041 /* UIImageView+AFNetworking.m in Sources */,
+				652CE9481CA3D39D00C92041 /* UIProgressView+AFNetworking.m in Sources */,
+				652CE9491CA3D39D00C92041 /* UIRefreshControl+AFNetworking.m in Sources */,
+				652CE94A1CA3D39D00C92041 /* UIWebView+AFNetworking.m in Sources */,
+				652CE93A1CA3D34700C92041 /* AFHTTPRequestOperationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4930,6 +4974,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/BeautifulTimes/Common/3rdparty/AFNetworking/AFNetworking";
 				INFOPLIST_FILE = BeautifulTimesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "DYH.$(PRODUCT_NAME:rfc1034identifier)";
@@ -4943,6 +4988,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/BeautifulTimes/Common/3rdparty/AFNetworking/AFNetworking";
 				INFOPLIST_FILE = BeautifulTimesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "DYH.$(PRODUCT_NAME:rfc1034identifier)";

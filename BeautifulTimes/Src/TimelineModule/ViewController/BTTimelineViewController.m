@@ -10,6 +10,7 @@
 #import "BTTimelineDBManager.h"
 #import "BTTimelineListItem.h"
 #import "BTTimelineModel.h"
+#import "BTTimelineDetailViewController.h"
 
 #define kTimelineListCell @"kTimelineListCell"
 
@@ -113,11 +114,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    BTEditJournalViewController *vc = [[BTEditJournalViewController alloc] init];
-//    NSString *key = self.keys[indexPath.section];
-//    NSArray *arr = [self.dataSource objectForKey:key];
-//    vc.journal = arr[indexPath.row];
-//    [self.navigationController pushViewController:vc animated:YES];
+    BTTimelineDetailViewController *vc = [[BTTimelineDetailViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -130,6 +128,7 @@
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         _tableView.dataSource = self;
         _tableView.delegate = self;
+        _tableView.allowsSelection = NO;
     }
     return _tableView;
 }
