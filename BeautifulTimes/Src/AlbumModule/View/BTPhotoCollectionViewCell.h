@@ -11,9 +11,8 @@
 
 @interface BTPhotoCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIImageView *isSelect;
-
-- (void)bindData:(UIImage *)image;
+@property (nonatomic, copy) NSString *representedAssetIdentifier;
+@property (nonatomic, strong) UIImage *thumbnailImage;
 
 @end

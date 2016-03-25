@@ -856,7 +856,7 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "480511363.785112"
+                  timestampString = "480589900.52995"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "740"
@@ -871,7 +871,7 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "480511363.785205"
+                  timestampString = "480589900.530062"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "740"
@@ -920,7 +920,7 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "480511363.78679"
+                  timestampString = "480589900.53132"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1503"
@@ -935,7 +935,7 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "480511363.786889"
+                  timestampString = "480589900.531419"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1503"
@@ -1112,7 +1112,7 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "480511363.794673"
+                  timestampString = "480589900.536375"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1323"
@@ -1127,7 +1127,7 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "480511363.794908"
+                  timestampString = "480589900.536484"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1323"
@@ -1176,7 +1176,7 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "480511363.797638"
+                  timestampString = "480589900.537732"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1455"
@@ -1191,7 +1191,7 @@
                   moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dengyonghao/Desktop/work/BeautifulTime/BeautifulTimes/Common/3rdparty/XMPPFramework/Extensions/XEP-0065/TURNSocket.m"
-                  timestampString = "480511363.797766"
+                  timestampString = "480589900.537839"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1455"
@@ -1262,6 +1262,70 @@
             startingLineNumber = "545"
             endingLineNumber = "545"
             landmarkName = "-xmppIncomingFileTransfer:didReceiveSIOffer:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Src/AlbumModule/ViewControll/BTPhotoListViewController.m"
+            timestampString = "480581598.568955"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
+            landmarkName = "-photoLibraryDidChange:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Src/AlbumModule/ViewControll/BTPhotoListViewController.m"
+            timestampString = "480580545.100575"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "-didReceiveMemoryWarning"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Src/AlbumModule/View/BTPhotoCollectionViewCell.m"
+            timestampString = "480584685.70851"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "-initWithFrame:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BeautifulTimes/Src/AlbumModule/ViewControll/BTPhotoListViewController.m"
+            timestampString = "480584730.326338"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
+            landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

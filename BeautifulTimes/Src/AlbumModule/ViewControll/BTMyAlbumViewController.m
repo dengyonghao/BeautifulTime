@@ -220,8 +220,12 @@ static CGFloat const iconHeight = 120.0f;
         vc.fetchResult = self.dataSource[indexPath.section * showNumber + indexPath.row];
         vc.assetCollection = nil;
     } else {
-        vc.assetCollection = self.dataSource[indexPath.section * showNumber + indexPath.row];
-        vc.fetchResult = nil;
+        
+        PHAssetCollection *assetCollection = self.dataSource[indexPath.section * showNumber + indexPath.row];
+        PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
+        
+        vc.assetCollection = assetCollection;
+        vc.fetchResult = assetsFetchResult;
     }
     [self.navigationController pushViewController:vc animated:YES];
 }

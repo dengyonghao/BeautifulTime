@@ -476,6 +476,7 @@
 		655C1F711C730ABB00833CDC /* BTAboutMeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 655C1F701C730ABB00833CDC /* BTAboutMeView.m */; };
 		6563A70E1C1FB92E00D8D1FA /* UIView+BTAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6563A70D1C1FB92E00D8D1FA /* UIView+BTAddition.m */; };
 		6563A7111C20009600D8D1FA /* BTJournalManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6563A7101C20009500D8D1FA /* BTJournalManager.m */; };
+		6564E2D81CA4DF9900F74911 /* UICollectionView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6564E2D71CA4DF9900F74911 /* UICollectionView+Addition.m */; };
 		658D5AF41C4DDA1E00CDE8F1 /* BTTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 658D5AF31C4DDA1E00CDE8F1 /* BTTool.m */; };
 		65A11DDA1C7AE40100738DF0 /* BTIMEditUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A11DD91C7AE40100738DF0 /* BTIMEditUserInfoViewController.m */; };
 		65A11DDD1C7AE63B00738DF0 /* BTEditUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A11DDC1C7AE63B00738DF0 /* BTEditUserInfoCell.m */; };
@@ -1309,6 +1310,8 @@
 		6563A70D1C1FB92E00D8D1FA /* UIView+BTAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BTAddition.m"; sourceTree = "<group>"; };
 		6563A70F1C20009500D8D1FA /* BTJournalManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTJournalManager.h; sourceTree = "<group>"; };
 		6563A7101C20009500D8D1FA /* BTJournalManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTJournalManager.m; sourceTree = "<group>"; };
+		6564E2D61CA4DF9900F74911 /* UICollectionView+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+Addition.h"; sourceTree = "<group>"; };
+		6564E2D71CA4DF9900F74911 /* UICollectionView+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+Addition.m"; sourceTree = "<group>"; };
 		658D5AF21C4DDA1E00CDE8F1 /* BTTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTool.h; sourceTree = "<group>"; };
 		658D5AF31C4DDA1E00CDE8F1 /* BTTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTool.m; sourceTree = "<group>"; };
 		65A11DD81C7AE40100738DF0 /* BTIMEditUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTIMEditUserInfoViewController.h; sourceTree = "<group>"; };
@@ -3566,6 +3569,8 @@
 				6563A70D1C1FB92E00D8D1FA /* UIView+BTAddition.m */,
 				65F816F91C71BE0E00A607F7 /* NSDate+BTAddition.h */,
 				65F816FA1C71BE0E00A607F7 /* NSDate+BTAddition.m */,
+				6564E2D61CA4DF9900F74911 /* UICollectionView+Addition.h */,
+				6564E2D71CA4DF9900F74911 /* UICollectionView+Addition.m */,
 			);
 			path = Gategory;
 			sourceTree = "<group>";
@@ -4643,6 +4648,7 @@
 				653FB6FA1C9199580028086F /* DDContextFilterLogFormatter.m in Sources */,
 				6514533C1C86ED900053A3E5 /* XMPPMessage+XEP_0184.m in Sources */,
 				653FB6FC1C9199580028086F /* DDMultiFormatter.m in Sources */,
+				6564E2D81CA4DF9900F74911 /* UICollectionView+Addition.m in Sources */,
 				65A93B971C7C84B700068F94 /* FMDatabasePool.m in Sources */,
 				65A93B841C7C84B700068F94 /* AFHTTPRequestOperationManager.m in Sources */,
 				651453451C86ED900053A3E5 /* XMPPTime.m in Sources */,

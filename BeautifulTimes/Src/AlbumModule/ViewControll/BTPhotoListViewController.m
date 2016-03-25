@@ -11,9 +11,10 @@
 #import "BTPhotoDetailsViewController.h"
 #import "BTJournalController.h"
 #import "BTSelectPhotosViewController.h"
+#import "UICollectionView+Addition.h"
 
 static  NSString *kcellIdentifier = @"kPhotoCollectionCellID";
-static int const showNumber = 3;
+static int const showNumber = 5;
 static CGSize AssetGridThumbnailSize;
 
 @interface BTPhotoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, PHPhotoLibraryChangeObserver, UIActionSheetDelegate> {
@@ -21,11 +22,10 @@ static CGSize AssetGridThumbnailSize;
 }
 
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) NSMutableArray *dataSource;
 @property (nonatomic, strong) NSMutableDictionary *flageArray;
 @property (nonatomic, strong) NSMutableDictionary *photoSource;
 @property (nonatomic, strong) PHCachingImageManager *imageManager;
-@property (nonatomic, strong) PHImageRequestOptions *options;
+@property CGRect previousPreheatRect;
 
 @end
 
@@ -41,7 +41,6 @@ static CGSize AssetGridThumbnailSize;
     } else {
         [self.finishButton setTitle:@"编辑" forState:UIControlStateNormal];
     }
-    [self initDataSource];
     [self.bodyView addSubview:self.collectionView];
     [self resetCachedAssets];
     [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
@@ -51,7 +50,7 @@ static CGSize AssetGridThumbnailSize;
     [super viewWillAppear:animated];
     [self.collectionView registerClass:[BTPhotoCollectionViewCell class] forCellWithReuseIdentifier:kcellIdentifier];
     CGFloat scale = [UIScreen mainScreen].scale;
-    AssetGridThumbnailSize = CGSizeMake((BT_SCREEN_WIDTH / 3) * scale, (BT_SCREEN_WIDTH / 3) * scale);
+    AssetGridThumbnailSize = CGSizeMake((BT_SCREEN_WIDTH / showNumber) * scale, (BT_SCREEN_WIDTH / showNumber) * scale);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -75,7 +74,6 @@ static CGSize AssetGridThumbnailSize;
 }
 
 - (void)dealloc {
-    [self resetCachedAssets];
     [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
 }
 
@@ -83,6 +81,7 @@ static CGSize AssetGridThumbnailSize;
 
 - (void)resetCachedAssets {
     [self.imageManager stopCachingImagesForAllAssets];
+    self.previousPreheatRect = CGRectZero;
 }
 
 - (void)updateCachedAssets {
@@ -91,14 +90,77 @@ static CGSize AssetGridThumbnailSize;
         return;
     }
     
-    NSMutableArray *addedIndexPaths = [NSMutableArray array];
+    // The preheat window is twice the height of the visible rect.
+    CGRect preheatRect = self.collectionView.bounds;
+    preheatRect = CGRectInset(preheatRect, 0.0f, -0.5f * CGRectGetHeight(preheatRect));
+    
+    /*
+     Check if the collection view is showing an area that is significantly
+     different to the last preheated area.
+     */
+    CGFloat delta = ABS(CGRectGetMidY(preheatRect) - CGRectGetMidY(self.previousPreheatRect));
+    if (delta > CGRectGetHeight(self.collectionView.bounds) / 3.0f) {
+        
+        // Compute the assets to start caching and to stop caching.
+        NSMutableArray *addedIndexPaths = [NSMutableArray array];
+        NSMutableArray *removedIndexPaths = [NSMutableArray array];
+        
+        [self computeDifferenceBetweenRect:self.previousPreheatRect andRect:preheatRect removedHandler:^(CGRect removedRect) {
+            NSArray *indexPaths = [self.collectionView aapl_indexPathsForElementsInRect:removedRect];
+            [removedIndexPaths addObjectsFromArray:indexPaths];
+        } addedHandler:^(CGRect addedRect) {
+            NSArray *indexPaths = [self.collectionView aapl_indexPathsForElementsInRect:addedRect];
+            [addedIndexPaths addObjectsFromArray:indexPaths];
+        }];
+        
+        NSArray *assetsToStartCaching = [self assetsAtIndexPaths:addedIndexPaths];
+        NSArray *assetsToStopCaching = [self assetsAtIndexPaths:removedIndexPaths];
+        
+        // Update the assets the PHCachingImageManager is caching.
+        [self.imageManager startCachingImagesForAssets:assetsToStartCaching
+                                            targetSize:AssetGridThumbnailSize
+                                           contentMode:PHImageContentModeAspectFill
+                                               options:nil];
+        [self.imageManager stopCachingImagesForAssets:assetsToStopCaching
+                                           targetSize:AssetGridThumbnailSize
+                                          contentMode:PHImageContentModeAspectFill
+                                              options:nil];
+        
+        // Store the preheat rect to compare against in the future.
+        self.previousPreheatRect = preheatRect;
+    }
+}
 
-    NSArray *assetsToStartCaching = [self assetsAtIndexPaths:addedIndexPaths];
-
-    [self.imageManager startCachingImagesForAssets:assetsToStartCaching
-                                        targetSize:AssetGridThumbnailSize
-                                       contentMode:PHImageContentModeAspectFill
-                                           options:self.options];
+- (void)computeDifferenceBetweenRect:(CGRect)oldRect andRect:(CGRect)newRect removedHandler:(void (^)(CGRect removedRect))removedHandler addedHandler:(void (^)(CGRect addedRect))addedHandler {
+    if (CGRectIntersectsRect(newRect, oldRect)) {
+        CGFloat oldMaxY = CGRectGetMaxY(oldRect);
+        CGFloat oldMinY = CGRectGetMinY(oldRect);
+        CGFloat newMaxY = CGRectGetMaxY(newRect);
+        CGFloat newMinY = CGRectGetMinY(newRect);
+        
+        if (newMaxY > oldMaxY) {
+            CGRect rectToAdd = CGRectMake(newRect.origin.x, oldMaxY, newRect.size.width, (newMaxY - oldMaxY));
+            addedHandler(rectToAdd);
+        }
+        
+        if (oldMinY > newMinY) {
+            CGRect rectToAdd = CGRectMake(newRect.origin.x, newMinY, newRect.size.width, (oldMinY - newMinY));
+            addedHandler(rectToAdd);
+        }
+        
+        if (newMaxY < oldMaxY) {
+            CGRect rectToRemove = CGRectMake(newRect.origin.x, newMaxY, newRect.size.width, (oldMaxY - newMaxY));
+            removedHandler(rectToRemove);
+        }
+        
+        if (oldMinY < newMinY) {
+            CGRect rectToRemove = CGRectMake(newRect.origin.x, oldMinY, newRect.size.width, (newMinY - oldMinY));
+            removedHandler(rectToRemove);
+        }
+    } else {
+        addedHandler(newRect);
+        removedHandler(oldRect);
+    }
 }
 
 - (NSArray *)assetsAtIndexPaths:(NSArray *)indexPaths {
@@ -108,7 +170,7 @@ static CGSize AssetGridThumbnailSize;
     
     NSMutableArray *assets = [NSMutableArray arrayWithCapacity:indexPaths.count];
     for (NSIndexPath *indexPath in indexPaths) {
-        PHAsset *asset = self.dataSource[indexPath.item];
+        PHAsset *asset = self.fetchResult[indexPath.item];
         [assets addObject:asset];
     }
     
@@ -147,29 +209,6 @@ static CGSize AssetGridThumbnailSize;
     }
 }
 
-- (void)initDataSource {
-    
-    [self.dataSource removeAllObjects];
-        
-    if (!self.assetCollection) {
-        
-        for (int i = 0; i < self.fetchResult.count; i++) {
-            PHAsset *asset = self.fetchResult[i];
-            
-            [self.dataSource addObject:asset];
-        }
-        
-    } else {
-        
-        PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:self.assetCollection options:nil];
-        
-        for (int i = 0; i < assetsFetchResult.count; i++) {
-            PHAsset *asset = assetsFetchResult[i];
-            [self.dataSource addObject:asset];
-        }
-    }
-}
-
 #pragma mark - PHPhotoLibraryChangeObserver
 
 - (void)photoLibraryDidChange:(PHChange *)changeInstance {
@@ -187,7 +226,7 @@ static CGSize AssetGridThumbnailSize;
         
         if (![collectionChanges hasIncrementalChanges] || [collectionChanges hasMoves]) {
             // Reload the collection view if the incremental diffs are not available
-            [self initDataSource];
+//            [self initDataSource];
             [collectionView reloadData];
             
         } else {
@@ -218,24 +257,9 @@ static CGSize AssetGridThumbnailSize;
 }
 
 #pragma mark - UICollectionView delegate
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    if (self.dataSource.count % showNumber == 0) {
-        return self.dataSource.count / showNumber;
-    }
-    
-    return self.dataSource.count / showNumber + 1;
-}
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if (self.dataSource.count % showNumber != 0) {
-        if (section == self.dataSource.count / showNumber) {
-            return self.dataSource.count % showNumber;
-        }
-    }
-    
-    return showNumber;
+    return self.fetchResult.count;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -249,8 +273,13 @@ static CGSize AssetGridThumbnailSize;
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    PHAsset *asset = self.fetchResult[indexPath.item];
+    
     BTPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kcellIdentifier forIndexPath:indexPath];
-    long index = indexPath.section * showNumber + indexPath.row;
+   
+    cell.representedAssetIdentifier = asset.localIdentifier;
+    cell.thumbnailImage = nil;
+    long index = indexPath.row;
     NSString *str = [self.flageArray valueForKey:[[NSString alloc] initWithFormat:@"%ld",index]];
     if ([str isEqualToString:@"YES"]) {
         cell.isSelect.hidden = NO;
@@ -258,13 +287,14 @@ static CGSize AssetGridThumbnailSize;
         cell.isSelect.hidden = YES;
     }
     
-    [self.imageManager requestImageForAsset:self.dataSource[index]
+    [self.imageManager requestImageForAsset:self.fetchResult[index]
                                  targetSize:AssetGridThumbnailSize
                                 contentMode:PHImageContentModeAspectFill
-                                    options:self.options
+                                    options:nil
                               resultHandler:^(UIImage *result, NSDictionary *info) {
-                                  [cell bindData:result];
-                                  
+                                  if ([cell.representedAssetIdentifier isEqualToString:asset.localIdentifier]) {
+                                      cell.thumbnailImage = result;
+                                  }
                               }];
     
     return cell;
@@ -278,7 +308,7 @@ static CGSize AssetGridThumbnailSize;
         if (cell.isSelect.hidden && photosNumber < 6) {
             cell.isSelect.hidden = NO;
             [self.flageArray setValue:@"YES" forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
-            [self.photoSource setValue:cell.imageView.image forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
+            [self.photoSource setValue:nil forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
             photosNumber++;
         } else {
             if (photosNumber == 6 && cell.isSelect.hidden) {
@@ -292,7 +322,7 @@ static CGSize AssetGridThumbnailSize;
         
     } else {
         BTPhotoDetailsViewController *vc = [[BTPhotoDetailsViewController alloc] init];
-        vc.assets = self.dataSource;
+//        vc.assets = self.fetchResult;
         vc.index = indexPath.section * showNumber + indexPath.row;
         [self.navigationController pushViewController:vc animated:YES];
     }
@@ -302,6 +332,13 @@ static CGSize AssetGridThumbnailSize;
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     return UIEdgeInsetsMake(0, 0, 0, 0);
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    // Update cached assets for the new visible area.
+    [self updateCachedAssets];
 }
 
 - (NSArray *)sortDictionaryByAsc:(NSDictionary *)dict {
@@ -329,13 +366,6 @@ static CGSize AssetGridThumbnailSize;
     return _collectionView;
 }
 
-- (NSMutableArray *)dataSource {
-    if (!_dataSource) {
-        _dataSource = [[NSMutableArray alloc] init];
-    }
-    return _dataSource;
-}
-
 - (NSMutableDictionary *)flageArray {
     if (!_flageArray) {
         _flageArray = [[NSMutableDictionary alloc] init];
@@ -357,13 +387,13 @@ static CGSize AssetGridThumbnailSize;
     return _imageManager;
 }
 
--(PHImageRequestOptions *)options {
-    if (!_options) {
-        _options = [[PHImageRequestOptions alloc] init];
-        _options.resizeMode = PHImageRequestOptionsResizeModeExact;
-        _options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
-    }
-    return _options;
-}
+//-(PHImageRequestOptions *)options {
+//    if (!_options) {
+//        _options = [[PHImageRequestOptions alloc] init];
+//        _options.resizeMode = PHImageRequestOptionsResizeModeExact;
+//        _options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+//    }
+//    return _options;
+//}
 
 @end

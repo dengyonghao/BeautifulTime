@@ -10,6 +10,8 @@
 
 @interface BTPhotoCollectionViewCell ()
 
+@property (nonatomic, weak) UIImageView *imageView;
+
 @end
 
 @implementation BTPhotoCollectionViewCell
@@ -17,9 +19,12 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self.contentView addSubview:self.imageView];
+        UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.contentMode = UIViewContentModeScaleToFill;
+        _imageView = imageView;
+        [self.contentView addSubview:_imageView];
         [self.contentView addSubview:self.isSelect];
-        
+    
         CGFloat iconWidth = BT_SCREEN_WIDTH / 3;
         WS(weakSelf);
         [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -36,6 +41,7 @@
 //            make.height.equalTo(@(24));
 //        }];
     }
+    self.imageView.image = nil;
     return self;
 }
 
@@ -45,18 +51,6 @@
     
 }
 
-- (void)bindData:(UIImage *)image {
-    self.imageView.image = image;
-}
-
-- (UIImageView *)imageView {
-    if (!_imageView) {
-        _imageView = [[UIImageView alloc] init];
-        _imageView.contentMode = UIViewContentModeScaleAspectFit;
-    }
-    return _imageView;
-}
-
 - (UIImageView *)isSelect {
     if (!_isSelect) {
         _isSelect = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
@@ -64,6 +58,11 @@
         _isSelect.hidden = YES;
     }
     return _isSelect;
+}
+
+- (void)setThumbnailImage:(UIImage *)thumbnailImage {
+    _thumbnailImage = thumbnailImage;
+    _imageView.image = thumbnailImage;
 }
 
 @end
