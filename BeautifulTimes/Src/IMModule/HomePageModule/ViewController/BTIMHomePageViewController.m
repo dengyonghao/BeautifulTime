@@ -13,6 +13,7 @@
 #import "BTContacterModel.h"
 #import "BTChatViewController.h"
 #import "BTMessageListDBTool.h"
+#import "AppDelegate.h"
 
 static NSString *cellIdentifier = @"chatMessageListCell";
 
@@ -78,8 +79,22 @@ static NSString *cellIdentifier = @"chatMessageListCell";
 #pragma mark 收到新消息时更新状态
 - (void)updateMessage:(NSNotification*)note {
     NSDictionary *dict = [note object];
+    NSString *uname = [dict objectForKey:@"uname"];
+    NSString *body = [dict objectForKey:@"body"];
+    XMPPJID *jid = [dict objectForKey:@"jid"];
+    NSDate *time = [dict objectForKey:@"time"];
+    NSString *user = [dict objectForKey:@"user"];
     
-    if([dict[@"user"] isEqualToString:@"other"]){
+    BOOL isCurrentChatingFriend = NO;
+    NSLog(@"%@", self.navigationController.viewControllers );
+    if ([self.navigationController.viewControllers.lastObject isKindOfClass:[BTChatViewController class]]) {
+        BTChatViewController *VC = (BTChatViewController*)self.navigationController.viewControllers.lastObject;
+        if ([VC.contacter.jid.user isEqual:jid.user]) {
+            isCurrentChatingFriend = YES;
+        }
+    }
+    
+    if([user isEqualToString:@"other"] && !isCurrentChatingFriend){
         dispatch_async(dispatch_get_main_queue(), ^{
             self.messageCount++;
             if(self.messageCount >= 99){
@@ -90,11 +105,7 @@ static NSString *cellIdentifier = @"chatMessageListCell";
         });
     }
     
-    NSString *uname = [dict objectForKey:@"uname"];
-    NSString *body = [dict objectForKey:@"body"];
-    XMPPJID *jid = [dict objectForKey:@"jid"];
-    NSDate *time = [dict objectForKey:@"time"];
-    NSString *user = [dict objectForKey:@"user"];
+    
 
     if([BTMessageListDBTool selectUname:uname]){
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -103,8 +114,9 @@ static NSString *cellIdentifier = @"chatMessageListCell";
                 if([model.uname isEqualToString:uname]){
                     model.body = body;
                     model.time = time;
+                
                     //如果是正在和我聊天的用户 才设置badgeValue
-                    if([user isEqualToString:@"other"]){
+                    if([user isEqualToString:@"other"] && !isCurrentChatingFriend){
                         int currentV = [model.badgeValue intValue] + 1;
                         model.badgeValue = [NSString stringWithFormat:@"%d",currentV];
                     }

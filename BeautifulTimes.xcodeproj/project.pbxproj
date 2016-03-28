@@ -591,6 +591,7 @@
 		65FBFD071C4DD633008D9FA3 /* BTChattingHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FBFD061C4DD633008D9FA3 /* BTChattingHistory.m */; };
 		65FBFD0A1C4DD699008D9FA3 /* BTChattingHistoryDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FBFD091C4DD699008D9FA3 /* BTChattingHistoryDB.m */; };
 		65FBFD0D1C4DD6B2008D9FA3 /* BTChattingHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FBFD0C1C4DD6B2008D9FA3 /* BTChattingHistoryManager.m */; };
+		B422C98D1CA78069007491D4 /* BTIMFriendInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B422C98C1CA78069007491D4 /* BTIMFriendInfoViewController.m */; };
 		B43EF74A1C187A78004FB2B5 /* BTJournalDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B43EF7491C187A78004FB2B5 /* BTJournalDetailsViewController.m */; };
 		B4404F8C1BE7B32000226334 /* Journal+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = B4404F891BE7B32000226334 /* Journal+CoreDataProperties.m */; };
 		B4404F8D1BE7B32000226334 /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = B4404F8B1BE7B32000226334 /* Journal.m */; };
@@ -1548,6 +1549,8 @@
 		65FBFD091C4DD699008D9FA3 /* BTChattingHistoryDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTChattingHistoryDB.m; sourceTree = "<group>"; };
 		65FBFD0B1C4DD6B2008D9FA3 /* BTChattingHistoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTChattingHistoryManager.h; sourceTree = "<group>"; };
 		65FBFD0C1C4DD6B2008D9FA3 /* BTChattingHistoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTChattingHistoryManager.m; sourceTree = "<group>"; };
+		B422C98B1CA78069007491D4 /* BTIMFriendInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTIMFriendInfoViewController.h; sourceTree = "<group>"; };
+		B422C98C1CA78069007491D4 /* BTIMFriendInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTIMFriendInfoViewController.m; sourceTree = "<group>"; };
 		B43EF7481C187A78004FB2B5 /* BTJournalDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTJournalDetailsViewController.h; sourceTree = "<group>"; };
 		B43EF7491C187A78004FB2B5 /* BTJournalDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTJournalDetailsViewController.m; sourceTree = "<group>"; };
 		B4404F881BE7B32000226334 /* Journal+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Journal+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -3063,6 +3066,8 @@
 				6548630B1BDB279500CF3FF1 /* BTContacterViewController.m */,
 				6506875F1C44961C008AC4DF /* BTAddFriendViewController.h */,
 				650687601C44961C008AC4DF /* BTAddFriendViewController.m */,
+				B422C98B1CA78069007491D4 /* BTIMFriendInfoViewController.h */,
+				B422C98C1CA78069007491D4 /* BTIMFriendInfoViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -4640,6 +4645,7 @@
 				652336571C4F6E2D00557D9F /* HMRegexResult.m in Sources */,
 				651453181C86ED900053A3E5 /* XMPPvCardTemp.m in Sources */,
 				65A93BB51C7C84B700068F94 /* SDImageCache.m in Sources */,
+				B422C98D1CA78069007491D4 /* BTIMFriendInfoViewController.m in Sources */,
 				651452E71C86ED900053A3E5 /* XMPPJID.m in Sources */,
 				651452FD1C86ED900053A3E5 /* XMPPRoster.m in Sources */,
 				651453301C86ED900053A3E5 /* XMPPCapsCoreDataStorageObject.m in Sources */,

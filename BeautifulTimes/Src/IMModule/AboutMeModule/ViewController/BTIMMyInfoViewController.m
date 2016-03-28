@@ -47,12 +47,10 @@
     NSData *data=temp.photo?temp.photo:UIImageJPEGRepresentation(BT_LOADIMAGE(@"com_ic_defaultIcon"), 1.0);
     
     BTUserInfoModel *pro1=[BTUserInfoModel profileWithImage:data name:@"头像"];
-    //2.设置匿名
+    
     NSString *nickName=temp.nickname?temp.nickname:@"未设置";
     BTUserInfoModel *pro2=[BTUserInfoModel profileWithInfo:nickName infoType:UserNickName name:@"昵称"];
     
-    
-    //3.设置微信号
     NSString *account=[[NSUserDefaults standardUserDefaults] valueForKey:userID];
     BTUserInfoModel *pro3=[BTUserInfoModel profileWithInfo:account infoType:UserWeixinNum name:@"私语号"];
     //添加到第一个数组中

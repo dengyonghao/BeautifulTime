@@ -12,6 +12,7 @@
 #import "BTXMPPTool.h"
 #import "BTChatViewController.h"
 #import "BTAddFriendViewController.h"
+#import "BTIMFriendInfoViewController.h"
 
 static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 
@@ -248,10 +249,13 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
     NSString *key=self.keys[indexPath.section];
     NSArray *arr=[self.data objectForKey:key];
     BTContacterModel *contacter = arr[indexPath.row];
-    BTChatViewController *chatVc = [[BTChatViewController alloc] init];
-    chatVc.contacter = contacter;
-    chatVc.title = contacter.friendName;
-    [self.navigationController pushViewController:chatVc animated:YES];
+//    BTChatViewController *chatVc = [[BTChatViewController alloc] init];
+//    chatVc.contacter = contacter;
+//    chatVc.title = contacter.friendName;
+//    [self.navigationController pushViewController:chatVc animated:YES];
+    BTIMFriendInfoViewController *VC = [[BTIMFriendInfoViewController alloc] init];
+    VC.contacter = contacter;
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 #pragma mark 返回分区头的高度

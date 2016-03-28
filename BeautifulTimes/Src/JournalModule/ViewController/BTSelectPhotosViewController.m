@@ -44,7 +44,7 @@ static CGFloat const OFFSET = 15.0f;
     WS(weakSelf);
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.bodyView).offset(5);
-        make.right.equalTo(weakSelf.bodyView).offset(5);
+        make.right.equalTo(weakSelf.bodyView).offset(-5);
         make.top.equalTo(weakSelf.bodyView).offset(5);
         make.height.equalTo(@(BT_ViewHeight(weakSelf.bodyView) / 2));
     }];
@@ -197,7 +197,7 @@ static CGFloat const OFFSET = 15.0f;
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat itemWidth = (BT_SCREEN_WIDTH - OFFSET * (showNumber + 1)) / showNumber;
+    CGFloat itemWidth = (BT_SCREEN_WIDTH - OFFSET * (showNumber + 1) - 10) / showNumber;
     return CGSizeMake(itemWidth, itemWidth + OFFSET);
     
 }

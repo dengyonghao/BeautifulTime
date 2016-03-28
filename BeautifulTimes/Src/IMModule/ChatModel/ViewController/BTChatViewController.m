@@ -126,7 +126,15 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
     if(msg.body != nil) {
         BTChatMessageModel *msgModel = [[BTChatMessageModel alloc] init];
         [msgModel bindData:msg];
-        msgModel.friendHeadIcon = self.contacter.headIcon;
+        if (self.contacter.headIcon) {
+            msgModel.friendHeadIcon = self.contacter.headIcon;
+        } else {
+            msgModel.friendHeadIcon = [UIImage imageWithData: [[BTXMPPTool sharedInstance].avatar photoDataForJID:self.contacter.jid]];
+        }
+        
+        if (!msgModel.friendHeadIcon) {
+            msgModel.friendHeadIcon = BT_LOADIMAGE(@"com_ic_defaultIcon");
+        }
         msgModel.ownHeadIcon = self.headImage;
         msgModel.hiddenTime = YES;
 

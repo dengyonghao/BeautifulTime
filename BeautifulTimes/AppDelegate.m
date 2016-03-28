@@ -42,7 +42,7 @@ static AppDelegate *singleton = nil;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     // 开启日志文件记录，主要用于调试，默认关闭
-    if (1)
+    if (false)
     {
         [DDTTYLogger sharedInstance].colorsEnabled = YES;
         [DDLog addLogger:[DDTTYLogger sharedInstance]]; // TTY = Xcode console
