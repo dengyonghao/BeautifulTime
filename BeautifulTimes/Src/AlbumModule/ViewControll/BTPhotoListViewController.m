@@ -189,7 +189,7 @@ static CGSize AssetGridThumbnailSize;
             }
         }
     }
-    //delete album
+    //delete album
     else {
         [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
             if (!self.assetCollection) {
