@@ -613,6 +613,13 @@
 		B44623671C7CA7F600D44A62 /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = B44623591C7CA7F600D44A62 /* MBProgressHUD+MJ.m */; };
 		B44623681C7CA7F600D44A62 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B446235A1C7CA7F600D44A62 /* MBProgressHUD.bundle */; };
 		B44623691C7CA7F600D44A62 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B446235C1C7CA7F600D44A62 /* MBProgressHUD.m */; };
+		B44D77451CAAD554007A613A /* libTXYDownloader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B44D773F1CAAD554007A613A /* libTXYDownloader.a */; };
+		B44D77461CAAD554007A613A /* libTXYUploader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B44D77441CAAD554007A613A /* libTXYUploader.a */; };
+		B44D77481CAAD5D3007A613A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44D77471CAAD5D3007A613A /* SystemConfiguration.framework */; };
+		B44D774A1CAAD5E8007A613A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44D77491CAAD5E8007A613A /* MobileCoreServices.framework */; };
+		B44D774C1CAAD5FA007A613A /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B44D774B1CAAD5FA007A613A /* libxml2.tbd */; };
+		B44D774E1CAAD60F007A613A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B44D774D1CAAD60F007A613A /* libz.tbd */; };
+		B44D77501CAAD626007A613A /* libstdc++.6.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B44D774F1CAAD626007A613A /* libstdc++.6.tbd */; };
 		B44EDAC01C72367B00C9E12A /* BTIMSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44EDABF1C72367B00C9E12A /* BTIMSettingViewController.m */; };
 		B44EDAC71C7238F100C9E12A /* BTIMSettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B44EDAC61C7238F100C9E12A /* BTIMSettingModel.m */; };
 		B45040E71C7B521D00E3DEEB /* BTAdressBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B45040E61C7B521D00E3DEEB /* BTAdressBookCell.m */; };
@@ -1593,6 +1600,16 @@
 		B446235A1C7CA7F600D44A62 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
 		B446235B1C7CA7F600D44A62 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		B446235C1C7CA7F600D44A62 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		B44D773E1CAAD554007A613A /* TXYDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXYDownloader.h; sourceTree = "<group>"; };
+		B44D773F1CAAD554007A613A /* libTXYDownloader.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTXYDownloader.a; sourceTree = "<group>"; };
+		B44D77421CAAD554007A613A /* TXYBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXYBase.h; sourceTree = "<group>"; };
+		B44D77431CAAD554007A613A /* TXYUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXYUploadManager.h; sourceTree = "<group>"; };
+		B44D77441CAAD554007A613A /* libTXYUploader.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTXYUploader.a; sourceTree = "<group>"; };
+		B44D77471CAAD5D3007A613A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B44D77491CAAD5E8007A613A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		B44D774B1CAAD5FA007A613A /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		B44D774D1CAAD60F007A613A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		B44D774F1CAAD626007A613A /* libstdc++.6.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.tbd"; path = "usr/lib/libstdc++.6.tbd"; sourceTree = SDKROOT; };
 		B44EDABE1C72367B00C9E12A /* BTIMSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTIMSettingViewController.h; sourceTree = "<group>"; };
 		B44EDABF1C72367B00C9E12A /* BTIMSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTIMSettingViewController.m; sourceTree = "<group>"; };
 		B44EDAC51C7238F100C9E12A /* BTIMSettingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTIMSettingModel.h; sourceTree = "<group>"; };
@@ -1613,10 +1630,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B44D77501CAAD626007A613A /* libstdc++.6.tbd in Frameworks */,
+				B44D774E1CAAD60F007A613A /* libz.tbd in Frameworks */,
+				B44D774C1CAAD5FA007A613A /* libxml2.tbd in Frameworks */,
+				B44D774A1CAAD5E8007A613A /* MobileCoreServices.framework in Frameworks */,
+				B44D77481CAAD5D3007A613A /* SystemConfiguration.framework in Frameworks */,
 				650ABD831C2BD9EF004FBC89 /* libsqlite3.tbd in Frameworks */,
 				6506721F1C896C9300C64AA4 /* libidn.a in Frameworks */,
 				65F9F4781C51E26A002C4A24 /* libicucore.tbd in Frameworks */,
 				B4FABC0D1C02115500213AB7 /* libresolv.tbd in Frameworks */,
+				B44D77451CAAD554007A613A /* libTXYDownloader.a in Frameworks */,
+				B44D77461CAAD554007A613A /* libTXYUploader.a in Frameworks */,
 				65F52A5B1BFDB4AA00351941 /* AVFoundation.framework in Frameworks */,
 				65DBD0C01BD77D1F00784DAC /* Security.framework in Frameworks */,
 				65DBD0BE1BD77D1300784DAC /* CFNetwork.framework in Frameworks */,
@@ -3553,6 +3577,12 @@
 		65F312E11C15A69F00EA926C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B44D774F1CAAD626007A613A /* libstdc++.6.tbd */,
+				B44D774D1CAAD60F007A613A /* libz.tbd */,
+				B44D774B1CAAD5FA007A613A /* libxml2.tbd */,
+				B44D77491CAAD5E8007A613A /* MobileCoreServices.framework */,
+				B44D77471CAAD5D3007A613A /* SystemConfiguration.framework */,
+				B44D773B1CAAD554007A613A /* QColud */,
 				65F9F4771C51E26A002C4A24 /* libicucore.tbd */,
 				650ABD821C2BD9EF004FBC89 /* libsqlite3.tbd */,
 				65F52A5A1BFDB4AA00351941 /* AVFoundation.framework */,
@@ -4064,6 +4094,50 @@
 				B446235C1C7CA7F600D44A62 /* MBProgressHUD.m */,
 			);
 			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		B44D773B1CAAD554007A613A /* QColud */ = {
+			isa = PBXGroup;
+			children = (
+				B44D773C1CAAD554007A613A /* QCloudDownloadSDK */,
+				B44D77401CAAD554007A613A /* QCloudUploadSDK */,
+			);
+			path = QColud;
+			sourceTree = "<group>";
+		};
+		B44D773C1CAAD554007A613A /* QCloudDownloadSDK */ = {
+			isa = PBXGroup;
+			children = (
+				B44D773D1CAAD554007A613A /* Headers */,
+				B44D773F1CAAD554007A613A /* libTXYDownloader.a */,
+			);
+			path = QCloudDownloadSDK;
+			sourceTree = "<group>";
+		};
+		B44D773D1CAAD554007A613A /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				B44D773E1CAAD554007A613A /* TXYDownloader.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		B44D77401CAAD554007A613A /* QCloudUploadSDK */ = {
+			isa = PBXGroup;
+			children = (
+				B44D77411CAAD554007A613A /* Header */,
+				B44D77441CAAD554007A613A /* libTXYUploader.a */,
+			);
+			path = QCloudUploadSDK;
+			sourceTree = "<group>";
+		};
+		B44D77411CAAD554007A613A /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				B44D77421CAAD554007A613A /* TXYBase.h */,
+				B44D77431CAAD554007A613A /* TXYUploadManager.h */,
+			);
+			path = Header;
 			sourceTree = "<group>";
 		};
 		B44EDAC41C7238F100C9E12A /* Model */ = {
@@ -4939,8 +5013,13 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BeautifulTimes/Common/3rdparty/XMPPFramework/Vendor/libidn",
+					"$(PROJECT_DIR)/QColud/QCloudDownloadSDK",
+					"$(PROJECT_DIR)/QColud/QCloudUploadSDK",
 				);
-				OTHER_LDFLAGS = "-lxml2";
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "DYH.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "最美时光";
 				PROVISIONING_PROFILE = "";
@@ -4969,8 +5048,13 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BeautifulTimes/Common/3rdparty/XMPPFramework/Vendor/libidn",
+					"$(PROJECT_DIR)/QColud/QCloudDownloadSDK",
+					"$(PROJECT_DIR)/QColud/QCloudUploadSDK",
 				);
-				OTHER_LDFLAGS = "-lxml2";
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "DYH.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "最美时光";
 				PROVISIONING_PROFILE = "";
