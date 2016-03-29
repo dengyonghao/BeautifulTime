@@ -14,7 +14,7 @@
 #import "UICollectionView+Addition.h"
 
 static  NSString *kcellIdentifier = @"kPhotoCollectionCellID";
-static int const showNumber = 5;
+static int const showNumber = 3;
 static CGSize AssetGridThumbnailSize;
 
 @interface BTPhotoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, PHPhotoLibraryChangeObserver, UIActionSheetDelegate> {
@@ -308,7 +308,7 @@ static CGSize AssetGridThumbnailSize;
         if (cell.isSelect.hidden && photosNumber < 6) {
             cell.isSelect.hidden = NO;
             [self.flageArray setValue:@"YES" forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
-            [self.photoSource setValue:nil forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
+            [self.photoSource setValue:cell.thumbnailImage forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
             photosNumber++;
         } else {
             if (photosNumber == 6 && cell.isSelect.hidden) {
@@ -322,7 +322,7 @@ static CGSize AssetGridThumbnailSize;
         
     } else {
         BTPhotoDetailsViewController *vc = [[BTPhotoDetailsViewController alloc] init];
-//        vc.assets = self.fetchResult;
+        vc.assets = self.fetchResult;
         vc.index = indexPath.section * showNumber + indexPath.row;
         [self.navigationController pushViewController:vc animated:YES];
     }

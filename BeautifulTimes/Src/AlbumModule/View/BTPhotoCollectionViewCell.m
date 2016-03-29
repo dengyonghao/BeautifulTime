@@ -34,12 +34,12 @@
             make.height.equalTo(@(iconWidth));
         }];
         
-//        [self.isSelect mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.right.equalTo(weakSelf).offset(-5);
-//            make.bottom.equalTo(weakSelf).offset(-5);
-//            make.width.equalTo(@(24));
-//            make.height.equalTo(@(24));
-//        }];
+        [self.isSelect mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(weakSelf).offset(-2);
+            make.top.equalTo(weakSelf).offset(2);
+            make.width.equalTo(@(23));
+            make.height.equalTo(@(23));
+        }];
     }
     self.imageView.image = nil;
     return self;
@@ -53,8 +53,8 @@
 
 - (UIImageView *)isSelect {
     if (!_isSelect) {
-        _isSelect = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-        _isSelect.image = BT_LOADIMAGE(@"com_ic_selected");
+        _isSelect = [[UIImageView alloc] init];
+        _isSelect.image = BT_LOADIMAGE(@"com_blue_image_select");
         _isSelect.hidden = YES;
     }
     return _isSelect;
