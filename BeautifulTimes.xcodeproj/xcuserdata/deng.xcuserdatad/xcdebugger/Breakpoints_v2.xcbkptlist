@@ -326,54 +326,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BeautifulTimes/Src/IMModule/ContacterModule/ViewController/BTContacterViewController.m"
-            timestampString = "481364545.169489"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "-updateContacterList"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[BTContacterViewController updateContacterList]"
-                  moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/deng/Desktop/BTime/BeautifulTime/BeautifulTimes/Src/IMModule/ContacterModule/ViewController/BTContacterViewController.m"
-                  timestampString = "481526379.23665"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "32">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__48-[BTContacterViewController updateContacterList]_block_invoke"
-                  moduleName = "&#x6700;&#x7f8e;&#x65f6;&#x5149;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/deng/Desktop/BTime/BeautifulTime/BeautifulTimes/Src/IMModule/ContacterModule/ViewController/BTContacterViewController.m"
-                  timestampString = "481526379.236814"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "24">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "BeautifulTimes/Src/IMModule/ChatModel/ViewController/BTChatViewController.m"
             timestampString = "481476472.997258"
             startingColumnNumber = "9223372036854775807"
@@ -470,13 +422,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BeautifulTimes/Common/BTTools/BTXMPPTool.m"
-            timestampString = "481526311.816165"
+            filePath = "BeautifulTimes/Src/IMModule/ContacterModule/ViewController/BTContacterViewController.m"
+            timestampString = "481531420.6117"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "473"
-            endingLineNumber = "473"
-            landmarkName = "-xmppStream:didReceiveMessage:"
+            startingLineNumber = "360"
+            endingLineNumber = "360"
+            landmarkName = "-alertView:clickedButtonAtIndex:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

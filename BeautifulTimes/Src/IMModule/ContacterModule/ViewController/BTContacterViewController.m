@@ -16,7 +16,13 @@
 
 static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 
-@interface BTContacterViewController ()<NSFetchedResultsControllerDelegate,UISearchBarDelegate,UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface BTContacterViewController ()<
+    NSFetchedResultsControllerDelegate,
+    UISearchBarDelegate,
+    UIAlertViewDelegate,
+    UITableViewDataSource,
+    UITableViewDelegate,
+    UISearchResultsUpdating>
 
 @property (nonatomic,strong) NSFetchedResultsController *resultsContrl;
 
@@ -29,6 +35,11 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 @property (nonatomic,strong) NSIndexPath *indexPath;
 
 @property (nonatomic, strong) UITableView *tableview;
+
+//查找好友
+@property (nonatomic, strong) UISearchController *searchController;
+@property (nonatomic, strong) NSMutableArray *searchList;
+@property (nonatomic, strong) NSMutableArray *allData;
 
 @end
 
@@ -167,7 +178,7 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
         }
         //设置字典的键和值
         [self.data setObject:contacter forKey:firstName];
-        
+        [self.allData addObject:friend];
     }
     //获得所有的键
     NSArray *key = [self.data allKeys];
@@ -185,22 +196,19 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 #pragma mark 添加搜索栏
 -(void)setupSearchBar
 {
-    UISearchBar *search = [[UISearchBar alloc]init];
-    search.frame = CGRectMake(0, 0, BT_SCREEN_WIDTH , 36);
-    search.barStyle = UIBarStyleDefault;
-    search.backgroundColor = [UIColor clearColor];
-    //取消首字母大写
-    search.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    search.autocorrectionType = UITextAutocorrectionTypeNo;
-    search.placeholder = @"搜索";
-    search.layer.borderWidth = 0;
+    self.searchController.searchBar.frame = CGRectMake(0, 0, BT_SCREEN_WIDTH, 36);
+    self.searchController.searchBar.barStyle = UIBarStyleDefault;
+    self.searchController.searchBar.backgroundColor = [UIColor whiteColor];
+    //取消首字母吧大写
+    self.searchController.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    self.searchController.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+    self.searchController.searchBar.placeholder = @"搜索";
+    self.searchController.searchBar.layer.borderWidth = 0;
     
-    UIView *searchV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, BT_SCREEN_WIDTH , 36)];
-    searchV.backgroundColor = [UIColor colorWithRed:189/255.0 green:189/255.0 blue:195/255.0 alpha:0.7];
-    [searchV addSubview:search];
-    search.delegate = self;
-    
-    self.tableview.tableHeaderView = searchV;
+    UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, BT_SCREEN_WIDTH, 36)];
+    searchView.backgroundColor = [[UIColor alloc] initWithRed:189 green:189 blue:195 alpha:0.7f];
+    [searchView addSubview:self.searchController.searchBar];
+    self.tableview.tableHeaderView = searchView;
 }
 
 #pragma  mark 去掉@符号
@@ -212,11 +220,18 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 #pragma mark - tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.keys.count;
+    if (self.searchController.active) {
+        return 1;
+    } else {
+        return self.keys.count;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (self.searchController.active) {
+        return self.searchList.count;
+    }
     NSString *key=self.keys[section];
     NSArray *arr=[self.data objectForKey:key];
     return arr.count;
@@ -225,6 +240,9 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 #pragma mark 设置每个区的标题
 -(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    if (self.searchController.active) {
+        return nil;
+    }
     NSString *title=self.keys[section];
     return title;
 }
@@ -236,6 +254,13 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
     if (!cell) {
         cell = [[BTContacterCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kcellContacterIndentifier];
     }
+    
+    if (self.searchController.active) {
+        BTContacterModel *contacter = self.searchList[indexPath.row];
+        [cell bindData:contacter];
+        return cell;
+    }
+    
     NSString *key = self.keys[indexPath.section];
     NSArray *arr = [self.data objectForKey:key];
     BTContacterModel *contacter = arr[indexPath.row];
@@ -246,13 +271,16 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 #pragma mark 选中单元格的事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *key=self.keys[indexPath.section];
-    NSArray *arr=[self.data objectForKey:key];
-    BTContacterModel *contacter = arr[indexPath.row];
-//    BTChatViewController *chatVc = [[BTChatViewController alloc] init];
-//    chatVc.contacter = contacter;
-//    chatVc.title = contacter.friendName;
-//    [self.navigationController pushViewController:chatVc animated:YES];
+    BTContacterModel *contacter;
+    if (self.searchController.active) {
+        contacter = self.searchList[indexPath.row];
+        self.searchController.active = NO;
+    } else {
+        NSString *key=self.keys[indexPath.section];
+        NSArray *arr=[self.data objectForKey:key];
+        contacter = arr[indexPath.row];
+    }
+    
     BTIMFriendInfoViewController *VC = [[BTIMFriendInfoViewController alloc] init];
     VC.contacter = contacter;
     [self.navigationController pushViewController:VC animated:YES];
@@ -270,7 +298,11 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 #pragma mark 返回标示图的索引
 -(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    return self.keys;
+    if (self.searchController.active) {
+        return nil;
+    } else {
+        return self.keys;
+    }
 }
 
 #pragma mark 滑动删除单元格
@@ -289,25 +321,41 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(editingStyle == UITableViewCellEditingStyleDelete){
-        self.indexPath=indexPath;
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"友情提示" message:@"你确定要删除此好友吗?" delegate:self cancelButtonTitle:@"删除" otherButtonTitles:@"取消", nil];
+        self.indexPath = indexPath;
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"友情提示" message:@"你确定要删除此好友吗?" delegate:self cancelButtonTitle:@"删除" otherButtonTitles:@"取消", nil];
         [alert show];
     }
+}
+
+-(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    NSString *searchString = [self.searchController.searchBar text];
+    NSPredicate *preicate = [NSPredicate predicateWithFormat:@"nickName CONTAINS[cd] %@", searchString];
+    if (self.searchList!= nil) {
+        [self.searchList removeAllObjects];
+    }
+    self.searchList = [NSMutableArray arrayWithArray:[self.allData filteredArrayUsingPredicate:preicate]];
+    [self.tableview reloadData];
 }
 
 #pragma mark alertView的代理方法
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex == 0){
-        NSString *key = self.keys[_indexPath.section];
-        NSMutableArray *arr = [self.data objectForKey:key];
-        BTContacterModel *friend = arr[_indexPath.row];
-        NSString *uname = friend.friendName;
-        
-        if(arr.count <= 1){
-            [self.keys removeObjectAtIndex:_indexPath.section];
+        BTContacterModel *friend;
+        if (self.searchController.active) {
+            friend = self.searchList[_indexPath.row];
+            [self.searchList removeObjectAtIndex:_indexPath.row];
+        } else {
+            NSString *key = self.keys[_indexPath.section];
+            NSMutableArray *arr = [self.data objectForKey:key];
+            friend = arr[_indexPath.row];
+            if(arr.count <= 1){
+                [self.keys removeObjectAtIndex:_indexPath.section];
+            }
+            [arr removeObjectAtIndex:_indexPath.row];
         }
-        [arr removeObjectAtIndex:_indexPath.row];
+        
+        NSString *uname = friend.friendName;
         
         BTXMPPTool *tool = [BTXMPPTool sharedInstance];
         [tool.roster removeUser:friend.jid];
@@ -351,6 +399,31 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
         _otherKey=[NSMutableArray array];
     }
     return _otherKey;
+}
+
+- (UISearchController *)searchController {
+    if (!_searchController) {
+        _searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+        _searchController.searchResultsUpdater = self;
+        _searchController.dimsBackgroundDuringPresentation = NO;
+        _searchController.hidesNavigationBarDuringPresentation = NO;
+    }
+    return _searchController;
+}
+
+- (NSMutableArray *)searchList
+{
+    if (!_searchList) {
+        _searchList = [[NSMutableArray alloc] init];
+    }
+    return _searchList;
+}
+
+- (NSMutableArray *)allData {
+    if (!_allData) {
+        _allData = [[NSMutableArray alloc] init];
+    }
+    return _allData;
 }
 
 @end
