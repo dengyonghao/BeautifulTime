@@ -265,22 +265,7 @@ static const CGFloat BUTTONWIDTH = 48;
 - (void)addTimelineClick {
     BTAddTimelineViewController *vc = [[BTAddTimelineViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
-//    NSString *savedPath = [NSHomeDirectory() stringByAppendingString:@"/Documents/4.ai"];
-//    NSMutableDictionary *infoDic = [[NSMutableDictionary alloc] init];
-//    
-//    [infoDic setObject:@"stu_id" forKey:@"120202021020"];
-//    [infoDic setObject:@"password" forKey:@"120202021020"];
-//    [self downloadFileWithOption:infoDic
-//                   withInferface:@"http://172.18.190.122:8080/BTServer/loginAction"
-//                       savedPath:savedPath
-//                 downloadSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                     NSLog(@"+++++++++%@", responseObject);
-//                 } downloadFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                     
-//                 } progress:^(float progress) {
-//                     
-//                 }];
-//    [self didClickUploadButtonAction];
+
 //    [[BTXMPPTool sharedInstance] changePassworduseWord:@"23456"];
 //    [[BTXMPPTool sharedInstance] searchUserInfo:@"int" Success:^(NSArray *resultArray) {
 //        NSLog(@"%@", resultArray);
@@ -398,14 +383,13 @@ static const CGFloat BUTTONWIDTH = 48;
     NSString *savedPath = [NSHomeDirectory() stringByAppendingString:@"/Documents/3.png"];
     NSMutableDictionary *infoDic = [[NSMutableDictionary alloc] init];
     NSURL *filePath = [[NSBundle mainBundle] URLForResource:@"2" withExtension:@"png"];
-    [infoDic setObject:@"stu_id" forKey:@"120202021020"];
-    [infoDic setObject:@"password" forKey:@"120202021020"];
-    
+    [infoDic setObject:@"1234" forKey:@"fromJid"];
+    [infoDic setObject:@"2345" forKey:@"toJid"];
     AFHTTPRequestOperationManager *requestManager = [AFHTTPRequestOperationManager manager];
     requestManager.requestSerializer = [AFHTTPRequestSerializer serializer];
     
     requestManager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [requestManager POST:@"http://172.18.190.51:8080/BTServer/loginAction" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [requestManager POST:@"http://192.168.50.210:8080/BTServer/uploadFileAction" parameters:infoDic constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
         /**
          *  appendPartWithFileURL   //  指定上传的文件
@@ -413,12 +397,11 @@ static const CGFloat BUTTONWIDTH = 48;
          *  fileName                //  指定上传文件的原始文件名
          *  mimeType                //  指定商家文件的MIME类型
          */
-        [formData appendPartWithFileURL:filePath name:@"filePng" fileName:[NSString stringWithFormat:@"2.png"] mimeType:@"image/png" error:nil];
-        NSLog(@"%@",formData);
+        [formData appendPartWithFileURL:filePath name:@"uploadFileName" fileName:[NSString stringWithFormat:@"2.png"] mimeType:@"image/png" error:nil];
         
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        [[[UIAlertView alloc] initWithTitle:@"上传结果" message:[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]  delegate:self cancelButtonTitle:@"" otherButtonTitles:nil] show];
+        NSLog(@"success");
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         

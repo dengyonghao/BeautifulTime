@@ -106,6 +106,8 @@
     [self.view endEditing:YES];
     WS(weakSelf);
     [xmppTool regist:^(XMPPResultType xmppType) {
+        //不管成功或者失败，都要把registerOperation设为NO， 要不成功时登录将会失败
+        xmppTool.registerOperation = NO;
         [weakSelf handle:xmppType];
     }];
 }
@@ -142,9 +144,29 @@
 -(void)enterHome
 {
     if ([[NSUserDefaults standardUserDefaults] valueForKey:userID] && [[NSUserDefaults standardUserDefaults] valueForKey:userPassword]) {
-        [[BTXMPPTool sharedInstance] login:nil];
-        BTIMTabBarController *tab = [[BTIMTabBarController alloc]init];
-        [AppDelegate getInstance].window.rootViewController = tab;
+        WS(weakSelf);
+        [[BTXMPPTool sharedInstance] login:^(XMPPResultType xmppType) {
+            if (xmppType == XMPPResultSuccess) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    BTIMTabBarController *tab = [[BTIMTabBarController alloc]init];
+                    [AppDelegate getInstance].window.rootViewController = tab;
+                    
+                    //设置默认头像
+                    BTXMPPTool *tool = [BTXMPPTool sharedInstance];
+                    XMPPvCardTemp *temp = tool.vCard.myvCardTemp;
+                    NSData *imagedata = UIImagePNGRepresentation(BT_LOADIMAGE(@"com_ic_defaultIcon"));
+                    temp.photo = imagedata;
+                    [tool.vCard updateMyvCardTemp:temp];
+                });
+                
+            } else {
+                [[NSUserDefaults standardUserDefaults] setValue:nil forKey:userID];
+                [[NSUserDefaults standardUserDefaults] setValue:nil forKey:userPassword];
+                
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"自动登录失败，请重新登录。" delegate:weakSelf cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+        }];
     }
 }
 

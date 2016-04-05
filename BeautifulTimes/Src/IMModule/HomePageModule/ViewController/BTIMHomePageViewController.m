@@ -56,7 +56,7 @@ static NSString *cellIdentifier = @"chatMessageListCell";
 #pragma mark   从本地数据库中读取正在聊天的好友数据
 -(void)readChatData
 {
-    NSArray *arr = [BTMessageListDBTool selectAllData];
+    NSArray *arr = [[BTMessageListDBTool sharedInstance] selectAllData];
     self.dataSource = [arr mutableCopy];
     for(BTMessageListModel *model in arr){
         if(model.badgeValue.length > 0 && ![model.badgeValue isEqualToString:@""]){
@@ -86,7 +86,6 @@ static NSString *cellIdentifier = @"chatMessageListCell";
     NSString *user = [dict objectForKey:@"user"];
     
     BOOL isCurrentChatingFriend = NO;
-    NSLog(@"%@", self.navigationController.viewControllers );
     if ([self.navigationController.viewControllers.lastObject isKindOfClass:[BTChatViewController class]]) {
         BTChatViewController *VC = (BTChatViewController*)self.navigationController.viewControllers.lastObject;
         if ([VC.contacter.jid.user isEqual:jid.user]) {
@@ -107,7 +106,7 @@ static NSString *cellIdentifier = @"chatMessageListCell";
     
     
 
-    if([BTMessageListDBTool selectUname:uname]){
+    if([[BTMessageListDBTool sharedInstance] selectUname:uname]){
         dispatch_async(dispatch_get_main_queue(), ^{
             for(int i = 0; i < self.dataSource.count; i++){
                 BTMessageListModel *model = self.dataSource[i];
@@ -123,7 +122,7 @@ static NSString *cellIdentifier = @"chatMessageListCell";
                     [self.dataSource removeObjectAtIndex:i];
                     [self.dataSource insertObject:model atIndex:0];
                     [self.tableView reloadData];
-                    [BTMessageListDBTool updateWithName:uname detailName:body time:time badge:model.badgeValue];
+                    [[BTMessageListDBTool sharedInstance] updateWithName:uname detailName:body time:time badge:model.badgeValue];
                     break;
                 }
             }
@@ -144,7 +143,7 @@ static NSString *cellIdentifier = @"chatMessageListCell";
             
             [self.dataSource insertObject:model atIndex:0];
             [self.tableView reloadData];
-            [BTMessageListDBTool addHead:nil uname:uname detailName:body time:time badge:model.badgeValue xmppjid:jid];
+            [[BTMessageListDBTool sharedInstance] addHead:nil uname:uname detailName:body time:time badge:model.badgeValue xmppjid:jid];
         });
     }
 }
@@ -157,7 +156,7 @@ static NSString *cellIdentifier = @"chatMessageListCell";
     for(BTMessageListModel *model in self.dataSource){
         if([model.uname isEqualToString:uname]){
             [self.dataSource removeObjectAtIndex:index];
-            [BTMessageListDBTool deleteWithName:uname];
+            [[BTMessageListDBTool sharedInstance] deleteWithName:uname];
             [self.tableView reloadData];
         }
         index++;
@@ -225,7 +224,7 @@ static NSString *cellIdentifier = @"chatMessageListCell";
     }
     model.badgeValue = nil;
     [self.tableView reloadData];
-    [BTMessageListDBTool clearRedPointwithName:model.uname];
+    [[BTMessageListDBTool sharedInstance] clearRedPointwithName:model.uname];
     
     BTContacterModel *contacter = [[BTContacterModel alloc] init];
     contacter.jid = model.jid;
@@ -261,13 +260,11 @@ static NSString *cellIdentifier = @"chatMessageListCell";
             self.tabBarItem.badgeValue=[NSString stringWithFormat:@"%d",_messageCount];
         }
         
-//        [BTMessageListDBTool deleteChatData:[NSString stringWithFormat:@"%@@ios268",model.uname]];
-
         NSInteger count=indexPath.row;
         //删除模型
         [self.dataSource removeObjectAtIndex:count];
         [self.tableView reloadData];
-        [BTMessageListDBTool deleteWithName:name];
+        [[BTMessageListDBTool sharedInstance] deleteWithName:name];
     }
 }
 

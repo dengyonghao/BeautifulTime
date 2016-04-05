@@ -66,6 +66,7 @@
     WS(weakSelf);
     [[BTXMPPTool sharedInstance] searchUserInfo:self.searchContent.text Success:^(NSArray *resultArray) {
         dispatch_async(dispatch_get_main_queue(), ^(void){
+            [weakSelf.searchContent resignFirstResponder];
             weakSelf.dataSource = resultArray;
             [weakSelf.tableView reloadData];
             [MBProgressHUD hideHUDForView:weakSelf.view];

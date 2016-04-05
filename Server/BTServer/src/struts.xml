@@ -17,6 +17,16 @@
 	<include file="struts-default.xml" />
 	<include file="struts-plugin.xml" />
 	<package name="order" extends="json-default">
+	
+		<action name="uploadFileAction" class="loginAction" method="uploadFile">
+			<result name="success" type="chain">bookListAction</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		
+		<action name="downloadFileAction" class="loginAction" method="downloadFile">
+			<result name="success" type="chain">bookListAction</result>
+			<result name="input">/login.jsp</result>
+		</action>
 		
 		<action name="loginAction" class="loginAction" method="login">
 			<result name="success" type="chain">bookListAction</result>

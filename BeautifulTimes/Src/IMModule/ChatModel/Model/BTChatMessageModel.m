@@ -56,9 +56,40 @@
 
 - (void)createAttributedText
 {
-    if (self.message == nil) return;
+    if (self.message == nil) {
+       return;
+    }
+    
+    if ([self.message hasSuffix:@".btpng"]) {
+        NSString *cachesPath = [BTTool getCachesDirectory];
+        NSString *savePath = [cachesPath stringByAppendingPathComponent:self.message];
+        UIImage *image = [[UIImage alloc] initWithContentsOfFile:savePath];
+        if (image) {
+            NSTextAttachment * textAttachment = [[NSTextAttachment alloc]init];//添加附件,图片
+            textAttachment.image = [self drawImage:image];
+            NSAttributedString * imageStr = [NSAttributedString attributedStringWithAttachment:textAttachment];
+            self.attributedBody = imageStr;
+        } else {
+            self.attributedBody = [self attributedStringWithText:@"正在加载图片..."];
+        }
+        return;
+    }
+    
     self.attributedBody = [self attributedStringWithText:self.message];
 }
+
+- (UIImage *)drawImage:(UIImage *)image {
+    CGFloat scale = 160 / image.size.width;
+    
+    //设置重新绘制的大小
+    UIGraphicsBeginImageContext(CGSizeMake(image.size.width * scale, image.size.height * scale));
+    [image drawInRect:CGRectMake(0, 0, image.size.width * scale, image.size.height * scale)];
+    //得到绘制后的Image
+    UIImage *transformedImg=UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return transformedImg;
+}
+
 
 - (NSAttributedString *)attributedStringWithText:(NSString *)text
 {

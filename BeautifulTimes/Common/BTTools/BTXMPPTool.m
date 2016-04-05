@@ -9,6 +9,8 @@
 #import "BTXMPPTool.h"
 #import "BTContacterModel.h"
 #import "DDLog.h"
+#import "BTNetManager.h"
+#import "BTMessageListDBTool.h"
 
 #define kSearchNamespace           @"jabber:iq:search"
 #define kSearchXDataNamespace      @"jabber:x:data"
@@ -50,7 +52,7 @@ static BTXMPPTool *xmppTool;
 {
     self = [super init];
     if (self) {
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate) name:UIApplicationWillTerminateNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate) name:UIApplicationWillTerminateNotification object:nil];
     }
     return self;
 }
@@ -61,7 +63,7 @@ static BTXMPPTool *xmppTool;
     self.xmppStream = [[XMPPStream alloc] init];
     self.xmppStream.hostName = ServerAddress;
     self.xmppStream.hostPort = ServerPort;
-    [self.xmppStream setKeepAliveInterval:200]; //心跳包时间
+    [self.xmppStream setKeepAliveInterval:30]; //心跳包时间
     //允许xmpp在后台运行
     self.xmppStream.enableBackgroundingOnSocket = YES;
     
@@ -214,6 +216,8 @@ static BTXMPPTool *xmppTool;
 {
     [self goOffline];
     [_xmppStream disconnect];
+    
+    [[BTMessageListDBTool sharedInstance] teardownConversationListDB];
 }
 
 #pragma -mark 好友分组
@@ -268,7 +272,7 @@ static BTXMPPTool *xmppTool;
     });
 }
 
-- (void)xmppRoster:(XMPPRoster *)sender didRecieveRosterItem:(DDXMLElement *)item
+- (void)xmppRoster:(XMPPRoster *)sender didReceiveRosterItem:(NSXMLElement *)item
 {
     NSString *subscription = [item attributeStringValueForName:@"subscription"];
     if ([subscription isEqualToString:@"both"]) {
@@ -318,39 +322,6 @@ static BTXMPPTool *xmppTool;
 -(void)xmppStream:(XMPPStream *)sender didNotRegister:(DDXMLElement *)error{
     if(_resultBlock){
         _resultBlock(XMPPResultRegisterFailture);
-    }
-}
-
-#pragma mark 接收到消息的事件
-- (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message{
-    NSDate *date = [self getDelayStampTime:message];
-    if(date == nil){
-        date = [NSDate date];
-    }
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSString *strDate = [formatter stringFromDate:date];
-    XMPPJID *jid = [message from];
-    
-    //获得body里面的内容
-    NSString *body=[[message elementForName:@"body"] stringValue];
-    //本地通知
-    UILocalNotification *local = [[UILocalNotification alloc]init];
-    local.alertBody = body;
-    local.alertAction = body;
-    //声音
-    local.soundName = [[NSBundle mainBundle] pathForResource:@"shake_match" ofType:@"mp3"];
-    //时区  根据用户手机的位置来显示不同的时区
-    local.timeZone = [NSTimeZone defaultTimeZone];
-    //开启通知
-    [[UIApplication sharedApplication] scheduleLocalNotification:local];
-    if (![jid user]) {
-        return;
-    }
-    if(body){
-        NSDictionary *dict = @{@"uname":[jid user],@"time":strDate,@"body":body,@"jid":jid,@"user":@"other"};
-        NSNotification *note = [[NSNotification alloc]initWithName:SendMsgName object:dict userInfo:nil];
-        [[NSNotificationCenter defaultCenter] postNotification:note];
     }
 }
 
@@ -490,11 +461,85 @@ static BTXMPPTool *xmppTool;
 
 #pragma mark 发送消息的函数
 - (void)sendMessage:(NSString *)msg type:(NSString *)type to:(XMPPJID *)toName{
-    XMPPMessage *msssage = [XMPPMessage messageWithType:@"chat" to:toName];
+    XMPPMessage *msssage = [XMPPMessage messageWithType:type to:toName];
     // 设置内容   text指纯文本  image指图片  audio指语音
     [msssage addAttributeWithName:@"bodyType" stringValue:type];
     [msssage addBody:msg];
     [_xmppStream sendElement:msssage];
+}
+
+#pragma mark 接收到消息的事件
+- (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message{
+    NSDate *date = [self getDelayStampTime:message];
+    if(date == nil){
+        date = [NSDate date];
+    }
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *strDate = [formatter stringFromDate:date];
+    XMPPJID *jid = [message from];
+    
+    //获得body里面的内容
+    NSString *body = [[message elementForName:@"body"] stringValue];
+//    NSString *bodyType = (NSString *)message.type;
+    //本地通知
+    UILocalNotification *local = [[UILocalNotification alloc]init];
+    if ([body hasSuffix:@".btpng"]) {
+        [self downloadFile:jid.user fileName:body];
+        local.alertBody = @"发来一张图片";
+        local.alertAction = @"发来一张图片";
+        NSDictionary *dict = @{@"uname":[jid user],@"time":strDate,@"body":@"收到一张图片",@"jid":jid,@"user":@"other"};
+        NSNotification *note = [[NSNotification alloc]initWithName:SendMsgName object:dict userInfo:nil];
+        [[NSNotificationCenter defaultCenter] postNotification:note];
+        return;
+    }
+    local.alertBody = body;
+    local.alertAction = body;
+    //声音
+    local.soundName = [[NSBundle mainBundle] pathForResource:@"shake_match" ofType:@"mp3"];
+    //时区  根据用户手机的位置来显示不同的时区
+    local.timeZone = [NSTimeZone defaultTimeZone];
+    //开启通知
+    [[UIApplication sharedApplication] scheduleLocalNotification:local];
+    if (![jid user]) {
+        return;
+    }
+    if(body){
+        NSDictionary *dict = @{@"uname":[jid user],@"time":strDate,@"body":body,@"jid":jid,@"user":@"other"};
+        NSNotification *note = [[NSNotification alloc]initWithName:SendMsgName object:dict userInfo:nil];
+        [[NSNotificationCenter defaultCenter] postNotification:note];
+    }
+}
+
+#pragma mark 下载文件
+- (void)downloadFile:(NSString *)from fileName:(NSString *)fileName {
+    NSMutableDictionary *infoDic = [[NSMutableDictionary alloc] init];
+    [infoDic setObject:from forKey:@"fromJid"];
+    [infoDic setObject:self.jid.user forKey:@"toJid"];
+    [infoDic setObject:fileName forKey:@"fileName"];
+    NSString *cachesPath = [BTTool getCachesDirectory];
+    NSString *savePath = [cachesPath stringByAppendingPathComponent:fileName];
+    [BTNetManager downloadFileWithOption:infoDic withInferface:BTDownloadFileURL savedPath:savePath downloadSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"下载成功");
+        NSNotification *note = [[NSNotification alloc]initWithName:DownloadFileFinish object:from userInfo:nil];
+        [[NSNotificationCenter defaultCenter] postNotification:note];
+        
+//        XMPPMessage *message = [XMPPMessage messageWithType:@"chat" to:self.jid];
+//        
+//        //将这个文件的发送者添加到message的from
+//        [message addAttributeWithName:@"from" stringValue:[NSString stringWithFormat:@"%@@%@", from, ServerName]];
+//        [message addSubject:@"image"];
+//        
+//        
+//        [message addBody:[NSString stringWithFormat:@"%@.png", fileName]];
+//        
+//        [_messageStroage archiveMessage:message outgoing:NO xmppStream:_xmppStream];
+        
+    } downloadFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    } progress:^(float progress) {
+        
+    }];
 }
 
 #pragma mark 获得离线消息的时间
@@ -607,26 +652,26 @@ static BTXMPPTool *xmppTool;
     _xmppStream=nil;
 }
 
-//#pragma mark -- terminate
-///**
-// *  申请后台时间来清理下线的任务
-// */
-//-(void)applicationWillTerminate
-//{
-//    UIApplication *app=[UIApplication sharedApplication];
-//    UIBackgroundTaskIdentifier taskId;
-//    
-//    taskId=[app beginBackgroundTaskWithExpirationHandler:^(void){
-//        [app endBackgroundTask:taskId];
-//    }];
-//    
-//    if(taskId==UIBackgroundTaskInvalid){
-//        return;
-//    }
-//    
-//    //只能在主线层执行
-//    [self.xmppStream disconnectAfterSending];
-//}
+#pragma mark -- terminate
+/**
+ *  申请后台时间来清理下线的任务
+ */
+-(void)applicationWillTerminate
+{
+    UIApplication *app=[UIApplication sharedApplication];
+    UIBackgroundTaskIdentifier taskId;
+    
+    taskId=[app beginBackgroundTaskWithExpirationHandler:^(void){
+        [app endBackgroundTask:taskId];
+    }];
+    
+    if(taskId==UIBackgroundTaskInvalid){
+        return;
+    }
+    
+    //只能在主线层执行
+    [self.xmppStream disconnectAfterSending];
+}
 
 -(void)dealloc
 {

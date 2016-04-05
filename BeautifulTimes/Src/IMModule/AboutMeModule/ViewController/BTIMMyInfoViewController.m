@@ -44,15 +44,15 @@
     
     XMPPvCardTemp *temp = tool.vCard.myvCardTemp;
 
-    NSData *data=temp.photo?temp.photo:UIImageJPEGRepresentation(BT_LOADIMAGE(@"com_ic_defaultIcon"), 1.0);
+    NSData *data = temp.photo ? temp.photo : UIImageJPEGRepresentation(BT_LOADIMAGE(@"com_ic_defaultIcon"), 1.0);
     
-    BTUserInfoModel *pro1=[BTUserInfoModel profileWithImage:data name:@"头像"];
+    BTUserInfoModel *pro1 = [BTUserInfoModel profileWithImage:data name:@"头像"];
     
-    NSString *nickName=temp.nickname?temp.nickname:@"未设置";
-    BTUserInfoModel *pro2=[BTUserInfoModel profileWithInfo:nickName infoType:UserNickName name:@"昵称"];
+    NSString *nickName = temp.nickname ? temp.nickname : @"未设置";
+    BTUserInfoModel *pro2 = [BTUserInfoModel profileWithInfo:nickName infoType:UserNickName name:@"昵称"];
     
-    NSString *account=[[NSUserDefaults standardUserDefaults] valueForKey:userID];
-    BTUserInfoModel *pro3=[BTUserInfoModel profileWithInfo:account infoType:UserWeixinNum name:@"私语号"];
+    NSString *account = [[NSUserDefaults standardUserDefaults] valueForKey:userID];
+    BTUserInfoModel *pro3 = [BTUserInfoModel profileWithInfo:account infoType:UserWeixinNum name:@"私语号"];
     //添加到第一个数组中
     [self.oneArr addObject:pro1];
     [self.oneArr addObject:pro2];
@@ -60,29 +60,29 @@
     [self.allArr addObject:_oneArr];
     
     //4.公司
-    NSString *company=temp.orgName?temp.orgName:@"未设置";
-    BTUserInfoModel *pro4=[BTUserInfoModel profileWithInfo:company infoType:UserCompany  name:@"公司"];
+    NSString *company = temp.orgName ? temp.orgName : @"未设置";
+    BTUserInfoModel *pro4 = [BTUserInfoModel profileWithInfo:company infoType:UserCompany  name:@"公司"];
    
     //5.部门
     NSString *depart;
     if (temp.orgUnits.count > 0) {
-        depart=temp.orgUnits[0];
+        depart = temp.orgUnits[0];
     }
-    depart=depart?depart:@"未设置";
-    BTUserInfoModel *pro5=[BTUserInfoModel profileWithInfo:depart infoType:UserDepartment  name:@"部门"];
+    depart = depart ? depart : @"未设置";
+    BTUserInfoModel *pro5 = [BTUserInfoModel profileWithInfo:depart infoType:UserDepartment  name:@"部门"];
     //6.职位
-    NSString *worker=temp.title?temp.title:@"未设置";
-    BTUserInfoModel *pro6=[BTUserInfoModel profileWithInfo:worker infoType:UserWorker name:@"职位"];
+    NSString *worker = temp.title ? temp.title : @"未设置";
+    BTUserInfoModel *pro6 = [BTUserInfoModel profileWithInfo:worker infoType:UserWorker name:@"职位"];
     
     //7.电话
     // myVCard.telecomsAddresses 这个get方法，没有对电子名片的xml数据进行解析
     // 使用note字段充当电话
-    NSString *tel=temp.note?temp.note:@"未设置";
-    BTUserInfoModel *pro7=[BTUserInfoModel profileWithInfo:tel infoType:UserTel name:@"电话"];
+    NSString *tel = temp.note ? temp.note : @"未设置";
+    BTUserInfoModel *pro7 = [BTUserInfoModel profileWithInfo:tel infoType:UserTel name:@"电话"];
     //7.邮件
     // 用mailer充当邮件
-    NSString *email=temp.mailer?temp.mailer:@"未设置";
-    BTUserInfoModel *pro8=[BTUserInfoModel profileWithInfo:email infoType:UserEmail name:@"邮箱"];
+    NSString *email = temp.mailer ? temp.mailer : @"未设置";
+    BTUserInfoModel *pro8 = [BTUserInfoModel profileWithInfo:email infoType:UserEmail name:@"邮箱"];
     [self.twoArr addObject:pro4];
     [self.twoArr addObject:pro5];
     [self.twoArr addObject:pro6];
@@ -107,29 +107,29 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"profileCell"];
-    if(cell==nil){
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"profileCell"];
+    if(!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"profileCell"];
     }
     
-    NSArray *arr=self.allArr[indexPath.section];
-    BTUserInfoModel *profile=arr[indexPath.row];
+    NSArray *arr = self.allArr[indexPath.section];
+    BTUserInfoModel *profile = arr[indexPath.row];
     if(profile.image){
-        UIImageView *imageV=[[UIImageView alloc]initWithImage:[UIImage imageWithData:profile.image]];
-        imageV.frame=CGRectMake(0, 0, 50, 50);
+        UIImageView *imageV = [[UIImageView alloc]initWithImage:[UIImage imageWithData:profile.image]];
+        imageV.frame = CGRectMake(0, 0, 50, 50);
         cell.accessoryView=imageV;
     }
-    cell.textLabel.text=profile.name;
-    cell.detailTextLabel.text=profile.info;
+    cell.textLabel.text = profile.name;
+    cell.detailTextLabel.text = profile.info;
     
-    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 
 #pragma mark 设置单元格 的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *arr=self.allArr[indexPath.section];
-    BTUserInfoModel *profile=arr[indexPath.row];
+    NSArray *arr = self.allArr[indexPath.section];
+    BTUserInfoModel *profile = arr[indexPath.row];
     if(profile.image) {
         return 80;
     }

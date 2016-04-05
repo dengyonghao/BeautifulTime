@@ -54,12 +54,20 @@ static AppDelegate *singleton = nil;
         [DDLog addLogger:remoteLogger];
     }
     
-    //login user
-    if ([[NSUserDefaults standardUserDefaults] valueForKey:userID] && [[NSUserDefaults standardUserDefaults] valueForKey:userPassword]) {
-        [[BTXMPPTool sharedInstance] login:nil];
-        BTIMTabBarController *tab = [[BTIMTabBarController alloc]init];
-        [AppDelegate getInstance].window.rootViewController = tab;
-    }
+    //TODO: 用异步加快启动的速度，但登录失败的时候可能会引起其它问题
+    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(concurrentQueue, ^{
+        dispatch_sync(concurrentQueue, ^{
+            //login user
+            if ([[NSUserDefaults standardUserDefaults] valueForKey:userID] && [[NSUserDefaults standardUserDefaults] valueForKey:userPassword]) {
+                [[BTXMPPTool sharedInstance] login:nil];
+            }
+        });
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            /* Show the image to the user here on the main queue*/
+        });   
+    });
+    
     
     singleton = self;
     if (![[NSUserDefaults standardUserDefaults] boolForKey:firstLaunch]) {

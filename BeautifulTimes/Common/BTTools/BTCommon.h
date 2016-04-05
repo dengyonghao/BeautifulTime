@@ -60,7 +60,7 @@ static inline UIImage* naviimage_from_mainbundle(NSString* filename_and_type)
 }
 
 #define firstLaunch              @"firstLaunch"
-#define currentCity               @"btCurrentCity"
+#define currentCity              @"btCurrentCity"
 #define userID                   @"btUserID"
 #define userPassword             @"btPassword"
 #define isLogin                  @"kIsLogin"
@@ -71,15 +71,14 @@ static inline UIImage* naviimage_from_mainbundle(NSString* filename_and_type)
 #define BT_UIIMAGE(_FILE_)          ([UIImage imageNamed:(_FILE_)])
 #define BT_LOADIMAGE(_FILE_)        ([[BTThemeManager getInstance]loadImageInDefaultThemeWithName:(_FILE_)])
 
-// 版本大于iOS7
-//#define     IOS7_OR_HIGHER       ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
-
+#define     IOS7_OR_HIGHER       ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
 #define     IOS8_OR_HIGHER       ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8)
 #define     IOS8_3_OR_HIGHER       ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.3f)
 #define     IOS9_0_OR_HIGHER       ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0f)
 
 //发送消息的通知名
 #define SendMsgName @"sendMessage"
+#define SendFileMsgName @"sendFileMessage"
 
 //删除好友时发出的通知名
 #define DeleteFriend @"deleteFriend"
@@ -92,6 +91,8 @@ static inline UIImage* naviimage_from_mainbundle(NSString* filename_and_type)
 
 //更新好友列表通知名
 #define UpdateContacterList @"kUpdateContacterList"
+
+#define DownloadFileFinish  @"DownloadFileFinish"
 
 /** 表情相关 */
 // 表情的最大行数
@@ -117,6 +118,9 @@ static inline UIImage* naviimage_from_mainbundle(NSString* filename_and_type)
 
 //服务器的域名
 #define ServerName @"vm-40-145-ubuntu"
+
+#define BTUploadFileURL @"http://192.168.23.4:8080/BTServer/uploadFileAction"
+#define BTDownloadFileURL @"http://192.168.23.4:8080/BTServer/downloadFileAction"
 
 // 状态栏高度
 #define     BT_STATUSBAR_HEIGHT  0
