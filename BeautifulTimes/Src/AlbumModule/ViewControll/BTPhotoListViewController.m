@@ -25,6 +25,7 @@ static CGSize AssetGridThumbnailSize;
 @property (nonatomic, strong) NSMutableDictionary *flageArray;
 @property (nonatomic, strong) NSMutableDictionary *photoSource;
 @property (nonatomic, strong) PHCachingImageManager *imageManager;
+@property (nonatomic, strong) PHImageRequestOptions *options;
 @property CGRect previousPreheatRect;
 
 @end
@@ -49,8 +50,8 @@ static CGSize AssetGridThumbnailSize;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.collectionView registerClass:[BTPhotoCollectionViewCell class] forCellWithReuseIdentifier:kcellIdentifier];
-    CGFloat scale = [UIScreen mainScreen].scale;
-    AssetGridThumbnailSize = CGSizeMake((BT_SCREEN_WIDTH / showNumber) * scale, (BT_SCREEN_WIDTH / showNumber) * scale);
+//    CGFloat scale = [UIScreen mainScreen].scale;
+    AssetGridThumbnailSize = CGSizeMake((BT_SCREEN_WIDTH / showNumber), (BT_SCREEN_WIDTH / showNumber));
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -120,12 +121,11 @@ static CGSize AssetGridThumbnailSize;
         [self.imageManager startCachingImagesForAssets:assetsToStartCaching
                                             targetSize:AssetGridThumbnailSize
                                            contentMode:PHImageContentModeAspectFill
-                                               options:nil];
+                                               options:self.options];
         [self.imageManager stopCachingImagesForAssets:assetsToStopCaching
                                            targetSize:AssetGridThumbnailSize
                                           contentMode:PHImageContentModeAspectFill
-                                              options:nil];
-        
+                                              options:self.options];
         // Store the preheat rect to compare against in the future.
         self.previousPreheatRect = preheatRect;
     }
@@ -290,7 +290,7 @@ static CGSize AssetGridThumbnailSize;
     [self.imageManager requestImageForAsset:self.fetchResult[index]
                                  targetSize:AssetGridThumbnailSize
                                 contentMode:PHImageContentModeAspectFill
-                                    options:nil
+                                    options:self.options
                               resultHandler:^(UIImage *result, NSDictionary *info) {
                                   if ([cell.representedAssetIdentifier isEqualToString:asset.localIdentifier]) {
                                       cell.thumbnailImage = result;
@@ -387,13 +387,13 @@ static CGSize AssetGridThumbnailSize;
     return _imageManager;
 }
 
-//-(PHImageRequestOptions *)options {
-//    if (!_options) {
-//        _options = [[PHImageRequestOptions alloc] init];
-//        _options.resizeMode = PHImageRequestOptionsResizeModeExact;
-//        _options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
-//    }
-//    return _options;
-//}
+-(PHImageRequestOptions *)options {
+    if (!_options) {
+        _options = [[PHImageRequestOptions alloc] init];
+        _options.resizeMode = PHImageRequestOptionsResizeModeExact;
+        _options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+    }
+    return _options;
+}
 
 @end
