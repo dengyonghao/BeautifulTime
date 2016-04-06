@@ -327,12 +327,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BeautifulTimes/Src/IMModule/ChatModel/ViewController/BTChatViewController.m"
-            timestampString = "481476472.997258"
+            timestampString = "481538171.259504"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "-fileDownloadFinish:"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
+            landmarkName = "-controllerDidChangeContent:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

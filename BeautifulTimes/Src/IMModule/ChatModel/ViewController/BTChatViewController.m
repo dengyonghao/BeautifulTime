@@ -22,6 +22,7 @@
 #import "BTChatMoreView.h"
 #import "JCHATPhotoPickerViewController.h"
 #import "MBProgressHUD+MJ.h"
+#import "MJRefresh.h"
 
 
 static CGFloat const KEYBOARDWIDTH = 216.0f;
@@ -37,6 +38,9 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
     UIImagePickerControllerDelegate,
     UINavigationControllerDelegate,
     JCHATPhotoPickerViewControllerDelegate>
+{
+    BOOL isFirstLoad ;
+}
 
 @property (nonatomic, weak) BTChatToolView *chatBottom;
 @property (nonatomic, strong)  NSFetchedResultsController *resultController;
@@ -58,9 +62,11 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
     self.title = self.contacter.nickName;
+    isFirstLoad = YES;
     [self setupTableView];
     [self loadChatData];
     [self setupBottomView];
+    [self setupRefresh];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(emotionDidSelected:) name:HMEmotionDidSelectedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(emotionDidDeleted:) name:HMEmotionDidDeletedNotification object:nil];
@@ -83,6 +89,21 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
         [self.frameModelArr removeAllObjects];
         [self reloadChatData];
     }
+}
+
+//开始刷新自定义方法
+- (void)setupRefresh
+{
+    __unsafe_unretained UITableView *tableView = self.tableView;
+    
+    // 下拉刷新
+    tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self reloadChatData];
+        [tableView.mj_header endRefreshing];
+    }];
+    
+    // 设置自动切换透明度(在导航栏下面自动隐藏)
+    tableView.mj_header.automaticallyChangeAlpha = YES;
 }
 
 #pragma mark 加载聊天数据
@@ -156,7 +177,13 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
 #pragma mark 把聊天数据转成模型
 -(void)dataToModel
 {
-    for(XMPPMessageArchiving_Message_CoreDataObject *msg in _resultController.fetchedObjects){
+    long index = 0;
+    if (isFirstLoad && _resultController.fetchedObjects.count > 10) {
+        index = _resultController.fetchedObjects.count - 10;
+        isFirstLoad = NO;
+    }
+    for (; index <  _resultController.fetchedObjects.count; index ++) {
+        XMPPMessageArchiving_Message_CoreDataObject *msg = _resultController.fetchedObjects[index];
         BTChatMessageModel *msgModel=[[BTChatMessageModel alloc] init];
         [msgModel bindData:msg];
         
@@ -169,15 +196,37 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
         if (!msgModel.friendHeadIcon) {
             msgModel.friendHeadIcon = BT_LOADIMAGE(@"com_ic_defaultIcon");
         }
-
+        
         msgModel.ownHeadIcon = self.headImage;
         msgModel.hiddenTime = YES;
-
+        
         BTMessageFrameModel *frameModel = [[BTMessageFrameModel alloc]init];
         frameModel.messageModel = msgModel;
-
+        
         [self.frameModelArr addObject:frameModel];
     }
+//    for(XMPPMessageArchiving_Message_CoreDataObject *msg in _resultController.fetchedObjects){
+//        BTChatMessageModel *msgModel=[[BTChatMessageModel alloc] init];
+//        [msgModel bindData:msg];
+//        
+//        if(self.contacter.headIcon){
+//            msgModel.friendHeadIcon = self.contacter.headIcon;
+//        } else {
+//            msgModel.friendHeadIcon = [UIImage imageWithData: [[BTXMPPTool sharedInstance].avatar photoDataForJID:self.contacter.jid]];
+//        }
+//        
+//        if (!msgModel.friendHeadIcon) {
+//            msgModel.friendHeadIcon = BT_LOADIMAGE(@"com_ic_defaultIcon");
+//        }
+//
+//        msgModel.ownHeadIcon = self.headImage;
+//        msgModel.hiddenTime = YES;
+//
+//        BTMessageFrameModel *frameModel = [[BTMessageFrameModel alloc]init];
+//        frameModel.messageModel = msgModel;
+//
+//        [self.frameModelArr addObject:frameModel];
+//    }
 }
 
 #pragma mark 把聊天数据转成模型
@@ -473,8 +522,8 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
 - (void)uploadImage:(UIImage *)image {
     
     NSString *imageName = [NSString stringWithFormat:@"%@.btpng", [[BTXMPPTool sharedInstance].xmppStream generateUUID]];
-    NSData *imagedata = UIImagePNGRepresentation(image);
-    
+    //压缩下图片的大小（测试：8m --> 300k, 压缩后图片质量还行）
+    NSData *imagedata = UIImageJPEGRepresentation(image, 0.5);
     NSMutableDictionary *infoDic = [[NSMutableDictionary alloc] init];
     [infoDic setObject:[[NSUserDefaults standardUserDefaults] valueForKey:userID] forKey:@"fromJid"];
     [infoDic setObject:self.contacter.jid.user forKey:@"toJid"];

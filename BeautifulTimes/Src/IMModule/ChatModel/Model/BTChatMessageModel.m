@@ -59,25 +59,40 @@
     if (self.message == nil) {
        return;
     }
-    
+    //TODO:这里太费时间了，用异步去做会不会引起问题呢
     if ([self.message hasSuffix:@".btpng"]) {
+//        dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//        dispatch_async(concurrentQueue, ^{
+//            dispatch_sync(concurrentQueue, ^{
+//                
+//            });
+//            dispatch_sync(dispatch_get_main_queue(), ^{
+//
+//            });
+//        });
         NSString *cachesPath = [BTTool getCachesDirectory];
         NSString *savePath = [cachesPath stringByAppendingPathComponent:self.message];
+        NSDate *now1 = [NSDate date];
+        NSLog(@"date1:-----%f", now1.timeIntervalSince1970);
         UIImage *image = [[UIImage alloc] initWithContentsOfFile:savePath];
         if (image) {
             NSTextAttachment * textAttachment = [[NSTextAttachment alloc]init];//添加附件,图片
-            textAttachment.image = [self drawImage:image];
+            
+            
+            textAttachment.image = image;
+            NSDate *now2 = [NSDate date];
+            NSLog(@"date2------%f", now2.timeIntervalSince1970);
             NSAttributedString * imageStr = [NSAttributedString attributedStringWithAttachment:textAttachment];
             self.attributedBody = imageStr;
         } else {
             self.attributedBody = [self attributedStringWithText:@"正在加载图片..."];
         }
-        return;
+    } else {
+        self.attributedBody = [self attributedStringWithText:self.message];
     }
-    
-    self.attributedBody = [self attributedStringWithText:self.message];
 }
 
+//这是一个非常耗时的操作，操作次数多的时候不推荐使用
 - (UIImage *)drawImage:(UIImage *)image {
     CGFloat scale = 160 / image.size.width;
     
