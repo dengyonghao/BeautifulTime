@@ -201,6 +201,7 @@ static const CGFloat itemWidth = 70;
     newJournal.site = self.model.city;
     NSData *photosData = [NSKeyedArchiver archivedDataWithRootObject:[BTJournalController sharedInstance].photos];
         NSString *documentDirectory = [BTTool getDocumentDirectory];
+    //唯一标识的id
     NSString *uid = [self getSaveFilePath];
     NSString *savePath = [documentDirectory stringByAppendingPathComponent:uid];
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -220,7 +221,7 @@ static const CGFloat itemWidth = 70;
     newJournal.weather = weatherData;
     
     newJournal.records = [BTJournalController sharedInstance].record;
-    
+    //保存数据库
     [[AppDelegate getInstance].coreDataHelper saveContext];
     
     [[BTJournalController sharedInstance] resetAllParameters];

@@ -4441,7 +4441,7 @@
 				TargetAttributes = {
 					65E2D32D1BCFC965001E29A9 = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = WAU5CTT2Y9;
+						DevelopmentTeam = 8X2A38Q9VD;
 					};
 					65E2D3491BCFC966001E29A9 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -5293,7 +5293,7 @@
 					"-lxml2",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "DYH.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = io.jpush.JPush.mazhen;
 				PRODUCT_NAME = "最美时光";
 				PROVISIONING_PROFILE = "";
 			};
@@ -5328,7 +5328,7 @@
 					"-lxml2",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "DYH.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = io.jpush.JPush.mazhen;
 				PRODUCT_NAME = "最美时光";
 				PROVISIONING_PROFILE = "";
 			};

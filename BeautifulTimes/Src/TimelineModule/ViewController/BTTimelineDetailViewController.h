@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BTTimelineModel.h"
 
 @interface BTTimelineDetailViewController : BTBaseViewController
+
+@property (nonatomic, strong) BTTimelineModel *timeline;
 
 @end

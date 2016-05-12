@@ -54,15 +54,15 @@
         NSString *key = [formatter stringFromDate:timeline.timelineDate];
         
         NSArray *arr = [self.dataSource objectForKey:key];
-        NSMutableArray *journals;
+        NSMutableArray *timelines;
         //如果没有值
         if(!arr){
-            journals = [NSMutableArray arrayWithObject:timeline];
+            timelines = [NSMutableArray arrayWithObject:timeline];
         }else{
-            journals = [NSMutableArray arrayWithArray:arr];
-            [journals addObject:timeline];
+            timelines = [NSMutableArray arrayWithArray:arr];
+            [timelines addObject:timeline];
         }
-        [self.dataSource setObject:journals forKey:key];
+        [self.dataSource setObject:timelines forKey:key];
     }];
     
     NSArray *key = [self.dataSource allKeys];
@@ -115,6 +115,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BTTimelineDetailViewController *vc = [[BTTimelineDetailViewController alloc] init];
+    NSString *key = self.keys[indexPath.section];
+    NSArray *arr = [self.dataSource objectForKey:key];
+    BTTimelineModel *timeline = arr[indexPath.row];
+    vc.timeline = timeline;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -128,7 +132,6 @@
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         _tableView.dataSource = self;
         _tableView.delegate = self;
-        _tableView.allowsSelection = NO;
     }
     return _tableView;
 }

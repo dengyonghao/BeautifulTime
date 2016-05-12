@@ -9,7 +9,7 @@
 #import "BTCoreDataHelper.h"
 
 @implementation BTCoreDataHelper
-#define debug 1
+#define debug 0
 
 #pragma mark - FILES
 NSString *storeFilename = @"BeautifulTimes.sqlite";

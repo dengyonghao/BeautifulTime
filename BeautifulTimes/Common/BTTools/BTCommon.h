@@ -119,8 +119,8 @@ static inline UIImage* naviimage_from_mainbundle(NSString* filename_and_type)
 //服务器的域名
 #define ServerName @"vm-40-145-ubuntu"
 
-#define BTUploadFileURL @"http://192.168.23.4:8080/BTServer/uploadFileAction"
-#define BTDownloadFileURL @"http://192.168.23.4:8080/BTServer/downloadFileAction"
+#define BTUploadFileURL @"http://192.168.23.3:8080/BTServer/uploadFileAction"
+#define BTDownloadFileURL @"http://192.168.23.3:8080/BTServer/downloadFileAction"
 
 // 状态栏高度
 #define     BT_STATUSBAR_HEIGHT  0

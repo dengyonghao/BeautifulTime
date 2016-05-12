@@ -207,7 +207,7 @@ static BTXMPPTool *xmppTool;
 #pragma mark 登录的方法
 -(void)login:(XMPPResultBlock)xmppBlock {
     _resultBlock = xmppBlock;
-    [_xmppStream disconnect];
+//    [_xmppStream disconnect];
     [self connectToHost];
 }
 

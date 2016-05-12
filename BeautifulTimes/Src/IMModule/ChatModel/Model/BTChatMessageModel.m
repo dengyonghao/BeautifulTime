@@ -79,7 +79,7 @@
             NSTextAttachment * textAttachment = [[NSTextAttachment alloc]init];//添加附件,图片
             
             
-            textAttachment.image = image;
+            textAttachment.image = [self drawImage:image];
             NSDate *now2 = [NSDate date];
             NSLog(@"date2------%f", now2.timeIntervalSince1970);
             NSAttributedString * imageStr = [NSAttributedString attributedStringWithAttachment:textAttachment];

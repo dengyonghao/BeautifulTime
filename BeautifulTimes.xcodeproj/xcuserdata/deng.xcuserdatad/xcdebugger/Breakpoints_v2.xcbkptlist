@@ -310,22 +310,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BeautifulTimes/Common/BTNetworking/BTNetManager.m"
-            timestampString = "481185246.938973"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "+uploadFileWithOption:withInferface:filePath:fileName:uploadSuccess:uploadFailure:progress:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "BeautifulTimes/Src/IMModule/ChatModel/ViewController/BTChatViewController.m"
             timestampString = "481538171.259504"
             startingColumnNumber = "9223372036854775807"

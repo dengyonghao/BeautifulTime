@@ -87,7 +87,7 @@
 #pragma mark 添加下划线的方法
 -(void)addbottomLineWith:(CGRect)bounds {
     UIImageView *line=[[UIImageView alloc]initWithFrame:bounds];
-    line.backgroundColor=[[BTThemeManager getInstance] BTThemeColor:@"cl_line_a2_item"];
+    line.backgroundColor = [UIColor grayColor];
     [self.view addSubview:line];
 }
 
