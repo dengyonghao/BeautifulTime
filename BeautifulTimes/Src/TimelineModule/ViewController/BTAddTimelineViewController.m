@@ -14,11 +14,14 @@
 #import "BTHomePageViewController.h"
 #import "BTSelectPhotosViewController.h"
 #import "BTAddressBookViewController.h"
+#import "BTJournalController.h"
 
-@interface BTAddTimelineViewController () <BTTimelineToolViewDelegate>
+@interface BTAddTimelineViewController () <BTTimelineToolViewDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, strong) BTTimelineToolView *toolView;
 @property (nonatomic, strong) UITextView *contentTextView;
+@property (nonatomic, strong) UILabel *site;
+@property (nonatomic, strong) CLLocationManager* locationManager;
 
 @end
 
@@ -54,17 +57,69 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark - click event
+- (void)backButtonClick {
+    [[BTJournalController sharedInstance] resetAllParameters];
+    [super backButtonClick];
+}
+
+//开始定位
+-(void)startLocation{
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager requestAlwaysAuthorization];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    [self.locationManager startUpdatingLocation];
+    
+}
+
+//检测是否支持定位
+- (void)locationManager: (CLLocationManager *)manager
+       didFailWithError: (NSError *)error {
+    
+    NSString *errorString;
+    [manager stopUpdatingLocation];
+    switch([error code]) {
+        case kCLErrorDenied:
+            errorString = @"用户拒绝访问位置服务";
+            break;
+        case kCLErrorLocationUnknown:
+            errorString = @"位置数据不可用";
+            break;
+        default:
+            errorString = @"发生未知错误";
+            break;
+    }
+}
+
+//定位代理经纬度回调
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
+    [geoCoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+        for (CLPlacemark * placemark in placemarks) {
+            NSDictionary *info = [placemark addressDictionary];
+            NSString *city = [info objectForKey:@"City"];
+            NSString *country = [info objectForKey:@"Country"];
+            self.site.text = [NSString stringWithFormat:@"%@%@", country, city];
+        }
+    }];
+    [self.locationManager stopUpdatingLocation];
+}
+
 #pragma timelineToolView delegate
 - (void)timelineToolViewDidSelectAtCurrentSite {
-
+    [self startLocation];
 }
 
 - (void)timelineToolViewDidSelectAtSelectPhotos {
+    [self.contentTextView resignFirstResponder];
     BTSelectPhotosViewController *vc = [[BTSelectPhotosViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)timelineToolViewDidSelectAtAddressBook {
+    [self.contentTextView resignFirstResponder];
     BTAddressBookViewController *vc = [[BTAddressBookViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -114,14 +169,40 @@
 - (void)finishButtonClick {
     BTTimelineModel *model = [[BTTimelineModel alloc] init];
     model.timelineContent = [self.contentTextView.text dataUsingEncoding:NSUTF8StringEncoding];
+    if (self.site.text) {
+        model.site = self.site.text;
+    }
     model.timelineDate = [NSDate date];
     [[BTTimelineDBManager sharedInstance] addTimelineMessage:model];
+    
+    NSData *photosData = [NSKeyedArchiver archivedDataWithRootObject:[BTJournalController sharedInstance].photos];
+    NSString *documentDirectory = [BTTool getDocumentDirectory];
+    //唯一标识的id
+    NSString *uid = [self getSaveFilePath];
+    NSString *savePath = [documentDirectory stringByAppendingPathComponent:uid];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    while (true) {
+        if (![fileManager fileExistsAtPath:savePath]) {
+            break;
+        } else {
+            uid = [self getSaveFilePath];
+            savePath = [documentDirectory stringByAppendingPathComponent:uid];
+        }
+    }
+    [photosData writeToFile:savePath atomically:YES];
+    
+    model.photos = uid;
     
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if ([controller isKindOfClass:[BTHomePageViewController class]]) {
             [self.navigationController popToViewController:controller animated:YES];
         }
     }
+}
+
+- (NSString *)getSaveFilePath {
+    NSString *uid = [[NSUUID UUID] UUIDString];
+    return uid;
 }
 
 - (BTTimelineToolView *)toolView {
@@ -137,6 +218,13 @@
         _contentTextView = [[UITextView alloc] init];
     }
     return _contentTextView;
+}
+
+- (UILabel *)site {
+    if (!_site) {
+        _site = [[UILabel alloc] init];
+    }
+    return _site;
 }
 
 @end

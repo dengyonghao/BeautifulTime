@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSArray *photos;
 @property (nonatomic, strong) NSDate *currentDate;
 @property (nonatomic, strong) NSString *record;
+@property (nonatomic, strong) NSString *contacter;
 
 - (void)resetAllParameters;
 

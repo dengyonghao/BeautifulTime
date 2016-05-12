@@ -11,6 +11,9 @@
 
 @interface BTAdressBookCell : UITableViewCell
 
+@property (nonatomic, strong) UIImageView *isSelect;
+@property (nonatomic, strong) UILabel *name;
+
 - (void)bindData:(BTAddressBook *)addressBook;
 
 @end

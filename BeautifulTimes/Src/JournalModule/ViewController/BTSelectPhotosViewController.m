@@ -12,6 +12,7 @@
 #import "BTMyAlbumViewController.h"
 #import "BTJournalController.h"
 #import "BTAddJournalViewController.h"
+#import "BTAddTimelineViewController.h"
 
 static  NSString *kcellIdentifier = @"kSelectPhotosCollectionCellID";
 static int const showNumber = 3;
@@ -104,6 +105,9 @@ static CGFloat const OFFSET = 15.0f;
             if ([BTJournalController sharedInstance].photos.count > 0) {
                 vc.photos.image = [BTJournalController sharedInstance].photos[0];
             }
+            [self.navigationController popToViewController:controller animated:YES];
+        }
+        if ([controller isKindOfClass:[BTAddTimelineViewController class]]) {
             [self.navigationController popToViewController:controller animated:YES];
         }
     }
@@ -220,7 +224,7 @@ static CGFloat const OFFSET = 15.0f;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"dfghjkldvbn-");
+    
 }
 
 //定义UICollectionView 的 margin

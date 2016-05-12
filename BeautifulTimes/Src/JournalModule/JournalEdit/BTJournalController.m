@@ -19,6 +19,7 @@ static BTJournalController *journalController;
 @synthesize photos = _photos;
 @synthesize currentDate = _currentDate;
 @synthesize record = _record;
+@synthesize contacter = _contacter;
 
 + (instancetype)sharedInstance
 {
@@ -43,6 +44,7 @@ static BTJournalController *journalController;
     self.photos = nil;
     self.currentDate = nil;
     self.record = nil;
+    self.contacter = nil;
 }
 
 - (NSArray *)photos {
@@ -64,6 +66,13 @@ static BTJournalController *journalController;
         _record = [[NSString alloc] init];
     }
     return _record;
+}
+
+- (NSString *)contacter {
+    if (!_contacter) {
+        _contacter = [[NSString alloc] init];
+    }
+    return _contacter;
 }
 
 @end

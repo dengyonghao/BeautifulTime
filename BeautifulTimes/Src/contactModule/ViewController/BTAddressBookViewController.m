@@ -10,6 +10,7 @@
 #import "BTAddressBookManager.h"
 #import "BTAddressBook.h"
 #import "BTAdressBookCell.h"
+#import "BTJournalController.h"
 
 static NSString *kAddressBookIndentifier = @"kAddressBookIndentifier";
 
@@ -23,6 +24,8 @@ static NSString *kAddressBookIndentifier = @"kAddressBookIndentifier";
 
 @property (nonatomic, strong) UITableView *tableview;
 
+@property (nonatomic, strong) NSMutableDictionary *contactSource;
+
 @end
 
 @implementation BTAddressBookViewController
@@ -30,6 +33,7 @@ static NSString *kAddressBookIndentifier = @"kAddressBookIndentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.bodyView addSubview:self.tableview];
+    [self.finishButton setTitle:@"完成" forState:UIControlStateNormal];
     self.titleLabel.text = @"选择联系人";
     [self devideContacter];
     self.tableview.sectionIndexColor = [UIColor grayColor];
@@ -49,9 +53,34 @@ static NSString *kAddressBookIndentifier = @"kAddressBookIndentifier";
     
 }
 
--(void)dealloc
-{
+-(void)dealloc {
 
+}
+
+- (void)finishButtonClick {
+    NSMutableArray *ary = [[NSMutableArray alloc] init];
+    [ary addObjectsFromArray:[self sortDictionaryByAsc:self.contactSource]];
+    NSString *str = [[NSString alloc] init];
+    for (int i = 0; i < ary.count; i++) {
+        if (i == 0) {
+            str = ary[i];
+        } else {
+            str = [NSString stringWithFormat:@"%@,%@",str, ary[i]];
+        }
+    }
+    [BTJournalController sharedInstance].contacter = str;
+}
+
+- (NSArray *)sortDictionaryByAsc:(NSDictionary *)dict {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    NSArray *keys = [dict allKeys];
+    NSArray *sortedArray = [keys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [obj1 compare:obj2 options:NSNumericSearch];
+    }];
+    for (NSString *categoryId in sortedArray) {
+        [array addObject:[dict objectForKey:categoryId]];
+    }
+    return array;
 }
 
 #pragma mark 通讯录分区
@@ -137,6 +166,15 @@ static NSString *kAddressBookIndentifier = @"kAddressBookIndentifier";
 #pragma mark 选中单元格的事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    long index = indexPath.section * 10000 + indexPath.row;
+    BTAdressBookCell *cell = (BTAdressBookCell *) [tableView cellForRowAtIndexPath:indexPath];
+    if (cell.isSelect.hidden) {
+        cell.isSelect.hidden = NO;
+        [self.contactSource setValue:cell.name forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
+    } else {
+        cell.isSelect.hidden = YES;
+        [self.contactSource removeObjectForKey:[[NSString alloc] initWithFormat:@"%ld",index]];
+    }
     
 }
 
@@ -186,6 +224,13 @@ static NSString *kAddressBookIndentifier = @"kAddressBookIndentifier";
         _otherKey=[NSMutableArray array];
     }
     return _otherKey;
+}
+
+- (NSMutableDictionary *)contactSource {
+    if (!_contactSource) {
+        _contactSource = [[NSMutableDictionary alloc] init];
+    }
+    return _contactSource;
 }
 
 @end
