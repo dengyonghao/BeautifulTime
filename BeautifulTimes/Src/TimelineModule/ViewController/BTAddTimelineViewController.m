@@ -29,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.titleLabel.text = @"记点滴";
     [self.finishButton setTitle:@"保存" forState:UIControlStateNormal];
     [self.bodyView addSubview:self.toolView];
@@ -190,8 +191,13 @@
         }
     }
     [photosData writeToFile:savePath atomically:YES];
-    
     model.photos = uid;
+    
+    NSString *contacter = [BTJournalController sharedInstance].contacter;
+    if (contacter) {
+        contacter = [NSString stringWithFormat:@"我和：%@", contacter];
+    }
+    model.friends = contacter;
     
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if ([controller isKindOfClass:[BTHomePageViewController class]]) {

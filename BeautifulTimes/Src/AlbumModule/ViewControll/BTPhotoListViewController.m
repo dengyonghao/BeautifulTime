@@ -12,12 +12,15 @@
 #import "BTJournalController.h"
 #import "BTSelectPhotosViewController.h"
 #import "UICollectionView+Addition.h"
+#import "MBProgressHUD+MJ.h"
+#import "BTMyAlbumViewController.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 
 static  NSString *kcellIdentifier = @"kPhotoCollectionCellID";
 static int const showNumber = 3;
 static CGSize AssetGridThumbnailSize;
 
-@interface BTPhotoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, PHPhotoLibraryChangeObserver, UIActionSheetDelegate> {
+@interface BTPhotoListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, PHPhotoLibraryChangeObserver, UIActionSheetDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
     long photosNumber;
 }
 
@@ -26,6 +29,9 @@ static CGSize AssetGridThumbnailSize;
 @property (nonatomic, strong) NSMutableDictionary *photoSource;
 @property (nonatomic, strong) PHCachingImageManager *imageManager;
 @property (nonatomic, strong) PHImageRequestOptions *options;
+@property (nonatomic, strong) UIActionSheet * selectActionSheet;
+@property (nonatomic, strong) UIImagePickerController *picker;
+@property (nonatomic, copy) NSString *chosenMediaType;
 @property CGRect previousPreheatRect;
 
 @end
@@ -191,21 +197,142 @@ static CGSize AssetGridThumbnailSize;
     }
     //delete album
     else {
-        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-            if (!self.assetCollection) {
-                [PHAssetCollectionChangeRequest deleteAssetCollections:self.fetchResult];
-            } else {
-                NSArray *arry = @[self.assetCollection];
-                [PHAssetCollectionChangeRequest deleteAssetCollections:arry];
-            }
-        } completionHandler:^(BOOL success, NSError *error) {
-            if (success) {
-                //loading框
-                [self backButtonClick];
-            } else {
-                //删除失败
-            }
+        
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:nil
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:nil];
+        [actionSheet addButtonWithTitle:@"添加照片"];
+        [actionSheet addButtonWithTitle:@"删除相册"];
+        [actionSheet addButtonWithTitle:@"取消"];
+        //设置取消按钮
+        actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
+        [actionSheet showFromRect:self.view.superview.bounds inView:self.view.superview animated:NO];
+        
+        if (self.selectActionSheet) {
+            self.selectActionSheet = nil;
+        }
+        
+        self.selectActionSheet = actionSheet;
+
+    }
+}
+
+#pragma mark UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == actionSheet.cancelButtonIndex)
+    {
+        return;
+    }
+    
+    switch (buttonIndex)
+    {
+        case 0:
+        {
+//            // Add it to the photo library
+//            [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+//                PHAssetChangeRequest *assetChangeRequest = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
+//                
+//                if (self.assetCollection) {
+//                    PHAssetCollectionChangeRequest *assetCollectionChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:self.assetCollection];
+//                    [assetCollectionChangeRequest addAssets:@[[assetChangeRequest placeholderForCreatedAsset]]];
+//                }
+//            } completionHandler:^(BOOL success, NSError *error) {
+//                if (!success) {
+//                    NSLog(@"Error creating asset: %@", error);
+//                }
+//            }];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"选择来源" message:@"请选择添加照片的来源" delegate:self cancelButtonTitle:@"取消选择" otherButtonTitles:@"从相册选择", @"拍照", nil];
+            [alertView show];
+            
+        }
+            break;
+            
+        case 1:
+        {
+            [MBProgressHUD showMessage:@"删除中..." toView:self.view];
+            [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+                if (!self.assetCollection) {
+                    [PHAssetCollectionChangeRequest deleteAssetCollections:self.fetchResult];
+                } else {
+                    NSArray *arry = @[self.assetCollection];
+                    [PHAssetCollectionChangeRequest deleteAssetCollections:arry];
+                }
+            } completionHandler:^(BOOL success, NSError *error) {
+                [MBProgressHUD hideHUDForView:self.view];
+                if (success) {
+                    //loading框
+                    [self backButtonClick];
+                } else {
+                    //删除失败
+                }
+            }];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+#pragma mark UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1){
+        [self selectExistingPictureOrVideo];
+    } else {
+        [self shootPiicturePrVideo];
+    }
+}
+
+#pragma  mark- 拍照模块
+//从相机上选择
+-(void)shootPiicturePrVideo{
+    [self getMediaFromSource:UIImagePickerControllerSourceTypeCamera];
+}
+//从相册中选择
+-(void)selectExistingPictureOrVideo{
+    [self getMediaFromSource:UIImagePickerControllerSourceTypePhotoLibrary];
+}
+
+#pragma 拍照模块
+-(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    self.chosenMediaType=[info objectForKey:UIImagePickerControllerMediaType];
+    if([self.chosenMediaType isEqual:(NSString *) kUTTypeImage]){
+        UIImage *chosenImage=[info objectForKey:UIImagePickerControllerOriginalImage];
+        
+    }
+    if([self.chosenMediaType isEqual:(NSString *) kUTTypeMovie]){
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示信息!" message:@"系统只支持图片格式" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
+        [alert show];
+        
+    }
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [self.collectionView reloadData];
+    }];
+}
+-(void) imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+-(void)getMediaFromSource:(UIImagePickerControllerSourceType)sourceType{
+    NSArray *mediatypes = [UIImagePickerController availableMediaTypesForSourceType:sourceType];
+    if([UIImagePickerController isSourceTypeAvailable:sourceType] &&[mediatypes count]>0){
+        NSArray *mediatypes = [UIImagePickerController availableMediaTypesForSourceType:sourceType];
+        self.picker.mediaTypes = mediatypes;
+        self.picker.sourceType = sourceType;
+        NSString *requiredmediatype = (NSString *)kUTTypeImage;
+        NSArray *arrmediatypes = [NSArray arrayWithObject:requiredmediatype];
+        [self.picker setMediaTypes:arrmediatypes];
+        [self presentViewController:self.picker animated:YES completion:^{
+            
         }];
+    }
+    else{
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:nil message:@"当前设备不支持拍摄功能" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
+        [alert show];
     }
 }
 
@@ -221,38 +348,9 @@ static CGSize AssetGridThumbnailSize;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         self.fetchResult = [collectionChanges fetchResultAfterChanges];
-        
         UICollectionView *collectionView = self.collectionView;
-        
-        if (![collectionChanges hasIncrementalChanges] || [collectionChanges hasMoves]) {
-            // Reload the collection view if the incremental diffs are not available
-//            [self initDataSource];
-            [collectionView reloadData];
-            
-        } else {
-            /*
-             Tell the collection view to animate insertions and deletions if we
-             have incremental diffs.
-             */
-            [collectionView performBatchUpdates:^{
-                NSIndexSet *removedIndexes = [collectionChanges removedIndexes];
-                if ([removedIndexes count] > 0) {
-//                    [collectionView deleteItemsAtIndexPaths:[removedIndexes aapl_indexPathsFromIndexesWithSection:0]];
-                }
-                
-                NSIndexSet *insertedIndexes = [collectionChanges insertedIndexes];
-                if ([insertedIndexes count] > 0) {
-//                    [collectionView insertItemsAtIndexPaths:[insertedIndexes aapl_indexPathsFromIndexesWithSection:0]];
-                }
-                
-                NSIndexSet *changedIndexes = [collectionChanges changedIndexes];
-                if ([changedIndexes count] > 0) {
-//                    [collectionView reloadItemsAtIndexPaths:[changedIndexes aapl_indexPathsFromIndexesWithSection:0]];
-                }
-            } completion:NULL];
-        }
-        
-//        [self resetCachedAssets];
+        [collectionView reloadData];
+        [self resetCachedAssets];
     });
 }
 
@@ -394,6 +492,21 @@ static CGSize AssetGridThumbnailSize;
         _options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
     }
     return _options;
+}
+
+- (UIActionSheet *)selectActionSheet {
+    if (!_selectActionSheet) {
+        _selectActionSheet = [[UIActionSheet alloc] init];
+    }
+    return _selectActionSheet;
+}
+
+- (UIImagePickerController *)picker {
+    if (!_picker) {
+        _picker = [[UIImagePickerController alloc] init];
+        _picker.delegate = self;
+    }
+    return _picker;
 }
 
 @end

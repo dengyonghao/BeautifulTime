@@ -8,6 +8,7 @@
 
 #import "BTPhotoDetailsViewController.h"
 #import <Photos/Photos.h>
+#import "BTEditPhotoViewController.h"
 
 static CGSize AssetGridThumbnailSize;
 static NSInteger currentIndex;
@@ -59,6 +60,19 @@ static NSInteger cacheNumber = 10;
 
 - (void)dealloc {
     self.imageManager = nil;
+}
+
+- (void)finishButtonClick {
+    NSInteger pageNo = self.scrollView.contentOffset.x / self.scrollView.bounds.size.width;
+    [self.imageManager requestImageForAsset:self.assets[pageNo]
+                                 targetSize:AssetGridThumbnailSize
+                                contentMode:PHImageContentModeAspectFit
+                                    options:self.options
+                              resultHandler:^(UIImage *result, NSDictionary *info) {
+                                  BTEditPhotoViewController *vc = [[BTEditPhotoViewController alloc] init];
+                                  vc.originalImage = result;
+                                  [self.navigationController pushViewController:vc animated:YES];
+                              }];
 }
 
 - (void)photoParseWithIndex:(NSInteger)index imageView:(UIImageView *)imageView{
@@ -159,11 +173,6 @@ static NSInteger cacheNumber = 10;
                                   }];
     });
 }
-
-- (void)finishButtonClick {
-
-}
-
 
 #pragma mark - scrollview delegate
 

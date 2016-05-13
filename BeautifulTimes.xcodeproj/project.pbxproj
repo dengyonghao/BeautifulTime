@@ -662,6 +662,7 @@
 		B4B49BA51CB38B0B00B12CE5 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B49B901CB38B0B00B12CE5 /* UIScrollView+MJExtension.m */; };
 		B4B49BA61CB38B0B00B12CE5 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B49B921CB38B0B00B12CE5 /* UIScrollView+MJRefresh.m */; };
 		B4B49BA71CB38B0B00B12CE5 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B49B941CB38B0B00B12CE5 /* UIView+MJExtension.m */; };
+		B4D4A6BF1CE59ED700A961BE /* BTEditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D4A6BE1CE59ED700A961BE /* BTEditPhotoViewController.m */; };
 		B4FABBCC1C018D4B00213AB7 /* BTLanguageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBCB1C018D4B00213AB7 /* BTLanguageUtil.m */; };
 		B4FABBD91C020E1500213AB7 /* BTSelectPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FABBD81C020E1500213AB7 /* BTSelectPhotosViewController.m */; };
 		B4FABC0D1C02115500213AB7 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FABC0C1C02115500213AB7 /* libresolv.tbd */; };
@@ -1726,6 +1727,8 @@
 		B4B49B921CB38B0B00B12CE5 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		B4B49B931CB38B0B00B12CE5 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		B4B49B941CB38B0B00B12CE5 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		B4D4A6BD1CE59ED700A961BE /* BTEditPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTEditPhotoViewController.h; sourceTree = "<group>"; };
+		B4D4A6BE1CE59ED700A961BE /* BTEditPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTEditPhotoViewController.m; sourceTree = "<group>"; };
 		B4FABBCA1C018D4B00213AB7 /* BTLanguageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLanguageUtil.h; sourceTree = "<group>"; };
 		B4FABBCB1C018D4B00213AB7 /* BTLanguageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLanguageUtil.m; sourceTree = "<group>"; };
 		B4FABBD71C020E1500213AB7 /* BTSelectPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTSelectPhotosViewController.h; sourceTree = "<group>"; };
@@ -1826,6 +1829,8 @@
 				6508D5051C08504600E77DAB /* BTPhotoDetailsViewController.m */,
 				65104E8E1C0D438800241323 /* BTAddAlbumViewController.h */,
 				65104E8F1C0D438800241323 /* BTAddAlbumViewController.m */,
+				B4D4A6BD1CE59ED700A961BE /* BTEditPhotoViewController.h */,
+				B4D4A6BE1CE59ED700A961BE /* BTEditPhotoViewController.m */,
 			);
 			path = ViewControll;
 			sourceTree = "<group>";
@@ -5064,6 +5069,7 @@
 				65F816F81C71BD1000A607F7 /* BTMessageListModel.m in Sources */,
 				651452FC1C86ED900053A3E5 /* XMPPUserMemoryStorageObject.m in Sources */,
 				B4B49B951CB38B0B00B12CE5 /* MJRefreshAutoFooter.m in Sources */,
+				B4D4A6BF1CE59ED700A961BE /* BTEditPhotoViewController.m in Sources */,
 				B4B105D01CAE140500241629 /* BTChatMoreView.m in Sources */,
 				652336751C4F789600557D9F /* NSObject+MJCoding.m in Sources */,
 				651452F61C86ED900053A3E5 /* XMPPResourceCoreDataStorageObject.m in Sources */,
