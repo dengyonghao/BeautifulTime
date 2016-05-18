@@ -217,7 +217,7 @@ static CGFloat const OFFSET = 15.0f;
            [cell bindData:self.dataSource[index] isShowColseButton:YES];
         }
     } else {
-        [cell bindData:nil isShowColseButton:NO];
+        [cell bindData:BT_LOADIMAGE(@"com_ic_addPhoto@3x") isShowColseButton:NO];
     }
     return cell;
 }

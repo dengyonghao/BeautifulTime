@@ -15,8 +15,11 @@
 #import "BTSelectPhotosViewController.h"
 #import "BTAddressBookViewController.h"
 #import "BTJournalController.h"
+#import "BTIMEditUserInfoViewController.h"
+#import "BTIMNavViewController.h"
+#import "MBProgressHUD+MJ.h"
 
-@interface BTAddTimelineViewController () <BTTimelineToolViewDelegate, CLLocationManagerDelegate>
+@interface BTAddTimelineViewController () <BTTimelineToolViewDelegate, CLLocationManagerDelegate, BTEditUserInfoViewDelegate>
 
 @property (nonatomic, strong) BTTimelineToolView *toolView;
 @property (nonatomic, strong) UITextView *contentTextView;
@@ -34,6 +37,7 @@
     [self.finishButton setTitle:@"保存" forState:UIControlStateNormal];
     [self.bodyView addSubview:self.toolView];
     [self.bodyView addSubview:self.contentTextView];
+    self.bgImageView.image = BT_LOADIMAGE(@"com_bg_journal01_1242x2208");
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(keyboardWasHidden:) name:UIKeyboardWillHideNotification object:nil];
@@ -78,7 +82,7 @@
 //检测是否支持定位
 - (void)locationManager: (CLLocationManager *)manager
        didFailWithError: (NSError *)error {
-    
+    [MBProgressHUD hideHUDForView:self.view];
     NSString *errorString;
     [manager stopUpdatingLocation];
     switch([error code]) {
@@ -98,19 +102,44 @@
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
     [geoCoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
-        for (CLPlacemark * placemark in placemarks) {
-            NSDictionary *info = [placemark addressDictionary];
-            NSString *city = [info objectForKey:@"City"];
-            NSString *country = [info objectForKey:@"Country"];
-            self.site.text = [NSString stringWithFormat:@"%@%@", country, city];
+        [MBProgressHUD hideHUDForView:self.view];
+        BTIMEditUserInfoViewController *edit = [[BTIMEditUserInfoViewController alloc]init];
+        edit.delegate = self;
+        edit.title = @"获取位置";
+        if (!error) {
+            for (CLPlacemark * placemark in placemarks) {
+                NSDictionary *info = [placemark addressDictionary];
+                NSString *city = [info objectForKey:@"City"];
+                NSString *country = [info objectForKey:@"Country"];
+                edit.str = [NSString stringWithFormat:@"%@%@", country, city];;
+            }
         }
+        
+        BTIMNavViewController *nav = [[BTIMNavViewController alloc] initWithRootViewController:edit];
+        [self presentViewController:nav animated:YES completion:nil];
     }];
     [self.locationManager stopUpdatingLocation];
 }
 
 #pragma timelineToolView delegate
 - (void)timelineToolViewDidSelectAtCurrentSite {
-    [self startLocation];
+    if (self.site.text) {
+        BTIMEditUserInfoViewController *edit = [[BTIMEditUserInfoViewController alloc]init];
+        edit.delegate = self;
+        edit.title = @"获取位置";
+        edit.str = self.site.text;
+        BTIMNavViewController *nav = [[BTIMNavViewController alloc] initWithRootViewController:edit];
+        [self presentViewController:nav animated:YES completion:nil];
+    } else {
+        [MBProgressHUD showMessage:@"自动获取当前位置..." toView:self.view];
+        [self startLocation];
+    }
+}
+
+#pragma mark 编辑控制器的代理方法
+-(void)EditingFinshed:(BTIMEditUserInfoViewController *)edit indexPath:(NSIndexPath *)indexPath newInfo:(NSString *)newInfo
+{
+    self.site.text = newInfo;
 }
 
 - (void)timelineToolViewDidSelectAtSelectPhotos {
@@ -222,6 +251,7 @@
 - (UITextView *)contentTextView {
     if (!_contentTextView) {
         _contentTextView = [[UITextView alloc] init];
+        _contentTextView.backgroundColor = BT_CLEARCOLOR;
     }
     return _contentTextView;
 }

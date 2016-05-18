@@ -10,4 +10,7 @@
 
 @interface BTContacterViewController : UIViewController
 
+@property (nonatomic, assign) Boolean isSharePhoto;
+@property (nonatomic, strong) UIImage *shareImage;
+
 @end

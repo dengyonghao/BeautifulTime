@@ -264,6 +264,7 @@ static const CGFloat itemWidth = 70.0f;
             isEditModel = YES;
             [self.finishButton setTitle:@"保存" forState:UIControlStateNormal];
             self.content.editable = YES;
+            [self.content resignFirstResponder];
         }
             break;
             

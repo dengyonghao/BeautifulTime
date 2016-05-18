@@ -251,6 +251,11 @@ static BTXMPPTool *xmppTool;
     [_roster removeUser:friedJid];
 }
 
+#pragma mark 设置好友昵称
+- (void)setNickname:(NSString *)nickname forUser:(XMPPJID *)jid {
+    [_roster setNickname:nickname forUser:jid];
+}
+
 - (void)addFried:(XMPPJID *)friedJid {
     [_roster subscribePresenceToUser:friedJid];
 }
@@ -409,6 +414,9 @@ static BTXMPPTool *xmppTool;
     //返回用户信息查询结果
     if ([iq.type isEqualToString:@"result"] && [[iq attributeStringValueForName:@"id"] isEqualToString:kSearchUsersId]) {
         _searchDataBlock([self analyticalSearchResult:iq]);
+    }
+    if ([iq.type isEqualToString:@"set"]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"needRefresh" forKey:@"needRefresh"];
     }
     return YES;
 }

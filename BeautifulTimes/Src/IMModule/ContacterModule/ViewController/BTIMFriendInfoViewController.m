@@ -11,8 +11,10 @@
 #import "BTIMSettingCell.h"
 #import "BTIMSettingModel.h"
 #import "BTChatViewController.h"
+#import "BTIMEditUserInfoViewController.h"
+#import "BTIMNavViewController.h"
 
-@interface BTIMFriendInfoViewController ()
+@interface BTIMFriendInfoViewController () <BTEditUserInfoViewDelegate>
 
 @property (weak, nonatomic)  UIImageView *headView;
 @property (nonatomic,strong) NSMutableArray *allArr;  //里面存放的arr数组
@@ -40,13 +42,16 @@
 }
 
 - (void)loadFriendInfo {
+    [self.oneArr removeAllObjects];
+    [self.twoArr removeAllObjects];
+    [self.allArr removeAllObjects];
     BTXMPPTool *tool = [BTXMPPTool sharedInstance];
-    XMPPvCardTemp *vCardTemp = [tool.vCard vCardTempForJID:self.contacter.jid shouldFetch:NO];
+    XMPPvCardTemp *vCardTemp = [tool.vCard vCardTempForJID:self.contacter.jid shouldFetch:YES];
     
     NSData *data = self.contacter.headIcon ? UIImageJPEGRepresentation(self.contacter.headIcon, 1.0) : UIImageJPEGRepresentation(BT_LOADIMAGE(@"com_ic_defaultIcon"), 1.0);
     BTUserInfoModel *pro1 = [BTUserInfoModel profileWithImage:data name:@"头像"];
     
-    NSString *nickName = vCardTemp.nickname ? vCardTemp.nickname : @"未设置";
+    NSString *nickName = self.contacter.nickName ? self.contacter.nickName : @"未设置";
     BTUserInfoModel *pro2 = [BTUserInfoModel profileWithInfo:nickName infoType:UserNickName name:@"昵称"];
     
     NSString *account = self.contacter.jid.description;
@@ -107,7 +112,6 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     if (indexPath.section == self.allArr.count) {
         BTIMSettingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kfriendProfileCell"];
         if (!cell) {
@@ -116,6 +120,7 @@
         BTIMSettingModel *sendMessage = [BTIMSettingModel settingWithTitle:@"发送消息" detailTitle:nil];
         sendMessage.isLoginOut = YES;
         cell.settingModel = sendMessage;
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         return cell;
     }
     
@@ -135,6 +140,7 @@
     cell.detailTextLabel.text = profile.info;
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 
@@ -160,47 +166,38 @@
 #pragma mark 单元格的点击事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BTChatViewController *chatVc = [[BTChatViewController alloc] init];
-    chatVc.contacter = self.contacter;
-    chatVc.title = self.contacter.friendName;
-    [self.navigationController pushViewController:chatVc animated:YES];
+    if (indexPath.section == self.allArr.count) {
+        BTChatViewController *chatVc = [[BTChatViewController alloc] init];
+        chatVc.contacter = self.contacter;
+        chatVc.title = self.contacter.friendName;
+        [self.navigationController pushViewController:chatVc animated:YES];
+        return;
+    }
+    NSArray *arr = self.allArr[indexPath.section];
+    BTUserInfoModel *userInfo = arr[indexPath.row];
+    if (indexPath.section == 0  && indexPath.row == 1) {
+        BTIMEditUserInfoViewController *edit = [[BTIMEditUserInfoViewController alloc]init];
+        edit.delegate = self;
+        edit.indexPath = indexPath;
+        if([userInfo.info isEqualToString:@"未设置"]){
+            edit.str=nil;
+        }else{
+            edit.str=userInfo.info;
+        }
+        edit.title=userInfo.name;
+        BTIMNavViewController *nav = [[BTIMNavViewController alloc] initWithRootViewController:edit];
+        [self presentViewController:nav animated:YES completion:nil];
+    }
 }
 
--(void)addProfileModel:(BTUserInfoModel*)proModel newInfo:(NSString*)newInfo
+#pragma mark 编辑控制器的代理方法
+-(void)EditingFinshed:(BTIMEditUserInfoViewController *)edit indexPath:(NSIndexPath *)indexPath newInfo:(NSString *)newInfo
 {
-    BTXMPPTool *app = [BTXMPPTool sharedInstance];
-    XMPPvCardTemp *temp=app.vCard.myvCardTemp;
-    NSLog(@"电子名片  %@",temp);
-    switch (proModel.infoType) {
-        case UserNickName:
-            temp.nickname=newInfo;
-            NSLog(@"nickna,e");
-            break;
-        case UserWeixinNum:
-            //temp.uid=newInfo;
-            //不需要操作
-            break;
-        case UserCompany:
-            temp.orgName=newInfo;
-            break;
-        case UserDepartment:
-        {
-            if(newInfo.length>0){
-                temp.orgUnits=@[newInfo];
-            }
-        }
-            break;
-        case UserWorker:
-            temp.title=newInfo;
-            break;
-        case UserTel:
-            temp.note=newInfo;
-            break;
-        case UserEmail:
-            temp.mailer=newInfo;
-            break;
-    }
-    [app.vCard updateMyvCardTemp:temp];
+    BTXMPPTool *xmppTool = [BTXMPPTool sharedInstance];
+    [xmppTool setNickname:newInfo forUser:self.contacter.jid];
+    self.contacter.nickName = newInfo;
+    [self loadFriendInfo];
+    [self.tableView reloadData];
 }
 
 #pragma  mark 去掉@符号

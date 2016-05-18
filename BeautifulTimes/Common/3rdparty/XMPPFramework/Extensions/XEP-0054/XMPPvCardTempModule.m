@@ -157,8 +157,10 @@
 	dispatch_block_t block = ^{ @autoreleasepool {
 		
 		XMPPvCardTemp *vCardTemp = [_xmppvCardTempModuleStorage vCardTempForJID:jid xmppStream:xmppStream];
-		
-		if (vCardTemp == nil && shouldFetch && [_xmppvCardTempModuleStorage shouldFetchvCardTempForJID:jid xmppStream:xmppStream])
+        //by dengyonghao
+        if (!vCardTemp.jid) {
+            [self _fetchvCardTempForJID:jid];
+        } else if (vCardTemp == nil && shouldFetch && [_xmppvCardTempModuleStorage shouldFetchvCardTempForJID:jid xmppStream:xmppStream])
 		{
 			[self _fetchvCardTempForJID:jid];
 		}

@@ -13,6 +13,7 @@
 #import "BTChatViewController.h"
 #import "BTAddFriendViewController.h"
 #import "BTIMFriendInfoViewController.h"
+#import "BTNetManager.h"
 
 static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 
@@ -47,13 +48,15 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupRightButtun];
-    [self setupSearchBar];
+    if (!_isSharePhoto) {
+        [self setupRightButtun];
+        [self setupSearchBar];
+    }
     [self getFriendData];
     [self.view addSubview:self.tableview];
     self.tableview.sectionIndexColor = [UIColor grayColor];
     self.tableview.sectionIndexBackgroundColor = [UIColor clearColor];
-    [[BTXMPPTool sharedInstance] addFried:nil];
+//    [[BTXMPPTool sharedInstance] addFried:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateContacterList) name:UpdateContacterList object:nil];
 }
 
@@ -63,6 +66,15 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
     [self.tableview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(weakSelf.view).insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"needRefresh"]) {
+        [self getFriendData];
+        [self.tableview reloadData];
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"needRefresh"];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -272,6 +284,33 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BTContacterModel *contacter;
+    if (_isSharePhoto) {
+        NSString *key=self.keys[indexPath.section];
+        NSArray *arr=[self.data objectForKey:key];
+        contacter = arr[indexPath.row];
+        NSString *imageName = [NSString stringWithFormat:@"%@.btpng", [[BTXMPPTool sharedInstance].xmppStream generateUUID]];
+        //压缩下图片的大小（测试：8m --> 300k, 压缩后图片质量还行）
+        NSData *imagedata = UIImageJPEGRepresentation(self.shareImage, 0.5);
+        NSMutableDictionary *infoDic = [[NSMutableDictionary alloc] init];
+        [infoDic setObject:[[NSUserDefaults standardUserDefaults] valueForKey:userID] forKey:@"fromJid"];
+        [infoDic setObject:contacter.jid.user forKey:@"toJid"];
+        [infoDic setObject:imageName forKey:@"fileName"];
+        [BTNetManager uploadFileWithOption:infoDic withInferface:BTUploadFileURL fileData:imagedata fileName:imageName uploadSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"success");
+            NSString *cachesPath = [BTTool getCachesDirectory];
+            NSString *savePath = [cachesPath stringByAppendingPathComponent:imageName];
+            [imagedata writeToFile:savePath atomically:YES];
+            BTXMPPTool *xmppTool = [BTXMPPTool sharedInstance];
+            [xmppTool sendMessage:imageName type:@"chat" to:contacter.jid];
+        } uploadFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@", error);
+        } progress:^(float progress) {
+            NSLog(@"%f", progress);
+        }];
+        _isSharePhoto = NO;
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
     if (self.searchController.active) {
         contacter = self.searchList[indexPath.row];
         self.searchController.active = NO;

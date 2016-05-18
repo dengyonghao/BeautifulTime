@@ -19,7 +19,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
-        
     }
     return self;
 }
@@ -28,6 +27,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationBarHidden = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,7 +40,6 @@
 {
     [super viewWillLayoutSubviews];
     
-    self.navigationBarHidden = YES;
     [UIApplication sharedApplication].statusBarHidden = NO;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 

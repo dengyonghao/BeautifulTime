@@ -28,7 +28,7 @@ static int const ITEMNUM = 3;
         [self.contentView addSubview:self.imageView];
         [self.contentView addSubview:self.colseButton];
         
-        CGFloat itemWidth = (BT_SCREEN_WIDTH - OFFSET * (ITEMNUM + 1)) / ITEMNUM;
+        CGFloat itemWidth = (BT_SCREEN_WIDTH - OFFSET * (ITEMNUM + 2)) / ITEMNUM;
         WS(weakSelf);
         [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(weakSelf).offset(OFFSET);
@@ -67,7 +67,6 @@ static int const ITEMNUM = 3;
 - (UIImageView *)imageView {
     if (!_imageView) {
         _imageView = [[UIImageView alloc] init];
-        _imageView.backgroundColor = [UIColor blueColor];
     }
     return _imageView;
 }
@@ -75,7 +74,7 @@ static int const ITEMNUM = 3;
 - (UIButton *)colseButton {
     if (!_colseButton) {
         _colseButton = [[UIButton alloc] init];
-        _colseButton.backgroundColor = [UIColor redColor];
+        [_colseButton setBackgroundImage:BT_LOADIMAGE(@"com_ic_red_close") forState:UIControlStateNormal];
         [_colseButton addTarget:self action:@selector(colseButtonClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _colseButton;

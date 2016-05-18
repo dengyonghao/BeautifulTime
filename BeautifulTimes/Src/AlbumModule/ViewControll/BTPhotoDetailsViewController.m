@@ -9,6 +9,7 @@
 #import "BTPhotoDetailsViewController.h"
 #import <Photos/Photos.h>
 #import "BTEditPhotoViewController.h"
+#import "BTContacterViewController.h"
 
 static CGSize AssetGridThumbnailSize;
 static NSInteger currentIndex;
@@ -16,12 +17,13 @@ static NSInteger headIndex;
 static NSInteger tailIndex;
 static NSInteger cacheNumber = 10;
 
-@interface BTPhotoDetailsViewController () <UIScrollViewDelegate>
+@interface BTPhotoDetailsViewController () <UIScrollViewDelegate, UIActionSheetDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableDictionary *dataSource;
 @property (nonatomic, strong) PHCachingImageManager *imageManager;
 @property (nonatomic, strong) PHImageRequestOptions *options;
+@property (nonatomic, strong) UIActionSheet * selectActionSheet;
 
 @end
 
@@ -38,6 +40,7 @@ static NSInteger cacheNumber = 10;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
     CGFloat scale = [UIScreen mainScreen].scale;
     AssetGridThumbnailSize = CGSizeMake(BT_SCREEN_WIDTH * scale, (BT_SCREEN_HEIGHT - 48 * 2) * scale);
     currentIndex = self.index;
@@ -63,16 +66,96 @@ static NSInteger cacheNumber = 10;
 }
 
 - (void)finishButtonClick {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:nil
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:nil];
+    [actionSheet addButtonWithTitle:@"修改照片"];
+    [actionSheet addButtonWithTitle:@"删除照片"];
+    [actionSheet addButtonWithTitle:@"分享照片"];
+    [actionSheet addButtonWithTitle:@"取消"];
+    //设置取消按钮
+    actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
+    [actionSheet showFromRect:self.view.superview.bounds inView:self.view.superview animated:NO];
+    
+    if (self.selectActionSheet) {
+        self.selectActionSheet = nil;
+    }
+    
+    self.selectActionSheet = actionSheet;
+}
+
+#pragma mark UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == actionSheet.cancelButtonIndex)
+    {
+        return;
+    }
+    
     NSInteger pageNo = self.scrollView.contentOffset.x / self.scrollView.bounds.size.width;
-    [self.imageManager requestImageForAsset:self.assets[pageNo]
-                                 targetSize:AssetGridThumbnailSize
-                                contentMode:PHImageContentModeAspectFit
-                                    options:self.options
-                              resultHandler:^(UIImage *result, NSDictionary *info) {
-                                  BTEditPhotoViewController *vc = [[BTEditPhotoViewController alloc] init];
-                                  vc.originalImage = result;
-                                  [self.navigationController pushViewController:vc animated:YES];
-                              }];
+    
+    switch (buttonIndex)
+    {
+        case 0:
+        {
+            [self.imageManager requestImageForAsset:self.assets[pageNo]
+                                         targetSize:AssetGridThumbnailSize
+                                        contentMode:PHImageContentModeAspectFit
+                                            options:self.options
+                                      resultHandler:^(UIImage *result, NSDictionary *info) {
+                                          BTEditPhotoViewController *vc = [[BTEditPhotoViewController alloc] init];
+                                          vc.originalImage = result;
+                                          [self.navigationController pushViewController:vc animated:YES];
+                                      }];
+        }
+            break;
+            
+        case 1:
+        {
+            void (^completionHandler)(BOOL, NSError *) = ^(BOOL success, NSError *error) {
+                if (success) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self backButtonClick];
+                    });
+                } else {
+                    NSLog(@"Error: %@", error);
+                }
+            };
+            NSInteger pageNo = self.scrollView.contentOffset.x / self.scrollView.bounds.size.width;
+            [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+                [PHAssetChangeRequest deleteAssets:@[self.assets[pageNo]]];
+            } completionHandler:completionHandler];
+        }
+            break;
+        case 2:
+        {
+            if (![[NSUserDefaults standardUserDefaults] valueForKey:userID] || ![[NSUserDefaults standardUserDefaults] valueForKey:userPassword]) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"请您登录后再进行分享。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+            } else {
+                [self.imageManager requestImageForAsset:self.assets[pageNo]
+                                             targetSize:AssetGridThumbnailSize
+                                            contentMode:PHImageContentModeAspectFit
+                                                options:self.options
+                                          resultHandler:^(UIImage *result, NSDictionary *info) {
+                                              BTContacterViewController *vc = [[BTContacterViewController alloc] init];
+                                              vc.title = @"选择分享好友";
+                                              vc.isSharePhoto = YES;
+                                              vc.shareImage = result;
+                                              self.navigationController.navigationBarHidden = NO;
+                                              [self.navigationController pushViewController:vc animated:YES];
+                                          }];
+                
+            }
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (void)photoParseWithIndex:(NSInteger)index imageView:(UIImageView *)imageView{
@@ -250,6 +333,13 @@ static NSInteger cacheNumber = 10;
         _options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
     }
     return _options;
+}
+
+- (UIActionSheet *)selectActionSheet {
+    if (!_selectActionSheet) {
+        _selectActionSheet = [[UIActionSheet alloc] init];
+    }
+    return _selectActionSheet;
 }
 
 @end

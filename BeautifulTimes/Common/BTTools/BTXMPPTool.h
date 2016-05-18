@@ -80,6 +80,14 @@ typedef  void (^XMPPResultBlock)(XMPPResultType xmppType);
 - (void)addFried:(XMPPJID *)friedJid;
 
 /**
+ *  设置好友昵称
+ *
+ *  @param nickname 好友昵称
+ *  @param jid      好友jid
+ */
+- (void)setNickname:(NSString *)nickname forUser:(XMPPJID *)jid;
+
+/**
  *  处理好友申请
  *
  *  @param userJid 用户jid
