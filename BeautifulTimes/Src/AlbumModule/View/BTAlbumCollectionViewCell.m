@@ -71,7 +71,6 @@ static CGFloat const labelHeight = 20.0f;
 - (UIImageView *)imageView {
     if (!_imageView) {
         _imageView = [[UIImageView alloc] init];
-        _imageView.backgroundColor = [UIColor blueColor];
     }
     return _imageView;
 }

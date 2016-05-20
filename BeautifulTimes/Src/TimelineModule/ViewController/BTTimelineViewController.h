@@ -10,4 +10,6 @@
 
 @interface BTTimelineViewController : BTBaseViewController
 
+- (void)reloadTimelineList;
+
 @end

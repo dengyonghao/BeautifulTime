@@ -76,6 +76,7 @@
     NSArray *arr = self.allArr[indexPath.section];
     BTIMSettingModel *model = arr[indexPath.row];
     cell.settingModel = model;
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 

@@ -138,8 +138,9 @@
     }
     cell.textLabel.text = profile.name;
     cell.detailTextLabel.text = profile.info;
-    
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if (indexPath.section == 0  && indexPath.row == 1) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }

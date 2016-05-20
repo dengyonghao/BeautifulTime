@@ -72,16 +72,13 @@
 //        });
         NSString *cachesPath = [BTTool getCachesDirectory];
         NSString *savePath = [cachesPath stringByAppendingPathComponent:self.message];
-        NSDate *now1 = [NSDate date];
-        NSLog(@"date1:-----%f", now1.timeIntervalSince1970);
+       
         UIImage *image = [[UIImage alloc] initWithContentsOfFile:savePath];
         if (image) {
             NSTextAttachment * textAttachment = [[NSTextAttachment alloc]init];//添加附件,图片
             
             
             textAttachment.image = [self drawImage:image];
-            NSDate *now2 = [NSDate date];
-            NSLog(@"date2------%f", now2.timeIntervalSince1970);
             NSAttributedString * imageStr = [NSAttributedString attributedStringWithAttachment:textAttachment];
             self.attributedBody = imageStr;
         } else {

@@ -22,7 +22,9 @@
 #import "BTChatMoreView.h"
 #import "JCHATPhotoPickerViewController.h"
 #import "MBProgressHUD+MJ.h"
-#import "MJRefresh.h"
+//#import "MJRefresh.h"
+#import "PopupView.h"
+#import "UIViewController+PopupViewController.h"
 
 
 static CGFloat const KEYBOARDWIDTH = 216.0f;
@@ -66,7 +68,7 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
     [self setupTableView];
     [self loadChatData];
     [self setupBottomView];
-    [self setupRefresh];
+//    [self setupRefresh];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(emotionDidSelected:) name:HMEmotionDidSelectedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(emotionDidDeleted:) name:HMEmotionDidDeletedNotification object:nil];
@@ -91,20 +93,20 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
     }
 }
 
-//开始刷新自定义方法
-- (void)setupRefresh
-{
-    __unsafe_unretained UITableView *tableView = self.tableView;
-    
-    // 下拉刷新
-    tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self reloadChatData];
-        [tableView.mj_header endRefreshing];
-    }];
-    
-    // 设置自动切换透明度(在导航栏下面自动隐藏)
-    tableView.mj_header.automaticallyChangeAlpha = YES;
-}
+////开始刷新自定义方法
+//- (void)setupRefresh
+//{
+//    __unsafe_unretained UITableView *tableView = self.tableView;
+//    
+//    // 下拉刷新
+//    tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        [self reloadChatData];
+//        [tableView.mj_header endRefreshing];
+//    }];
+//    
+//    // 设置自动切换透明度(在导航栏下面自动隐藏)
+//    tableView.mj_header.automaticallyChangeAlpha = YES;
+//}
 
 #pragma mark 加载聊天数据
 - (void)reloadChatData
@@ -286,7 +288,7 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
 {
     if(self.tableView == nil) {
         UITableView *tableView = [[UITableView alloc]init];
-        tableView.allowsSelection = NO;
+//        tableView.allowsSelection = NO;
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         CGFloat tableViewHeight = self.view.height - 64 - CHATTOOLVIEWHEIGHT;
         self.tableViewHeight = tableViewHeight;
@@ -357,6 +359,7 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
     BTChatViewCell *cell = [BTChatViewCell cellWithTableView:tableView indentifier:@"chatViewCell"];
     BTMessageFrameModel *frameModel = self.frameModelArr[indexPath.row];
     cell.frameModel = frameModel;
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 
@@ -364,6 +367,37 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
 {
     BTMessageFrameModel *frameModel = self.frameModelArr[indexPath.row];
     return frameModel.cellHeight;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    BTMessageFrameModel *frameModel = self.frameModelArr[indexPath.row];
+    BTChatMessageModel *model = frameModel.messageModel;
+    if ([model.message hasSuffix:@".btpng"]) {
+        NSString *cachesPath = [BTTool getCachesDirectory];
+        NSString *savePath = [cachesPath stringByAppendingPathComponent:model.message];
+        UIImage *image = [[UIImage alloc] initWithContentsOfFile:savePath];
+        if (image) {
+            PopupView *popupView = [[PopupView alloc] initWithFrame:CGRectMake(0, 48, BT_SCREEN_WIDTH, BT_SCREEN_HEIGHT - 48 * 2) parentViewController:self];
+            UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, BT_SCREEN_WIDTH, BT_SCREEN_HEIGHT - 48 * 2)];
+            scrollView.pagingEnabled = YES;
+            scrollView.userInteractionEnabled = YES;
+            scrollView.showsHorizontalScrollIndicator = NO;
+            
+            scrollView.contentSize = CGSizeMake(BT_SCREEN_WIDTH, BT_SCREEN_HEIGHT - 48 * 2);
+            scrollView.delegate = self;
+            scrollView.contentOffset = CGPointMake(0, 0);
+            
+            UIImageView *imgView = [[UIImageView alloc] init];
+            imgView.contentMode = UIViewContentModeScaleAspectFit;
+            [imgView setFrame:CGRectMake(0, 0, BT_SCREEN_WIDTH, BT_SCREEN_HEIGHT - 48 * 2)];
+            imgView.image = image;
+            [scrollView addSubview:imgView];
+            
+            [popupView addSubview:scrollView];
+            popupView.userInteractionEnabled = NO;
+            [self presentPopupView:popupView];
+        }
+    }
 }
 
 #pragma mark 添加底部的view
@@ -528,12 +562,13 @@ static CGFloat const CHATTOOLVIEWHEIGHT = 49.0f;
     [infoDic setObject:[[NSUserDefaults standardUserDefaults] valueForKey:userID] forKey:@"fromJid"];
     [infoDic setObject:self.contacter.jid.user forKey:@"toJid"];
     [infoDic setObject:imageName forKey:@"fileName"];
+    
     [BTNetManager uploadFileWithOption:infoDic withInferface:BTUploadFileURL fileData:imagedata fileName:imageName uploadSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"success");
         NSString *cachesPath = [BTTool getCachesDirectory];
         NSString *savePath = [cachesPath stringByAppendingPathComponent:imageName];
         [imagedata writeToFile:savePath atomically:YES];
-        [self sendFileMsgWithType:@"chat" fileName:imageName];
+       [self sendFileMsgWithType:@"chat" fileName:imageName];
     } uploadFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error);
     } progress:^(float progress) {

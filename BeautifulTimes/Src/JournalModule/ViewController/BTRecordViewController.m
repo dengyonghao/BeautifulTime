@@ -52,6 +52,7 @@ static CGFloat const recorderDuration = 600;
     audioSession = [AVAudioSession sharedInstance];
     [self initRecorder];
     isEditModel = NO;
+    self.bgImageView.image = BT_LOADIMAGE(@"com_bg_journal01_1242x2208");
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -202,6 +203,9 @@ static CGFloat const recorderDuration = 600;
     }
     [self deleteRecordFile];
     player = nil;
+    [self nowPlayingRecordCurrentTime:0 duration:recorderDuration];
+    recorder = nil;
+    [self initRecorder];
 }
 
 - (void)playButtonClick:(UIButton *)sender {

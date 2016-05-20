@@ -35,7 +35,7 @@
 }
 
 - (void)setLineWidth:(CGFloat)lineWidth{
-    CAShapeLayer *backgroundLayer = [self createRingLayerWithCenter:CGPointMake(CGRectGetWidth(self.frame) / 2, CGRectGetHeight(self.frame) / 2) radius:CGRectGetWidth(self.bounds) / 2 - lineWidth / 2 lineWidth:lineWidth / 4 color:[[BTThemeManager getInstance] BTThemeColor:@"cl_line_a2_progress"]];
+    CAShapeLayer *backgroundLayer = [self createRingLayerWithCenter:CGPointMake(CGRectGetWidth(self.frame) / 2, CGRectGetHeight(self.frame) / 2) radius:CGRectGetWidth(self.bounds) / 2 - lineWidth / 2 lineWidth:lineWidth / 4 color:[UIColor grayColor]];
     _lineWidth = lineWidth;
     [self.layer addSublayer:backgroundLayer];
     

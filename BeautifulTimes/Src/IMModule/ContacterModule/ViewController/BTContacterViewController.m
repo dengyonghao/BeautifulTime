@@ -75,6 +75,14 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
         [self.tableview reloadData];
         [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"needRefresh"];
     }
+//    if (self.searchController.active) {
+//        self.searchController.active = NO;
+//        [self.tableview reloadData];
+//    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -266,6 +274,8 @@ static NSString *kcellContacterIndentifier = @"contacterIndentifier";
     if (!cell) {
         cell = [[BTContacterCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kcellContacterIndentifier];
     }
+    
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     if (self.searchController.active) {
         BTContacterModel *contacter = self.searchList[indexPath.row];

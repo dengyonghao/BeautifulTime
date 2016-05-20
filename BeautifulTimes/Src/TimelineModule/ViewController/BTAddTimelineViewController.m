@@ -32,19 +32,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
     self.titleLabel.text = @"记点滴";
     [self.finishButton setTitle:@"保存" forState:UIControlStateNormal];
     [self.bodyView addSubview:self.toolView];
     [self.bodyView addSubview:self.contentTextView];
     self.bgImageView.image = BT_LOADIMAGE(@"com_bg_journal01_1242x2208");
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(keyboardWasHidden:) name:UIKeyboardWillHideNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [self addKeyboardObserver];
 }
 
 - (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
     WS(weakSelf);
     [self.toolView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.bodyView);
@@ -58,6 +56,15 @@
     }];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+
+    [super viewWillDisappear:animated];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -68,6 +75,18 @@
     [super backButtonClick];
 }
 
+- (void)removeKeyboardObserver {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+}
+
+- (void)addKeyboardObserver {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(keyboardWasHidden:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+}
+
 //开始定位
 -(void)startLocation{
     self.locationManager = [[CLLocationManager alloc] init];
@@ -76,7 +95,6 @@
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
     [self.locationManager startUpdatingLocation];
-    
 }
 
 //检测是否支持定位
@@ -96,6 +114,13 @@
             errorString = @"发生未知错误";
             break;
     }
+    BTIMEditUserInfoViewController *edit = [[BTIMEditUserInfoViewController alloc]init];
+    edit.delegate = self;
+    edit.title = @"获取位置";
+    edit.str = self.site.text;
+    [self removeKeyboardObserver];
+    BTIMNavViewController *nav = [[BTIMNavViewController alloc] initWithRootViewController:edit];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 //定位代理经纬度回调
@@ -114,7 +139,7 @@
                 edit.str = [NSString stringWithFormat:@"%@%@", country, city];;
             }
         }
-        
+        [self removeKeyboardObserver];
         BTIMNavViewController *nav = [[BTIMNavViewController alloc] initWithRootViewController:edit];
         [self presentViewController:nav animated:YES completion:nil];
     }];
@@ -123,11 +148,13 @@
 
 #pragma timelineToolView delegate
 - (void)timelineToolViewDidSelectAtCurrentSite {
+    [self.contentTextView resignFirstResponder];
     if (self.site.text) {
         BTIMEditUserInfoViewController *edit = [[BTIMEditUserInfoViewController alloc]init];
         edit.delegate = self;
         edit.title = @"获取位置";
         edit.str = self.site.text;
+        [self removeKeyboardObserver];
         BTIMNavViewController *nav = [[BTIMNavViewController alloc] initWithRootViewController:edit];
         [self presentViewController:nav animated:YES completion:nil];
     } else {
@@ -140,6 +167,7 @@
 -(void)EditingFinshed:(BTIMEditUserInfoViewController *)edit indexPath:(NSIndexPath *)indexPath newInfo:(NSString *)newInfo
 {
     self.site.text = newInfo;
+    [self addKeyboardObserver];
 }
 
 - (void)timelineToolViewDidSelectAtSelectPhotos {
@@ -203,7 +231,6 @@
         model.site = self.site.text;
     }
     model.timelineDate = [NSDate date];
-    [[BTTimelineDBManager sharedInstance] addTimelineMessage:model];
     
     NSData *photosData = [NSKeyedArchiver archivedDataWithRootObject:[BTJournalController sharedInstance].photos];
     NSString *documentDirectory = [BTTool getDocumentDirectory];
@@ -223,10 +250,9 @@
     model.photos = uid;
     
     NSString *contacter = [BTJournalController sharedInstance].contacter;
-    if (contacter) {
-        contacter = [NSString stringWithFormat:@"我和：%@", contacter];
-    }
     model.friends = contacter;
+    
+    [[BTTimelineDBManager sharedInstance] addTimelineMessage:model];
     
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if ([controller isKindOfClass:[BTHomePageViewController class]]) {
@@ -252,6 +278,7 @@
     if (!_contentTextView) {
         _contentTextView = [[UITextView alloc] init];
         _contentTextView.backgroundColor = BT_CLEARCOLOR;
+        [_contentTextView setFont:BT_FONTSIZE(18)];
     }
     return _contentTextView;
 }

@@ -26,6 +26,8 @@ static NSString *kAddressBookIndentifier = @"kAddressBookIndentifier";
 
 @property (nonatomic, strong) NSMutableDictionary *contactSource;
 
+@property (nonatomic, strong) NSMutableDictionary *flageArray;
+
 @end
 
 @implementation BTAddressBookViewController
@@ -69,6 +71,7 @@ static NSString *kAddressBookIndentifier = @"kAddressBookIndentifier";
         }
     }
     [BTJournalController sharedInstance].contacter = str;
+    [self backButtonClick];
 }
 
 - (NSArray *)sortDictionaryByAsc:(NSDictionary *)dict {
@@ -160,6 +163,13 @@ static NSString *kAddressBookIndentifier = @"kAddressBookIndentifier";
     NSArray *arr = [self.data objectForKey:key];
     BTAddressBook *contacter = arr[indexPath.row];
     [cell bindData:contacter];
+    long ind = indexPath.section * 10000 + indexPath.row;
+    NSString *str = [self.flageArray valueForKey:[[NSString alloc] initWithFormat:@"%ld",ind]];
+    if ([str isEqualToString:@"YES"]) {
+        cell.isSelect.hidden = NO;
+    } else {
+        cell.isSelect.hidden = YES;
+    }
     return cell;
 }
 
@@ -170,9 +180,11 @@ static NSString *kAddressBookIndentifier = @"kAddressBookIndentifier";
     BTAdressBookCell *cell = (BTAdressBookCell *) [tableView cellForRowAtIndexPath:indexPath];
     if (cell.isSelect.hidden) {
         cell.isSelect.hidden = NO;
-        [self.contactSource setValue:cell.name forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
+        [self.flageArray setValue:@"YES" forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
+        [self.contactSource setValue:cell.name.text forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
     } else {
         cell.isSelect.hidden = YES;
+        [self.flageArray setValue:@"NO" forKey:[[NSString alloc] initWithFormat:@"%ld",index]];
         [self.contactSource removeObjectForKey:[[NSString alloc] initWithFormat:@"%ld",index]];
     }
     
@@ -231,6 +243,13 @@ static NSString *kAddressBookIndentifier = @"kAddressBookIndentifier";
         _contactSource = [[NSMutableDictionary alloc] init];
     }
     return _contactSource;
+}
+
+- (NSMutableDictionary *)flageArray {
+    if (!_flageArray) {
+        _flageArray = [[NSMutableDictionary alloc] init];
+    }
+    return _flageArray;
 }
 
 @end

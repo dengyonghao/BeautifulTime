@@ -13,6 +13,8 @@
 #import "BTJournalController.h"
 #import "BTAddJournalViewController.h"
 #import "BTAddTimelineViewController.h"
+#import "BTTimelineViewController.h"
+#import "BTTimelineDetailViewController.h"
 
 static  NSString *kcellIdentifier = @"kSelectPhotosCollectionCellID";
 static int const showNumber = 3;
@@ -106,9 +108,15 @@ static CGFloat const OFFSET = 15.0f;
                 vc.photos.image = [BTJournalController sharedInstance].photos[0];
             }
             [self.navigationController popToViewController:controller animated:YES];
+            return;
         }
         if ([controller isKindOfClass:[BTAddTimelineViewController class]]) {
             [self.navigationController popToViewController:controller animated:YES];
+            return;
+        }
+        if ([controller isKindOfClass:[BTTimelineDetailViewController class]]) {
+            [self.navigationController popToViewController:controller animated:YES];
+            return;
         }
     }
 }

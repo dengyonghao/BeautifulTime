@@ -43,6 +43,11 @@
     }];
 }
 
+- (void)reloadTimelineList {
+    [self initDataSource];
+    [self.tableView reloadData];
+}
+
 - (void)initDataSource {
     [self.dataSource removeAllObjects];
     [self.keys removeAllObjects];
@@ -109,6 +114,7 @@
     NSString *key = self.keys[indexPath.section];
     NSArray *arr = [self.dataSource objectForKey:key];
     [cell bindDate:arr[indexPath.row]];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 
@@ -124,7 +130,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 100;
 }
 
 - (UITableView *)tableView {

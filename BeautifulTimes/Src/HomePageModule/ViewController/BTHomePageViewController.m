@@ -440,6 +440,7 @@ static const CGFloat BUTTONWIDTH = 48;
 - (UIButton *)setting {
     if (!_setting) {
         _setting = [[UIButton alloc] init];
+        _setting.hidden = YES;
         [_setting addTarget:self action:@selector(settingClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _setting;

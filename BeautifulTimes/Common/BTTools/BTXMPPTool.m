@@ -207,7 +207,7 @@ static BTXMPPTool *xmppTool;
 #pragma mark 登录的方法
 -(void)login:(XMPPResultBlock)xmppBlock {
     _resultBlock = xmppBlock;
-//    [_xmppStream disconnect];
+    [_xmppStream disconnect];
     [self connectToHost];
 }
 
@@ -544,7 +544,7 @@ static BTXMPPTool *xmppTool;
 //        [_messageStroage archiveMessage:message outgoing:NO xmppStream:_xmppStream];
         
     } downloadFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        NSLog(@"下载失败");
     } progress:^(float progress) {
         
     }];

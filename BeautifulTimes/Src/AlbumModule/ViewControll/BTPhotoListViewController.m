@@ -205,6 +205,7 @@ static CGSize AssetGridThumbnailSize;
                                                         otherButtonTitles:nil];
         [actionSheet addButtonWithTitle:@"添加照片"];
         [actionSheet addButtonWithTitle:@"删除相册"];
+        [actionSheet addButtonWithTitle:@"修改相册名称"];
         [actionSheet addButtonWithTitle:@"取消"];
         //设置取消按钮
         actionSheet.cancelButtonIndex = actionSheet.numberOfButtons - 1;
@@ -231,19 +232,6 @@ static CGSize AssetGridThumbnailSize;
     {
         case 0:
         {
-//            // Add it to the photo library
-//            [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-//                PHAssetChangeRequest *assetChangeRequest = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
-//                
-//                if (self.assetCollection) {
-//                    PHAssetCollectionChangeRequest *assetCollectionChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:self.assetCollection];
-//                    [assetCollectionChangeRequest addAssets:@[[assetChangeRequest placeholderForCreatedAsset]]];
-//                }
-//            } completionHandler:^(BOOL success, NSError *error) {
-//                if (!success) {
-//                    NSLog(@"Error creating asset: %@", error);
-//                }
-//            }];
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"选择来源" message:@"请选择添加照片的来源" delegate:self cancelButtonTitle:@"取消选择" otherButtonTitles:@"从相册选择", @"拍照", nil];
             [alertView show];
             
@@ -271,7 +259,20 @@ static CGSize AssetGridThumbnailSize;
             }];
         }
             break;
-            
+        case 2:
+        {
+            if (self.assetCollection) {
+                UIAlertView *alerView =[[UIAlertView alloc] initWithTitle:@"修改相册名称"
+                                                                  message:@"输入相册名称!"
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"取消"
+                                                        otherButtonTitles:@"确定", nil];
+                alerView.alertViewStyle = UIAlertViewStylePlainTextInput;
+                alerView.tag = 20011;
+                [alerView show];
+            }
+        }
+            break;
         default:
             break;
     }
@@ -279,6 +280,18 @@ static CGSize AssetGridThumbnailSize;
 
 #pragma mark UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == 20011) {
+        if (buttonIndex == 1) {
+            [[alertView textFieldAtIndex:0] resignFirstResponder];
+            [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+                PHAssetCollectionChangeRequest *assetCollectionChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:self.assetCollection];
+                assetCollectionChangeRequest.title = [alertView textFieldAtIndex:0].text;
+            } completionHandler:^(BOOL success, NSError * _Nullable error) {
+                
+            }];
+        }
+        return;
+    }
     if (buttonIndex == 1){
         [self selectExistingPictureOrVideo];
     } else {
@@ -301,7 +314,19 @@ static CGSize AssetGridThumbnailSize;
     self.chosenMediaType=[info objectForKey:UIImagePickerControllerMediaType];
     if([self.chosenMediaType isEqual:(NSString *) kUTTypeImage]){
         UIImage *chosenImage=[info objectForKey:UIImagePickerControllerOriginalImage];
-        
+        // Add it to the photo library
+        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+            PHAssetChangeRequest *assetChangeRequest = [PHAssetChangeRequest creationRequestForAssetFromImage:chosenImage];
+            
+            if (self.assetCollection) {
+                PHAssetCollectionChangeRequest *assetCollectionChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:self.assetCollection];
+                [assetCollectionChangeRequest addAssets:@[[assetChangeRequest placeholderForCreatedAsset]]];
+            }
+        } completionHandler:^(BOOL success, NSError *error) {
+            if (!success) {
+                NSLog(@"Error creating asset: %@", error);
+            }
+        }];
     }
     if([self.chosenMediaType isEqual:(NSString *) kUTTypeMovie]){
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示信息!" message:@"系统只支持图片格式" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];

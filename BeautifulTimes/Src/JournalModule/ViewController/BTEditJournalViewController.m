@@ -15,10 +15,12 @@
 #import "BTJournalListViewController.h"
 #import "BTCircularProgressButton.h"
 #import <AVFoundation/AVFoundation.h>
+#import "UIViewController+PopupViewController.h"
+#import "PopupView.h"
 
 static const CGFloat itemWidth = 70.0f;
 
-@interface BTEditJournalViewController () <UITextViewDelegate, UIActionSheetDelegate, UIAlertViewDelegate, AVAudioPlayerDelegate> {
+@interface BTEditJournalViewController () <UITextViewDelegate, UIActionSheetDelegate, UIAlertViewDelegate, AVAudioPlayerDelegate, UIScrollViewDelegate> {
     AVAudioPlayer *_player;
     AVAudioSession *_audioSession;
     BOOL isEditModel;
@@ -56,6 +58,7 @@ static const CGFloat itemWidth = 70.0f;
     _audioSession = [AVAudioSession sharedInstance];
     isEditModel = NO;
     self.bgImageView.image = BT_LOADIMAGE(@"com_bg_journal01_1242x2208");
+    [self addImageViewGesture];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -144,6 +147,45 @@ static const CGFloat itemWidth = 70.0f;
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark 添加手势识别器
+-(void)addImageViewGesture
+{
+    UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(photosClick)];
+    tap.numberOfTapsRequired = 1;
+    [self.photos addGestureRecognizer:tap];
+}
+
+- (void)photosClick {
+    NSString *documentDirectory = [BTTool getDocumentDirectory];
+    NSString *photosPath = [documentDirectory stringByAppendingPathComponent:self.journal.photos];
+    NSData *photosData = [[NSData alloc] initWithContentsOfFile:photosPath];
+    
+    NSArray *photoArray = [NSKeyedUnarchiver unarchiveObjectWithData:photosData];
+    if (photoArray.count > 0) {
+        PopupView *popupView = [[PopupView alloc] initWithFrame:CGRectMake(0, 48, BT_SCREEN_WIDTH, BT_SCREEN_HEIGHT - 48 * 2) parentViewController:self];
+        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, BT_SCREEN_WIDTH, BT_SCREEN_HEIGHT - 48 * 2)];
+        scrollView.pagingEnabled = YES;
+        scrollView.userInteractionEnabled = YES;
+        scrollView.showsHorizontalScrollIndicator = NO;
+        
+        scrollView.contentSize = CGSizeMake(photoArray.count * BT_SCREEN_WIDTH, BT_SCREEN_HEIGHT - 48 * 2);
+        scrollView.delegate = self;
+        scrollView.contentOffset = CGPointMake(0, 0);
+        
+        for (int i = 0; i < photoArray.count; i++) {
+            UIImageView *imgView = [[UIImageView alloc] init];
+            imgView.contentMode = UIViewContentModeScaleAspectFit;
+            NSInteger x = i * BT_SCREEN_WIDTH;
+            [imgView setFrame:CGRectMake(x, 0, BT_SCREEN_WIDTH, BT_SCREEN_HEIGHT - 48 * 2)];
+            imgView.image = photoArray[i];
+            [scrollView addSubview:imgView];
+        }
+        [popupView addSubview:scrollView];
+        [self presentPopupView:popupView];
+    }
+    
 }
 
 - (void)backButtonClick {
@@ -264,7 +306,7 @@ static const CGFloat itemWidth = 70.0f;
             isEditModel = YES;
             [self.finishButton setTitle:@"保存" forState:UIControlStateNormal];
             self.content.editable = YES;
-            [self.content resignFirstResponder];
+            [self.content becomeFirstResponder];
         }
             break;
             
@@ -409,8 +451,8 @@ static const CGFloat itemWidth = 70.0f;
 - (UIButton *)playButton {
     if (!_playButton) {
         _playButton = [[UIButton alloc] init];
-        [_playButton setTitle:@"开始播放" forState:UIControlStateNormal];
-        [_playButton setTitle:@"停止播放" forState:UIControlStateSelected];
+        [_playButton setTitle:@"播放" forState:UIControlStateNormal];
+        [_playButton setTitle:@"停止" forState:UIControlStateSelected];
         [_playButton addTarget:self action:@selector(playButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _playButton;

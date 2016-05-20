@@ -205,7 +205,7 @@ static CGFloat const iconHeight = 120.0f;
                                      }];
             }
             else {
-                [cell bindData:collection.localizedTitle icon:nil];
+                [cell bindData:collection.localizedTitle icon:BT_LOADIMAGE(@"com_ic_addPhoto@3x")];
             }
         }
     }

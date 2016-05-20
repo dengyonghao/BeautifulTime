@@ -33,6 +33,7 @@
     BTChatViewShow *viewShow=[[BTChatViewShow alloc]init];
     [self.contentView addSubview:viewShow];
     self.viewShow = viewShow;
+    self.viewShow.userInteractionEnabled = NO;
 }
 
 + (instancetype)cellWithTableView:(UITableView *)tableView indentifier:(NSString *)indentifier
